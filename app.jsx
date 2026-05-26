@@ -15,13 +15,16 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 // Image URLs — verified-loading Unsplash photos. Undefined entries fall back
 // to printed slab placeholders (matches user's "mix of real photos + slabs" pref).
 const U = (id, w = 800) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=75`;
+// R(): prefer bundled blob URL (set by super_inline_html) but fall back to live path
+const R = (id, fallback) => (typeof window !== "undefined" && window.__resources && window.__resources[id]) || fallback;
+
 const IMG = {
   // hero — user-provided artwork
-  hero: "assets/hero-imperialist-war.png",
+  hero: R("imgHero", "assets/hero-imperialist-war.png"),
   // hero left cards — user-provided artwork
-  manifesto: "assets/card-manifesto.jpg",
-  warOnIran: "assets/card-war-on-iran.png",
-  communistsComing: "assets/card-communists-coming.png",
+  manifesto: R("imgManifesto", "assets/card-manifesto.jpg"),
+  warOnIran: R("imgWarOnIran", "assets/card-war-on-iran.png"),
+  communistsComing: R("imgCommunistsComing", "assets/card-communists-coming.png"),
   // Everything below: slab placeholders (no stock photos)
   art: undefined,
   japan: undefined,
@@ -34,17 +37,17 @@ const IMG = {
   comintern: undefined,
   cartoon: undefined,
   // topic split — Iran War + Palestine
-  iranNight: "assets/topic-iran-war.jpg",
-  trumpHead: "assets/topic-trump-iran.jpg",
-  twoState: "assets/topic-two-state.jpg",
-  palestine48: "assets/topic-palestine-1948.webp",
+  iranNight: R("imgIranWar", "assets/topic-iran-war.jpg"),
+  trumpHead: R("imgTrumpIran", "assets/topic-trump-iran.jpg"),
+  twoState: R("imgTwoState", "assets/topic-two-state.jpg"),
+  palestine48: R("imgPalestine48", "assets/topic-palestine-1948.webp"),
   // manifesto banner — RCI flag SVG, no photo needed
   redFlag: null,
   // economy
-  marx: "assets/econ-adam-smith.jpg",
-  banks: "assets/econ-shadow-banking.jpg",
-  china: "assets/econ-china.jpg",
-  ai: "assets/econ-ai.jpg",
+  marx: R("imgAdamSmith", "assets/econ-adam-smith.jpg"),
+  banks: R("imgShadowBanking", "assets/econ-shadow-banking.jpg"),
+  china: R("imgChina", "assets/econ-china.jpg"),
+  ai: R("imgAi", "assets/econ-ai.jpg"),
 };
 
 // Small helper: photo block with grain, or slab fallback
@@ -53,7 +56,7 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
     return (
       <div style={{ position: "relative", aspectRatio: aspect, ...style }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${image}")`, backgroundSize: "cover", backgroundPosition: "center", filter: "contrast(1.05) saturate(0.95)" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('ds/textures/film-grain.jpg')", backgroundSize: "500px", mixBlendMode: "multiply", opacity: 0.14, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url("${R("texGrain", "ds/textures/film-grain.jpg")}")`, backgroundSize: "500px", mixBlendMode: "multiply", opacity: 0.14, pointerEvents: "none" }} />
       </div>
     );
   }
@@ -73,7 +76,7 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
       {/* texture overlay */}
       <div style={{
         position: "absolute", inset: 0,
-        backgroundImage: "url('ds/textures/grunge-light-specks.jpg')",
+        backgroundImage: `url("${R("texSpecks", "ds/textures/grunge-light-specks.jpg")}")`,
         backgroundSize: "cover",
         opacity: 0.18,
         pointerEvents: "none",
@@ -126,10 +129,30 @@ const RECENT_ANALYSIS = [
 
 // ── Masthead ────────────────────────────────────────────────────────────────
 function Masthead() {
+  const [searchOpen, setSearchOpen] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState("");
+  const inputRef = React.useRef(null);
+  const toggleSearch = () => {
+    setSearchOpen((o) => {
+      const next = !o;
+      if (next) {
+        setTimeout(() => inputRef.current && inputRef.current.focus(), 60);
+      } else {
+        setSearchValue("");
+      }
+      return next;
+    });
+  };
+  const onKeyDown = (e) => {
+    if (e.key === "Escape") { setSearchOpen(false); setSearchValue(""); }
+  };
+  const onBlur = (e) => {
+    if (!e.currentTarget.value) setSearchOpen(false);
+  };
   return (
     <header className="masthead">
       <div className="mast-left">
-        <img src="ds/logos/rci-square.svg" alt="RCI" className="mast-logo" />
+        <img src={R("rciSquare", "ds/logos/rci-square.svg")} alt="RCI" className="mast-logo" />
         <div className="mast-wordmark">
           <div className="wm-title">Marxist<span className="wm-dot">.</span>com</div>
         </div>
@@ -154,9 +177,33 @@ function Masthead() {
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.34 18.7 19.7c-.24 1.08-.88 1.34-1.78.84l-4.92-3.62-2.37 2.28c-.26.26-.48.48-.98.48l.35-4.96L17.8 6.5c.4-.36-.08-.55-.62-.2L7.6 12.4l-4.92-1.54c-1.07-.34-1.1-1.07.22-1.58l19.27-7.43c.9-.34 1.68.2 1.38 1.58z"/></svg>
           </a>
         </div>
-        <button className="mast-burger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+        <div className="mast-search" data-open={searchOpen}>
+          <input
+            ref={inputRef}
+            type="search"
+            className="mast-search-input"
+            placeholder="Search marxist.com\u2026"
+            aria-label="Search marxist.com"
+            tabIndex={searchOpen ? 0 : -1}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            onKeyDown={onKeyDown}
+            onBlur={onBlur}
+          />
+          <button
+            className="mast-search-btn"
+            aria-label={searchOpen ? "Close search" : "Open search"}
+            aria-expanded={searchOpen}
+            onClick={toggleSearch}
+            type="button"
+          >
+            {searchOpen ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>
+            )}
+          </button>
+        </div>
       </div>
     </header>
   );
@@ -252,7 +299,7 @@ function Hero({ tweaks }) {
         {/* RIGHT: recent analysis */}
         <aside className="hero-right">
           <div className="popular-head">
-            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Recent analysis</Eyebrow>
+            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Latest analysis</Eyebrow>
             <div className="popular-sub">Live feed</div>
           </div>
           <ol className="popular-list">
@@ -282,7 +329,7 @@ function CampaignBanner({ tweaks }) {
       <SectionHead label="Campaigns" divider={tweaks.divider} extra="Take action →" />
       <div className="campaign-card">
         <div className="campaign-photo">
-          <img src="assets/campaign-ehsan-ali.webp" alt="Free Ehsan Ali campaign rally" />
+          <img src={R("imgCampaign", "assets/campaign-ehsan-ali.webp")} alt="Free Ehsan Ali campaign rally" />
         </div>
         <div className="campaign-body">
           <Eyebrow style={{ fontSize: 12, letterSpacing: "0.22em" }}>Pakistan · Gilgit Baltistan</Eyebrow>
@@ -349,7 +396,7 @@ function JoinBanner() {
           overflow: "hidden",
         }}>
           <iframe
-            src="assets/globe-loader.html"
+            src={R("globeLoader", "assets/globe-loader.html")}
             title="Animated globe"
             style={{
               position: "absolute",
@@ -382,7 +429,7 @@ function IDOMBlock({ tweaks }) {
       <div className="idom-cover">
         <div className="idom-cover-issue-tag">Latest issue</div>
         <div className="idom-cover-art">
-          <img src="assets/idom-53-cover.jpg" alt="In Defence of Marxism — Issue 53, Spring 2026" />
+          <img src={R("imgIdomCover", "assets/idom-53-cover.jpg")} alt="In Defence of Marxism — Issue 53, Spring 2026" />
         </div>
         <div className="idom-cover-meta">
           <div className="idom-cover-issuenum">Issue 53 · Spring 2026</div>
@@ -473,7 +520,7 @@ function ManifestoBanner({ tweaks }) {
   return (
     <section className="sections-card">
       <div className="sections-photo">
-        <img src="assets/sections-britain-rcp.jpg" alt="RCP Britain Third Congress" />
+        <img src={R("imgSectionsHeader", "assets/sections-britain-rcp.jpg")} alt="RCP Britain Third Congress" />
         <div className="sections-photo-overlay">
           <Eyebrow style={{ fontSize: 13, letterSpacing: "0.26em", color: "var(--rci-offwhite)" }}>Dispatches · From the front</Eyebrow>
           <h2 className="sections-h2">Updates from the National Sections</h2>
@@ -527,7 +574,7 @@ function Footer() {
     <footer className="site-foot">
       <div className="foot-top">
         <div className="foot-brand">
-          <img src="ds/logos/rci-square.svg" alt="RCI" />
+          <img src={R("rciSquare", "ds/logos/rci-square.svg")} alt="RCI" />
           <div>
             <div className="foot-brand-wm">Marxist.com</div>
             <div className="foot-brand-tag">Home of the Revolutionary Communist International</div>
@@ -562,7 +609,7 @@ function Footer() {
       <div className="foot-rule" />
       <div className="foot-bot">
         <span>© 2026 Revolutionary Communist International · marxist.com</span>
-        <span>Workers of the world, unite.</span>
+        <span>Workers of the world, unite!</span>
       </div>
     </footer>
   );

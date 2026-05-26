@@ -171,22 +171,47 @@
     .mast-socials { display: none; }
   }
 
-  .mast-burger {
-    width: 44px; height: 44px;
+  .mast-search {
+    display: flex; align-items: center;
+    height: 44px;
     background: var(--paper);
     border: 2px solid var(--rule);
-    cursor: pointer;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 4px;
-    padding: 0;
-    transition: background 80ms;
+    transition: border-color 120ms, background 80ms;
+    overflow: hidden;
   }
-  body[data-mode="dark"] .mast-burger { background: var(--paper); }
-  .mast-burger:hover { background: var(--rci-ink); }
-  .mast-burger:hover span { background: var(--rci-offwhite); }
-  .mast-burger span { display: block; width: 20px; height: 2px; background: var(--rci-ink); }
-  body[data-mode="dark"] .mast-burger span { background: var(--rci-offwhite); }
+  body[data-mode="dark"] .mast-search { background: var(--paper); }
+  .mast-search:focus-within { border-color: var(--rci-ink); }
+  .mast-search-input {
+    width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: var(--rci-ink);
+    outline: none;
+    transition: width 240ms cubic-bezier(0.2,0.7,0.1,1), padding 240ms;
+  }
+  body[data-mode="dark"] .mast-search-input { color: var(--rci-ink); }
+  .mast-search-input::placeholder { color: var(--rci-ink); opacity: 0.55; font-style: italic; }
+  .mast-search[data-open="true"] .mast-search-input { width: 200px; padding: 0 4px 0 12px; }
+  .mast-search-btn {
+    width: 40px; height: 40px;
+    flex: 0 0 40px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rci-ink);
+    transition: background 80ms, color 80ms;
+  }
+  body[data-mode="dark"] .mast-search-btn { color: var(--rci-ink); }
+  .mast-search-btn:hover { background: var(--rci-ink); color: var(--rci-offwhite); }
+  .mast-search[data-open="true"] .mast-search-btn:hover { background: transparent; color: var(--rci-red); }
+  .mast-search-btn svg { width: 18px; height: 18px; display: block; }
+  .mast-search-btn:active { transform: translate(1px, 1px); }
 
   /* ─── NAV ─────────────────────────────────────────────────── */
   .primary-nav {

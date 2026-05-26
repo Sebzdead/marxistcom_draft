@@ -369,12 +369,7 @@
   --bw-thick: 4px;
   --bw-slab: 8px;
 
-  /* Textures (URL fragments — consumers compose) */
-  --tx-paper: url("assets/textures/paper-gray.jpg");
-  --tx-grain: url("assets/textures/film-grain.jpg");
-  --tx-specks: url("assets/textures/grunge-light-specks.jpg");
-  --tx-peel: url("assets/textures/grunge-peeled-paint.jpg");
-  --tx-halftone: url("assets/textures/halftone-mesh.jpg");
+  /* Textures: not bundled — refer to files directly in your CSS if needed */
 }
 
 /* ---------------------------------------------------------------

@@ -197,7 +197,7 @@ function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "c
         {/* faint grain on image */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "url('ds/textures/film-grain.jpg')",
+          backgroundImage: `url("${(typeof window !== "undefined" && window.__resources && window.__resources.texGrain) || "ds/textures/film-grain.jpg"}")`,
           backgroundSize: "cover",
           mixBlendMode: "multiply",
           opacity: 0.12,
