@@ -2,8 +2,9 @@
 // All exported to window at the end of the file.
 
 // ─── PrintButton ────────────────────────────────────────────────────────────
-// 2.5D pressable button — offset ink shadow, presses into place on :active
-function PrintButton({ children, active = false, size = "md", variant = "paper", onClick, style, className = "", ...rest }) {
+// 2.5D pressable button — offset ink shadow, presses into place on :active.
+// Renders as <a> when href is supplied; otherwise as <button>.
+function PrintButton({ children, active = false, size = "md", variant = "paper", onClick, style, className = "", href, ...rest }) {
   const baseStyle = {
     fontFamily: "var(--font-condensed)",
     fontWeight: 700,
@@ -33,6 +34,19 @@ function PrintButton({ children, active = false, size = "md", variant = "paper",
     position: "relative",
     ...style,
   };
+  if (href) {
+    return (
+      <a
+        href={href}
+        className={"pbtn " + className}
+        style={{ ...baseStyle, textDecoration: "none" }}
+        onClick={onClick}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
   return (
     <button
       className={"pbtn " + className}

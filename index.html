@@ -34,32 +34,7 @@
     position: relative;
   }
 
-  /* Paper texture overlay — full page */
-  body::before {
-    content: "";
-    position: fixed; inset: 0;
-    background-image: url("ds/textures/paper-217.jpg");
-    background-size: 900px;
-    background-position: top center;
-    mix-blend-mode: multiply;
-    opacity: 0.32;
-    pointer-events: none;
-    z-index: 0;
-  }
-  body::after {
-    content: "";
-    position: fixed; inset: 0;
-    background-image: url("ds/textures/film-grain.jpg");
-    background-size: 600px;
-    mix-blend-mode: multiply;
-    opacity: 0.06;
-    pointer-events: none;
-    z-index: 0;
-  }
-  body[data-texture="none"]::before,
-  body[data-texture="none"]::after { display: none; }
-  body[data-texture="heavy"]::before { opacity: 0.55; }
-  body[data-texture="heavy"]::after { opacity: 0.14; background-image: url("ds/textures/grunge-light-specks.jpg"); }
+  /* Blank off-white page background — no body-level textures */
 
   /* DARK MODE */
   body[data-mode="dark"] {
@@ -71,16 +46,6 @@
     --paper-soft: #1a1612;
     --fg: var(--rci-offwhite);
     --fg-soft: #c9c2c2;
-  }
-  body[data-mode="dark"]::before {
-    background-image: url("ds/textures/grunge-light-specks.jpg");
-    mix-blend-mode: screen;
-    opacity: 0.18;
-  }
-  body[data-mode="dark"]::after {
-    background-image: url("ds/textures/film-grain.jpg");
-    mix-blend-mode: screen;
-    opacity: 0.08;
   }
 
   /* Layer the actual content above the texture */
@@ -231,13 +196,15 @@
   .hero { padding: 28px 0 36px; }
   .hero-grid {
     display: grid;
-    grid-template-columns: 240px 1fr 340px;
+    grid-template-columns: 340px 1fr 240px;
     gap: 32px;
   }
   .hero-left {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 22px;
   }
   .hero-side-card {
     display: flex;
@@ -348,19 +315,19 @@
   .hero-dek b { color: var(--fg, var(--rci-ink)); font-weight: 700; }
   .hero-actions { display: flex; gap: 12px; margin-top: 4px; }
 
-  /* MOST POPULAR sidebar */
+  /* Latest analysis sidebar (left column) */
   .hero-right {
-    border-left: 1px solid var(--rule-soft);
-    padding-left: 22px;
+    border-right: 1px solid var(--rule-soft);
+    padding-right: 22px;
     position: relative;
   }
   .hero-right::before {
     content: "";
     position: absolute;
-    left: -1px; top: 0; bottom: 0;
+    right: -1px; top: 0; bottom: 0;
     width: 0;
-    border-left: 1px solid var(--rule-soft);
-    transform: translateX(-3px);
+    border-right: 1px solid var(--rule-soft);
+    transform: translateX(3px);
   }
   .popular-head {
     border-bottom: 2px solid var(--rule);
@@ -1305,7 +1272,7 @@
 
   /* Responsive (down to ~900px) */
   @media (max-width: 1100px) {
-    .hero-grid { grid-template-columns: 200px 1fr 260px; gap: 24px; }
+    .hero-grid { grid-template-columns: 260px 1fr 200px; gap: 24px; }
     .four-up-grid { gap: 20px; }
     .hero-h1 { font-size: 44px; }
     .hero-h1--serif { font-size: 38px; }
@@ -1333,7 +1300,7 @@
   }
 </style>
 </head>
-<body data-mode="light" data-texture="none">
+<body data-mode="light">
 
 <div id="root"></div>
 

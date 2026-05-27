@@ -105,13 +105,14 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
 }
 
 const NAV_TABS = [
-  "Join the RCI",
-  "Analysis",
-  "Theory & History",
-  "Podcasts & Media",
-  "Magazine",
-  "Bookstore",
-  "More languages",
+  { label: "Home", href: "index.html" },
+  { label: "Join the RCI", href: "join.html" },
+  { label: "Analysis", href: "analysis.html" },
+  { label: "Theory & History" },
+  { label: "Podcasts & Media" },
+  { label: "Magazine" },
+  { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
+  { label: "More languages" },
 ];
 
 const RECENT_ANALYSIS = [
@@ -215,17 +216,21 @@ function Nav({ active, onSelect }) {
     <nav className="primary-nav">
       <div className="nav-inner">
         {NAV_TABS.map((tab) => {
-          const isActive = tab === active;
+          const isActive = tab.label === active;
+          const isExternal = tab.href && /^https?:\/\//.test(tab.href);
           return (
             <PrintButton
-              key={tab}
+              key={tab.label}
               active={isActive}
               variant={isActive ? "ink" : "paper"}
               size="md"
-              onClick={() => onSelect(tab)}
+              href={tab.href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              onClick={tab.href ? undefined : () => onSelect(tab.label)}
               style={{ flex: "0 0 auto" }}
             >
-              {tab}
+              {tab.label}
             </PrintButton>
           );
         })}
@@ -240,7 +245,54 @@ function Hero({ tweaks }) {
   return (
     <section className="hero">
       <div className="hero-grid">
-        {/* LEFT: 2 stacked side stories */}
+        {/* LEFT: recent analysis */}
+        <aside className="hero-right">
+          <div className="popular-head">
+            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Latest analysis</Eyebrow>
+            <div className="popular-sub">Live feed</div>
+          </div>
+          <ol className="popular-list">
+            {RECENT_ANALYSIS.map((item, i) => (
+              <li key={i} className="popular-item">
+                <span className="popular-num">{item.stamp}</span>
+                <div className="popular-text">
+                  <Eyebrow style={{ fontSize: 10, letterSpacing: "0.18em", display: "block", marginBottom: 3 }}>{item.kicker}</Eyebrow>
+                  <a href="#" className="popular-title">{item.title}</a>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="popular-foot">
+            <PrintButton variant="paper" size="sm">See all →</PrintButton>
+          </div>
+        </aside>
+
+        {/* CENTER: big featured */}
+        <div className="hero-center">
+          <div className="hero-feature">
+            <div className="hero-feature-img">
+              <img src={IMG.hero} alt="Imperialist war and class struggle — perspectives for 2026" className="hero-feature-img-poster" />
+            </div>
+            <div className="hero-feature-body">
+              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>Editorial · World perspectives</Eyebrow>
+              {titleFont === "serif" ? (
+                <h1 className="hero-h1 hero-h1--serif">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
+              ) : (
+                <h1 className="hero-h1">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
+              )}
+              <div className="hero-byline">By Jorge Martín · International Secretariat</div>
+              <p className="hero-dek">
+                This February, the leadership of the Revolutionary Communist International met in Italy to assess the world situation and <b>how the forces of communism are being gathered and trained around the globe</b>, and to plan ahead. Below we publish a transcript of a talk on the world situation by Jorge Martín of the International Secretariat of the RCI, assessing where the world is going in these turbulent first months of 2026.
+              </p>
+              <div className="hero-actions">
+                <PrintButton variant="red" size="md">Read the editorial →</PrintButton>
+                <PrintButton variant="paper" size="md">Share</PrintButton>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: 3 stacked feature cards */}
         <div className="hero-left">
           <a href="#" className="hero-side-card">
             <div className="hero-side-img">
@@ -270,53 +322,6 @@ function Hero({ tweaks }) {
             </div>
           </a>
         </div>
-
-        {/* CENTER: big featured */}
-        <div className="hero-center">
-          <div className="hero-feature">
-            <div className="hero-feature-img">
-              <img src={IMG.hero} alt="Imperialist war and class struggle — perspectives for 2026" className="hero-feature-img-poster" />
-            </div>
-            <div className="hero-feature-body">
-              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>Editorial · World perspectives</Eyebrow>
-              {titleFont === "serif" ? (
-                <h1 className="hero-h1 hero-h1--serif">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
-              ) : (
-                <h1 className="hero-h1">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
-              )}
-              <div className="hero-byline">By Jorge Martín · International Secretariat</div>
-              <p className="hero-dek">
-                This February, the leadership of the Revolutionary Communist International met in Italy to assess the world situation and <b>how the forces of communism are being gathered and trained around the globe</b>, and to plan ahead. Below we publish a transcript of a talk on the world situation by Jorge Martín of the International Secretariat of the RCI, assessing where the world is going in these turbulent first months of 2026.
-              </p>
-              <div className="hero-actions">
-                <PrintButton variant="red" size="md">Read the editorial →</PrintButton>
-                <PrintButton variant="paper" size="md">Share</PrintButton>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: recent analysis */}
-        <aside className="hero-right">
-          <div className="popular-head">
-            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Latest analysis</Eyebrow>
-            <div className="popular-sub">Live feed</div>
-          </div>
-          <ol className="popular-list">
-            {RECENT_ANALYSIS.map((item, i) => (
-              <li key={i} className="popular-item">
-                <span className="popular-num">{item.stamp}</span>
-                <div className="popular-text">
-                  <Eyebrow style={{ fontSize: 10, letterSpacing: "0.18em", display: "block", marginBottom: 3 }}>{item.kicker}</Eyebrow>
-                  <a href="#" className="popular-title">{item.title}</a>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div className="popular-foot">
-            <PrintButton variant="paper" size="sm">See all →</PrintButton>
-          </div>
-        </aside>
       </div>
     </section>
   );
@@ -387,7 +392,7 @@ function JoinBanner() {
           From mass strikes to student occupations, from anti-war mobilisations to the fight against fascism — comrades on every continent are building the party we need.
         </p>
         <div className="join-actions">
-          <PrintButton variant="red" size="lg">Join the fight</PrintButton>
+          <PrintButton variant="red" size="lg" href="join.html">Join the fight</PrintButton>
         </div>
       </div>
       <div className="join-right">
@@ -540,7 +545,7 @@ function ManifestoBanner({ tweaks }) {
         ))}
       </ol>
       <div className="sections-foot">
-        <PrintButton variant="paper" size="sm">Find your local section →</PrintButton>
+        <PrintButton variant="paper" size="sm" href="join.html">Find your local section →</PrintButton>
         <PrintButton variant="paper" size="sm">All dispatches</PrintButton>
       </div>
     </section>
@@ -618,7 +623,7 @@ function Footer() {
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
   const t = TWEAK_DEFAULTS;
-  const [activeTab, setActiveTab] = useState("Analysis");
+  const [activeTab, setActiveTab] = useState("Home");
 
   // Apply mode (light/dark) to body
   useEffect(() => {
