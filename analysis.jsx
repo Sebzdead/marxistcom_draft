@@ -318,6 +318,58 @@ function Footer() {
   );
 }
 
+// ── Slab placeholder used when an article has no image ──────────────────────
+function SlabFill({ label }) {
+  return (
+    <div className="slab-fill">
+      <span style={{ position: "relative", zIndex: 2, textWrap: "balance" }}>{label}</span>
+    </div>
+  );
+}
+
+// ── Latest Analysis: featured 2-up + 3-column grid ──────────────────────────
+function LatestAnalysis() {
+  const featured = ARTICLES.slice(0, 2);
+  const rest = ARTICLES.slice(2);
+
+  return (
+    <section className="analysis-section">
+      <header className="analysis-section-head">
+        <h2 className="analysis-section-h2">Latest Analysis</h2>
+        <div className="analysis-section-meta">{ARTICLES.length} articles · in publication order</div>
+      </header>
+
+      <div className="analysis-feature-grid">
+        {featured.map((a) => (
+          <a key={a.slug} href="article.html" className="analysis-feature-card">
+            <div className="analysis-feature-img">
+              {a.image ? <img src={a.image} alt="" /> : <SlabFill label={a.title} />}
+            </div>
+            <div className="analysis-card-kicker">{a.kicker}</div>
+            <h3 className="analysis-feature-title">{a.title}</h3>
+            <p className="analysis-feature-dek">{a.dek}</p>
+            <div className="analysis-feature-byline">{a.author} · {a.date}</div>
+          </a>
+        ))}
+      </div>
+
+      <div className="analysis-grid">
+        {rest.map((a) => (
+          <a key={a.slug} href="article.html" className="analysis-card">
+            <div className="analysis-card-img">
+              {a.image ? <img src={a.image} alt="" /> : <SlabFill label={a.title} />}
+            </div>
+            <div className="analysis-card-kicker">{a.kicker}</div>
+            <h3 className="analysis-card-title">{a.title}</h3>
+            <p className="analysis-card-dek">{a.dek}</p>
+            <div className="analysis-card-byline">{a.author} · {a.date}</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
   useEffect(() => {
@@ -330,9 +382,7 @@ function App() {
       <Masthead />
       <Nav active="Analysis" />
       <main>
-        <section style={{ padding: "40px 0 20px" }}>
-          <h1 className="hero-h1">Analysis</h1>
-        </section>
+        <LatestAnalysis />
       </main>
       <Footer />
     </div>
