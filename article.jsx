@@ -993,7 +993,7 @@ function App() {
                       <li key={idx} style={{
                         padding: "12px 0",
                         borderBottom: idx === 4 ? "none" : "1px solid var(--rule-soft)",
-                        fontFamily: "var(--font-serif)",
+                        fontFamily: "var(--font-article-title)",
                         fontSize: "17.5px",
                         lineHeight: 1.45
                       }}>

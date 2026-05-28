@@ -97,7 +97,7 @@ function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "c
   const isSerif = titleFont === "serif";
   const titleStyle = isSerif
     ? {
-        fontFamily: "var(--font-serif)",
+        fontFamily: "var(--font-article-title)",
         fontWeight: 700,
         fontSize: titleSize + 2,
         lineHeight: 1.1,
@@ -107,7 +107,7 @@ function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "c
         margin: "0 0 4px",
       }
     : {
-        fontFamily: "var(--font-headline)",
+        fontFamily: "var(--font-article-title)",
         fontWeight: 700,
         fontSize: titleSize,
         lineHeight: 1.02,
@@ -204,7 +204,7 @@ function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "c
             display: "flex", alignItems: "center", justifyContent: "center",
             background: "var(--rci-ink)",
             color: "var(--rci-offwhite)",
-            fontFamily: "var(--font-display)", fontSize: 16, padding: 12,
+            fontFamily: "var(--font-article-title)", fontSize: 16, padding: 12,
             textAlign: "center", lineHeight: 1, textTransform: "uppercase", letterSpacing: ".02em",
           }}>{title}</div>
         )}

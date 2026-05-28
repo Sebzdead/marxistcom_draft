@@ -275,6 +275,45 @@
   font-weight: 800; font-style: italic; font-display: swap;
 }
 
+/* Archivo ExtraCondensed Bold */
+@font-face {
+  font-family: "Archivo ExtraCondensed";
+  src: url("fonts/Archivo-ExtraCondensed-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cormorant Garamond */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   /* ---------------------------------------------------------------
      Color Palette — strict base. Photography may carry other colors
@@ -326,11 +365,14 @@
   --font-compressed: "Trade Gothic Next LT Pro Compressed", "Trade Gothic Next Compressed", "Saira Condensed", "Eastman Compressed", "Barlow Condensed", sans-serif;
   --font-accent: "Revolution Gothic", "Built Titling", "Anton", sans-serif;
   --font-subhead: "Khand", "Trade Gothic Next LT Pro", "Barlow Condensed", sans-serif;
-  --font-serif: "Cheltenham BT", "Athelas", "Georgia", "Times New Roman", serif;
+  --font-serif: "Cormorant Garamond", "Cheltenham BT", "Athelas", "Georgia", "Times New Roman", serif;
   --font-serif-alt: "Athelas", "Cheltenham BT", "Georgia", serif;
   --font-body: "Codec Warm", "Trade Gothic Next LT Pro", "Khand", "Helvetica Neue", sans-serif;
   --font-ui: "Codec Warm", "Trade Gothic Next LT Pro", "Helvetica Neue", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --font-article-title: "Archivo ExtraCondensed", sans-serif;
+  --font-article-body: "Cormorant Garamond", serif;
 
   /* Type scale — built around a 1920px poster grid; UI scales 14–16px base */
   --fs-mega:   clamp(64px, 9vw, 180px);   /* hero poster title */
