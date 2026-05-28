@@ -346,6 +346,19 @@ function SlabFill({ label }) {
   );
 }
 
+// ── Page intro band ─────────────────────────────────────────────────────────
+function PageIntro() {
+  return (
+    <section className="analysis-intro">
+      <div className="analysis-intro-eyebrow">Analysis · Marxist.com</div>
+      <h1 className="analysis-intro-h1">Analysis</h1>
+      <p className="analysis-intro-dek">
+        Marxist analysis of world events — the daily output of the Revolutionary Communist International and its sections. Browse the latest articles in publication order, or jump to a continent or topic.
+      </p>
+    </section>
+  );
+}
+
 // ── Latest Analysis: featured 2-up + 3-column grid ──────────────────────────
 function LatestAnalysis() {
   const featured = ARTICLES.slice(0, 2);
@@ -451,6 +464,7 @@ function App() {
       <Masthead />
       <Nav active="Analysis" />
       <main>
+        <PageIntro />
         <LatestAnalysis />
         <ContinentsBlock />
         <TopicsBlock />
