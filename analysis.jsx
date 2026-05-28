@@ -21,8 +21,8 @@ const NAV_TABS = [
 ];
 
 // ── Articles data (source: ANALYSIS ARTICLES.pdf, in publication order) ─────
-// `image` is a path under assets/ when an existing asset matches the subject;
-// null falls back to a slab placeholder (see SlabFill component).
+// `image` is null for every entry — covers render as slab placeholders
+// (see SlabFill). Set a path under assets/ to use a real cover.
 const ARTICLES = [
   {
     slug: "1926-general-strike",
@@ -31,7 +31,7 @@ const ARTICLES = [
     author: "Spectre of Communism",
     date: "26 May 2026",
     dek: "A stereotype holds that British workers have always been conservative and averse to radical class struggle. But a century ago, they waged a general strike that reached revolutionary proportions, threatening the very foundations of capitalist society.",
-    image: "assets/sections-britain-rcp.jpg",
+    image: null,
   },
   {
     slug: "figaro-french-revolution",
@@ -76,7 +76,7 @@ const ARTICLES = [
     author: "Khaled Malachi",
     date: "20 May 2026",
     dek: "15 May marked 78 years since the Nakba, the brutal terror campaign waged by Zionist forces against Palestinians to found the state of Israel. British imperialism — having subjected the region to decades of domination, plunder, and division — was central to this catastrophe.",
-    image: "assets/topic-palestine-1948.webp",
+    image: null,
   },
   {
     slug: "italian-pcr-second-congress",
@@ -94,7 +94,7 @@ const ARTICLES = [
     author: "Daniel Morley",
     date: "19 May 2026",
     dek: "\"The unipolar hegemony of a major power is becoming increasingly unsustainable. At home, its democracy is mutating, its economy decaying, and its society fracturing.\" — Chen Yixin, China's Minister of State Security.",
-    image: "assets/econ-china.jpg",
+    image: null,
   },
   {
     slug: "alex-saab-handover",
@@ -148,7 +148,7 @@ const ARTICLES = [
     author: "Against the Stream",
     date: "14 May 2026",
     dek: "Trump is in Beijing. He thinks he has gone to negotiate from a position of strength, but in reality, he is negotiating from a position of weakness. That is the story of American imperialism in 2026.",
-    image: "assets/topic-trump-iran.jpg",
+    image: null,
   },
   {
     slug: "right-populist-international",
@@ -164,20 +164,20 @@ const ARTICLES = [
 // ── Continents (placeholder feature card per continent) ─────────────────────
 const CONTINENTS = [
   { id: "africa",      name: "Africa",       featuredTitle: "Featured analysis from across Africa", featuredDek: "Reports and perspectives from comrades organising on the continent. Featured article placeholder.", image: null },
-  { id: "americas",    name: "Americas",     featuredTitle: "Featured analysis from the Americas", featuredDek: "From Canada to Argentina — class struggle and the fight against US imperialism. Featured article placeholder.", image: "assets/card-war-on-iran.png" },
-  { id: "asia",        name: "Asia",         featuredTitle: "Featured analysis from Asia",        featuredDek: "From China to India — the inter-imperialist rivalry and the awakening of Asia's working class. Featured article placeholder.", image: "assets/econ-china.jpg" },
-  { id: "europe",      name: "Europe",       featuredTitle: "Featured analysis from Europe",      featuredDek: "From Britain to the Balkans — austerity, war, and the rise of the working class. Featured article placeholder.", image: "assets/sections-britain-rcp.jpg" },
-  { id: "middle-east", name: "Middle East",  featuredTitle: "Featured analysis from the Middle East", featuredDek: "War, occupation, and the Palestinian struggle. Featured article placeholder.", image: "assets/topic-iran-war.jpg" },
+  { id: "americas",    name: "Americas",     featuredTitle: "Featured analysis from the Americas", featuredDek: "From Canada to Argentina — class struggle and the fight against US imperialism. Featured article placeholder.", image: null },
+  { id: "asia",        name: "Asia",         featuredTitle: "Featured analysis from Asia",        featuredDek: "From China to India — the inter-imperialist rivalry and the awakening of Asia's working class. Featured article placeholder.", image: null },
+  { id: "europe",      name: "Europe",       featuredTitle: "Featured analysis from Europe",      featuredDek: "From Britain to the Balkans — austerity, war, and the rise of the working class. Featured article placeholder.", image: null },
+  { id: "middle-east", name: "Middle East",  featuredTitle: "Featured analysis from the Middle East", featuredDek: "War, occupation, and the Palestinian struggle. Featured article placeholder.", image: null },
   { id: "oceania",     name: "Oceania",      featuredTitle: "Featured analysis from Oceania",     featuredDek: "Australia, New Zealand, and the Pacific. Featured article placeholder.", image: null },
 ];
 
 // ── Topics (placeholder feature card per topic) ─────────────────────────────
 const TOPICS = [
   { id: "art",         name: "Art",                  featuredTitle: "Marxism and the arts",                featuredDek: "From Mozart to Mayakovsky — culture as a battleground in the class struggle. Featured article placeholder.", image: null },
-  { id: "economy",     name: "Economy",              featuredTitle: "The crisis of the world economy",    featuredDek: "Inflation, debt, recession — Marxist analysis of capitalism's contradictions. Featured article placeholder.", image: "assets/econ-shadow-banking.jpg" },
+  { id: "economy",     name: "Economy",              featuredTitle: "The crisis of the world economy",    featuredDek: "Inflation, debt, recession — Marxist analysis of capitalism's contradictions. Featured article placeholder.", image: null },
   { id: "environment", name: "Environment",          featuredTitle: "Capitalism and the climate crisis",  featuredDek: "Why only the overthrow of capitalism can save the planet. Featured article placeholder.", image: null },
-  { id: "sci-tech",    name: "Science & Technology", featuredTitle: "AI, science, and the working class", featuredDek: "Who controls the technology shapes the future. A Marxist perspective. Featured article placeholder.", image: "assets/econ-ai.jpg" },
-  { id: "world",       name: "World Perspectives",   featuredTitle: "2026: war, revolution, reaction",    featuredDek: "An assessment of the world situation by the International Secretariat. Featured article placeholder.", image: "assets/hero-imperialist-war.png" },
+  { id: "sci-tech",    name: "Science & Technology", featuredTitle: "AI, science, and the working class", featuredDek: "Who controls the technology shapes the future. A Marxist perspective. Featured article placeholder.", image: null },
+  { id: "world",       name: "World Perspectives",   featuredTitle: "2026: war, revolution, reaction",    featuredDek: "An assessment of the world situation by the International Secretariat. Featured article placeholder.", image: null },
 ];
 
 // ── Masthead (copied verbatim from app.jsx) ─────────────────────────────────
@@ -359,11 +359,8 @@ function PageIntro() {
   );
 }
 
-// ── Latest Analysis: featured 2-up + 3-column grid ──────────────────────────
+// ── Latest Analysis: scrollable list — date | cover | title/author/dek ──────
 function LatestAnalysis() {
-  const featured = ARTICLES.slice(0, 2);
-  const rest = ARTICLES.slice(2);
-
   return (
     <section className="analysis-section">
       <header className="analysis-section-head">
@@ -371,30 +368,18 @@ function LatestAnalysis() {
         <div className="analysis-section-meta">{ARTICLES.length} articles · in publication order</div>
       </header>
 
-      <div className="analysis-feature-grid">
-        {featured.map((a) => (
-          <a key={a.slug} href="article.html" className="analysis-feature-card">
-            <div className="analysis-feature-img">
-              {a.image ? <img src={a.image} alt="" /> : <SlabFill label={a.title} />}
+      <div className="analysis-list">
+        {ARTICLES.map((a) => (
+          <a key={a.slug} href="article.html" className="analysis-row">
+            <div className="analysis-row-date">{a.date}</div>
+            <div className="analysis-row-img">
+              {a.image ? <img src={a.image} alt="" /> : <SlabFill label={a.kicker} />}
             </div>
-            <div className="analysis-card-kicker">{a.kicker}</div>
-            <h3 className="analysis-feature-title">{a.title}</h3>
-            <p className="analysis-feature-dek">{a.dek}</p>
-            <div className="analysis-feature-byline">{a.author} · {a.date}</div>
-          </a>
-        ))}
-      </div>
-
-      <div className="analysis-grid">
-        {rest.map((a) => (
-          <a key={a.slug} href="article.html" className="analysis-card">
-            <div className="analysis-card-img">
-              {a.image ? <img src={a.image} alt="" /> : <SlabFill label={a.title} />}
+            <div className="analysis-row-text">
+              <h3 className="analysis-row-title">{a.title}</h3>
+              <div className="analysis-row-byline">{a.author}</div>
+              <p className="analysis-row-dek">{a.dek}</p>
             </div>
-            <div className="analysis-card-kicker">{a.kicker}</div>
-            <h3 className="analysis-card-title">{a.title}</h3>
-            <p className="analysis-card-dek">{a.dek}</p>
-            <div className="analysis-card-byline">{a.author} · {a.date}</div>
           </a>
         ))}
       </div>
