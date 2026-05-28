@@ -171,6 +171,15 @@ const CONTINENTS = [
   { id: "oceania",     name: "Oceania",      featuredTitle: "Featured analysis from Oceania",     featuredDek: "Australia, New Zealand, and the Pacific. Featured article placeholder.", image: null },
 ];
 
+// ── Topics (placeholder feature card per topic) ─────────────────────────────
+const TOPICS = [
+  { id: "art",         name: "Art",                  featuredTitle: "Marxism and the arts",                featuredDek: "From Mozart to Mayakovsky — culture as a battleground in the class struggle. Featured article placeholder.", image: null },
+  { id: "economy",     name: "Economy",              featuredTitle: "The crisis of the world economy",    featuredDek: "Inflation, debt, recession — Marxist analysis of capitalism's contradictions. Featured article placeholder.", image: "assets/econ-shadow-banking.jpg" },
+  { id: "environment", name: "Environment",          featuredTitle: "Capitalism and the climate crisis",  featuredDek: "Why only the overthrow of capitalism can save the planet. Featured article placeholder.", image: null },
+  { id: "sci-tech",    name: "Science & Technology", featuredTitle: "AI, science, and the working class", featuredDek: "Who controls the technology shapes the future. A Marxist perspective. Featured article placeholder.", image: "assets/econ-ai.jpg" },
+  { id: "world",       name: "World Perspectives",   featuredTitle: "2026: war, revolution, reaction",    featuredDek: "An assessment of the world situation by the International Secretariat. Featured article placeholder.", image: "assets/hero-imperialist-war.png" },
+];
+
 // ── Masthead (copied verbatim from app.jsx) ─────────────────────────────────
 function Masthead() {
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -405,6 +414,31 @@ function ContinentsBlock() {
   );
 }
 
+// ── Topics section ──────────────────────────────────────────────────────────
+function TopicsBlock() {
+  return (
+    <section className="analysis-section">
+      <header className="analysis-section-head">
+        <h2 className="analysis-section-h2">Topics</h2>
+        <div className="analysis-section-meta">{TOPICS.length} topics</div>
+      </header>
+      <div className="cat-grid">
+        {TOPICS.map((t) => (
+          <a key={t.id} href="#" className="analysis-card">
+            <div className="analysis-card-img">
+              {t.image ? <img src={t.image} alt="" /> : <SlabFill label={t.name} />}
+            </div>
+            <div className="analysis-card-kicker">{t.name}</div>
+            <h3 className="analysis-card-title">{t.featuredTitle}</h3>
+            <p className="analysis-card-dek">{t.featuredDek}</p>
+            <div className="analysis-card-byline">Placeholder · See all →</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
   useEffect(() => {
@@ -419,6 +453,7 @@ function App() {
       <main>
         <LatestAnalysis />
         <ContinentsBlock />
+        <TopicsBlock />
       </main>
       <Footer />
     </div>
