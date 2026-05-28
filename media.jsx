@@ -1,5 +1,5 @@
 // Marxist.com — Podcasts & Media page
-// Standalone sibling to app.jsx (index.html), join.jsx (join.html), and analysis.jsx (analysis.html).
+// Standalone sibling to app.jsx (index.html) and join.jsx (join.html).
 // Loaded by media.html.
 // Reuses PrintButton, Eyebrow, SectionRule, SectionHead from components.jsx (window globals).
 
@@ -10,9 +10,8 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (mirror homepage) ───────────────────────────────────────
 const NAV_TABS = [
-  { label: "Home", href: "index.html" },
+  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Analysis", href: "analysis.html" },
   { label: "Theory & History" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine" },
@@ -266,7 +265,7 @@ function Footer() {
         <div className="foot-cols">
           <div className="foot-col">
             <div className="foot-col-h">Sections</div>
-            <a href="analysis.html">Analysis</a>
+            <a href="index.html">Analysis</a>
             <a href="#">Theory & History</a>
             <a href="media.html">Podcasts</a>
             <a href="#">In Defence of Marxism</a>

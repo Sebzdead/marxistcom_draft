@@ -9,9 +9,8 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (mirror homepage) ───────────────────────────────────────
 const NAV_TABS = [
-  { label: "Home", href: "index.html" },
+  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Analysis", href: "analysis.html" },
   { label: "Theory & History" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine" },

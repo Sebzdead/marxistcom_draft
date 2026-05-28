@@ -14,9 +14,8 @@ const TWEAK_DEFAULTS = {
 const R = (id, fallback) => (typeof window !== "undefined" && window.__resources && window.__resources[id]) || fallback;
 
 const NAV_TABS = [
-  { label: "Home", href: "index.html" },
+  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Analysis", href: "analysis.html" },
   { label: "Theory & History" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine" },
