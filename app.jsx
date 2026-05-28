@@ -230,18 +230,18 @@ function Nav({ active, onSelect }) {
 function Hero({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
 
-  // LEFT: other featured stories
+  // LEFT: other featured stories (three, to balance the right column)
   const featured = [
     { kicker: "Middle East · History", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
     { kicker: "Iran War · Analysis", title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead, href: "#" },
+    { kicker: "Economy · Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
   ];
 
-  // RIGHT: four "set" cards — the editorial moved from the centre, plus three programme cards
+  // RIGHT: three "set" cards — the editorial moved from the centre, plus two programme cards
   const sideCards = [
     { kicker: "Editorial · World perspectives", title: "2026 kicks off to the sound of imperialist war drums and class struggle", byline: "Jorge Martín", image: IMG.hero, href: "#" },
     { kicker: "Manifesto · Programme", title: "Manifesto of the Revolutionary Communist International", byline: "The RCI", image: IMG.manifesto, href: "#" },
     { kicker: "Iran War · Editorial", title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.warOnIran, href: "#" },
-    { kicker: "Media", title: "The Communists Are Coming: a visual manifesto", byline: "RCI Media", image: IMG.communistsComing, href: "#" },
   ];
 
   return (
@@ -288,7 +288,7 @@ function Hero({ tweaks }) {
           </div>
         </div>
 
-        {/* RIGHT: four set cards */}
+        {/* RIGHT: three set cards */}
         <div className="hero-left">
           {sideCards.map((it, i) => (
             <a key={i} href={it.href} className="hero-side-card">
