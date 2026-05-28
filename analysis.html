@@ -1488,6 +1488,14 @@
     pointer-events: none;
   }
 
+  /* Continents / Topics — 3-column card grid (reuses .analysis-card-* styles) */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 26px;
+    margin-bottom: 16px;
+  }
+
   /* Responsive */
   @media (max-width: 1100px) {
     .analysis-feature-title { font-size: 30px; }
@@ -1496,9 +1504,11 @@
   @media (max-width: 900px) {
     .analysis-feature-grid { grid-template-columns: 1fr; }
     .analysis-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 560px) {
     .analysis-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: 1fr; }
     .analysis-section-h2 { font-size: 32px; }
     .analysis-feature-title { font-size: 26px; }
   }
