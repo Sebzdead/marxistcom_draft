@@ -116,7 +116,7 @@ const NAV_TABS = [
 ];
 
 const RECENT_ANALYSIS = [
-  { stamp: "2h", kicker: "Editorial", title: "2026 kicks off to the sound of imperialist war drums" },
+  { stamp: "2h", kicker: "Economy", title: "The economic consequences of the war in Iran", href: "article.html" },
   { stamp: "4h", kicker: "Ireland", title: "Ireland: fuel protests show the way" },
   { stamp: "6h", kicker: "Britain", title: "A very British catastrophe" },
   { stamp: "9h", kicker: "History", title: "James Connolly and the Easter Rising" },
@@ -257,7 +257,7 @@ function Hero({ tweaks }) {
                 <span className="popular-num">{item.stamp}</span>
                 <div className="popular-text">
                   <Eyebrow style={{ fontSize: 10, letterSpacing: "0.18em", display: "block", marginBottom: 3 }}>{item.kicker}</Eyebrow>
-                  <a href="#" className="popular-title">{item.title}</a>
+                  <a href={item.href || "#"} className="popular-title">{item.title}</a>
                 </div>
               </li>
             ))}
