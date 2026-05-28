@@ -114,18 +114,6 @@ const NAV_TABS = [
   { label: "More languages" },
 ];
 
-const RECENT_ANALYSIS = [
-  { stamp: "2h", kicker: "Economy", title: "The economic consequences of the war in Iran", href: "article.html" },
-  { stamp: "4h", kicker: "Ireland", title: "Ireland: fuel protests show the way" },
-  { stamp: "6h", kicker: "Britain", title: "A very British catastrophe" },
-  { stamp: "9h", kicker: "History", title: "James Connolly and the Easter Rising" },
-  { stamp: "12h", kicker: "Bangladesh", title: "Iran War deals devastating collateral damage to Bangladesh" },
-  { stamp: "15h", kicker: "Comment", title: "The hypocrisy of the 'no to war' stance at the Global Progressive Mobilisation" },
-  { stamp: "18h", kicker: "Britain", title: "Mandelson, May elections, and the markets — pressures pile up for Starmer" },
-  { stamp: "22h", kicker: "United States", title: "\"All you had to do was pay us enough to live\"" },
-  { stamp: "1d", kicker: "Theory", title: "In defence of dialectics \u2014 a critique of Mao's 'On Contradiction'" },
-  { stamp: "1d", kicker: "Economy", title: "Shadow banking: a ticking time bomb under the US economy" },
-];
 
 // ── Masthead ────────────────────────────────────────────────────────────────
 function Masthead() {
@@ -241,85 +229,79 @@ function Nav({ active, onSelect }) {
 // ── Hero — 3 column ─────────────────────────────────────────────────────────
 function Hero({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
+
+  // LEFT: other featured stories
+  const featured = [
+    { kicker: "Middle East · History", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
+    { kicker: "Iran War · Analysis", title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead, href: "#" },
+  ];
+
+  // RIGHT: four "set" cards — the editorial moved from the centre, plus three programme cards
+  const sideCards = [
+    { kicker: "Editorial · World perspectives", title: "2026 kicks off to the sound of imperialist war drums and class struggle", byline: "Jorge Martín", image: IMG.hero, href: "#" },
+    { kicker: "Manifesto · Programme", title: "Manifesto of the Revolutionary Communist International", byline: "The RCI", image: IMG.manifesto, href: "#" },
+    { kicker: "Iran War · Editorial", title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.warOnIran, href: "#" },
+    { kicker: "Media", title: "The Communists Are Coming: a visual manifesto", byline: "RCI Media", image: IMG.communistsComing, href: "#" },
+  ];
+
   return (
     <section className="hero">
       <div className="hero-grid">
-        {/* LEFT: recent analysis */}
-        <aside className="hero-right">
-          <div className="popular-head">
-            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Latest analysis</Eyebrow>
-            <div className="popular-sub">Live feed</div>
-          </div>
-          <ol className="popular-list">
-            {RECENT_ANALYSIS.map((item, i) => (
-              <li key={i} className="popular-item">
-                <span className="popular-num">{item.stamp}</span>
-                <div className="popular-text">
-                  <Eyebrow style={{ fontSize: 10, letterSpacing: "0.18em", display: "block", marginBottom: 3 }}>{item.kicker}</Eyebrow>
-                  <a href={item.href || "#"} className="popular-title">{item.title}</a>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div className="popular-foot">
-            <PrintButton variant="paper" size="sm">See all →</PrintButton>
-          </div>
-        </aside>
+        {/* LEFT: other featured articles */}
+        <div className="hero-featured">
+          {featured.map((it, i) => (
+            <a key={i} href={it.href} className="hero-feat-card">
+              <div className="hero-feat-img">
+                <img src={it.image} alt={it.title} />
+              </div>
+              <div className="hero-feat-meta">
+                <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>{it.kicker}</Eyebrow>
+                <h3 className="hero-feat-title">{it.title}</h3>
+                <div className="hero-feat-byline">By {it.byline}</div>
+              </div>
+            </a>
+          ))}
+        </div>
 
-        {/* CENTER: big featured */}
+        {/* CENTER: featured daily article */}
         <div className="hero-center">
           <div className="hero-feature">
             <div className="hero-feature-img">
-              <img src={IMG.hero} alt="Imperialist war and class struggle — perspectives for 2026" className="hero-feature-img-poster" />
+              <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" className="hero-feature-img-poster" />
             </div>
             <div className="hero-feature-body">
-              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>Editorial · World perspectives</Eyebrow>
+              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>Daily feature · World</Eyebrow>
               {titleFont === "serif" ? (
-                <h1 className="hero-h1 hero-h1--serif">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
+                <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi-Trump summit</h1>
               ) : (
-                <h1 className="hero-h1">2026 kicks off to the sound of imperialist war drums and class struggle</h1>
+                <h1 className="hero-h1">China sets the agenda at the Xi-Trump summit</h1>
               )}
-              <div className="hero-byline">By Jorge Martín · International Secretariat</div>
+              <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
               <p className="hero-dek">
-                This February, the leadership of the Revolutionary Communist International met in Italy to assess the world situation and <b>how the forces of communism are being gathered and trained around the globe</b>, and to plan ahead. Below we publish a transcript of a talk on the world situation by Jorge Martín of the International Secretariat of the RCI, assessing where the world is going in these turbulent first months of 2026.
+                “The unipolar hegemony of a major power is becoming increasingly unsustainable. At home, its democracy is mutating, its economy decaying, and its society fracturing.” — <b>Chen Yixin, China's Minister of State Security.</b> Trump went to Beijing believing he negotiated from strength; in reality, he negotiated from weakness.
               </p>
               <div className="hero-actions">
-                <PrintButton variant="red" size="md">Read the editorial →</PrintButton>
+                <PrintButton variant="red" size="md" href="article.html">Read the analysis →</PrintButton>
                 <PrintButton variant="paper" size="md">Share</PrintButton>
               </div>
             </div>
           </div>
         </div>
 
-        {/* RIGHT: 3 stacked feature cards */}
+        {/* RIGHT: four set cards */}
         <div className="hero-left">
-          <a href="#" className="hero-side-card">
-            <div className="hero-side-img">
-              <img src={IMG.manifesto} alt="Manifesto of the Revolutionary Communist International" />
-            </div>
-            <div className="hero-side-meta">
-              <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>Manifesto · Programme</Eyebrow>
-              <div className="hero-side-byline">Manifesto of the RCI</div>
-            </div>
-          </a>
-          <a href="#" className="hero-side-card">
-            <div className="hero-side-img">
-              <img src={IMG.warOnIran} alt="The war on Iran: where do communists stand?" />
-            </div>
-            <div className="hero-side-meta">
-              <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>Iran War · Editorial</Eyebrow>
-              <div className="hero-side-byline">By Alan Woods</div>
-            </div>
-          </a>
-          <a href="#" className="hero-side-card">
-            <div className="hero-side-img">
-              <img src={IMG.communistsComing} alt="The Communists Are Coming: a Visual Manifesto" />
-            </div>
-            <div className="hero-side-meta">
-              <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>Media</Eyebrow>
-              <div className="hero-side-byline">A visual manifesto</div>
-            </div>
-          </a>
+          {sideCards.map((it, i) => (
+            <a key={i} href={it.href} className="hero-side-card">
+              <div className="hero-side-img">
+                <img src={it.image} alt={it.title} />
+              </div>
+              <div className="hero-side-meta">
+                <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>{it.kicker}</Eyebrow>
+                <h3 className="hero-side-title">{it.title}</h3>
+                <div className="hero-side-byline">By {it.byline}</div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
