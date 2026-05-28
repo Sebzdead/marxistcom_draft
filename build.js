@@ -34,7 +34,7 @@ copyRecursive(path.join(__dirname, 'assets'), path.join(distDir, 'assets'));
 copyRecursive(path.join(__dirname, 'uploads'), path.join(distDir, 'uploads'));
 
 // 3. Compile JSX files to JS in dist
-const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'article.jsx'];
+const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'article.jsx', 'analysis.jsx'];
 jsxFiles.forEach(file => {
   const srcPath = path.join(__dirname, file);
   const destName = file.replace(/\.jsx$/, '.js');
@@ -53,7 +53,7 @@ jsxFiles.forEach(file => {
 });
 
 // 4. Update HTML pages for production
-const htmlFiles = ['index.html', 'join.html', 'article.html'];
+const htmlFiles = ['index.html', 'join.html', 'article.html', 'analysis.html'];
 htmlFiles.forEach(file => {
   console.log(`Processing ${file} for production...`);
   const htmlPath = path.join(__dirname, file);
@@ -69,6 +69,7 @@ htmlFiles.forEach(file => {
   html = html.replace(/<script type="text\/babel" src="app\.jsx"><\/script>/g, '<script src="app.js"></script>');
   html = html.replace(/<script type="text\/babel" src="join\.jsx"><\/script>/g, '<script src="join.js"></script>');
   html = html.replace(/<script type="text\/babel" src="article\.jsx"><\/script>/g, '<script src="article.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="analysis\.jsx"><\/script>/g, '<script src="analysis.js"></script>');
 
   // Remove Babel standalone script tag
   html = html.replace(/<script src="https:\/\/unpkg\.com\/@babel\/standalone[^>]*><\/script>\s*/g, '');
