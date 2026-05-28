@@ -134,10 +134,3 @@ Marxist.com relies heavily on print-like illustration blocks, stamps, and campai
    * **Monolithic Gutenberg (Best for native WP experience)**: Register your components as Gutenberg blocks using standard WP block-development tools.
 4. **Implement Caching & CDNs**: Set up Cloudflare caching and automatic cache invalidation triggers.
 5. **Editorial Onboarding**: Provide short training on how to use ACF card treatment dropdowns to highlight content visual properties.
-
----
-### Summary of Work Done
-* Analyzed the codebase structure including JSX files ([app.jsx](file:///Users/sebastian/Documents/GitHub/marxistcom_draft/app.jsx), [components.jsx](file:///Users/sebastian/Documents/GitHub/marxistcom_draft/components.jsx)) and stylesheets ([colors_and_type.css](file:///Users/sebastian/Documents/GitHub/marxistcom_draft/ds/colors_and_type.css)).
-* Provided a comprehensive architectural strategy for deploying your React-style newspaper web prototype on WordPress at scale.
-* Detailed editorial configuration setups (ACF and custom layout configurations) to let non-technical teams manage card treatments, categories, and homepage slots.
-* Outlined scaling best practices including Headless Next.js deployment, CDN caching, database optimization, and cloud asset offloading.
