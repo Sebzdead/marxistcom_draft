@@ -14,7 +14,7 @@ const NAV_TABS = [
   { label: "Join the RCI", href: "join.html" },
   { label: "Analysis", href: "analysis.html" },
   { label: "Theory & History" },
-  { label: "Podcasts & Media" },
+  { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
   { label: "More languages" },
