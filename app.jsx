@@ -308,6 +308,46 @@ function Hero({ tweaks }) {
   );
 }
 
+// ── Latest Analysis data (placeholder cards — no images) ─────────────────────
+const LATEST_ANALYSIS = [
+  { kicker: "Britain · Podcast",   title: "[Podcast] The 1926 General Strike: Britain's revolution betrayed", author: "Spectre of Communism", date: "26 May 2026" },
+  { kicker: "Art · History",       title: "Figaro and the French Revolution",                                  author: "Alan Woods",            date: "22 May 2026" },
+  { kicker: "Europe · Romania",    title: "Romanian government collapses after ten months of austerity",       author: "Jonathan Hinckley",     date: "22 May 2026" },
+  { kicker: "Cuba · Americas",     title: "US indictment of Raúl Castro: hands off Cuba!",                      author: "Revolutionary Communist International", date: "21 May 2026" },
+  { kicker: "Britain · Podcast",   title: "[Podcast] Capitalism is ungovernable",                              author: "Against the Stream",    date: "21 May 2026" },
+  { kicker: "Middle East · History", title: "How British imperialism paved the way for the Nakba",             author: "Khaled Malachi",        date: "20 May 2026" },
+  { kicker: "Italy · Party",       title: "Second Congress of the Italian PCR — communists advance",           author: "Francesco Salmeri",     date: "20 May 2026" },
+  { kicker: "China · World",       title: "China sets the agenda at the Xi-Trump summit",                      author: "Daniel Morley",         date: "19 May 2026" },
+  { kicker: "Venezuela · Americas", title: "Alex Saab handed over to US imperialism",                          author: "Jorge Martín",          date: "19 May 2026" },
+  { kicker: "Cuba · Americas",     title: "Cuban drones threaten Florida? Axios fabricates a pretext",         author: "Jorge Martín",          date: "18 May 2026" },
+  { kicker: "Cuba · Americas",     title: "CIA director visits Havana as US imperialism ramps up blackmail",   author: "Jorge Martín",          date: "15 May 2026" },
+  { kicker: "Honduras · Americas", title: "'Hondurasgate': the henchmen of the Donroe Doctrine",               author: "Sylvia Léo",            date: "15 May 2026" },
+];
+
+// ── LATEST ANALYSIS — 4-wide × 3-tall grid of placeholder cards ──────────────
+function LatestAnalysisGrid({ tweaks }) {
+  return (
+    <section className="latest">
+      <SectionHead label="Latest analysis" divider={tweaks.divider} extra="Updated hourly" />
+      <div className="latest-grid">
+        {LATEST_ANALYSIS.map((a, i) => (
+          <a key={i} href="article.html" className="latest-card">
+            <div className="latest-card-img">
+              <PhotoOrSlab image={undefined} label={a.kicker} aspect="3/2" style={{ position: "absolute", inset: 0 }} />
+            </div>
+            <div className="latest-card-kicker">{a.kicker}</div>
+            <h3 className="latest-card-title">{a.title}</h3>
+            <div className="latest-card-foot">
+              <span className="latest-card-byline">{a.author}</span>
+              <span className="latest-card-date">{a.date}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── 4-up secondary articles ─────────────────────────────────────────────────
 function CampaignBanner({ tweaks }) {
   return (
@@ -604,7 +644,7 @@ function Footer() {
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
   const t = TWEAK_DEFAULTS;
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState("Analysis");
 
   // Apply mode (light/dark) to body
   useEffect(() => {
@@ -619,6 +659,7 @@ function App() {
 
       <main className="site-main">
         <Hero tweaks={t} />
+        <LatestAnalysisGrid tweaks={t} />
         <CampaignBanner tweaks={t} />
         <IDOMBlock tweaks={t} />
         <TopicSplit tweaks={t} />
