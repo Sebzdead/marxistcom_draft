@@ -1330,40 +1330,6 @@
     color: var(--rci-ash);
   }
 
-  /* Page intro band */
-  .analysis-intro {
-    padding: 40px 0 18px;
-    border-bottom: 8px solid var(--rule);
-    margin-bottom: 12px;
-  }
-  .analysis-intro-eyebrow {
-    font-family: var(--font-condensed);
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--rci-red);
-    margin-bottom: 12px;
-  }
-  .analysis-intro-h1 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 88px;
-    line-height: 0.9;
-    text-transform: uppercase;
-    margin: 0 0 14px;
-    letter-spacing: -0.01em;
-    color: var(--rci-ink);
-  }
-  .analysis-intro-dek {
-    font-family: var(--font-serif);
-    font-size: 19px;
-    line-height: 1.5;
-    color: var(--rci-ink-soft);
-    max-width: none;
-    margin: 0;
-  }
-
   /* Latest Analysis — genuine scrollable list of rows: date | cover | text */
   .analysis-list {
     max-height: 700px;
@@ -1449,6 +1415,7 @@
     line-height: 1.45;
     color: var(--rci-ink-soft);
     margin: 2px 0 0;
+    max-width: none;
   }
 
   /* Continents / Topics card grid */
@@ -1551,7 +1518,6 @@
   /* Responsive */
   @media (max-width: 1100px) {
     .analysis-section-h2 { font-size: 40px; }
-    .analysis-intro-h1 { font-size: 64px; }
   }
   @media (max-width: 900px) {
     .cat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1564,7 +1530,6 @@
   @media (max-width: 560px) {
     .cat-grid { grid-template-columns: 1fr; }
     .analysis-section-h2 { font-size: 32px; }
-    .analysis-intro-h1 { font-size: 44px; }
   }
 </style>
 </head>
