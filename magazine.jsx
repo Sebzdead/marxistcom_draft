@@ -754,24 +754,27 @@ function Subscribe() {
 
 // ── App ──────────────────────────────────────────────────────────────────────
 function App() {
-  // Force dark theme for the site chrome
-  useEffect(() => { document.body.dataset.mode = "dark"; }, []);
-
-  // Render lucide icons in the IDOM body, and re-render as the DOM changes
+  // Render lucide icons once after mount — the IDOM body's icons are static.
+  // The rAF + timeout retries cover lucide loading slightly after mount.
+  // NOTE: deliberately NO MutationObserver here. Re-running createIcons on
+  // every DOM mutation (e.g. opening the menu drawer) re-scans the whole
+  // document and, on this long image-heavy page, froze the tab.
   useEffect(() => {
-    const render = () => window.lucide && window.lucide.createIcons();
-    render();
-    const obs = new MutationObserver(render);
-    obs.observe(document.getElementById("root"), { childList: true, subtree: true });
-    return () => obs.disconnect();
-  });
+    const draw = () => { if (window.lucide) window.lucide.createIcons(); };
+    draw();
+    const raf = requestAnimationFrame(draw);
+    const t = setTimeout(draw, 300);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); };
+  }, []);
 
   return (
     <React.Fragment>
-      <div className="mag-chrome">
-        <Masthead />
-        <Nav active="Magazine" />
-      </div>
+      <header className="mag-head">
+        <div className="mag-head-inner">
+          <Masthead />
+          <Nav active="Magazine" />
+        </div>
+      </header>
       <div className="idom-app">
         <IdNav />
         <Hero />
@@ -779,7 +782,7 @@ function App() {
         <Archive />
         <Subscribe />
       </div>
-      <div className="mag-chrome">
+      <div className="mag-chrome mag-foot" data-mode="dark">
         <Footer />
       </div>
     </React.Fragment>
