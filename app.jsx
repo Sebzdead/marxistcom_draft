@@ -109,7 +109,7 @@ const NAV_TABS = [
   { label: "Join the RCI", href: "join.html" },
   { label: "Theory & History" },
   { label: "Podcasts & Media", href: "media.html" },
-  { label: "Magazine" },
+  { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
   { label: "More languages" },
 ];
@@ -268,7 +268,7 @@ function Masthead() {
                     </div>
                   </a>
 
-                  <a href="#" className="drawer-sidebar-item" onClick={() => setMenuOpen(false)}>
+                  <a href="magazine.html" className="drawer-sidebar-item" onClick={() => setMenuOpen(false)}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
@@ -623,7 +623,7 @@ function IDOMBlock({ tweaks }) {
         </div>
         <div className="idom-cover-meta">
           <div className="idom-cover-issuenum">Issue 53 · Spring 2026</div>
-          <PrintButton variant="red" size="sm">Order this issue →</PrintButton>
+          <PrintButton variant="red" size="sm" href="magazine.html#latest">Order this issue →</PrintButton>
         </div>
       </div>
       <div className="idom-toc">
@@ -638,14 +638,14 @@ function IDOMBlock({ tweaks }) {
               <span className="idom-toc-num">{f.num}</span>
               <div className="idom-toc-text">
                 <Eyebrow style={{ fontSize: 10, letterSpacing: "0.2em" }}>{f.eyebrow}</Eyebrow>
-                <a href="#" className={"idom-toc-title" + (titleFont === "serif" ? " idom-toc-title--serif" : "")}>{f.title}</a>
+                <a href="magazine.html#latest" className={"idom-toc-title" + (titleFont === "serif" ? " idom-toc-title--serif" : "")}>{f.title}</a>
               </div>
             </li>
           ))}
         </ol>
         <div className="idom-toc-foot">
-          <PrintButton variant="paper" size="sm">Subscribe to the magazine →</PrintButton>
-          <PrintButton variant="paper" size="sm">Read past issues</PrintButton>
+          <PrintButton variant="paper" size="sm" href="magazine.html#subscribe">Subscribe to the magazine →</PrintButton>
+          <PrintButton variant="paper" size="sm" href="magazine.html#archive">Read past issues</PrintButton>
         </div>
       </div>
     </section>
@@ -776,7 +776,7 @@ function Footer() {
             <a href="#">Analysis</a>
             <a href="#">Theory & History</a>
             <a href="#">Podcasts</a>
-            <a href="#">In Defence of Marxism</a>
+            <a href="magazine.html">In Defence of Marxism</a>
             <a href="#">Bookstore</a>
           </div>
           <div className="foot-col">
