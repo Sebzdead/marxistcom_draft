@@ -83,7 +83,7 @@
   font-weight:400; font-style:normal; font-display:swap;
 }
 
-:root{
+.idom-app{
   /* ---------- TYPE FAMILIES ---------- */
   --font-display:"Codec Cold","Arial Narrow",sans-serif; /* masthead, headlines, labels */
   --font-serif:"Vollkorn",Georgia,"Times New Roman",serif; /* body, pull quotes, captions */
