@@ -1,0 +1,348 @@
+/* ============================================================
+   IN DEFENCE OF MARXISM (IDOM) — Foundational tokens
+   Theoretical quarterly of the Revolutionary Communist International
+   Colors + Type for the website / digital surfaces.
+
+   The print magazine is white-paper interior; the WEBSITE is the
+   inverse: a black field, white serif body, full-bleed art.
+   These tokens encode that dark-first system.
+   ============================================================ */
+
+/* ---------- FONTS ---------- */
+/* Display / UI sans — Codec Cold (the magazine's workhorse family) */
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Heavy.otf") format("opentype");
+  font-weight:900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-ExtraBold.otf") format("opentype");
+  font-weight:800; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Bold.otf") format("opentype");
+  font-weight:700; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-BoldItalic.otf") format("opentype");
+  font-weight:700; font-style:italic; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Regular.otf") format("opentype");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Italic.otf") format("opentype");
+  font-weight:400; font-style:italic; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Light.otf") format("opentype");
+  font-weight:300; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-LightItalic.otf") format("opentype");
+  font-weight:300; font-style:italic; font-display:swap;
+}
+@font-face{
+  font-family:"Codec Cold";
+  src:url("fonts/CodecCold-Thin.otf") format("opentype");
+  font-weight:100; font-style:normal; font-display:swap;
+}
+
+/* Body / editorial serif — Vollkorn (variable, 400–900) */
+@font-face{
+  font-family:"Vollkorn";
+  src:url("fonts/Vollkorn-VariableFont_wght.ttf") format("truetype");
+  font-weight:400 900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Vollkorn";
+  src:url("fonts/Vollkorn-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight:400 900; font-style:italic; font-display:swap;
+}
+
+/* Condensed alternative display — Bebas Neue
+   (also stands in for the magazine's League Gothic — see README) */
+@font-face{
+  font-family:"Bebas Neue";
+  src:url("fonts/BebasNeue-Regular.otf") format("opentype");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Ultra-condensed heavy display — Anton (occasional poster headlines) */
+@font-face{
+  font-family:"Anton";
+  src:url("fonts/Anton.ttf") format("truetype");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+:root{
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display:"Codec Cold","Arial Narrow",sans-serif; /* masthead, headlines, labels */
+  --font-serif:"Vollkorn",Georgia,"Times New Roman",serif; /* body, pull quotes, captions */
+  --font-condensed:"Bebas Neue","Anton",sans-serif;        /* decks, numerals, tickers */
+
+  /* ---------- WEIGHTS ---------- */
+  --w-thin:100; --w-light:300; --w-regular:400;
+  --w-bold:700; --w-xbold:800; --w-heavy:900;
+
+  /* ============================================================
+     COLOR — dark-first. The site is a black field.
+     ============================================================ */
+  /* Ink / surface */
+  --black:#000000;          /* true black — the page */
+  --ink-900:#0A0A0B;        /* near-black panels */
+  --ink-800:#141416;        /* raised surface / cards on black */
+  --ink-700:#1E1E21;        /* hairline fills, input wells */
+  --ink-600:#2A2A2E;        /* borders on dark */
+
+  /* Paper (the print interior / light surfaces) */
+  --paper:#F4F1EA;          /* warm newsprint white */
+  --paper-pure:#FFFFFF;
+
+  /* Foreground on black */
+  --fg-1:#FFFFFF;           /* primary text — white serif */
+  --fg-2:#C9C6BF;           /* secondary / dek, warm grey */
+  --fg-3:#8A8780;           /* tertiary / captions, metadata */
+  --fg-4:#5A5853;           /* faint / disabled, rule labels */
+
+  /* Foreground on paper */
+  --ink-fg-1:#111111;
+  --ink-fg-2:#3A3A3A;
+  --ink-fg-3:#6E6E6E;
+
+  /* ---------- BRAND ACCENT ---------- */
+  --red:#9E0B0F;            /* IDOM section red (sampled from interior) */
+  --red-bright:#C8181D;     /* hover / on-black emphasis */
+  --red-deep:#6E080B;       /* pressed / shadow */
+  --red-ink:#7A0A0D;        /* red on paper */
+
+  /* Gold — sparing editorial accent (subscribe, issue numerals) */
+  --gold:#C9A24B;
+  --gold-deep:#9C7A2E;
+
+  /* ---------- SEMANTIC ---------- */
+  --bg:var(--black);
+  --surface:var(--ink-800);
+  --surface-raised:var(--ink-700);
+  --border:var(--ink-600);
+  --border-strong:#3A3A3F;
+  --text:var(--fg-1);
+  --text-muted:var(--fg-2);
+  --text-faint:var(--fg-3);
+  --accent:var(--red);
+  --accent-hover:var(--red-bright);
+  --link:var(--fg-1);
+  --link-underline:var(--red);
+
+  /* ---------- SPACING (8px base, editorial generous) ---------- */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+
+  /* ---------- RADII — minimal. This brand is square. ---------- */
+  --r-0:0px;     /* default — sharp corners everywhere */
+  --r-1:2px;     /* inputs, small chips only */
+  --r-pill:999px;/* rare: tags */
+
+  /* ---------- HAIRLINES & SHADOWS ---------- */
+  --hairline:1px solid var(--border);
+  --hairline-strong:1px solid var(--border-strong);
+  --rule-red:2px solid var(--red);
+  /* Shadows are used sparingly on dark; mostly for overlays/menus */
+  --shadow-pop:0 12px 40px rgba(0,0,0,.6);
+  --shadow-card:0 1px 0 rgba(255,255,255,.04) inset, 0 8px 24px rgba(0,0,0,.5);
+
+  /* ---------- MEASURE ---------- */
+  --measure:66ch;     /* ideal body line length */
+  --measure-narrow:54ch;
+
+  /* ---------- MOTION ---------- */
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --dur-fast:120ms;
+  --dur:240ms;
+  --dur-slow:480ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPE — apply within .idom (or on a dark page).
+   Sizes are fluid; clamp(min, vw, max).
+   ============================================================ */
+
+.idom{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-serif);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* Masthead — "MARXISM" lockup uses this */
+.t-masthead{
+  font-family:var(--font-display);
+  font-weight:var(--w-heavy);
+  text-transform:uppercase;
+  letter-spacing:.005em;
+  line-height:.86;
+  color:var(--fg-1);
+  font-size:clamp(3rem,9vw,8rem);
+}
+.t-masthead-pre{ /* the italic serif "In defence of" */
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:var(--w-regular);
+  letter-spacing:.04em;
+  color:var(--fg-1);
+  font-size:clamp(1rem,2.4vw,2rem);
+}
+
+/* Display headlines — cover lines, hero ("THE NECESSITY OF ART") */
+.t-display{
+  font-family:var(--font-display);
+  font-weight:var(--w-heavy);
+  text-transform:uppercase;
+  line-height:.92;
+  letter-spacing:.005em;
+  font-size:clamp(2.25rem,5.5vw,4.5rem);
+}
+
+/* H1 — page / article title */
+h1,.t-h1{
+  font-family:var(--font-display);
+  font-weight:var(--w-xbold);
+  text-transform:uppercase;
+  line-height:1.0;
+  letter-spacing:.01em;
+  font-size:clamp(2rem,4vw,3.25rem);
+  margin:0 0 var(--s-4);
+}
+
+/* H2 — section title */
+h2,.t-h2{
+  font-family:var(--font-display);
+  font-weight:var(--w-bold);
+  text-transform:uppercase;
+  line-height:1.08;
+  letter-spacing:.015em;
+  font-size:clamp(1.5rem,2.6vw,2.25rem);
+  margin:0 0 var(--s-3);
+}
+
+/* Section label / kicker — the RED bold caps that head columns */
+.t-kicker{
+  font-family:var(--font-display);
+  font-weight:var(--w-bold);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.8rem;
+  color:var(--red-bright);
+}
+
+/* H3 — sub-head, often red in the magazine */
+h3,.t-h3{
+  font-family:var(--font-display);
+  font-weight:var(--w-bold);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  font-size:1.05rem;
+  color:var(--red-bright);
+  margin:var(--s-5) 0 var(--s-2);
+}
+
+/* Dek / standfirst — the serif intro under a title */
+.t-dek{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:var(--w-regular);
+  font-size:clamp(1.15rem,1.6vw,1.4rem);
+  line-height:1.5;
+  color:var(--fg-2);
+}
+
+/* Body */
+p,.t-body{
+  font-family:var(--font-serif);
+  font-weight:var(--w-regular);
+  font-size:1.125rem;
+  line-height:1.62;
+  color:var(--fg-1);
+  max-width:var(--measure);
+}
+
+/* Pull quote — large serif, the magazine sets these huge */
+.t-pull{
+  font-family:var(--font-display);
+  font-weight:var(--w-xbold);
+  text-transform:uppercase;
+  line-height:1.04;
+  letter-spacing:.005em;
+  font-size:clamp(1.5rem,2.4vw,2.1rem);
+  color:var(--fg-1);
+}
+.t-pull-serif{ /* alternate serif pull-quote treatment */
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:var(--w-regular);
+  font-size:clamp(1.4rem,2.2vw,2rem);
+  line-height:1.35;
+  color:var(--fg-1);
+}
+
+/* Caption — italic serif, art credits */
+.t-caption{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:var(--w-regular);
+  font-size:.9rem;
+  line-height:1.4;
+  color:var(--fg-3);
+}
+
+/* Metadata / eyebrow — sans, tracked caps (issue, date, byline) */
+.t-meta{
+  font-family:var(--font-display);
+  font-weight:var(--w-regular);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.72rem;
+  color:var(--fg-3);
+}
+
+/* Byline — italic serif */
+.t-byline{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:1rem;
+  color:var(--fg-2);
+}
+
+/* Drop cap — opens editorials */
+.t-dropcap::first-letter{
+  font-family:var(--font-display);
+  font-weight:var(--w-heavy);
+  float:left;
+  font-size:4.2em;
+  line-height:.8;
+  padding:.04em .12em 0 0;
+  color:var(--red-bright);
+}
+
+/* Links */
+a.idom-link{
+  color:var(--fg-1);
+  text-decoration:none;
+  background-image:linear-gradient(var(--red),var(--red));
+  background-size:100% 1px;
+  background-position:0 100%;
+  background-repeat:no-repeat;
+  transition:background-size var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+a.idom-link:hover{ color:var(--red-bright); background-size:100% 2px; }
