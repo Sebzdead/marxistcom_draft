@@ -6,9 +6,9 @@ const { useState, useEffect, useMemo } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "texture": "none",
-  "headlineFont": "sans",
+  "headlineFont": "serif",
   "mode": "light",
-  "cardTreatment": "offset",
+  "cardTreatment": "clean",
   "divider": "thick-slab"
 }/*EDITMODE-END*/;
 
@@ -116,28 +116,9 @@ const NAV_TABS = [
 
 
 // ── Masthead ────────────────────────────────────────────────────────────────
-function Masthead() {
-  const [searchOpen, setSearchOpen] = React.useState(false);
+function Masthead({ menuOpen, setMenuOpen }) {
   const [searchValue, setSearchValue] = React.useState("");
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const inputRef = React.useRef(null);
-  const toggleSearch = () => {
-    setSearchOpen((o) => {
-      const next = !o;
-      if (next) {
-        setTimeout(() => inputRef.current && inputRef.current.focus(), 60);
-      } else {
-        setSearchValue("");
-      }
-      return next;
-    });
-  };
-  const onKeyDown = (e) => {
-    if (e.key === "Escape") { setSearchOpen(false); setSearchValue(""); }
-  };
-  const onBlur = (e) => {
-    if (!e.currentTarget.value) setSearchOpen(false);
-  };
+  const searchRef = React.useRef(null);
 
   React.useEffect(() => {
     if (!menuOpen) return;
@@ -145,6 +126,7 @@ function Masthead() {
       if (e.key === "Escape") setMenuOpen(false);
     };
     window.addEventListener("keydown", handleKeyDown);
+    setTimeout(() => searchRef.current && searchRef.current.focus(), 80);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
@@ -164,33 +146,6 @@ function Masthead() {
         </a>
       </div>
       <div className="mast-right">
-        <div className="mast-search" data-open={searchOpen}>
-          <input
-            ref={inputRef}
-            type="search"
-            className="mast-search-input"
-            placeholder="Search marxist.com\u2026"
-            aria-label="Search marxist.com"
-            tabIndex={searchOpen ? 0 : -1}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={onKeyDown}
-            onBlur={onBlur}
-          />
-          <button
-            className="mast-search-btn"
-            aria-label={searchOpen ? "Close search" : "Open search"}
-            aria-expanded={searchOpen}
-            onClick={toggleSearch}
-            type="button"
-          >
-            {searchOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>
-            )}
-          </button>
-        </div>
         <div className="mast-socials">
           <a href="https://www.youtube.com/@revcomintern" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="mast-social">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
@@ -205,18 +160,6 @@ function Masthead() {
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.34 18.7 19.7c-.24 1.08-.88 1.34-1.78.84l-4.92-3.62-2.37 2.28c-.26.26-.48.48-.98.48l.35-4.96L17.8 6.5c.4-.36-.08-.55-.62-.2L7.6 12.4l-4.92-1.54c-1.07-.34-1.1-1.07.22-1.58l19.27-7.43c.9-.34 1.68.2 1.38 1.58z"/></svg>
           </a>
         </div>
-        <button
-          className="mast-hamburger"
-          aria-label="Open navigation menu"
-          onClick={() => setMenuOpen(true)}
-          type="button"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" aria-hidden="true">
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
       </div>
 
       {menuOpen && (
@@ -241,7 +184,18 @@ function Masthead() {
                 </button>
               </div>
 
-
+              <form className="menu-drawer-search" role="search" onSubmit={(e) => e.preventDefault()}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>
+                <input
+                  ref={searchRef}
+                  type="search"
+                  className="menu-drawer-search-input"
+                  placeholder="Search marxist.com…"
+                  aria-label="Search marxist.com"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </form>
 
               <div className="menu-drawer-layout">
                 <div className="menu-drawer-sidebar">
@@ -362,7 +316,7 @@ function Masthead() {
 }
 
 // ── Nav (2.5D pressable tabs) ────────────────────────────────────────────────
-function Nav({ active, onSelect }) {
+function Nav({ active, onSelect, onOpenMenu }) {
   return (
     <nav className="primary-nav">
       <div className="nav-inner">
@@ -385,6 +339,21 @@ function Nav({ active, onSelect }) {
             </PrintButton>
           );
         })}
+        <button
+          className="nav-menu-btn"
+          aria-label="Open menu and search"
+          onClick={onOpenMenu}
+          type="button"
+        >
+          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
+            <line x1="2" y1="6" x2="21" y2="6" />
+            <line x1="2" y1="11" x2="13" y2="11" />
+            <line x1="2" y1="16" x2="10" y2="16" />
+            <circle cx="16" cy="15" r="4" />
+            <line x1="19.2" y1="18.2" x2="22" y2="21" />
+          </svg>
+          <span className="nav-menu-label">Menu</span>
+        </button>
       </div>
     </nav>
   );
@@ -396,16 +365,16 @@ function Hero({ tweaks }) {
 
   // LEFT: other featured stories (three, to balance the right column)
   const featured = [
-    { kicker: "Middle East · History", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
-    { kicker: "Iran War · Analysis", title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead, href: "#" },
-    { kicker: "Economy · Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
+    { kicker: "HISTORY - Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
+    { kicker: "ANALYSIS - Iran War", title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead, href: "#" },
+    { kicker: "ECONOMY - Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
   ];
 
   // RIGHT: three "set" cards — the editorial moved from the centre, plus two programme cards
   const sideCards = [
-    { kicker: "Editorial · World perspectives", title: "2026 kicks off to the sound of imperialist war drums and class struggle", byline: "Jorge Martín", image: IMG.hero, href: "#" },
-    { kicker: "Manifesto · Programme", title: "Manifesto of the Revolutionary Communist International", byline: "The RCI", image: IMG.manifesto, href: "#" },
-    { kicker: "Iran War · Editorial", title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.warOnIran, href: "#" },
+    { kicker: "EDITORIAL - World", title: "2026 kicks off to the sound of imperialist war drums and class struggle", byline: "Jorge Martín", image: IMG.hero, href: "#" },
+    { kicker: "PROGRAMME - Manifesto", title: "Manifesto of the Revolutionary Communist International", byline: "The RCI", image: IMG.manifesto, href: "#" },
+    { kicker: "EDITORIAL - Iran War", title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.warOnIran, href: "#" },
   ];
 
   return (
@@ -419,7 +388,7 @@ function Hero({ tweaks }) {
                 <img src={it.image} alt={it.title} />
               </div>
               <div className="hero-feat-meta">
-                <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>{it.kicker}</Eyebrow>
+                <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{it.kicker}</Eyebrow>
                 <h3 className="hero-feat-title">{it.title}</h3>
                 <div className="hero-feat-byline">By {it.byline}</div>
               </div>
@@ -434,7 +403,7 @@ function Hero({ tweaks }) {
               <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" className="hero-feature-img-poster" />
             </div>
             <div className="hero-feature-body">
-              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>Daily feature · World</Eyebrow>
+              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>ANALYSIS - China</Eyebrow>
               {titleFont === "serif" ? (
                 <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi-Trump summit</h1>
               ) : (
@@ -444,10 +413,6 @@ function Hero({ tweaks }) {
               <p className="hero-dek">
                 “The unipolar hegemony of a major power is becoming increasingly unsustainable. At home, its democracy is mutating, its economy decaying, and its society fracturing.” — <b>Chen Yixin, China's Minister of State Security.</b> Trump went to Beijing believing he negotiated from strength; in reality, he negotiated from weakness.
               </p>
-              <div className="hero-actions">
-                <PrintButton variant="red" size="md" href="article.html">Read the analysis →</PrintButton>
-                <PrintButton variant="paper" size="md">Share</PrintButton>
-              </div>
             </div>
           </div>
         </div>
@@ -460,7 +425,7 @@ function Hero({ tweaks }) {
                 <img src={it.image} alt={it.title} />
               </div>
               <div className="hero-side-meta">
-                <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>{it.kicker}</Eyebrow>
+                <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{it.kicker}</Eyebrow>
                 <h3 className="hero-side-title">{it.title}</h3>
                 <div className="hero-side-byline">By {it.byline}</div>
               </div>
@@ -474,18 +439,18 @@ function Hero({ tweaks }) {
 
 // ── Latest Analysis data (placeholder cards — no images) ─────────────────────
 const LATEST_ANALYSIS = [
-  { kicker: "Britain · Podcast",   title: "[Podcast] The 1926 General Strike: Britain's revolution betrayed", author: "Spectre of Communism", date: "26 May 2026", image: R("imgLatestGeneralStrike", "assets/Podcast 1926 general_strike.jpg") },
-  { kicker: "Art · History",       title: "Figaro and the French Revolution",                                  author: "Alan Woods",            date: "22 May 2026", image: R("imgLatestFigaro", "assets/Figaro.jpg") },
-  { kicker: "Europe · Romania",    title: "Romanian government collapses after ten months of austerity",       author: "Jonathan Hinckley",     date: "22 May 2026", image: R("imgLatestRomania", "assets/Romanian Government.jpg") },
-  { kicker: "Cuba · Americas",     title: "US indictment of Raúl Castro: hands off Cuba!",                      author: "Revolutionary Communist International", date: "21 May 2026", image: R("imgLatestRaulCastro", "assets/US Indictment of Raul Castro.jpg") },
-  { kicker: "Britain · Podcast",   title: "[Podcast] Capitalism is ungovernable",                              author: "Against the Stream",    date: "21 May 2026", image: R("imgLatestCapitalismUngovernable", "assets/Podcast Capitalism is Ungovernable.jpg") },
-  { kicker: "Middle East · History", title: "How British imperialism paved the way for the Nakba",             author: "Khaled Malachi",        date: "20 May 2026", image: R("imgLatestNakba", "assets/How British imperialism paved the way for the Nakba.jpg") },
-  { kicker: "Italy · Party",       title: "Second Congress of the Italian PCR — communists advance",           author: "Francesco Salmeri",     date: "20 May 2026", image: R("imgLatestItalianPCR", "assets/Second Congress of the Italian PCR.jpg") },
-  { kicker: "China · World",       title: "China sets the agenda at the Xi-Trump summit",                      author: "Daniel Morley",         date: "19 May 2026", image: R("imgLatestXiTrump", "assets/China sets the agenda at the Xi-Trump summit.jpg") },
-  { kicker: "Venezuela · Americas", title: "Alex Saab handed over to US imperialism",                          author: "Jorge Martín",          date: "19 May 2026", image: R("imgLatestAlexSaab", "assets/Venezuela- former Minister.jpg") },
-  { kicker: "Cuba · Americas",     title: "Cuban drones threaten Florida? Axios fabricates a pretext",         author: "Jorge Martín",          date: "18 May 2026", image: R("imgLatestCubanDrones", "assets/Cuban drones threaten Florida%3F Axios fabricates pretext.jpg") },
-  { kicker: "Cuba · Americas",     title: "CIA director visits Havana as US imperialism ramps up blackmail",   author: "Jorge Martín",          date: "15 May 2026", image: R("imgLatestCiaHavana", "assets/CIA director visits Havana.jpg") },
-  { kicker: "Honduras · Americas", title: "'Hondurasgate': the henchmen of the Donroe Doctrine",               author: "Sylvia Léo",            date: "15 May 2026", image: R("imgLatestHondurasgate", "assets/‘Hondurasgate’- the henchmen of the Donroe Doctrine.jpg") },
+  { kicker: "PODCAST - Britain",   title: "[Podcast] The 1926 General Strike: Britain's revolution betrayed", author: "Spectre of Communism", date: "26 May 2026", image: R("imgLatestGeneralStrike", "assets/Podcast 1926 general_strike.jpg") },
+  { kicker: "HISTORY - Art",       title: "Figaro and the French Revolution",                                  author: "Alan Woods",            date: "22 May 2026", image: R("imgLatestFigaro", "assets/Figaro.jpg") },
+  { kicker: "ANALYSIS - Romania",  title: "Romanian government collapses after ten months of austerity",       author: "Jonathan Hinckley",     date: "22 May 2026", image: R("imgLatestRomania", "assets/Romanian Government.jpg") },
+  { kicker: "ANALYSIS - Cuba",     title: "US indictment of Raúl Castro: hands off Cuba!",                      author: "Revolutionary Communist International", date: "21 May 2026", image: R("imgLatestRaulCastro", "assets/US Indictment of Raul Castro.jpg") },
+  { kicker: "PODCAST - Britain",   title: "[Podcast] Capitalism is ungovernable",                              author: "Against the Stream",    date: "21 May 2026", image: R("imgLatestCapitalismUngovernable", "assets/Podcast Capitalism is Ungovernable.jpg") },
+  { kicker: "HISTORY - Palestine", title: "How British imperialism paved the way for the Nakba",             author: "Khaled Malachi",        date: "20 May 2026", image: R("imgLatestNakba", "assets/How British imperialism paved the way for the Nakba.jpg") },
+  { kicker: "ANALYSIS - Italy",    title: "Second Congress of the Italian PCR — communists advance",           author: "Francesco Salmeri",     date: "20 May 2026", image: R("imgLatestItalianPCR", "assets/Second Congress of the Italian PCR.jpg") },
+  { kicker: "ANALYSIS - China",    title: "China sets the agenda at the Xi-Trump summit",                      author: "Daniel Morley",         date: "19 May 2026", image: R("imgLatestXiTrump", "assets/China sets the agenda at the Xi-Trump summit.jpg") },
+  { kicker: "ANALYSIS - Venezuela", title: "Alex Saab handed over to US imperialism",                          author: "Jorge Martín",          date: "19 May 2026", image: R("imgLatestAlexSaab", "assets/Venezuela- former Minister.jpg") },
+  { kicker: "ANALYSIS - Cuba",     title: "Cuban drones threaten Florida? Axios fabricates a pretext",         author: "Jorge Martín",          date: "18 May 2026", image: R("imgLatestCubanDrones", "assets/Cuban drones threaten Florida%3F Axios fabricates pretext.jpg") },
+  { kicker: "ANALYSIS - Cuba",     title: "CIA director visits Havana as US imperialism ramps up blackmail",   author: "Jorge Martín",          date: "15 May 2026", image: R("imgLatestCiaHavana", "assets/CIA director visits Havana.jpg") },
+  { kicker: "ANALYSIS - Honduras", title: "'Hondurasgate': the henchmen of the Donroe Doctrine",               author: "Sylvia Léo",            date: "15 May 2026", image: R("imgLatestHondurasgate", "assets/‘Hondurasgate’- the henchmen of the Donroe Doctrine.jpg") },
 ];
 
 // ── LATEST ANALYSIS — 4-wide × 3-tall grid of placeholder cards ──────────────
@@ -547,10 +512,10 @@ function CampaignBanner({ tweaks }) {
 function FourUp({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
   const items = [
-    { kicker: "United States", title: "\"All you had to do was pay us enough to live\"", byline: "RCI United States", image: IMG.unitedStates },
-    { kicker: "Britain", title: "A very British catastrophe", byline: "Rob Sewell", image: IMG.britain },
-    { kicker: "Bangladesh", title: "Iran War deals devastating collateral damage to Bangladesh", byline: "Nijat Mahruz Nirjhor", image: IMG.bangladesh },
-    { kicker: "Markets", title: "Prediction markets profit from US imperialism", byline: "Nick Brancaccio", image: IMG.satire },
+    { kicker: "ANALYSIS - United States", title: "\"All you had to do was pay us enough to live\"", byline: "RCI United States", image: IMG.unitedStates },
+    { kicker: "ANALYSIS - Britain", title: "A very British catastrophe", byline: "Rob Sewell", image: IMG.britain },
+    { kicker: "ANALYSIS - Bangladesh", title: "Iran War deals devastating collateral damage to Bangladesh", byline: "Nijat Mahruz Nirjhor", image: IMG.bangladesh },
+    { kicker: "ANALYSIS - Markets", title: "Prediction markets profit from US imperialism", byline: "Nick Brancaccio", image: IMG.satire },
   ];
   return (
     <section className="four-up">
@@ -703,9 +668,9 @@ function TopicSplit({ tweaks }) {
 function ManifestoBanner({ tweaks }) {
   const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
   const updates = [
-    { num: "01", flag: "CA", country: "Canada", title: "Third RCP Congress — a party up to the task" },
-    { num: "02", flag: "CO", country: "Colombia", title: "The founding congress of the Revolutionary Communists of Colombia" },
-    { num: "03", flag: "UK", country: "Britain", title: "Third Congress of the RCP — \u201cWith our burning fury, we will shake the world awake!\u201d" },
+    { num: "01", flag: "CA", country: "DISPATCH - Canada", title: "Third RCP Congress — a party up to the task" },
+    { num: "02", flag: "CO", country: "DISPATCH - Colombia", title: "The founding congress of the Revolutionary Communists of Colombia" },
+    { num: "03", flag: "UK", country: "DISPATCH - Britain", title: "Third Congress of the RCP — \u201cWith our burning fury, we will shake the world awake!\u201d" },
   ];
   return (
     <section className="sections-card">
@@ -722,7 +687,7 @@ function ManifestoBanner({ tweaks }) {
           <li key={i} className="sections-item">
             <span className="sections-num">{u.num}</span>
             <div className="sections-text">
-              <Eyebrow style={{ fontSize: 11, letterSpacing: "0.2em" }}>{u.country}</Eyebrow>
+              <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{u.country}</Eyebrow>
               <a href="#" className={"sections-title" + (titleFont === "serif" ? " sections-title--serif" : "")}>{u.title}</a>
             </div>
             <span className="sections-arrow">→</span>
@@ -741,10 +706,10 @@ function ManifestoBanner({ tweaks }) {
 function EconomyBlock({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
   const items = [
-    { kicker: "Classics", title: "From Adam Smith to Karl Marx: The Wealth of Nations and Das Kapital", byline: "Adam Booth", image: IMG.marx },
-    { kicker: "Finance", title: "Shadow banking: a ticking time bomb under the US economy", byline: "Francesco Merli", image: IMG.banks },
-    { kicker: "World", title: "The meaning of the rise of China", byline: "Kenny Wallace", image: IMG.china },
-    { kicker: "Tech", title: "The anarchic AI race: boom, bubble, and bust", byline: "Adam Booth", image: IMG.ai },
+    { kicker: "ECONOMY - Classics", title: "From Adam Smith to Karl Marx: The Wealth of Nations and Das Kapital", byline: "Adam Booth", image: IMG.marx },
+    { kicker: "ECONOMY - Finance", title: "Shadow banking: a ticking time bomb under the US economy", byline: "Francesco Merli", image: IMG.banks },
+    { kicker: "ECONOMY - China", title: "The meaning of the rise of China", byline: "Kenny Wallace", image: IMG.china },
+    { kicker: "ECONOMY - Technology", title: "The anarchic AI race: boom, bubble, and bust", byline: "Adam Booth", image: IMG.ai },
   ];
   return (
     <section className="four-up">
@@ -809,6 +774,7 @@ function Footer() {
 function App() {
   const t = TWEAK_DEFAULTS;
   const [activeTab, setActiveTab] = useState("Analysis");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Apply mode (light/dark) to body
   useEffect(() => {
@@ -818,8 +784,8 @@ function App() {
 
   return (
     <div className="site">
-      <Masthead />
-      <Nav active={activeTab} onSelect={setActiveTab} />
+      <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Nav active={activeTab} onSelect={setActiveTab} onOpenMenu={() => setMenuOpen(true)} />
 
       <main className="site-main">
         <Hero tweaks={t} />

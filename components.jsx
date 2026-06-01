@@ -79,7 +79,8 @@ function SectionRule({ style, divider = "hairline" }) {
     return <div style={{ height: 2, background: "var(--rci-red)", margin: "0", ...style }} />;
   }
   if (divider === "thick-slab") {
-    return <div style={{ height: 8, background: "var(--rci-ink)", margin: "0", ...style }} />;
+    // 4px to match the MARXIST.COM masthead divider thickness
+    return <div style={{ height: 4, background: "var(--rci-ink)", margin: "0", ...style }} />;
   }
   // hairline default — two-line newspaper rule
   return (
@@ -97,10 +98,10 @@ function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "c
   const isSerif = titleFont === "serif";
   const titleStyle = isSerif
     ? {
-        fontFamily: "var(--font-article-title)",
+        fontFamily: "var(--font-serif)",
         fontWeight: 700,
-        fontSize: titleSize + 2,
-        lineHeight: 1.1,
+        fontSize: titleSize + 6,
+        lineHeight: 1.12,
         textTransform: "none",
         letterSpacing: "-0.005em",
         color: "var(--fg)",

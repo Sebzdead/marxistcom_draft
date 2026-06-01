@@ -143,25 +143,9 @@ const VIDEOS = {
 };
 
 // ── Masthead Component ──────────────────────────────────────────────────────
-function Masthead() {
-  const [searchOpen, setSearchOpen] = useState(false);
+function Masthead({ menuOpen, setMenuOpen }) {
   const [searchValue, setSearchValue] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const inputRef = useRef(null);
-
-  const toggleSearch = () => {
-    setSearchOpen((o) => {
-      const next = !o;
-      if (next) setTimeout(() => inputRef.current && inputRef.current.focus(), 60);
-      else setSearchValue("");
-      return next;
-    });
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === "Escape") { setSearchOpen(false); setSearchValue(""); }
-  };
-  const onBlur = (e) => { if (!e.currentTarget.value) setSearchOpen(false); };
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -169,6 +153,7 @@ function Masthead() {
       if (e.key === "Escape") setMenuOpen(false);
     };
     window.addEventListener("keydown", handleKeyDown);
+    setTimeout(() => searchRef.current && searchRef.current.focus(), 80);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
@@ -188,33 +173,6 @@ function Masthead() {
         </a>
       </div>
       <div className="mast-right">
-        <div className="mast-search" data-open={searchOpen}>
-          <input
-            ref={inputRef}
-            type="search"
-            className="mast-search-input"
-            placeholder="Search marxist.com…"
-            aria-label="Search marxist.com"
-            tabIndex={searchOpen ? 0 : -1}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={onKeyDown}
-            onBlur={onBlur}
-          />
-          <button
-            className="mast-search-btn"
-            aria-label={searchOpen ? "Close search" : "Open search"}
-            aria-expanded={searchOpen}
-            onClick={toggleSearch}
-            type="button"
-          >
-            {searchOpen ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20.5 20.5l-4-4" /></svg>
-            )}
-          </button>
-        </div>
         <div className="mast-socials">
           <a href="https://www.youtube.com/@revcomintern" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="mast-social">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" /></svg>
@@ -229,18 +187,6 @@ function Masthead() {
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.34 18.7 19.7c-.24 1.08-.88 1.34-1.78.84l-4.92-3.62-2.37 2.28c-.26.26-.48.48-.98.48l.35-4.96L17.8 6.5c.4-.36-.08-.55-.62-.2L7.6 12.4l-4.92-1.54c-1.07-.34-1.1-1.07.22-1.58l19.27-7.43c.9-.34 1.68.2 1.38 1.58z" /></svg>
           </a>
         </div>
-        <button
-          className="mast-hamburger"
-          aria-label="Open navigation menu"
-          onClick={() => setMenuOpen(true)}
-          type="button"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" aria-hidden="true">
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
       </div>
 
       {menuOpen && (
@@ -265,7 +211,18 @@ function Masthead() {
                 </button>
               </div>
 
-
+              <form className="menu-drawer-search" role="search" onSubmit={(e) => e.preventDefault()}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>
+                <input
+                  ref={searchRef}
+                  type="search"
+                  className="menu-drawer-search-input"
+                  placeholder="Search marxist.com…"
+                  aria-label="Search marxist.com"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </form>
 
               <div className="menu-drawer-layout">
                 <div className="menu-drawer-sidebar">
@@ -386,7 +343,7 @@ function Masthead() {
 }
 
 // ── Nav Component ───────────────────────────────────────────────────────────
-function Nav({ active }) {
+function Nav({ active, onOpenMenu }) {
   return (
     <nav className="primary-nav">
       <div className="nav-inner">
@@ -408,6 +365,21 @@ function Nav({ active }) {
             </PrintButton>
           );
         })}
+        <button
+          className="nav-menu-btn"
+          aria-label="Open menu and search"
+          onClick={onOpenMenu}
+          type="button"
+        >
+          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
+            <line x1="2" y1="6" x2="21" y2="6" />
+            <line x1="2" y1="11" x2="13" y2="11" />
+            <line x1="2" y1="16" x2="10" y2="16" />
+            <circle cx="16" cy="15" r="4" />
+            <line x1="19.2" y1="18.2" x2="22" y2="21" />
+          </svg>
+          <span className="nav-menu-label">Menu</span>
+        </button>
       </div>
     </nav>
   );
@@ -615,6 +587,7 @@ function VideosSection() {
 
 // ── Main Page App ────────────────────────────────────────────────────────────
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     document.body.dataset.mode = "light";
     document.body.dataset.texture = "none";
@@ -622,8 +595,8 @@ function App() {
 
   return (
     <div className="site">
-      <Masthead />
-      <Nav active="Podcasts & Media" />
+      <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Nav active="Podcasts & Media" onOpenMenu={() => setMenuOpen(true)} />
       
       <main className="site-main">
         {/* Podcasts Section */}
