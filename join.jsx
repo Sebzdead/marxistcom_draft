@@ -9,13 +9,13 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (mirror homepage) ───────────────────────────────────────
 const NAV_TABS = [
-  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Theory & History" },
-  { label: "Podcasts & Media", href: "media.html" },
+  { label: "Analysis", href: "index.html" },
+  { label: "Theory" },
+  { label: "History" },
+  { label: "Classics" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
-  { label: "More languages" },
 ];
 
 // ── National sections data ──────────────────────────────────────────────────
@@ -393,6 +393,46 @@ function Nav({ onOpenMenu }) {
         </button>
       </div>
     </nav>
+  );
+}
+
+// ── Featured Cards ──────────────────────────────────────────────────────────
+function FeaturedCards() {
+  const cards = [
+    {
+      image: R("imgHero", "assets/hero-imperialist-war.png"),
+      kicker: "EDITORIAL - World",
+      title: "2026 kicks off to the sound of imperialist war drums and class struggle",
+      byline: "Jorge Martín",
+    },
+    {
+      image: R("imgManifesto", "assets/card-manifesto.jpg"),
+      kicker: "PROGRAMME - Manifesto",
+      title: "Manifesto of the Revolutionary Communist International",
+      byline: "The RCI",
+    },
+    {
+      image: R("imgWarOnIran", "assets/card-war-on-iran.png"),
+      kicker: "EDITORIAL - Iran War",
+      title: "The war on Iran: where do communists stand?",
+      byline: "Alan Woods",
+    },
+  ];
+  return (
+    <section className="join-featured-cards">
+      <div className="fc-grid">
+        {cards.map((c, i) => (
+          <a href="#" className="hero-side-card" key={i}>
+            <div className="hero-side-img"><img src={c.image} alt={c.title} /></div>
+            <div className="hero-side-meta">
+              <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{c.kicker}</Eyebrow>
+              <h3 className="hero-side-title">{c.title}</h3>
+              <div className="hero-side-byline">By {c.byline}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -838,6 +878,7 @@ function App() {
       <StickyRegionNav regions={REGIONS} active={active} onJump={onJump} />
       <main className="site-main">
         <Banner />
+        <FeaturedCards />
         <Intro />
         <JoinForm />
         <RegionsHeader

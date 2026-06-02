@@ -10,13 +10,13 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (mirror homepage; Magazine is this page) ─────────────────
 const NAV_TABS = [
-  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Theory & History" },
-  { label: "Podcasts & Media", href: "media.html" },
+  { label: "Analysis", href: "index.html" },
+  { label: "Theory" },
+  { label: "History" },
+  { label: "Classics" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
-  { label: "More languages" },
 ];
 
 // ── IDOM page content data ───────────────────────────────────────────────────

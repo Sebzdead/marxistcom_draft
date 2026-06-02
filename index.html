@@ -222,7 +222,7 @@
   .hero { padding: 28px 0 36px; }
   .hero-grid {
     display: grid;
-    grid-template-columns: 264px 1fr 212px;
+    grid-template-columns: 264px 1fr 318px;
     gap: 32px;
     align-items: stretch;
   }
@@ -240,11 +240,14 @@
     gap: 10px;
     text-decoration: none;
     color: inherit;
+    flex: 1 1 0;
+    min-height: 0;
   }
   .hero-side-img {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/2;
+    flex: 1 1 auto;
+    min-height: 120px;
     overflow: hidden;
     border: 2px solid var(--rule);
     box-shadow: 4px 4px 0 var(--rule);
@@ -283,8 +286,8 @@
   .hero-feature-img {
     position: relative;
     width: 100%;
-    flex: 1 1 auto;
-    min-height: 290px;
+    flex: 0 0 auto;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     border: 2px solid var(--rule);
     box-shadow: 6px 6px 0 var(--rule);
@@ -314,7 +317,7 @@
     letter-spacing: -0.005em;
     margin: 4px 0 4px;
     color: var(--fg, var(--rci-ink));
-    text-wrap: balance;
+    text-wrap: pretty;
   }
   .hero-h1--serif {
     font-family: var(--font-serif);
@@ -353,6 +356,54 @@
     border-right: 1px solid var(--rule-soft);
     padding-right: 22px;
   }
+
+  /* LEFT column — "Most Read" numbered list (Guardian-style) */
+  .most-read { display: flex; flex-direction: column; }
+  .most-read-head {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--fg, var(--rci-ink));
+  }
+  .most-read-sub {
+    font-family: var(--font-condensed);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    color: var(--rci-ash);
+    margin: 4px 0 6px;
+  }
+  body[data-mode="dark"] .most-read-sub { color: #c9c2c2; }
+  .most-read-item {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 13px 0;
+    border-top: 1px solid var(--rule-soft);
+    text-decoration: none;
+    color: inherit;
+  }
+  .most-read-item:first-of-type { border-top: 1px solid var(--rule-soft); }
+  .most-read-num {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--rci-ash);
+    flex: 0 0 auto;
+    min-width: 38px;
+  }
+  body[data-mode="dark"] .most-read-num { color: #9b938c; }
+  .most-read-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.25;
+    color: var(--fg, var(--rci-ink));
+  }
+  .most-read-item:hover .most-read-title { text-decoration: underline; }
+
   .hero-feat-card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; }
   .hero-feat-img {
     position: relative;

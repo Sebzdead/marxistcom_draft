@@ -105,13 +105,13 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
 }
 
 const NAV_TABS = [
-  { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Theory & History" },
-  { label: "Podcasts & Media", href: "media.html" },
+  { label: "Analysis", href: "index.html" },
+  { label: "Theory" },
+  { label: "History" },
+  { label: "Classics" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
-  { label: "More languages" },
 ];
 
 
@@ -363,37 +363,30 @@ function Nav({ active, onSelect, onOpenMenu }) {
 function Hero({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
 
-  // LEFT: other featured stories (three, to balance the right column)
-  const featured = [
-    { kicker: "HISTORY - Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
-    { kicker: "ANALYSIS - Iran War", title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead, href: "#" },
-    { kicker: "ECONOMY - Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
-  ];
+  // LEFT: "Most Read" numbered list, pulled from LATEST_ANALYSIS headlines
+  const mostRead = LATEST_ANALYSIS.slice(0, 7).map((a) => ({ title: a.title, href: "article.html" }));
 
-  // RIGHT: three "set" cards — the editorial moved from the centre, plus two programme cards
+  // RIGHT: three article cards (moved from the old left column)
   const sideCards = [
-    { kicker: "EDITORIAL - World", title: "2026 kicks off to the sound of imperialist war drums and class struggle", byline: "Jorge Martín", image: IMG.hero, href: "#" },
-    { kicker: "PROGRAMME - Manifesto", title: "Manifesto of the Revolutionary Communist International", byline: "The RCI", image: IMG.manifesto, href: "#" },
-    { kicker: "EDITORIAL - Iran War", title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.warOnIran, href: "#" },
+    { kicker: "HISTORY - Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
+    { kicker: "ECONOMY - Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
   ];
 
   return (
     <section className="hero">
       <div className="hero-grid">
-        {/* LEFT: other featured articles */}
+        {/* LEFT: Most Read */}
         <div className="hero-featured">
-          {featured.map((it, i) => (
-            <a key={i} href={it.href} className="hero-feat-card">
-              <div className="hero-feat-img">
-                <img src={it.image} alt={it.title} />
-              </div>
-              <div className="hero-feat-meta">
-                <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{it.kicker}</Eyebrow>
-                <h3 className="hero-feat-title">{it.title}</h3>
-                <div className="hero-feat-byline">By {it.byline}</div>
-              </div>
-            </a>
-          ))}
+          <div className="most-read">
+            <h2 className="most-read-head">Most Read</h2>
+            <div className="most-read-sub">What readers are clicking on</div>
+            {mostRead.map((it, i) => (
+              <a key={i} href={it.href} className="most-read-item">
+                <span className="most-read-num">{i + 1}</span>
+                <span className="most-read-title">{it.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* CENTER: featured daily article */}
