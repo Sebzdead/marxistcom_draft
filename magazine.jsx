@@ -141,7 +141,7 @@ function Masthead({ menuOpen, setMenuOpen }) {
     <header className="masthead">
       <div className="mast-left">
         <a href="index.html" className="mast-logo-link" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none", color: "inherit" }}>
-          <img src={R("rciSquare", "ds/logos/rci-square.svg")} alt="RCI" className="mast-logo" />
+          <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" className="mast-logo" />
           <div className="mast-wordmark">
             <div className="wm-title">MARXIST<span className="wm-dot">.</span>COM</div>
           </div>
@@ -175,7 +175,7 @@ function Masthead({ menuOpen, setMenuOpen }) {
             <div className="menu-drawer-inner">
               <div className="menu-drawer-header">
                 <div className="menu-drawer-brand">
-                  <img src={R("rciSquare", "ds/logos/rci-square.svg")} alt="RCI" />
+                  <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
                   <span className="menu-drawer-wm">MARXIST.COM</span>
                 </div>
                 <button
@@ -371,7 +371,7 @@ function Footer() {
     <footer className="site-foot">
       <div className="foot-top">
         <div className="foot-brand">
-          <img src={R("rciSquare", "ds/logos/rci-square.svg")} alt="RCI" />
+          <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
           <div>
             <div className="foot-brand-wm">MARXIST.COM</div>
             <div className="foot-brand-tag">Home of the Revolutionary Communist International</div>
