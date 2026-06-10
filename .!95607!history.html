@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Revolutionary History — Marxist University — Marxist.com</title>
+
+<link rel="stylesheet" href="ds/colors_and_type.css">
+
+<style>
+  /* ────────────────────────────────────────────────────────────
+     Marxist.com — Podcasts & Media page styling
+     Print-materiality visual language:
+       • paper substrate + film grain
+       • ink rules, hard 2.5D offset shadows, zero-radius corners
+       • Built Titling display, Cheltenham serif body, Trade Gothic eyebrows
+     ──────────────────────────────────────────────────────────── */
+
+  :root {
+    --page-bg: #f6efef;
+    --page-bg-dark: #181513;
+    --paper: #f6efef;
+    --paper-soft: #ece4e4;
+    --rule: var(--rci-ink);
+    --rule-soft: #b8b0ac;
+  }
+
+  html, body { margin: 0; padding: 0; }
+  html { background: var(--page-bg); }
+  body {
+    background: var(--page-bg);
+    color: var(--rci-ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* DARK MODE */
+  body[data-mode="dark"] {
+    background: var(--page-bg-dark);
+    color: var(--rci-offwhite);
+    --rule: #f0e3d8;
+    --rule-soft: #4a4138;
+    --paper: #221d18;
+    --paper-soft: #1a1612;
+    --fg: var(--rci-offwhite);
+    --fg-soft: #c9c2c2;
+  }
+
+  #root { position: relative; z-index: 1; }
+
+  .site {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 28px 64px;
+  }
+
+  /* ─── MASTHEAD ────────────────────────────────────────────── */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 22px 0 18px;
+    border-bottom: 4px solid var(--rule);
+    gap: 24px;
+  }
+  .mast-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .mast-logo {
+    width: 48px; height: 48px;
+    display: block;
+  }
+  .mast-wordmark { display: flex; flex-direction: column; }
+  .wm-title {
+    font-family: var(--font-article-title);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--rci-ink);
+  }
+  body[data-mode="dark"] .wm-title { color: var(--rci-offwhite); }
+  .wm-dot { color: var(--rci-red); }
+  .mast-slash {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--rci-red);
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 4px 4px;
+  }
+  .mast-tag {
+    font-family: var(--font-article-title);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    line-height: 0.98;
+    color: var(--rci-ink);
+  }
+  body[data-mode="dark"] .mast-tag { color: var(--rci-offwhite); }
+
+  .mast-right { display: flex; align-items: center; gap: 18px; }
+  .mast-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mast-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--rule);
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--rci-ink);
+    text-decoration: none;
+    transition: background 90ms, color 90ms, transform 90ms cubic-bezier(0.2,0.7,0.1,1);
+  }
+  .mast-social svg { width: 18px; height: 18px; display: block; }
+  .mast-social:hover {
+    background: var(--rci-red);
+    color: var(--rci-offwhite);
+    border-color: var(--rci-red);
+  }
+  .mast-social:active { transform: translate(1px, 1px); }
+  @media (max-width: 720px) {
+    .mast-socials { display: none; }
+  }
+
+  .mast-search {
+    display: flex; align-items: center;
+    height: 44px;
+    background: var(--paper);
+    border: 2px solid var(--rule);
+    transition: border-color 120ms, background 80ms;
+    overflow: hidden;
+  }
+  body[data-mode="dark"] .mast-search { background: var(--paper); }
+  .mast-search:focus-within { border-color: var(--rci-ink); }
+  .mast-search-input {
+    width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: var(--rci-ink);
+    outline: none;
+    transition: width 240ms cubic-bezier(0.2,0.7,0.1,1), padding 240ms;
+  }
+  body[data-mode="dark"] .mast-search-input { color: var(--rci-ink); }
+  .mast-search-input::placeholder { color: var(--rci-ink); opacity: 0.55; font-style: italic; }
+  .mast-search[data-open="true"] .mast-search-input { width: 200px; padding: 0 4px 0 12px; }
+  .mast-search-btn {
+    width: 40px; height: 40px;
+    flex: 0 0 40px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--rci-ink);
+    transition: background 80ms, color 80ms;
+  }
+  body[data-mode="dark"] .mast-search-btn { color: var(--rci-ink); }
+  .mast-search-btn:hover { background: var(--rci-ink); color: var(--rci-offwhite); }
+  .mast-search[data-open="true"] .mast-search-btn:hover { background: transparent; color: var(--rci-red); }
+  .mast-search-btn svg { width: 18px; height: 18px; display: block; }
+  .mast-search-btn:active { transform: translate(1px, 1px); }
+

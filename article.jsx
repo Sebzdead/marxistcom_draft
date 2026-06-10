@@ -16,7 +16,8 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 const NAV_TABS = [
   { label: "Analysis", href: "index.html" },
   { label: "Join the RCI", href: "join.html" },
-  { label: "Theory & History" },
+  { label: "Theory", href: "theory.html" },
+  { label: "History", href: "history.html" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
@@ -63,7 +64,7 @@ Oil prices have been fluctuating around $100-110 per barrel for the past two mon
 
 That is a rather big assumption, as it would involve Trump effectively admitting defeat. Some of the recent nervous reactions from the market clearly reflect an increasing scepticism that Trump will be able to get out of the war and open up the Strait within a reasonable amount of time. Those who don’t believe this will happen [forecast oil reaching $150 per barrel](https://edition.cnn.com/2026/05/18/business/gas-prices-trump-iran-hormuz) – a level not seen since 2008. Even if it were to reopen, it would take some months before traffic flowed as before, and [longer still until production could be restored](https://www.reuters.com/markets/commodities/opening-hormuz-is-easy-part-restoring-oil-flows-isnt-2026-04-20/).
 
-![kharg island Image خسرو حیرت نگاری Wikimedia Commons](https://marxist.com/images/stories/economy/2026_May/kharg_island_Image_%D8%AE%D8%B3%D8%B1%D9%88_%D8%AD%DB%8C%D8%B1%D8%AA_%D9%86%DA%AF%D8%A7%D8%B1%DB%8C_Wikimedia_Commons.jpg)
+![kharg island Image خسرو حیرت نگاری Wikimedia Commons](uploads/article_1.jpg)
 
 kharg island Image خسرو حیرت نگاری Wikimedia Commons
 
@@ -91,7 +92,7 @@ Then we have farming, which might just be the most devastatingly affected of all
 
 The loss of this supply of fertiliser will naturally mean a large reduction in the amount used for this year’s sowing season. How much this will affect crop yields is unclear and depends on where the cuts are made, but it could be in the region of [10-15 percent](https://www.nature.com/articles/s43016-023-00873-z#Fig5) for cereals like rice and wheat.
 
-![U.S. Central Command (CENTCOM) forces began setting conditions for clearing mines in the Strait of Hormuz, April 11, as two U.S. Navy guided-missile destroyers conducted operations. (U.S. Central Command Photo)](https://marxist.com/images/stories/economy/2026_May/strait_of_hormuz_Image_public_domain.jpg)
+![U.S. Central Command (CENTCOM) forces began setting conditions for clearing mines in the Strait of Hormuz, April 11, as two U.S. Navy guided-missile destroyers conducted operations. (U.S. Central Command Photo)](uploads/article_2.jpg)
 
 U.S. Central Command (CENTCOM) forces began setting conditions for clearing mines in the Strait of Hormuz, April 11, as two U.S. Navy guided-missile destroyers conducted operations. (U.S. Central Command Photo)
 
@@ -145,7 +146,7 @@ Such a mood will lay the basis for wildcat strikes as well as union leaders bein
 
 Inflation isn’t the only problem. The spectre of a government debt crisis is rearing its ugly head.
 
-![gs Image IMF Flickr](https://marxist.com/images/stories/economy/2026_May/gs_Image_IMF_Flickr.jpg)
+![gs Image IMF Flickr](uploads/article_3.jpg)
 
 gs Image IMF Flickr
 
@@ -173,7 +174,7 @@ On top of that, the crisis itself is pushing governments to make additional conc
 
 Ruth Gregory, deputy chief UK economist at Capital Economics [estimates that](https://www.reuters.com/world/uk/uk-borrows-bigger-than-expected-243-billion-pounds-april-2026-05-22/) energy subsidies, higher government interest costs and weaker economic growth would raise the UK deficit from 3.6 percent to 4.6 percent of GDP.
 
-![01/10/2021. London, United Kingdom. The Foreign Secretary Elizabeth Truss in a call with the Minister of International Relations and Cooperation of South Africa, Naledi Pandor Picture by Tim Hammond / No 10 Downing Street](https://marxist.com/images/stories/economy/2026_May/liz_truss_Image_UK_Government_Flickr.jpg)
+![01/10/2021. London, United Kingdom. The Foreign Secretary Elizabeth Truss in a call with the Minister of International Relations and Cooperation of South Africa, Naledi Pandor Picture by Tim Hammond / No 10 Downing Street](uploads/article_4.jpg)
 
 01/10/2021. London, United Kingdom. The Foreign Secretary Elizabeth Truss in a call with the Minister of International Relations and Cooperation of South Africa, Naledi Pandor Picture by Tim Hammond / No 10 Downing Street
 
@@ -702,10 +703,11 @@ function Footer() {
           <div className="foot-col">
             <div className="foot-col-h">Sections</div>
             <a href="index.html">Analysis</a>
-            <a href="#">Theory & History</a>
-            <a href="#">Podcasts</a>
+            <a href="theory.html">Theory</a>
+            <a href="history.html">History</a>
+            <a href="media.html">Podcasts</a>
             <a href="magazine.html">In Defence of Marxism</a>
-            <a href="#">Bookstore</a>
+            <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Bookstore</a>
           </div>
           <div className="foot-col">
             <div className="foot-col-h">Get involved</div>

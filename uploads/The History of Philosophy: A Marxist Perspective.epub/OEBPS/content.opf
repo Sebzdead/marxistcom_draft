@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.0" unique-identifier="bookid" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/" xmlns="http://www.idpf.org/2007/opf">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>The History of Philosophy: A Marxist Perspective</dc:title>
+    <dc:creator>Alan Woods</dc:creator>
+    <dc:subject>Philosophy</dc:subject>
+    <dc:description>Alan Woods outlines the development of philosophy from the ancient Greeks, all the way through to Marx and Engels who brought together the best of previous thinking to produce the Marxist philosophical outlook, which looks at the real material world, not as a static immovable reality, but one that is constantly changing and moving according to laws that can be discovered.
+
+It is this method which allows Marxists to look at how things were, how they have become and how they are most likely going to be in the future, in a long process which started with the early primitive humans in their struggles for survival, through to the emergence of class societies, all as part of a process towards greater and greater knowledge of the world we live in.
+
+This long historical process eventually created the material conditions which allow for an end to class divisions and the flowering of a new society where humans will achieve true freedom, where no human will exploit another, no human will oppress another. Here we see how philosophy becomes an indispensable tool in the struggle for the revolutionary transformation of society.</dc:description>
+    <dc:publisher>Wellred Books</dc:publisher>
+    <dc:date>2021-09-14T10:56:17Z</dc:date>
+    <dc:language>en-GB</dc:language>
+    <dc:identifier id="bookid">urn:uuid:1b7a2da8-5087-4fab-86d3-87222a42bc72</dc:identifier>
+    <meta content="Adobe InDesign 16.2.1" name="generator"/>
+    <meta property="ibooks:specified-fonts">true</meta>
+    <meta property="dcterms:modified">2021-09-28T11:13:17Z</meta>
+    <meta content="1.7.0" name="Sigil version"/>
+    <meta name="cover" content="cover.jpg"/>
+  </metadata>
+  <manifest>
+    <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="production.xhtml" href="production.xhtml" media-type="application/xhtml+xml"/>
+    <item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="intro.xhtml" href="intro.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_1.xhtml" href="Chapter_1.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_2" href="Chapter_2.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_3" href="Chapter_3.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_4" href="Chapter_4.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_5" href="Chapter_5.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_6_OFFICIAL" href="Chapter_6_OFFICIAL.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_7_OFFICIAL" href="Chapter_7_OFFICIAL.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_8_OFFICIAL" href="Chapter_8_OFFICIAL.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_9_OFFICIAL" href="Chapter_9_OFFICIAL.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_10" href="Chapter_10.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Chapter_11" href="Chapter_11.xhtml" media-type="application/xhtml+xml"/>
+    <item id="Bibliography" href="Bibliography.xhtml" media-type="application/xhtml+xml"/>
+    <item id="List_of_titles" href="List_of_titles.xhtml" media-type="application/xhtml+xml"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="template.css" href="css/template.css" media-type="text/css"/>
+    <item id="cover.jpg" href="image/cover.jpg" media-type="image/jpeg" properties="cover-image"/>
+    <item id="wellred-logo-no-text.png" href="image/wellred-logo-no-text.png" media-type="image/png"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="cover"/>
+    <itemref idref="production.xhtml"/>
+    <itemref idref="toc"/>
+    <itemref idref="intro.xhtml"/>
+    <itemref idref="Chapter_1.xhtml"/>
+    <itemref idref="Chapter_2"/>
+    <itemref idref="Chapter_3"/>
+    <itemref idref="Chapter_4"/>
+    <itemref idref="Chapter_5"/>
+    <itemref idref="Chapter_6_OFFICIAL"/>
+    <itemref idref="Chapter_7_OFFICIAL"/>
+    <itemref idref="Chapter_8_OFFICIAL"/>
+    <itemref idref="Chapter_9_OFFICIAL"/>
+    <itemref idref="Chapter_10"/>
+    <itemref idref="Chapter_11"/>
+    <itemref idref="Bibliography"/>
+    <itemref idref="List_of_titles"/>
+  </spine>
+  <guide>
+    <reference type="cover" title="Cover" href="cover.xhtml"/>
+  </guide>
+</package>

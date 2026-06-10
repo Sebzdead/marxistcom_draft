@@ -1,0 +1,114 @@
+@page {
+  margin: 0.5em;
+}
+tbody, thead, tfoot, tr, td, th {
+  border-style: inherit;
+  border-width: inherit;
+  border-color: inherit;
+}
+h1, h2, h3, h4 {
+  font-family: adobe-garamond-pro, Garamond, serif;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  line-height: 1.2;
+  color: #000;
+  page-break-after: avoid;
+  page-break-before: auto;
+}
+h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 0 0 1em 0;
+}
+h2 {
+  font-size: 2em;
+  text-align: center;
+  margin: 1.5em 0 0.2em 0;
+}
+h4 {
+  font-size: 1.2em;
+  text-align: left;
+  margin: 1em 0 0.2em 0;
+}
+p, li {
+  font-family: adobe-garamond-pro, Garamond, serif;
+  color: #000;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  font-variant: normal;
+  page-break-after: auto;
+  page-break-before: auto;
+  text-transform: none;
+}
+p {
+  font-size: 1em;
+  line-height: 1.2;
+  text-align: justify;
+  text-indent: 1em;
+  margin: 0 0 0.2em 0;
+}
+p.no-indent {
+  text-indent: 0;
+  margin: 0.2em 0;
+}
+p.production {
+  text-align: left;
+  text-indent: 0;
+  margin: 1em 0;
+  line-height: 1;
+}
+.pagebreak_before {
+  page-break-before: always;
+}
+tr {
+  page-break-after: auto;
+  page-break-before: auto;
+}
+p.small {
+  font-size: small;
+  text-align: left;
+  text-indent: 0;
+  margin: 1em 0;
+  line-height: 90%;
+}
+td {
+  color: #000;
+  font-family: serif;
+  font-size: 0.917em;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1.2;
+  margin-bottom: 0;
+  orphans: 2;
+  page-break-after: auto;
+  page-break-before: auto;
+  padding: 5px;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+  text-transform: none;
+  widows: 2;
+}
+nav#toc li {
+  list-style-type: none;
+}
+p.right {
+  text-align: right;
+}
+a.superscript {
+  vertical-align: super;
+  font-size: smaller;
+}
+h1.uppercase {
+  text-transform: uppercase;
+}
+nav#toc li {
+  list-style-type: none;
+}
+p.bib {
+  padding-left: 28px;
+  text-indent: -28px;
+}

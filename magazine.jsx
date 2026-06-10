@@ -12,9 +12,9 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 const NAV_TABS = [
   { label: "Join the RCI", href: "join.html" },
   { label: "Analysis", href: "index.html" },
-  { label: "Theory" },
-  { label: "History" },
-  { label: "Classics" },
+  { label: "Theory", href: "theory.html" },
+  { label: "History", href: "history.html" },
+  { label: "Classics", href: "classics.html" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
 ];
@@ -43,7 +43,7 @@ window.IDOM_PAGE = {
     season: "Spring 2026",
     theme: "Latin America",
     subtitle: "An Unfinished Revolution",
-    cover: "uploads/IDOM_53.jpg",
+    cover: "uploads/_IDOM_53_cover.jpg",
     blurb: "From the wars of independence to the Bolivarian present, Latin America has been a continent of permanent upheaval — and of revolutions left half-finished. This issue traces the unbroken thread from Bolívar to Zapata, from Cuba to Chile, and asks what it will take to complete the task.",
     price: "£5 · €6 · $7",
     contents: [
@@ -59,18 +59,18 @@ window.IDOM_PAGE = {
 
   // Archive — newest first
   archive: [
-    { no: "53", title: "Latin America: An Unfinished Revolution", season: "Spring 2026", img: "uploads/IDOM_53.jpg" },
-    { no: "52", title: "Sudan: From Revolution to Barbarism", season: "Winter 2025", img: "uploads/IDOM_52_website.jpg" },
+    { no: "53", title: "Latin America: An Unfinished Revolution", season: "Spring 2026", img: "uploads/_IDOM_53_cover.jpg" },
+    { no: "52", title: "Sudan: From Revolution to Barbarism", season: "Winter 2025", img: "uploads/_IDOM_52_cover.jpg" },
     { no: "51", title: "The Permanent Revolution", season: "Autumn 2025", img: "uploads/_IDOM_51_cover.jpg" },
     { no: "50", title: "Reform or Revolution", season: "Summer 2025", img: "uploads/_IDOM_50_cover.jpg" },
     { no: "49", title: "1945: Liberation, Revolution & Betrayal", season: "Spring 2025", img: "uploads/_IDOM_49_cover.jpg" },
-    { no: "48", title: "Science: Progress, Crisis and Revolution", season: "Winter 2025", img: "uploads/IDOM_48_thumb.jpg" },
-    { no: "47", title: "The Struggle for World Revolution", season: "Autumn 2024", img: "uploads/IDOM_47_thumb.jpg" },
+    { no: "48", title: "Science: Progress, Crisis and Revolution", season: "Winter 2025", img: "uploads/_IDOM_48_cover.jpg" },
+    { no: "47", title: "The Struggle for World Revolution", season: "Autumn 2024", img: "uploads/_IDOM_47_cover.jpg" },
     { no: "46", title: "The Necessity of Art", season: "Summer 2024", img: "uploads/_IDOM_46_thumb.jpg" },
     { no: "45", title: "The African Revolution", season: "Spring 2024", img: "uploads/_IDOM_45_cover_website.jpg" },
     { no: "44", title: "Lenin: 100 Years On", season: "Winter 2024", img: "uploads/_IDOM_44_small.jpg" },
     { no: "43", title: "The Struggle for Communism", season: "Autumn 2023", img: "uploads/_IDOM_43_cover_small.jpg" },
-    { no: "42", title: "The State", season: "Summer 2023", img: "uploads/IDOM_42_cover_small.jpg" },
+    { no: "42", title: "The State", season: "Summer 2023", img: "uploads/_IDOM_42_cover.jpg" },
     { no: "41", title: "The Fall of Woman", season: "Spring 2023", img: "uploads/_IDOM_41_cover.jpg" },
     { no: "40", title: "Blood and Gold", season: "Winter 2023", img: "uploads/_IDOM_40_small.jpg" },
     { no: "39", title: "The Struggle for Rational Thought", season: "Autumn 2022", img: "uploads/_IDOM_39_small.jpg" },
@@ -381,7 +381,8 @@ function Footer() {
           <div className="foot-col">
             <div className="foot-col-h">Sections</div>
             <a href="index.html">Analysis</a>
-            <a href="#">Theory & History</a>
+            <a href="theory.html">Theory</a>
+            <a href="history.html">History</a>
             <a href="media.html">Podcasts</a>
             <a href="magazine.html">In Defence of Marxism</a>
             <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Bookstore</a>

@@ -11,9 +11,9 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 const NAV_TABS = [
   { label: "Join the RCI", href: "join.html" },
   { label: "Analysis", href: "index.html" },
-  { label: "Theory" },
-  { label: "History" },
-  { label: "Classics" },
+  { label: "Theory", href: "theory.html" },
+  { label: "History", href: "history.html" },
+  { label: "Classics", href: "classics.html" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
 ];
@@ -786,10 +786,11 @@ function Footer() {
           <div className="foot-col">
             <div className="foot-col-h">Sections</div>
             <a href="index.html">Analysis</a>
-            <a href="#">Theory & History</a>
-            <a href="#">Podcasts</a>
+            <a href="theory.html">Theory</a>
+            <a href="history.html">History</a>
+            <a href="media.html">Podcasts</a>
             <a href="magazine.html">In Defence of Marxism</a>
-            <a href="#">Bookstore</a>
+            <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Bookstore</a>
           </div>
           <div className="foot-col">
             <div className="foot-col-h">Get involved</div>
