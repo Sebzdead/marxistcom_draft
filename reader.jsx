@@ -473,7 +473,7 @@ const ReaderView = ({ bookPath, bookTitle, onBack }) => {
     if (!containerRef.current) return;
 
     // Load book pointing to unpacked OPF structure
-    const book = ePub(bookPath);
+    const book = ePub(bookPath, { openAs: 'directory' });
     bookRef.current = book;
 
     const rendition = book.renderTo(containerRef.current, {
@@ -787,6 +787,7 @@ function App() {
           onBack={handleBackToLibrary} 
         />
       </main>
+      <Footer />
     </div>
   );
 }

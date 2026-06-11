@@ -1,4 +1,4 @@
-// Marxist.com — Marxist University (History Portal) page
+// Marxist.com — History Portal page
 // Standalone sibling to app.jsx / magazine.jsx / media.jsx. Loaded by history.html.
 // Reuses PrintButton, Eyebrow, SectionRule, SectionHead from components.jsx.
 
@@ -734,7 +734,7 @@ function App() {
         {/* History Hero Section */}
         <section className="theory-hero">
           <div className="theory-hero-content">
-            <span className="theory-hero-eyebrow">Marxist University</span>
+            <span className="theory-hero-eyebrow">Revolutionary History</span>
             <h1 className="theory-hero-h1">A Revolutionary History of the World</h1>
             <p className="theory-hero-p">
               “The history of all hitherto existing society is the history of class struggles.” — <b>Marx & Engels.</b> Walk the timeline from the birth of class society to the battles of the present, and arm yourself with the lessons of every revolution along the way.

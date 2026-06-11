@@ -478,7 +478,7 @@ function App() {
         {/* Classics Hero Banner */}
         <section className="theory-hero">
           <div className="theory-hero-content">
-            <span className="theory-hero-eyebrow">Marxist University</span>
+            <span className="theory-hero-eyebrow">RCI Classics</span>
             <h1 className="theory-hero-h1">Marxist Classics</h1>
             <p className="theory-hero-p">
               Explore the fundamental texts of revolutionary theory. Arm yourself with the ideas of <b>Karl Marx, Friedrich Engels, V.I. Lenin, Leon Trotsky, Ted Grant</b> and <b>Alan Woods</b>. Read directly inside our custom interactive viewer or order printed copies.

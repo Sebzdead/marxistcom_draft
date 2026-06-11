@@ -1,4 +1,4 @@
-// Marxist.com — Marxist University (Theory Portal) page
+// Marxist.com — Theory Portal page
 // Standalone sibling to app.jsx / magazine.jsx / media.jsx. Loaded by theory.html.
 // Reuses PrintButton, Eyebrow, SectionRule, SectionHead from components.jsx.
 
@@ -612,7 +612,7 @@ function TheorySlab({ title, author }) {
       <div className="theory-slab-texture" />
       <div className="theory-slab-author">{author}</div>
       <div className="theory-slab-title">{title}</div>
-      <div className="theory-slab-foot">Marxist University</div>
+      <div className="theory-slab-foot">RCI Theory</div>
     </div>
   );
 }
@@ -762,7 +762,7 @@ function App() {
         {/* Theory Hero Section */}
         <section className="theory-hero">
           <div className="theory-hero-content">
-            <span className="theory-hero-eyebrow">Marxist University</span>
+            <span className="theory-hero-eyebrow">Revolutionary Theory</span>
             <h1 className="theory-hero-h1">The Three Pillars of Marxism</h1>
             <p className="theory-hero-p">
               “Without revolutionary theory there can be no revolutionary movement.” — <b>V.I. Lenin.</b> Marxism rests on three great pillars: a philosophy, a theory of history, and a critique of political economy. Master all three, and you hold the tools to change the world.
