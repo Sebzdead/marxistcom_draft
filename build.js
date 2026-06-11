@@ -82,4 +82,7 @@ htmlFiles.forEach(file => {
   fs.writeFileSync(path.join(distDir, file), html);
 });
 
+// Create .nojekyll to prevent GitHub Pages Jekyll build
+fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
+
 console.log('Build completed successfully!');
