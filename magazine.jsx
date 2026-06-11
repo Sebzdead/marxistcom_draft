@@ -464,7 +464,7 @@ function IdNav() {
                onClick={(e) => jump(e, s.id)}>{s.label}</a>
           ))}
         </nav>
-        <a className="idnav-cta" href="#subscribe" onClick={(e) => jump(e, "subscribe")}>Subscribe</a>
+        <a href="index.html" className="idnav-home-btn">MARXIST.COM</a>
         <button className="idnav-menubtn" aria-label="Menu"><i data-lucide="menu"></i></button>
       </div>
     </header>
@@ -478,80 +478,15 @@ function IdNav() {
 // inside that transition (spread just above the paragraph).
 function Hero() {
   const D = window.IDOM_PAGE.intro;
-  const secRef = React.useRef(null);
-  const bg1Ref = React.useRef(null);   // Wanderer (pans)
-  const bg2Ref = React.useRef(null);   // particles
-  const veilRef = React.useRef(null);  // white flash
-  const titleRef = React.useRef(null); // lockup, top
-  const fadeRef = React.useRef(null);  // spread + intro paragraph
-  const cueRef = React.useRef(null);
-
-  React.useEffect(() => {
-    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-    const ramp = (v, a, b) => clamp((v - a) / (b - a), 0, 1);
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const el = secRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = el.offsetHeight - window.innerHeight;
-      const p = clamp(-rect.top / total, 0, 1);
-
-      // Phase 1 — pan down the entire painting (p 0 → 0.52)
-      const pan = ramp(p, 0, 0.52) * 100;
-      if (bg1Ref.current) {
-        bg1Ref.current.style.objectPosition = "50% " + pan + "%";
-        // painting recedes as the white flash takes over, gone before black
-        bg1Ref.current.style.opacity = 1 - ramp(p, 0.56, 0.66);
-      }
-      // Phase 2 — white flash, then fades to PURE BLACK (no particles yet)
-      const up = ramp(p, 0.52, 0.62);
-      const down = ramp(p, 0.64, 0.73);
-      if (veilRef.current) veilRef.current.style.opacity = up * (1 - down);
-
-      // Phase 3 — particle field fades in over the black, holds, then (Phase 5)
-      // fades back out to black to hand off to the Latest Issue section
-      if (bg2Ref.current) {
-        bg2Ref.current.style.opacity = ramp(p, 0.72, 0.82) * (1 - ramp(p, 0.95, 1.0));
-      }
-
-      // Title lockup: present over the top of the painting, gone before the flash
-      if (titleRef.current) {
-        titleRef.current.style.opacity = 1 - ramp(p, 0.14, 0.36);
-        titleRef.current.style.transform = "translateY(" + (-ramp(p, 0, 0.36) * 70) + "px)";
-      }
-      // Phase 4 — spread + intro float in over the particle field and HOLD a good
-      // while, then fade back out late as the field darkens to black (Phase 5)
-      const fadeIn = ramp(p, 0.76, 0.86);
-      const fadeOut = ramp(p, 0.95, 1.0);
-      if (fadeRef.current) {
-        fadeRef.current.style.opacity = fadeIn * (1 - fadeOut);
-        fadeRef.current.style.transform = "translateY(" + ((1 - fadeIn) * 40 + fadeOut * -24) + "px)";
-      }
-      if (cueRef.current) cueRef.current.style.opacity = 1 - ramp(p, 0.0, 0.07);
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    update();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   return (
     <section id="intro">
-      <div className="hero" ref={secRef}>
-        <div className="hero-stage">
-          <img className="hero-bg hero-bg1" ref={bg1Ref} src="uploads/1.jpeg" alt="Caspar David Friedrich, Wanderer above the Sea of Fog" />
-          <img className="hero-bg hero-bg2" ref={bg2Ref} src="uploads/2.png" alt="" />
-          <div className="hero-veil" ref={veilRef}></div>
-          <div className="hero-vignette"></div>
+      <div className="hero">
+        <img className="hero-bg hero-bg2" src="uploads/2.png" alt="" />
+        <div className="hero-vignette"></div>
 
-          <div className="hero-title" ref={titleRef}>
+        <div className="hero-stage">
+          <div className="hero-title">
             <div className="hero-eyebrow">Revolutionary Communist International</div>
             <div className="hero-pre">{D.pre}</div>
             <h1 className="hero-mark">{D.mark}</h1>
@@ -559,14 +494,9 @@ function Hero() {
             <p className="hero-stand">{D.standfirst}</p>
           </div>
 
-          <div className="hero-fade" ref={fadeRef}>
+          <div className="hero-fade">
             <img className="hero-spread" src="uploads/magazines spread.png" alt="Three issues of In Defence of Marxism" />
             <p className="hero-introtext">{D.body}</p>
-          </div>
-
-          <div className="hero-cue" ref={cueRef}>
-            <span>Scroll</span>
-            <i data-lucide="chevron-down"></i>
           </div>
         </div>
       </div>
@@ -744,12 +674,6 @@ function App() {
 
   return (
     <React.Fragment>
-      <header className="mag-head">
-        <div className="mag-head-inner">
-          <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <Nav active="Magazine" onOpenMenu={() => setMenuOpen(true)} />
-        </div>
-      </header>
       <div className="idom-app">
         <IdNav />
         <Hero />
