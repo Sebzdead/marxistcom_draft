@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1280">
-<title>Marxist University — Theory Portal — Marxist.com</title>
+<title>The Three Pillars of Marxism — Marxist University — Marxist.com</title>
 
 <link rel="stylesheet" href="ds/colors_and_type.css">
 
@@ -261,9 +261,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 24px;
-    margin-bottom: 36px;
-    border-bottom: 2px solid var(--rule);
-    padding-bottom: 20px;
+    margin: 40px 0 8px;
     flex-wrap: wrap;
   }
   .theory-tabs {
@@ -432,13 +430,499 @@
     font-size: 18px;
     color: var(--rci-ash);
   }
-: var(--font-article-title);
-    font-weight: 800;
-    font-size: 26px;
-    line-height: 1.05;
-    margin: 0;
+
+  /* ─── PILLAR TRIPTYCH ──────────────────────────────────────── */
+  .triptych {
+    margin: 44px auto 0;
+    max-width: 1000px;
+  }
+  .triptych-architrave {
+    border: 2.5px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 5px 5px 0 var(--rule);
+    text-align: center;
+    padding: 14px 8px 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .triptych-architrave-word {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 34px);
+    letter-spacing: 0.55em;
+    text-indent: 0.55em;
     text-transform: uppercase;
-    letter-spacing: 0.005em;
+    color: var(--fg, var(--rci-ink));
+  }
+  .triptych-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    padding: 0 56px;
+  }
+  .triptych-col {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 120ms cubic-bezier(0.2,0.7,0.1,1);
+  }
+  .triptych-col:hover { transform: translateY(-3px); }
+  .t-capital {
+    height: 12px;
+    border: 2.5px solid var(--rule);
+    background: var(--paper);
+    margin: 0 -10px;
+  }
+  .t-capital--lower {
+    height: 10px;
+    margin: 0 4px;
+    border-top: 0;
+  }
+  .t-shaft {
+    height: 120px;
+    margin: 0 18px;
+    border-left: 2.5px solid var(--rule);
+    border-right: 2.5px solid var(--rule);
+    background-color: var(--paper);
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 15px,
+      var(--rule-soft) 15px, var(--rule-soft) 16.5px
+    );
+  }
+  .t-base--upper {
+    height: 10px;
+    margin: 0 4px;
+    border: 2.5px solid var(--rule);
+    border-bottom: 0;
+    background: var(--paper);
+  }
+  .t-base {
+    height: 14px;
+    border: 2.5px solid var(--rule);
+    background: var(--paper);
+    margin: 0 -10px;
+  }
+  .t-base--upper { margin: 0 4px; }
+  .triptych-col:hover .t-capital,
+  .triptych-col:hover .t-base,
+  .triptych-col:hover .t-shaft { border-color: var(--rci-red); }
+  .t-label {
+    text-align: center;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .t-label-numeral {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1;
+    color: var(--rci-red);
+  }
+  .t-label-title {
+    font-family: var(--font-article-title);
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--fg, var(--rci-ink));
+  }
+  .triptych-col:hover .t-label-title { color: var(--rci-red); }
+  .t-label-tag {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--rci-ash);
+  }
+  @media (max-width: 800px) {
+    .triptych-cols { gap: 20px; padding: 0 24px; }
+    .t-shaft { height: 80px; margin: 0 10px; }
+    .t-label-title { font-size: 14px; }
+  }
+
+  /* ─── START HERE STRIP ─────────────────────────────────────── */
+  .start-here {
+    margin: 30px auto 0;
+    max-width: 880px;
+    border: 2px solid var(--rule);
+    background: var(--paper-soft);
+    box-shadow: 4px 4px 0 var(--rule);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .start-here-label {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rci-red);
+    flex: 0 0 auto;
+    padding-right: 18px;
+    border-right: 2px solid var(--rule);
+  }
+  .start-here-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+  }
+  .start-here-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .start-here-link-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--fg, var(--rci-ink));
+  }
+  .start-here-link:hover .start-here-link-title {
+    color: var(--rci-red);
+    text-decoration: underline;
+  }
+  .start-here-link-author {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rci-ash);
+  }
+  @media (max-width: 700px) {
+    .start-here-label { border-right: 0; padding-right: 0; }
+  }
+
+  /* ─── PILLAR CHAPTERS ──────────────────────────────────────── */
+  .pillar-chapter {
+    margin: 56px 0 64px;
+    scroll-margin-top: 24px;
+  }
+  .chapter-head {
+    border-top: 8px solid var(--rule);
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 36px;
+    align-items: start;
+  }
+  .chapter-numeral {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 10vw, 140px);
+    line-height: 0.8;
+    color: var(--rci-red);
+    text-shadow: 5px 5px 0 var(--rule);
+    min-width: 96px;
+    text-align: center;
+    padding-top: 6px;
+  }
+  .chapter-eyebrow {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rci-red);
+    margin-bottom: 8px;
+  }
+  .chapter-title {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    margin: 0 0 14px;
+    color: var(--fg, var(--rci-ink));
+  }
+  .chapter-intro {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--fg-soft, var(--rci-ink-soft, #4a4441));
+    max-width: 75ch;
+    margin: 0 0 14px;
+  }
+  .chapter-quote {
+    margin: 0 0 18px;
+    padding-left: 16px;
+    border-left: 3px solid var(--rci-red);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.45;
+    color: var(--rci-ash);
+    max-width: 70ch;
+  }
+  .chapter-quote cite {
+    font-style: normal;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .chapter-archive { margin: 2px 0 4px; }
+  .chapter-no-match {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--rci-ash);
+    margin: 20px 0 0;
+  }
+  @media (max-width: 720px) {
+    .chapter-head { grid-template-columns: 1fr; gap: 14px; }
+    .chapter-numeral { text-align: left; min-width: 0; }
+  }
+
+  /* Tier heads — descending visual weight */
+  .chapter-tier { margin-top: 32px; }
+  .tier-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .tier-head::after { content: ""; flex: 1 1 auto; }
+  .tier-head--essential::after { border-top: 3px solid var(--rule); }
+  .tier-head--deeper::after { border-top: 1.5px solid var(--rule); }
+  .tier-head--further::after { border-top: 1px dashed var(--rule-soft); }
+  .tier-head-label {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .tier-head--essential .tier-head-label { color: var(--rci-red); }
+  .tier-head--deeper .tier-head-label { color: var(--fg, var(--rci-ink)); }
+  .tier-head--further .tier-head-label { color: var(--rci-ash); }
+
+  /* Essential reading — large cards with typographic slab covers */
+  .essential-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 24px;
+  }
+  .essential-card {
+    display: flex;
+    border: 2px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 4px 4px 0 var(--rule);
+    text-decoration: none;
+    color: inherit;
+    min-height: 196px;
+    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
+  }
+  .essential-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--rule);
+  }
+  .essential-cover {
+    flex: 0 0 130px;
+    border-right: 2px solid var(--rule);
+    position: relative;
+  }
+  .theory-slab {
+    position: absolute;
+    inset: 0;
+    background: var(--rci-ink);
+    color: var(--rci-offwhite);
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  body[data-mode="dark"] .theory-slab { background: #1e1915; }
+  .theory-slab-texture {
+    position: absolute;
+    inset: 0;
+    background-image: url("ds/textures/grunge-light-specks.jpg");
+    background-size: cover;
+    mix-blend-mode: screen;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  .theory-slab-author {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rci-red-hot);
+    border-bottom: 1.5px solid var(--rci-red);
+    padding-bottom: 4px;
+    position: relative;
+  }
+  .theory-slab-title {
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: auto 0;
+    position: relative;
+    text-wrap: balance;
+  }
+  .theory-slab-foot {
+    font-family: var(--font-condensed);
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rci-fog, #9a918c);
+    border-top: 1px solid rgba(246, 239, 239, 0.18);
+    padding-top: 5px;
+    position: relative;
+  }
+  .essential-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 auto;
+  }
+  .essential-author {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rci-red);
+  }
+  .essential-title {
+    font-family: var(--font-article-title);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.12;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--fg, var(--rci-ink));
+  }
+  .essential-desc {
+    font-family: var(--font-serif);
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--fg-soft, var(--rci-ink-soft, #4a4441));
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .essential-go {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg, var(--rci-ink));
+  }
+  .essential-card:hover .essential-go { color: var(--rci-red); }
+
+  /* Going deeper — medium text-first cards */
+  .deeper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .deeper-card {
+    border: 2px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 3px 3px 0 var(--rule);
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
+  }
+  .deeper-card:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--rule);
+  }
+  .deeper-author {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rci-red);
+    margin-bottom: 5px;
+  }
+  .deeper-title {
+    font-family: var(--font-article-title);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.12;
+    text-transform: uppercase;
+    color: var(--fg, var(--rci-ink));
+  }
+  .deeper-note {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--fg-soft, var(--rci-ink-soft, #4a4441));
+    margin: 6px 0 0;
+  }
+
+  /* Further study — compact ruled list */
+  .further-list {
+    border-top: 2px solid var(--rule);
+    max-width: 860px;
+  }
+  .further-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 18px;
+    padding: 9px 4px;
+    border-bottom: 1px solid var(--rule-soft);
+    text-decoration: none;
+    color: inherit;
+  }
+  .further-title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--fg, var(--rci-ink));
+  }
+  .further-row:hover .further-title {
+    color: var(--rci-red);
+    text-decoration: underline;
+  }
+  .further-author {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rci-ash);
+    white-space: nowrap;
+  }
+
+  /* Applied-topics compact grid */
+  .theory-grid--compact {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px 20px;
+  }
+  .theory-grid--compact .theory-card-body { padding: 14px; }
+  .theory-grid--compact .theory-card-title { font-size: 17px; }
+  .theory-grid--compact .theory-card-desc {
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media (max-width: 1100px) {
+    .theory-grid--compact { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 860px) {
+    .theory-grid--compact { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .theory-grid--compact { grid-template-columns: 1fr; }
   }
   .video-title--small {
     font-size: 17px;
