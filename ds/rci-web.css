@@ -1,0 +1,366 @@
+/* =====================================================================
+   RCI WEB DESIGN SYSTEM  ·  rci-web.css
+   Revolutionary Communist International — website
+   ---------------------------------------------------------------------
+   Warm-paper news surface. Editorial serif (Cormorant + Cheltenham) for
+   reading; Built Titling for the bold, audacious moments. A small set of
+   printed spot inks for section colour. Hand-printed grain, never flat.
+
+   USAGE
+     <link rel="stylesheet" href="rci-web.css">   (imports rci-fonts.css)
+   Keep rci-fonts.css, /fonts and /textures beside this file.
+
+   All classes are prefixed .rci-  ·  see README.md for the full guide.
+   ===================================================================== */
+
+@import url("rci-fonts.css");
+
+/* =====================================================================
+   1 · TOKENS
+   ===================================================================== */
+:root {
+  /* ---- Warm paper surfaces ---- */
+  --rci-paper:      #fff1e5;  /* peach-cream newsprint — the page */
+  --rci-paper-deep: #f4e4d3;  /* sunk warm panel (footer, wells) */
+  --rci-paper-card: #fffaf3;  /* lifted warm white (cards, menu) */
+  --rci-img:        #f0e0cd;  /* spare image-placeholder fill */
+
+  /* ---- Warm ink ---- */
+  --rci-ink:        #221c17;  /* warm near-black — text & hard edges */
+  --rci-ink-soft:   #4a4039;  /* secondary type */
+  --rci-ash:        #8a7d70;  /* metadata grey, warm */
+  --rci-hairline:   #e4d0bb;  /* warm divider */
+  --rci-hairline-2: #d3bca3;  /* stronger divider / ghost shadow */
+
+  /* ---- Identity red (dominant accent) ---- */
+  --rci-red:        #d4140f;
+  --rci-red-hot:    #e6002b;  /* alarms / live */
+  --rci-red-dark:   #8a0608;  /* hover / pressed */
+
+  /* ---- Printed spot inks (muted riso/letterpress — section colour) ----
+     Use ONE per section, on the kicker. Never rainbow a single view. */
+  --rci-blue:       #1d3a6b;
+  --rci-ochre:      #bd7a17;
+  --rci-green:      #2c5e3f;
+
+  /* ---- Type families ---- */
+  --rci-font-display: "Built Titling", "Arial Narrow", sans-serif;          /* ALL-CAPS bold voice */
+  --rci-font-condensed: "Trade Gothic Next LT Pro Condensed", "Arial Narrow", sans-serif; /* kickers, nav, meta */
+  --rci-font-ui:      "Trade Gothic Next LT Pro", "Helvetica Neue", sans-serif;           /* buttons, labels */
+  --rci-font-serif:   "Cheltenham BT", "Georgia", "Times New Roman", serif;  /* reading / body */
+  --rci-font-serif-display: "Cormorant Garamond", "Cheltenham BT", "Georgia", serif; /* headlines */
+  --rci-font-mono:    "IBM Plex Mono", ui-monospace, Menlo, monospace;       /* tech labels */
+
+  /* ---- Layout ---- */
+  --rci-maxw: 1180px;
+  --rci-gutter: 28px;
+
+  /* ---- Borders & ink-shadows (hard, printed — no soft blur) ---- */
+  --rci-bw-hair: 1px;
+  --rci-bw-rule: 2px;
+  --rci-bw-slab: 3px;
+  --rci-shadow:      6px 6px 0 var(--rci-ink);
+  --rci-shadow-red:  6px 6px 0 var(--rci-red);
+  --rci-shadow-sm:   4px 4px 0 var(--rci-ink);
+  --rci-shadow-ghost: 4px 4px 0 var(--rci-hairline-2);
+
+  /* ---- Textures (compose with mix-blend-mode; see §3 + README) ---- */
+  --rci-tx-grain:   url("textures/au-fg-1.jpg");        /* @kind other — page grain, multiply ~0.14 */
+  --rci-tx-scratch: url("textures/paper-gray.jpg");     /* dark-slab scratch (substitute) — screen ~0.12 */
+  --rci-tx-peel:    url("textures/red-paper-alt.jpg");  /* red-slab peel (substitute) — multiply ~0.18 */
+  --rci-tx-halftone:url("textures/halftone-mesh.jpg");  /* @kind other — on red slabs, multiply ~0.22 */
+}
+
+/* =====================================================================
+   2 · RESET + BASE
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--rci-paper);
+  color: var(--rci-ink);
+  font-family: var(--rci-font-serif);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* Page grain — a single non-tiling sheet over everything, fixed so it
+   reads as paper, not a repeating tile. NEVER swap this for a small
+   tiling texture (it seams into a "polaroid grid"). */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: var(--rci-tx-grain) center / cover no-repeat fixed;
+  mix-blend-mode: multiply;
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 9999;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--rci-red); color: var(--rci-paper); }
+
+/* =====================================================================
+   3 · TYPOGRAPHY
+   The reading voice is sentence-case serif. Built Titling is reserved
+   for display moments and is the ONLY thing set in caps.
+   ===================================================================== */
+.rci-display {            /* Built Titling — ALL CAPS bold */
+  font-family: var(--rci-font-display); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.9;
+  margin: 0;
+}
+.rci-headline {           /* Cormorant — editorial headline, sentence case */
+  font-family: var(--rci-font-serif-display); font-weight: 700;
+  text-transform: none; line-height: 1.02; letter-spacing: -0.01em;
+  margin: 0; text-wrap: balance;
+}
+.rci-title {              /* Cormorant — smaller card title */
+  font-family: var(--rci-font-serif-display); font-weight: 600;
+  text-transform: none; line-height: 1.08; letter-spacing: -0.005em;
+  margin: 0;
+}
+.rci-standfirst {         /* italic Cormorant standfirst / dek */
+  font-family: var(--rci-font-serif-display); font-weight: 500; font-style: italic;
+  font-size: 21px; line-height: 1.35; color: var(--rci-ink-soft); margin: 0;
+}
+.rci-body {               /* Cheltenham reading text */
+  font-family: var(--rci-font-serif); font-size: 17px; line-height: 1.55;
+  color: var(--rci-ink-soft);
+}
+.rci-body p { margin: 0 0 1em; max-width: 66ch; }
+
+/* Kicker / eyebrow — condensed caps, coloured by section ink */
+.rci-kicker {
+  font-family: var(--rci-font-condensed); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px;
+  display: inline-flex; align-items: center; gap: 7px; color: var(--rci-red);
+}
+.rci-kicker::before { content: ""; width: 16px; height: 3px; background: currentColor; }
+.rci-kicker.no-tick::before { display: none; }
+.rci-kicker.blue  { color: var(--rci-blue); }
+.rci-kicker.ochre { color: var(--rci-ochre); }
+.rci-kicker.green { color: var(--rci-green); }
+
+/* Metadata — date / read-time / byline */
+.rci-meta {
+  font-family: var(--rci-font-condensed); text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 11px; color: var(--rci-ash);
+  display: inline-flex; gap: 9px; align-items: center;
+}
+.rci-meta .dot { color: var(--rci-hairline-2); }
+
+/* Inline editorial link */
+.rci-link {
+  text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px; text-decoration-color: var(--rci-hairline-2);
+}
+.rci-link:hover { color: var(--rci-red); text-decoration-color: var(--rci-red); }
+
+/* Section heading rule (Built Titling label over a thick ink rule) */
+.rci-section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 14px; border-bottom: var(--rci-bw-slab) solid var(--rci-ink);
+  padding-bottom: 10px; margin-bottom: 22px;
+}
+.rci-section-head h2 {
+  font-family: var(--rci-font-display); font-weight: 700;
+  text-transform: uppercase; font-size: 28px; letter-spacing: 0.01em; margin: 0;
+}
+.rci-section-head a { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 700; color: var(--rci-red); }
+
+/* =====================================================================
+   4 · LAYOUT HELPERS
+   ===================================================================== */
+.rci-wrap { max-width: var(--rci-maxw); margin: 0 auto; padding: 0 var(--rci-gutter); }
+.rci-rule { border: 0; border-top: var(--rci-bw-slab) solid var(--rci-ink); margin: 28px 0 0; }
+.rci-grid { display: grid; gap: 26px; }
+.rci-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.rci-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.rci-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* =====================================================================
+   5 · IMAGE PLACEHOLDERS
+   Spare flat blocks. NEVER put a tiling texture on a photo or the page
+   background — duotone gradients only. Drop a real <img> in to replace.
+   ===================================================================== */
+.rci-img {
+  background: var(--rci-img); border: var(--rci-bw-rule) solid var(--rci-ink);
+  position: relative; overflow: hidden;
+}
+.rci-img .lbl {
+  position: absolute; left: 9px; bottom: 8px; z-index: 2;
+  font-family: var(--rci-font-mono); font-size: 10px; letter-spacing: 0.02em;
+  color: var(--rci-ash); text-transform: uppercase;
+}
+.rci-img img { width: 100%; height: 100%; object-fit: cover; }
+/* duotone fills — tint a flat photo block by section ink */
+.rci-img.duo      { background: linear-gradient(140deg, var(--rci-red), var(--rci-ink) 78%); }
+.rci-img.duo.blue { background: linear-gradient(140deg, var(--rci-blue), var(--rci-ink) 78%); }
+.rci-img.duo.ochre{ background: linear-gradient(140deg, var(--rci-ochre), var(--rci-ink) 78%); }
+.rci-img.duo.green{ background: linear-gradient(140deg, var(--rci-green), var(--rci-ink) 78%); }
+.rci-img.duo .lbl { color: #fff; }
+.rci-img.dark     { background: linear-gradient(180deg, #4a4039, var(--rci-ink)); }
+.rci-img.dark .lbl{ color: #cdbfae; }
+/* aspect helpers */
+.rci-ar-16-9 { aspect-ratio: 16 / 9; }
+.rci-ar-16-10{ aspect-ratio: 16 / 10; }
+.rci-ar-4-3  { aspect-ratio: 4 / 3; }
+.rci-ar-1-1  { aspect-ratio: 1 / 1; }
+
+/* =====================================================================
+   6 · BUTTONS  (hard ink "stamp" shadow; press pushes it in)
+   ===================================================================== */
+.rci-btn {
+  font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 12px; padding: 11px 16px;
+  border: var(--rci-bw-rule) solid var(--rci-ink);
+  background: var(--rci-red); color: var(--rci-paper);
+  box-shadow: var(--rci-shadow-sm); cursor: pointer; display: inline-block;
+  transition: transform 90ms ease-out, box-shadow 90ms ease-out, background 90ms ease-out;
+}
+.rci-btn:hover  { background: var(--rci-red-dark); }
+.rci-btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--rci-ink); }
+.rci-btn.ghost  { background: transparent; color: var(--rci-ink); box-shadow: var(--rci-shadow-ghost); }
+.rci-btn.ghost:hover { background: var(--rci-paper-deep); }
+.rci-btn.ink    { background: var(--rci-ink); color: var(--rci-paper); }
+.rci-btn.light  { background: var(--rci-paper); color: var(--rci-ink); }
+.rci-btn.lg     { font-size: 14px; padding: 14px 28px; }
+
+/* =====================================================================
+   7 · HEADER · NAV · MEGA-MENU
+   ===================================================================== */
+.rci-header { position: sticky; top: 0; z-index: 100; background: var(--rci-paper); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); }
+.rci-topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 12px; }
+.rci-brand  { display: flex; align-items: center; gap: 13px; }
+.rci-brand img { width: 44px; height: 44px; box-shadow: 3px 3px 0 var(--rci-ink); }
+.rci-brand .name { font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 17px; line-height: 0.98; }
+.rci-topbar .right { display: flex; align-items: center; gap: 16px; }
+.rci-lang { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: var(--rci-ink-soft); cursor: pointer; }
+.rci-lang:hover { color: var(--rci-red); }
+
+.rci-nav { display: flex; align-items: stretch; border-top: var(--rci-bw-hair) solid var(--rci-hairline); }
+.rci-nav a, .rci-nav button {
+  font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 13px; padding: 12px 18px; color: var(--rci-ink);
+  border: 0; background: none; cursor: pointer; display: flex; align-items: center; gap: 9px;
+  border-right: var(--rci-bw-hair) solid var(--rci-hairline);
+}
+.rci-nav a:first-child { padding-left: 0; }
+.rci-nav a:hover, .rci-nav button:hover { background: var(--rci-red); color: var(--rci-paper); }
+.rci-nav a.active { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--rci-red); }
+.rci-ham { display: inline-flex; flex-direction: column; gap: 3px; }
+.rci-ham i { width: 16px; height: 2px; background: currentColor; display: block; }
+
+/* mega menu — toggled by adding .menu-open to <body> */
+.rci-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(34,28,23,0.28); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); opacity: 0; pointer-events: none; transition: opacity 160ms ease-out; }
+body.menu-open .rci-backdrop { opacity: 1; pointer-events: auto; }
+.rci-megamenu { position: absolute; left: 0; right: 0; top: 100%; z-index: 90; background: var(--rci-paper-card); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 160ms ease-out, transform 160ms ease-out; }
+body.menu-open .rci-megamenu { opacity: 1; transform: none; pointer-events: auto; }
+.rci-megamenu .rci-wrap { padding-top: 18px; padding-bottom: 26px; }
+.rci-mm-close { display: inline-flex; align-items: center; gap: 8px; font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; color: var(--rci-red); cursor: pointer; margin-bottom: 16px; }
+.rci-mm-grid { display: grid; grid-template-columns: 260px 1fr; gap: 34px; }
+.rci-mm-primary { display: flex; flex-direction: column; border-right: var(--rci-bw-hair) solid var(--rci-hairline); padding-right: 18px; }
+.rci-mm-primary a { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 9px 0; border-bottom: var(--rci-bw-hair) solid var(--rci-hairline); }
+.rci-mm-primary a:last-child { border-bottom: 0; }
+.rci-mm-primary .ic { width: 34px; height: 34px; border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper); }
+.rci-mm-primary .t { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 19px; line-height: 1; }
+.rci-mm-primary .d { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; color: var(--rci-ash); margin-top: 4px; }
+.rci-mm-primary a:hover .t { color: var(--rci-red); }
+.rci-mm-search { display: flex; align-items: center; gap: 10px; border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper); padding: 11px 14px; margin-bottom: 18px; }
+.rci-mm-search input { border: 0; background: none; outline: none; font-family: var(--rci-font-serif); font-size: 16px; color: var(--rci-ink); width: 100%; }
+.rci-mm-search input::placeholder { color: var(--rci-ash); }
+.rci-mm-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 26px; }
+.rci-mm-cols h5 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.13em; font-size: 12px; color: var(--rci-red); margin: 0 0 9px; padding-bottom: 6px; border-bottom: var(--rci-bw-rule) solid var(--rci-ink); }
+.rci-mm-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.rci-mm-cols a { font-family: var(--rci-font-serif); font-size: 15px; color: var(--rci-ink-soft); }
+.rci-mm-cols a:hover { color: var(--rci-red); }
+
+/* =====================================================================
+   8 · CARDS
+   .rci-card        — editorial serif card (the reading register)
+   .rci-card.bold   — Built Titling slab card (the revolutionary punch)
+   ===================================================================== */
+.rci-card { display: flex; flex-direction: column; }
+.rci-card .rci-img { margin-bottom: 12px; }
+.rci-card .rci-kicker { margin-bottom: 8px; }
+.rci-card h3 { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 23px; line-height: 1.08; letter-spacing: -0.005em; margin: 0 0 8px; }
+.rci-card:hover h3 { color: var(--rci-red); }
+.rci-card .dek { font-family: var(--rci-font-serif); font-size: 14.5px; line-height: 1.45; color: var(--rci-ink-soft); margin: 0 0 12px; }
+.rci-card .rci-meta { margin-top: auto; }
+
+/* bold slab card — dark by default, or .red */
+.rci-card.bold { background: var(--rci-ink); color: var(--rci-paper); border: var(--rci-bw-rule) solid var(--rci-ink); box-shadow: var(--rci-shadow-red); position: relative; overflow: hidden; }
+.rci-card.bold .inner { padding: 20px 18px 18px; display: flex; flex-direction: column; height: 100%; }
+.rci-card.bold .rci-kicker { color: #ff6a45; }
+.rci-card.bold h3 { font-family: var(--rci-font-display); font-weight: 700; text-transform: uppercase; font-size: 33px; line-height: 0.92; color: var(--rci-paper); margin: 10px 0 0; }
+.rci-card.bold h3 em { font-style: normal; color: #ff6a45; }
+.rci-card.bold .dek { color: #d8cabb; margin-top: 12px; }
+.rci-card.bold .rci-meta { color: #9d9082; margin-top: auto; padding-top: 16px; }
+.rci-card.bold.red { background: var(--rci-red); box-shadow: var(--rci-shadow); }
+.rci-card.bold.red .rci-kicker { color: var(--rci-ink); }
+.rci-card.bold.red h3 { color: var(--rci-paper); } .rci-card.bold.red h3 em { color: var(--rci-ink); }
+.rci-card.bold.red .dek { color: #ffe2dc; } .rci-card.bold.red .rci-meta { color: #f3c8c2; }
+
+/* feature card — text overlaid on a duotone image block */
+.rci-feature { aspect-ratio: 5/4; display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; position: relative; overflow: hidden; border: var(--rci-bw-rule) solid var(--rci-ink); background: linear-gradient(160deg, #54483d, var(--rci-ink)); }
+.rci-feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(20,16,13,0.85)); }
+.rci-feature .rci-kicker, .rci-feature h3 { position: relative; z-index: 2; }
+.rci-feature .rci-kicker { color: #ff8a6e; margin-bottom: 8px; }
+.rci-feature h3 { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 30px; line-height: 1.03; color: #fff; margin: 0; }
+
+/* =====================================================================
+   9 · BANNER  (bordered call-out with ink stamp shadow)
+   ===================================================================== */
+.rci-banner { border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper-card); box-shadow: var(--rci-shadow); padding: 26px; text-align: center; display: block; }
+.rci-banner .t { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 32px; margin: 0; }
+.rci-banner .s { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; color: var(--rci-ash); margin-top: 6px; }
+
+/* =====================================================================
+   10 · DARK SLAB  (media blocks, "Against the Stream" etc.)
+   Ink ground with a faint scratch texture screened on top.
+   ===================================================================== */
+.rci-slab { background: var(--rci-ink); color: var(--rci-paper); border-top: var(--rci-bw-slab) solid var(--rci-ink); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); position: relative; overflow: hidden; }
+.rci-slab::before { content: ""; position: absolute; inset: 0; background: var(--rci-tx-scratch) center / cover; mix-blend-mode: screen; opacity: 0.12; pointer-events: none; }
+.rci-slab > * { position: relative; z-index: 2; }
+.rci-slab .rci-section-head { border-color: #4a4039; }
+.rci-slab .rci-section-head h2 { color: var(--rci-paper); }
+
+/* red slab — for manifesto / agitation bands (textured) */
+.rci-slab.red { background: var(--rci-red); }
+.rci-slab.red::before { background: var(--rci-tx-halftone) center / cover; mix-blend-mode: multiply; opacity: 0.22; }
+.rci-slab.red::after { content: ""; position: absolute; inset: 0; background: var(--rci-tx-peel) center / cover; mix-blend-mode: multiply; opacity: 0.18; pointer-events: none; }
+
+/* =====================================================================
+   11 · HORIZONTAL SCROLLER  (the "Latest" rail)
+   ===================================================================== */
+.rci-scroller { display: grid; grid-auto-flow: column; grid-auto-columns: 240px; gap: 18px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; }
+.rci-scroller > * { scroll-snap-align: start; }
+.rci-scroller::-webkit-scrollbar { height: 8px; }
+.rci-scroller::-webkit-scrollbar-thumb { background: var(--rci-hairline-2); }
+
+/* =====================================================================
+   12 · FOOTER
+   ===================================================================== */
+.rci-footer { border-top: var(--rci-bw-slab) solid var(--rci-ink); background: var(--rci-paper-deep); }
+.rci-footer .org { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+.rci-footer h4 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--rci-red); margin: 0 0 12px; }
+.rci-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.rci-footer ul a { font-family: var(--rci-font-serif); font-size: 15px; color: var(--rci-ink-soft); }
+.rci-footer ul a:hover { color: var(--rci-red); }
+.rci-footer .colophon { border-top: var(--rci-bw-hair) solid var(--rci-hairline-2); }
+.rci-footer .colophon .rci-wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 30px; }
+.rci-footer .colophon p, .rci-footer .colophon a { font-family: var(--rci-font-mono); font-size: 11px; color: var(--rci-ash); margin: 0; }
+
+/* =====================================================================
+   13 · RESPONSIVE
+   ===================================================================== */
+@media (max-width: 980px) {
+  .rci-grid.cols-3, .rci-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .rci-mm-grid { grid-template-columns: 1fr; }
+  .rci-mm-cols { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .rci-grid.cols-2, .rci-grid.cols-3, .rci-grid.cols-4 { grid-template-columns: 1fr; }
+  .rci-mm-cols { grid-template-columns: 1fr; }
+}
