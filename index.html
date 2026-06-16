@@ -736,6 +736,43 @@
     white-space: nowrap;
   }
 
+  /* ─── LATEST HORIZONTAL SCROLLER ──────────────────────────── */
+  .latest { padding: 8px 0 28px; }
+  .latest-scroller {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 248px;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 14px;
+    scroll-snap-type: x mandatory;
+  }
+  .latest-scroller > * { scroll-snap-align: start; }
+  .latest-scroller::-webkit-scrollbar { height: 8px; }
+  .latest-scroller::-webkit-scrollbar-thumb { background: var(--rci-hairline-2); }
+  .latest-scard { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; }
+  .latest-scard-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border: 1.5px solid var(--rule);
+    background: var(--rci-ink);
+  }
+  .latest-scard-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.16;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--rci-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--rci-hairline-2);
+    text-underline-offset: 3px;
+  }
+  .latest-scard:hover .latest-scard-title { color: var(--rci-red); text-decoration-color: var(--rci-red); }
+
   /* ─── JOIN BANNER ─────────────────────────────────────────── */
   .join-banner {
     display: grid;

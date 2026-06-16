@@ -394,23 +394,25 @@ const LATEST_ANALYSIS = [
   { kicker: "ANALYSIS - Honduras", title: "'Hondurasgate': the henchmen of the Donroe Doctrine",               author: "Sylvia Léo",            date: "15 May 2026", image: R("imgLatestHondurasgate", "assets/‘Hondurasgate’- the henchmen of the Donroe Doctrine.jpg") },
 ];
 
-// ── LATEST ANALYSIS — 4-wide × 3-tall grid of placeholder cards ──────────────
-function LatestAnalysisGrid({ tweaks }) {
+// Section-ink rotation for the Latest rail kickers (one ink each, red leads)
+const LATEST_INKS = ["", "blue", "ochre", "green"];
+
+function LatestScroller() {
+  const items = LATEST_ANALYSIS.slice(0, 10);
   return (
     <section className="latest">
-      <SectionHead label="Latest analysis" divider={tweaks.divider} extra="Updated hourly" />
-      <div className="latest-grid">
-        {LATEST_ANALYSIS.map((a, i) => (
-          <a key={i} href="article.html" className="latest-card">
-            <div className="latest-card-img">
-              <PhotoOrSlab image={a.image} label={a.kicker} aspect="3/2" style={{ position: "absolute", inset: 0 }} />
+      <div className="rci-section-head">
+        <h2>Latest</h2>
+        <a href="index.html">10 most recent &rarr;</a>
+      </div>
+      <div className="latest-scroller">
+        {items.map((a, i) => (
+          <a key={i} href="article.html" className="latest-scard">
+            <div className="latest-scard-img">
+              <PhotoOrSlab image={a.image} label={a.kicker} aspect="16/10" style={{ position: "absolute", inset: 0 }} />
             </div>
-            <div className="latest-card-kicker">{a.kicker}</div>
-            <h3 className="latest-card-title">{a.title}</h3>
-            <div className="latest-card-foot">
-              <span className="latest-card-byline">{a.author}</span>
-              <span className="latest-card-date">{a.date}</span>
-            </div>
+            <span className={"rci-kicker " + LATEST_INKS[i % LATEST_INKS.length]}>{a.kicker}</span>
+            <h3 className="latest-scard-title">{a.title}</h3>
           </a>
         ))}
       </div>
@@ -724,7 +726,7 @@ function App() {
 
       <main className="site-main">
         <Hero tweaks={T} />
-        <LatestAnalysisGrid tweaks={T} />
+        <LatestScroller />
         <CampaignBanner tweaks={T} />
         <IDOMBlock tweaks={T} />
         <TopicSplit tweaks={T} />
