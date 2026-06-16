@@ -6,20 +6,52 @@
 <title>Marxist.com — Home of the Revolutionary Communist International</title>
 
 <link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="ds/rci-web.css">
 
 <style>
   /* ────────────────────────────────────────────────────────────
      Marxist.com homepage — print-materiality styling
      ──────────────────────────────────────────────────────────── */
 
+  /* ── Design-system warm palette (overrides colors_and_type.css cool values) ── */
   :root {
-    /* Page surface — newspaper paper (no warm tint when texture=none) */
-    --page-bg: #f6efef;
-    --page-bg-dark: #181513;
-    --paper: #f6efef;
-    --paper-soft: #ece4e4;
-    --rule: var(--rci-ink);
-    --rule-soft: #b8b0ac;
+    --rci-paper:      #fff1e5;
+    --rci-paper-deep: #f4e4d3;
+    --rci-paper-card: #fffaf3;
+    --rci-ink:        #221c17;
+    --rci-ink-soft:   #4a4039;
+    --rci-ash:        #8a7d70;
+    --rci-hairline:   #e4d0bb;
+    --rci-hairline-2: #d3bca3;
+    --rci-red:        #d4140f;
+    --rci-red-hot:    #e6002b;
+    --rci-red-dark:   #8a0608;
+    --rci-blue:       #1d3a6b;
+    --rci-ochre:      #bd7a17;
+    --rci-green:      #2c5e3f;
+
+    /* Bridge: legacy token names used by the inline CSS + components.jsx,
+       remapped onto warm surfaces so nothing reads cool/grey. */
+    --rci-offwhite:   #fffaf3;            /* was #f6efef — now warm paper-card */
+    --rci-fog:        var(--rci-hairline-2);
+    --page-bg:        var(--rci-paper);
+    --page-bg-dark:   var(--rci-paper);   /* dark mode removed; keep var defined */
+    --paper:          var(--rci-paper-card);
+    --paper-soft:     var(--rci-paper-deep);
+    --rule:           var(--rci-ink);
+    --rule-soft:      var(--rci-hairline-2);
+    --fg:             var(--rci-ink);
+    --fg-soft:        var(--rci-ink-soft);
+
+    /* Font direction (DS): reading = Cheltenham, headlines = Cormorant,
+       Built Titling reserved for display, Trade Gothic Cond for chrome. */
+    --font-body:          "Cheltenham BT", "Georgia", "Times New Roman", serif;
+    --font-serif:         "Cormorant Garamond", "Cheltenham BT", "Georgia", serif;
+    --font-serif-body:    "Cheltenham BT", "Georgia", "Times New Roman", serif;
+    --font-article-title: "Cormorant Garamond", "Cheltenham BT", "Georgia", serif;
+    --font-headline:      "Cormorant Garamond", "Cheltenham BT", "Georgia", serif;
+    --font-display:       "Built Titling", "Trade Gothic Next LT Pro", "Arial Narrow", sans-serif;
+    --font-condensed:     "Trade Gothic Next LT Pro Condensed", "Arial Narrow", sans-serif;
   }
 
   html, body { margin: 0; padding: 0; }
@@ -32,20 +64,6 @@
     line-height: 1.5;
     min-height: 100vh;
     position: relative;
-  }
-
-  /* Blank off-white page background — no body-level textures */
-
-  /* DARK MODE */
-  body[data-mode="dark"] {
-    background: var(--page-bg-dark);
-    color: var(--rci-offwhite);
-    --rule: #f0e3d8;
-    --rule-soft: #4a4138;
-    --paper: #221d18;
-    --paper-soft: #1a1612;
-    --fg: var(--rci-offwhite);
-    --fg-soft: #c9c2c2;
   }
 
   /* Layer the actual content above the texture */
@@ -1721,9 +1739,23 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* ── DS font-direction overrides: serif headlines are sentence case ── */
+  .idom-title, .topic-title, .sections-title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.005em;
+  }
+  /* Built Titling stays caps ONLY on these display moments */
+  .campaign-h2, .join-h2, .sections-h2, .manifesto-h2,
+  .idom-toc-wordmark {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+  }
 </style>
 </head>
-<body data-mode="light">
+<body>
 
 <div id="root"></div>
 
