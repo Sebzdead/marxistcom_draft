@@ -338,69 +338,38 @@ function Nav({ active, onSelect, onOpenMenu }) {
   );
 }
 
-// ── Hero — 3 column ─────────────────────────────────────────────────────────
+// ── Hero — big story + two secondaries ─────────────────────────────────────
 function Hero({ tweaks }) {
-  const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
-
-  // LEFT: "Most Read" numbered list, pulled from LATEST_ANALYSIS headlines
-  const mostRead = LATEST_ANALYSIS.slice(0, 7).map((a) => ({ title: a.title, href: "article.html" }));
-
-  // RIGHT: three article cards (moved from the old left column)
-  const sideCards = [
-    { kicker: "HISTORY - Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
-    { kicker: "ECONOMY - Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
+  const secondaries = [
+    { kicker: "Economy · Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
+    { kicker: "History · Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
   ];
-
   return (
     <section className="hero">
       <div className="hero-grid">
-        {/* LEFT: Most Read */}
-        <div className="hero-featured">
-          <div className="most-read">
-            <h2 className="most-read-head">Most Read</h2>
-            <div className="most-read-sub">What readers are clicking on</div>
-            {mostRead.map((it, i) => (
-              <a key={i} href={it.href} className="most-read-item">
-                <span className="most-read-num">{i + 1}</span>
-                <span className="most-read-title">{it.title}</span>
-              </a>
-            ))}
+        {/* BIG STORY */}
+        <a href="article.html" className="hero-lead">
+          <span className="rci-kicker">Analysis · China</span>
+          <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi–Trump summit</h1>
+          <p className="hero-dek">
+            Trump went to Beijing believing he negotiated from strength; in reality, he
+            negotiated from weakness. The unipolar hegemony of US imperialism is unravelling
+            before our eyes.
+          </p>
+          <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
+          <div className="hero-lead-img">
+            <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
           </div>
-        </div>
+        </a>
 
-        {/* CENTER: featured daily article */}
-        <div className="hero-center">
-          <div className="hero-feature">
-            <div className="hero-feature-img">
-              <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" className="hero-feature-img-poster" />
-            </div>
-            <div className="hero-feature-body">
-              <Eyebrow style={{ fontSize: 13, letterSpacing: "0.24em" }}>ANALYSIS - China</Eyebrow>
-              {titleFont === "serif" ? (
-                <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi-Trump summit</h1>
-              ) : (
-                <h1 className="hero-h1">China sets the agenda at the Xi-Trump summit</h1>
-              )}
-              <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
-              <p className="hero-dek">
-                “The unipolar hegemony of a major power is becoming increasingly unsustainable. At home, its democracy is mutating, its economy decaying, and its society fracturing.” — <b>Chen Yixin, China's Minister of State Security.</b> Trump went to Beijing believing he negotiated from strength; in reality, he negotiated from weakness.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: three set cards */}
-        <div className="hero-left">
-          {sideCards.map((it, i) => (
-            <a key={i} href={it.href} className="hero-side-card">
-              <div className="hero-side-img">
-                <img src={it.image} alt={it.title} />
-              </div>
-              <div className="hero-side-meta">
-                <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{it.kicker}</Eyebrow>
-                <h3 className="hero-side-title">{it.title}</h3>
-                <div className="hero-side-byline">By {it.byline}</div>
-              </div>
+        {/* TWO SECONDARIES */}
+        <div className="hero-secondary">
+          {secondaries.map((s, i) => (
+            <a key={i} href={s.href} className="hero-sec-card">
+              <div className="hero-sec-img"><img src={s.image} alt={s.title} /></div>
+              <span className="rci-kicker">{s.kicker}</span>
+              <h3 className="hero-sec-title">{s.title}</h3>
+              <div className="hero-sec-byline">By {s.byline}</div>
             </a>
           ))}
         </div>
@@ -469,7 +438,7 @@ function CampaignBanner({ tweaks }) {
             The AAC-GB has fought tirelessly on behalf of ordinary people for over a decade, campaigning for democratic rights, for the maintenance of subsidies on essential goods like wheat flour, and for the provision of basic health and education facilities for the people of the region.
           </p>
           <p className="campaign-pullquote">
-            “Help us fight for their release. Free Ehsan Ali! Hands off the AAC!”
+            "Help us fight for their release. Free Ehsan Ali! Hands off the AAC!"
           </p>
           <div className="campaign-actions">
             <PrintButton variant="red" size="lg">Sign the petition →</PrintButton>
