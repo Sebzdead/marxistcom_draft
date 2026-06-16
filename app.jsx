@@ -4,13 +4,9 @@
 
 const { useState, useEffect, useMemo } = React;
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "texture": "none",
-  "headlineFont": "serif",
-  "mode": "light",
-  "cardTreatment": "clean",
-  "divider": "thick-slab"
-}/*EDITMODE-END*/;
+// Design-system look is fixed: warm paper, serif headlines, clean cards,
+// thick-slab dividers. (Dark mode + tweak switches removed.)
+const T = { headlineFont: "serif", cardTreatment: "clean", divider: "thick-slab" };
 
 // Image URLs — verified-loading Unsplash photos. Undefined entries fall back
 // to printed slab placeholders (matches user's "mix of real photos + slabs" pref).
@@ -766,15 +762,8 @@ function Footer() {
 
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
-  const t = TWEAK_DEFAULTS;
-  const [activeTab, setActiveTab] = useState("Analysis");
+  const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Apply mode (light/dark) to body
-  useEffect(() => {
-    document.body.dataset.mode = t.mode;
-    document.body.dataset.texture = t.texture;
-  }, [t.mode, t.texture]);
 
   return (
     <div className="site">
@@ -782,13 +771,13 @@ function App() {
       <Nav active={activeTab} onSelect={setActiveTab} onOpenMenu={() => setMenuOpen(true)} />
 
       <main className="site-main">
-        <Hero tweaks={t} />
-        <LatestAnalysisGrid tweaks={t} />
-        <CampaignBanner tweaks={t} />
-        <IDOMBlock tweaks={t} />
-        <TopicSplit tweaks={t} />
-        <EconomyBlock tweaks={t} />
-        <ManifestoBanner tweaks={t} />
+        <Hero tweaks={T} />
+        <LatestAnalysisGrid tweaks={T} />
+        <CampaignBanner tweaks={T} />
+        <IDOMBlock tweaks={T} />
+        <TopicSplit tweaks={T} />
+        <EconomyBlock tweaks={T} />
+        <ManifestoBanner tweaks={T} />
         <JoinBanner />
       </main>
 
