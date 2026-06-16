@@ -1,0 +1,84 @@
+/* =====================================================================
+   RCI WEB — Fonts
+   @font-face for the five families the web system uses.
+   Fonts live in ds/fonts/ (same directory as this file's parent ds/).
+   ===================================================================== */
+
+/* Built Titling — display / bold "revolutionary" voice (ALL CAPS) ----- */
+@font-face {
+  font-family: "Built Titling";
+  src: url("fonts/built_titling_rg.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Built Titling";
+  src: url("fonts/built_titling_sb.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Built Titling";
+  src: url("fonts/built_titling_bd.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Trade Gothic Next LT Pro — UI / labels / nav (workhorse) ------------ */
+@font-face {
+  font-family: "Trade Gothic Next LT Pro";
+  src: url("fonts/TradeGothicNextLTPro-Rg.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Trade Gothic Next LT Pro";
+  src: url("fonts/TradeGothicNextLTPro-Bd.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+/* Condensed companion — kickers, nav, metadata (tight caps) */
+@font-face {
+  font-family: "Trade Gothic Next LT Pro Condensed";
+  src: url("fonts/TradeGothicNextLTPro-Cn.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Trade Gothic Next LT Pro Condensed";
+  src: url("fonts/TradeGothicNextLTPro-BdCn.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Cheltenham BT — editorial body serif (the reading voice) ------------ */
+@font-face {
+  font-family: "Cheltenham BT";
+  src: url("fonts/CheltenhamBT.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cheltenham BT";
+  src: url("fonts/CheltenhamItalicBT.ttf") format("truetype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Cheltenham BT";
+  src: url("fonts/CheltenhamBoldBT.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cheltenham BT";
+  src: url("fonts/CheltenhamBoldItalicBT.ttf") format("truetype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+
+/* Cormorant Garamond — display serif (headlines, standfirsts, pull-quotes) */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Regular.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/CormorantGaramond-Italic.ttf") format("truetype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
