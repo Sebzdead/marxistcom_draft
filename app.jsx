@@ -420,6 +420,36 @@ function LatestScroller() {
   );
 }
 
+function Trump2() {
+  const links = [
+    { title: "Tariffs and the unravelling of the world order", byline: "John Peterson", href: "#" },
+    { title: "ICE raids and the radicalisation of a generation", byline: "Antonio Balmer", href: "#" },
+    { title: "Why the Democrats cannot stop Trump", byline: "Tom Trottier", href: "#" },
+  ];
+  return (
+    <section className="trump2">
+      <div className="rci-section-head">
+        <h2>Trump 2.0</h2>
+        <a href="index.html">All coverage &rarr;</a>
+      </div>
+      <div className="trump2-grid">
+        <a href="article.html" className="trump2-feature">
+          <div className="trump2-img"><img src={IMG.trumpHead} alt="Donald Trump" /></div>
+          <h3 className="trump2-title">Orange Man Bad</h3>
+        </a>
+        <div className="trump2-links">
+          {links.map((l, i) => (
+            <a key={i} href={l.href} className="trump2-link">
+              <h4 className="trump2-link-title">{l.title}</h4>
+              <div className="trump2-link-byline">By {l.byline}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── 4-up secondary articles ─────────────────────────────────────────────────
 function CampaignBanner({ tweaks }) {
   return (
@@ -727,6 +757,7 @@ function App() {
       <main className="site-main">
         <Hero tweaks={T} />
         <LatestScroller />
+        <Trump2 />
         <CampaignBanner tweaks={T} />
         <IDOMBlock tweaks={T} />
         <TopicSplit tweaks={T} />
