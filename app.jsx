@@ -776,6 +776,42 @@ function MarxistUniversity() {
   );
 }
 
+// ── Reports: featured line + dispatch list ──────────────────────────────────
+function Reports() {
+  const featured = { country: "Belgium", title: "Belgium grows to 10 million comrades!", href: "#" };
+  const rows = [
+    { country: "Canada", title: "Third RCP Congress — a party up to the task", href: "#" },
+    { country: "Colombia", title: "The founding congress of the Revolutionary Communists of Colombia", href: "#" },
+    { country: "Britain", title: "“With our burning fury, we will shake the world awake!”", href: "#" },
+  ];
+  return (
+    <section className="reports">
+      <div className="rci-section-head"><h2>Reports</h2><a href="join.html">All reports &rarr;</a></div>
+      <a href={featured.href} className="reports-featured">
+        <span className="rci-kicker">{featured.country}</span>
+        <h3 className="reports-featured-title">{featured.title}</h3>
+      </a>
+      <ol className="reports-list">
+        {rows.map((r, i) => (
+          <li key={i}>
+            <a href={r.href} className="reports-row">
+              <div className="reports-row-text">
+                <span className="rci-kicker no-tick">{r.country}</span>
+                <span className="reports-row-title">{r.title}</span>
+              </div>
+              <span className="reports-arrow">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <div className="reports-foot">
+        <PrintButton variant="paper" size="md" href="join.html">Find your local section &rarr;</PrintButton>
+        <PrintButton variant="paper" size="md" href="#">All reports &rarr;</PrintButton>
+      </div>
+    </section>
+  );
+}
+
 // ── National Sections updates card ──────────────────────────────────────────
 function ManifestoBanner({ tweaks }) {
   const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
@@ -903,7 +939,7 @@ function App() {
         <TopicGrid />
         <WorldSchoolBanner />
         <MarxistUniversity />
-        <ManifestoBanner tweaks={T} />
+        <Reports />
         <JoinBanner />
       </main>
 
