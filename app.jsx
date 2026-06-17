@@ -879,8 +879,8 @@ function Footer() {
         <div className="foot-brand">
           <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
           <div>
-            <div className="foot-brand-wm">MARXIST.COM</div>
-            <div className="foot-brand-tag">Home of the Revolutionary Communist International</div>
+            <div className="foot-brand-wm">Revolutionary Communist International</div>
+            <div className="foot-brand-tag">Workers of the world, unite!</div>
           </div>
         </div>
         <div className="foot-cols">
@@ -908,6 +908,14 @@ function Footer() {
             <a href="#">Italiano</a>
             <a href="#">中文</a>
           </div>
+        </div>
+      </div>
+      <div className="foot-docs">
+        <a href="#" className="foot-manifesto">Manifesto</a>
+        <div className="foot-doc-tiles">
+          <a href="#" className="foot-doc-tile">Congress Report</a>
+          <a href="#" className="foot-doc-tile">IdPol Document</a>
+          <a href="#" className="foot-doc-tile">Something else</a>
         </div>
       </div>
       <div className="foot-rule" />
