@@ -454,7 +454,7 @@ function Trump2() {
 function CampaignBanner({ tweaks }) {
   return (
     <section className="campaign">
-      <SectionHead label="Campaigns" divider={tweaks.divider} extra="Take action →" />
+      <SectionHead label="Campaign" divider={tweaks.divider} extra="Take action →" />
       <div className="campaign-card">
         <div className="campaign-photo">
           <img src={R("imgCampaign", "assets/campaign-ehsan-ali.webp")} alt="Free Ehsan Ali campaign rally" />
