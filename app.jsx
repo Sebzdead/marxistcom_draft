@@ -744,6 +744,38 @@ function WorldSchoolBanner() {
   );
 }
 
+function MarxistUniversity() {
+  const courses = [
+    { title: "Marxism 101", blurb: "Start here: the foundations of revolutionary theory." },
+    { title: "Dialectical Materialism", blurb: "The Marxist method for understanding change." },
+    { title: "Fighting Oppression", blurb: "Class, race, gender and the road to liberation." },
+    { title: "Marxist Economics", blurb: "Value, exploitation and capitalist crisis." },
+    { title: "Marxism vs Anarchism", blurb: "State, revolution and the question of power." },
+    { title: "The Fourth International", blurb: "Trotsky and the fight against Stalinism." },
+    { title: "Deformed Workers' States", blurb: "The USSR, China and bureaucratic degeneration." },
+    { title: "The History of Philosophy", blurb: "From Hegel to Marx: a materialist account." },
+  ];
+  return (
+    <section className="muni">
+      <div className="rci-section-head"><h2>Marxist University</h2><a href="#">All courses &rarr;</a></div>
+      <a href="classics.html" className="muni-quote">
+        <p className="muni-quote-text">
+          &ldquo;Without revolutionary theory there can be no revolutionary movement.&rdquo;
+        </p>
+        <p className="muni-quote-cite">&mdash; V.I. Lenin, <em>What Is To Be Done?</em> (1902)</p>
+      </a>
+      <div className="muni-grid">
+        {courses.map((c, i) => (
+          <a key={i} href="#" className="muni-card">
+            <h3 className="muni-card-title">{c.title}</h3>
+            <p className="muni-card-blurb">{c.blurb}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── National Sections updates card ──────────────────────────────────────────
 function ManifestoBanner({ tweaks }) {
   const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
@@ -870,6 +902,7 @@ function App() {
         <FeaturePair />
         <TopicGrid />
         <WorldSchoolBanner />
+        <MarxistUniversity />
         <ManifestoBanner tweaks={T} />
         <JoinBanner />
       </main>
