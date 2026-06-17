@@ -527,26 +527,6 @@ function FeaturePair() {
   );
 }
 
-function FourUp({ tweaks }) {
-  const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
-  const items = [
-    { kicker: "ANALYSIS - United States", title: "\"All you had to do was pay us enough to live\"", byline: "RCI United States", image: IMG.unitedStates },
-    { kicker: "ANALYSIS - Britain", title: "A very British catastrophe", byline: "Rob Sewell", image: IMG.britain },
-    { kicker: "ANALYSIS - Bangladesh", title: "Iran War deals devastating collateral damage to Bangladesh", byline: "Nijat Mahruz Nirjhor", image: IMG.bangladesh },
-    { kicker: "ANALYSIS - Markets", title: "Prediction markets profit from US imperialism", byline: "Nick Brancaccio", image: IMG.satire },
-  ];
-  return (
-    <section className="four-up">
-      <SectionHead label="Latest analysis" divider={tweaks.divider} extra="Updated hourly" />
-      <div className="four-up-grid">
-        {items.map((it, i) => (
-          <ArticleCard key={i} {...it} size="md" treatment={tweaks.cardTreatment} titleFont={titleFont} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
 // ── Join CTA banner — split black + photo ───────────────────────────────────
 function JoinBanner() {
   return (
@@ -583,101 +563,6 @@ function JoinBanner() {
           />
         </div>
       </div>
-    </section>
-  );
-}
-
-// ── In Defence of Marxism magazine block ────────────────────────────────────
-function IDOMBlock({ tweaks }) {
-  const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
-  const features = [
-    { num: "01", eyebrow: "Editorial", title: "Latin America — an unfinished revolution", featured: true },
-    { num: "02", eyebrow: "Venezuela", title: "A balance sheet of the Venezuelan Revolution" },
-    { num: "03", eyebrow: "Art & culture", title: "Mexican Muralism: Art born of revolution" },
-    { num: "04", eyebrow: "Classics", title: "Trotsky: Excerpts on Latin America" },
-    { num: "05", eyebrow: "Economy", title: "Why did the Wall Street Crash happen?" },
-  ];
-  return (
-    <section className="idom">
-      <div className="idom-cover">
-        <div className="idom-cover-issue-tag">Latest issue</div>
-        <div className="idom-cover-art">
-          <img src={R("imgIdomCover", "assets/idom-53-cover.jpg")} alt="In Defence of Marxism — Issue 53, Spring 2026" />
-        </div>
-        <div className="idom-cover-meta">
-          <div className="idom-cover-issuenum">Issue 53 · Spring 2026</div>
-          <PrintButton variant="red" size="sm" href="magazine.html#latest">Order this issue →</PrintButton>
-        </div>
-      </div>
-      <div className="idom-toc">
-        <div className="idom-toc-head">
-          <div className="idom-toc-eyebrow">In defence of</div>
-          <div className="idom-toc-wordmark">MARXISM</div>
-          <div className="idom-toc-tagline">The theoretical journal of the RCI · Inside this issue</div>
-        </div>
-        <ol className="idom-toc-list">
-          {features.map((f, i) => (
-            <li key={i} className={"idom-toc-item" + (f.featured ? " idom-toc-item--featured" : "")}>
-              <span className="idom-toc-num">{f.num}</span>
-              <div className="idom-toc-text">
-                <Eyebrow style={{ fontSize: 10, letterSpacing: "0.2em" }}>{f.eyebrow}</Eyebrow>
-                <a href="magazine.html#latest" className={"idom-toc-title" + (titleFont === "serif" ? " idom-toc-title--serif" : "")}>{f.title}</a>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="idom-toc-foot">
-          <PrintButton variant="paper" size="sm" href="magazine.html#subscribe">Subscribe to the magazine →</PrintButton>
-          <PrintButton variant="paper" size="sm" href="magazine.html#archive">Read past issues</PrintButton>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── Topic split: Iran War | Palestine ───────────────────────────────────────
-function TopicSplit({ tweaks }) {
-  const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
-  const cols = [
-    {
-      label: "Iran War",
-      items: [
-        { title: "The war on Iran: where do communists stand?", byline: "Alan Woods", image: IMG.iranNight },
-        { title: "Trump's defeat in Iran and its worldwide consequences", byline: "Jorge Martín", image: IMG.trumpHead },
-      ],
-    },
-    {
-      label: "Palestine",
-      items: [
-        { title: "The failure of the two-state solution and the communist alternative", byline: "Josh Holroyd", image: IMG.twoState },
-        { title: "Palestine before 1948: How imperialism created Israel", byline: "Francesco Merli", image: IMG.palestine48 },
-      ],
-    },
-  ];
-  return (
-    <section className="topic-split">
-      {cols.map((col, ci) => (
-        <div key={ci} className="topic-col">
-          <div className="topic-col-head">
-            <SectionRule divider={tweaks.divider} style={{ marginBottom: 8 }} />
-            <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>{col.label}</Eyebrow>
-          </div>
-          {col.items.map((it, i) => (
-            <a key={i} href="#" className="topic-row">
-              <div className="topic-row-text">
-                <h4 className={"topic-title" + (titleFont === "serif" ? " topic-title--serif" : "")}>{it.title}</h4>
-                <div className="topic-byline">{it.byline}</div>
-              </div>
-              <div className="topic-row-img" style={{ position: "relative", overflow: "hidden" }}>
-                <PhotoOrSlab image={it.image} label={it.title} aspect="4/3" style={{ position: "absolute", inset: 0 }} />
-              </div>
-            </a>
-          ))}
-          <div className="topic-col-foot">
-            <a href="#" className="topic-more">More on {col.label} →</a>
-          </div>
-        </div>
-      ))}
     </section>
   );
 }
@@ -807,65 +692,6 @@ function Reports() {
       <div className="reports-foot">
         <PrintButton variant="paper" size="md" href="join.html">Find your local section &rarr;</PrintButton>
         <PrintButton variant="paper" size="md" href="#">All reports &rarr;</PrintButton>
-      </div>
-    </section>
-  );
-}
-
-// ── National Sections updates card ──────────────────────────────────────────
-function ManifestoBanner({ tweaks }) {
-  const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
-  const updates = [
-    { num: "01", flag: "CA", country: "DISPATCH - Canada", title: "Third RCP Congress — a party up to the task" },
-    { num: "02", flag: "CO", country: "DISPATCH - Colombia", title: "The founding congress of the Revolutionary Communists of Colombia" },
-    { num: "03", flag: "UK", country: "DISPATCH - Britain", title: "Third Congress of the RCP — \u201cWith our burning fury, we will shake the world awake!\u201d" },
-  ];
-  return (
-    <section className="sections-card">
-      <div className="sections-photo">
-        <img src={R("imgSectionsHeader", "assets/sections-britain-rcp.jpg")} alt="RCP Britain Third Congress" />
-        <div className="sections-photo-overlay">
-          <Eyebrow style={{ fontSize: 13, letterSpacing: "0.26em", color: "var(--rci-offwhite)" }}>Dispatches · From the front</Eyebrow>
-          <h2 className="sections-h2">Updates from the National Sections</h2>
-          <div className="sections-meta">70+ sections worldwide · Filed this week</div>
-        </div>
-      </div>
-      <ol className="sections-list">
-        {updates.map((u, i) => (
-          <li key={i} className="sections-item">
-            <span className="sections-num">{u.num}</span>
-            <div className="sections-text">
-              <Eyebrow style={{ fontSize: 12.5, letterSpacing: "0.16em" }}>{u.country}</Eyebrow>
-              <a href="#" className={"sections-title" + (titleFont === "serif" ? " sections-title--serif" : "")}>{u.title}</a>
-            </div>
-            <span className="sections-arrow">→</span>
-          </li>
-        ))}
-      </ol>
-      <div className="sections-foot">
-        <PrintButton variant="paper" size="sm" href="join.html">Find your local section →</PrintButton>
-        <PrintButton variant="paper" size="sm">All dispatches</PrintButton>
-      </div>
-    </section>
-  );
-}
-
-// ── Economy section (4-up) ──────────────────────────────────────────────────
-function EconomyBlock({ tweaks }) {
-  const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
-  const items = [
-    { kicker: "ECONOMY - Classics", title: "From Adam Smith to Karl Marx: The Wealth of Nations and Das Kapital", byline: "Adam Booth", image: IMG.marx },
-    { kicker: "ECONOMY - Finance", title: "Shadow banking: a ticking time bomb under the US economy", byline: "Francesco Merli", image: IMG.banks },
-    { kicker: "ECONOMY - China", title: "The meaning of the rise of China", byline: "Kenny Wallace", image: IMG.china },
-    { kicker: "ECONOMY - Technology", title: "The anarchic AI race: boom, bubble, and bust", byline: "Adam Booth", image: IMG.ai },
-  ];
-  return (
-    <section className="four-up">
-      <SectionHead label="Economy" divider={tweaks.divider} extra="Capital & crisis" />
-      <div className="four-up-grid">
-        {items.map((it, i) => (
-          <ArticleCard key={i} {...it} size="md" treatment={tweaks.cardTreatment} titleFont={titleFont} />
-        ))}
       </div>
     </section>
   );
