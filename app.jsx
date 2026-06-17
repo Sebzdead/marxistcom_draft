@@ -732,6 +732,18 @@ function TopicGrid() {
   );
 }
 
+// ── World School promo banner ───────────────────────────────────────────────
+function WorldSchoolBanner() {
+  return (
+    <section style={{ margin: "32px 0" }}>
+      <a className="rci-banner" href="join.html">
+        <p className="t">RCI World School 2026 — Build the revolutionary party</p>
+        <p className="s">One week of theory, debate &amp; struggle · Register now</p>
+      </a>
+    </section>
+  );
+}
+
 // ── National Sections updates card ──────────────────────────────────────────
 function ManifestoBanner({ tweaks }) {
   const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
@@ -857,6 +869,7 @@ function App() {
         <AgainstTheStream />
         <FeaturePair />
         <TopicGrid />
+        <WorldSchoolBanner />
         <ManifestoBanner tweaks={T} />
         <JoinBanner />
       </main>
