@@ -1924,6 +1924,37 @@
     text-transform: uppercase; color: var(--rci-ash);
   }
   @media (max-width: 900px) { .trump2-grid { grid-template-columns: 1fr; } .trump2-title { font-size: 42px; } }
+  .ats { margin: 36px 0; }
+  .ats-inner {
+    max-width: 1320px; margin: 0 auto; padding: 30px 28px;
+    display: grid; grid-template-columns: 340px 1fr; gap: 32px; align-items: center;
+  }
+  .ats-logo { width: 200px; height: auto; display: block; margin-bottom: 16px; }
+  .ats-eyebrow {
+    font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.18em; font-size: 12px; color: var(--rci-red-hot);
+  }
+  .ats-title {
+    font-family: var(--font-serif); font-weight: 700; font-size: 30px; line-height: 1.05;
+    color: var(--rci-paper); margin: 8px 0 18px;
+  }
+  .ats-platforms { display: flex; gap: 10px; flex-wrap: wrap; }
+  .ats-platform {
+    font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; font-size: 11px; padding: 8px 12px;
+    border: 2px solid var(--rci-red); color: var(--rci-paper); text-decoration: none;
+  }
+  .ats-platform:hover { background: var(--rci-red); }
+  .ats-video {
+    aspect-ratio: 16/9; border: 2px solid var(--rci-red); background: #16120f;
+    display: grid; place-items: center; text-decoration: none;
+  }
+  .ats-play {
+    width: 64px; height: 64px; background: rgba(212,20,15,.92);
+    border: 2px solid var(--rci-paper); display: grid; place-items: center;
+    color: #fff; font-size: 24px;
+  }
+  @media (max-width: 900px) { .ats-inner { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>

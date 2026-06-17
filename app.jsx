@@ -482,6 +482,29 @@ function CampaignBanner({ tweaks }) {
   );
 }
 
+function AgainstTheStream() {
+  const platforms = ["YouTube", "Spotify", "Apple", "RSS"];
+  return (
+    <section className="ats rci-slab">
+      <div className="ats-inner">
+        <div className="ats-side">
+          <img src={R("imgATS", "assets/ATS.webp")} alt="Against the Stream" className="ats-logo" />
+          <div className="ats-eyebrow">Latest episode</div>
+          <h2 className="ats-title">Capitalism is ungovernable</h2>
+          <div className="ats-platforms">
+            {platforms.map((p) => (
+              <a key={p} href="media.html" className="ats-platform">{p}</a>
+            ))}
+          </div>
+        </div>
+        <a href="media.html" className="ats-video" aria-label="Watch the latest episode">
+          <span className="ats-play">&#9654;</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function FourUp({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
   const items = [
@@ -759,6 +782,7 @@ function App() {
         <LatestScroller />
         <Trump2 />
         <CampaignBanner tweaks={T} />
+        <AgainstTheStream />
         <IDOMBlock tweaks={T} />
         <TopicSplit tweaks={T} />
         <EconomyBlock tweaks={T} />
