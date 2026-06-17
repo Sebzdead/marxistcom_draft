@@ -1955,6 +1955,28 @@
     color: #fff; font-size: 24px;
   }
   @media (max-width: 900px) { .ats-inner { grid-template-columns: 1fr; } }
+  .feat-pair-sec { padding: 8px 0 30px; }
+  .feat-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .feat-card {
+    position: relative; aspect-ratio: 5/4; overflow: hidden;
+    border: 2px solid var(--rule); box-shadow: 4px 4px 0 var(--rule);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    text-decoration: none;
+  }
+  .feat-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    filter: contrast(1.05) saturate(0.95);
+  }
+  .feat-card::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20,16,13,0.88));
+  }
+  .feat-body { position: relative; z-index: 2; padding: 26px; }
+  .feat-title {
+    font-family: var(--font-serif); font-weight: 700; font-size: 30px; line-height: 1.04;
+    color: #fff; margin: 8px 0 0;
+  }
+  @media (max-width: 760px) { .feat-pair { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>

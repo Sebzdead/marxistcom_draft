@@ -505,6 +505,28 @@ function AgainstTheStream() {
   );
 }
 
+function FeaturePair() {
+  const feats = [
+    { kicker: "Theory", title: "Why Marxism is more relevant than ever", image: IMG.marx, href: "theory.html" },
+    { kicker: "History", title: "Figaro and the French Revolution", image: R("imgLatestFigaro", "assets/Figaro.jpg"), href: "article.html" },
+  ];
+  return (
+    <section className="feat-pair-sec">
+      <div className="feat-pair">
+        {feats.map((f, i) => (
+          <a key={i} href={f.href} className="feat-card">
+            <div className="feat-bg" style={{ backgroundImage: `url("${f.image}")` }} />
+            <div className="feat-body">
+              <span className="rci-kicker" style={{ color: "#ff8a6e" }}>{f.kicker}</span>
+              <h3 className="feat-title">{f.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function FourUp({ tweaks }) {
   const titleFont = tweaks.headlineFont === "serif" ? "serif" : "sans";
   const items = [
@@ -783,6 +805,7 @@ function App() {
         <Trump2 />
         <CampaignBanner tweaks={T} />
         <AgainstTheStream />
+        <FeaturePair />
         <IDOMBlock tweaks={T} />
         <TopicSplit tweaks={T} />
         <EconomyBlock tweaks={T} />
