@@ -552,7 +552,7 @@ function JoinBanner() {
   return (
     <section className="join-banner">
       <div className="join-left">
-        <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 13, letterSpacing: "0.24em" }}>Join the fight</Eyebrow>
+        <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 13, letterSpacing: "0.24em" }}>Get organised</Eyebrow>
         <h2 className="join-h2">Join the fight</h2>
         <p className="join-body">
           The Revolutionary Communist International organises in over 70 countries. From mass

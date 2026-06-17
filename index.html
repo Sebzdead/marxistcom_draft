@@ -1882,6 +1882,12 @@
     text-transform: none;
     letter-spacing: -0.005em;
   }
+  /* Serif card/headline titles are <h3>/<h4> elements; cancel the global
+     element-level uppercase from colors_and_type.css so they read sentence case. */
+  .hero-sec-title, .latest-scard-title, .trump2-link-title,
+  .feat-title, .topic-glead-title, .muni-card-title {
+    text-transform: none;
+  }
   /* Built Titling stays caps ONLY on these display moments */
   .campaign-h2, .join-h2, .sections-h2, .manifesto-h2,
   .idom-toc-wordmark {
@@ -1944,7 +1950,7 @@
     letter-spacing: 0.12em; font-size: 11px; padding: 8px 12px;
     border: 2px solid var(--rci-red); color: var(--rci-paper); text-decoration: none;
   }
-  .ats-platform:hover { background: var(--rci-red); }
+  .ats-platform:hover { background: var(--rci-red); color: var(--rci-paper); }
   .ats-video {
     aspect-ratio: 16/9; border: 2px solid var(--rci-red); background: #16120f;
     display: grid; place-items: center; text-decoration: none;
@@ -1952,7 +1958,7 @@
   .ats-play {
     width: 64px; height: 64px; background: rgba(212,20,15,.92);
     border: 2px solid var(--rci-paper); display: grid; place-items: center;
-    color: #fff; font-size: 24px;
+    color: #fff; font-size: 24px; line-height: 1;
   }
   @media (max-width: 900px) { .ats-inner { grid-template-columns: 1fr; } }
   .feat-pair-sec { padding: 8px 0 30px; }
