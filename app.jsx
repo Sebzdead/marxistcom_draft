@@ -786,7 +786,7 @@ function Reports() {
   ];
   return (
     <section className="reports">
-      <div className="rci-section-head"><h2>Reports</h2><a href="join.html">All reports &rarr;</a></div>
+      <div className="rci-section-head"><h2>Reports</h2><a href="#">All reports &rarr;</a></div>
       <a href={featured.href} className="reports-featured">
         <span className="rci-kicker">{featured.country}</span>
         <h3 className="reports-featured-title">{featured.title}</h3>
