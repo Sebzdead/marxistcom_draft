@@ -553,14 +553,14 @@ function JoinBanner() {
     <section className="join-banner">
       <div className="join-left">
         <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 13, letterSpacing: "0.24em" }}>Join the fight</Eyebrow>
-        <h2 className="join-h2">
-          The Revolutionary Communist International<br/>organises in over <span className="join-num">70</span> countries across the world.
-        </h2>
+        <h2 className="join-h2">Join the fight</h2>
         <p className="join-body">
-          From mass strikes to student occupations, from anti-war mobilisations to the fight against fascism — comrades on every continent are building the party we need.
+          The Revolutionary Communist International organises in over 70 countries. From mass
+          strikes to student occupations, comrades on every continent are building the party we need.
+          History is being made — be part of it.
         </p>
         <div className="join-actions">
-          <PrintButton variant="red" size="lg" href="join.html">Join the fight</PrintButton>
+          <PrintButton variant="red" size="lg" href="join.html">Join</PrintButton>
         </div>
       </div>
       <div className="join-right">
