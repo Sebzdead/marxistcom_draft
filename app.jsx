@@ -682,6 +682,56 @@ function TopicSplit({ tweaks }) {
   );
 }
 
+function TopicGrid() {
+  const cols = [
+    {
+      label: "Iran War", ink: "",
+      image: IMG.iranNight,
+      lead: "The war on Iran: where do communists stand?",
+      more: ["Trump's defeat in Iran and its worldwide consequences", "Iran War deals collateral damage to Bangladesh"],
+    },
+    {
+      label: "Gen Z Revolutions", ink: "ochre",
+      image: R("imgLatestRomania", "assets/Romanian Government.jpg"),
+      lead: "From Nepal to Serbia: a generation rises",
+      more: ["The student movement and the fight against capitalism", "Why Gen Z is turning to communism"],
+    },
+    {
+      label: "Artificial Intelligence", ink: "blue",
+      image: IMG.ai,
+      lead: "The anarchic AI race: boom, bubble, and bust",
+      more: ["Can capitalism survive automation?", "AI, alienation, and the working class"],
+    },
+    {
+      label: "World Economy", ink: "green",
+      image: IMG.banks,
+      lead: "Shadow banking: a ticking time bomb",
+      more: ["Who really pays for the tariff war?", "The meaning of the rise of China"],
+    },
+  ];
+  return (
+    <section className="topic-grid-sec">
+      <div className="rci-section-head"><h2>Topics</h2><a href="index.html">All topics &rarr;</a></div>
+      <div className="topic-grid">
+        {cols.map((c, i) => (
+          <div key={i} className="topic-gcol">
+            <span className={"rci-kicker " + c.ink}>{c.label}</span>
+            <a href="article.html" className="topic-glead">
+              <div className="topic-gimg"><PhotoOrSlab image={c.image} label={c.label} aspect="4/3" style={{ position: "absolute", inset: 0 }} /></div>
+              <h3 className="topic-glead-title">{c.lead}</h3>
+            </a>
+            <div className="topic-gmore">
+              {c.more.map((m, j) => (
+                <a key={j} href="article.html" className="topic-gmore-link">{m}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── National Sections updates card ──────────────────────────────────────────
 function ManifestoBanner({ tweaks }) {
   const titleFont = tweaks && tweaks.headlineFont === "serif" ? "serif" : "sans";
@@ -806,9 +856,7 @@ function App() {
         <CampaignBanner tweaks={T} />
         <AgainstTheStream />
         <FeaturePair />
-        <IDOMBlock tweaks={T} />
-        <TopicSplit tweaks={T} />
-        <EconomyBlock tweaks={T} />
+        <TopicGrid />
         <ManifestoBanner tweaks={T} />
         <JoinBanner />
       </main>
