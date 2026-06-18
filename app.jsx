@@ -126,13 +126,15 @@ function Masthead({ menuOpen, setMenuOpen }) {
 
   return (
     <header className="masthead">
-      <a href="index.html" className="mast-brand">
-        <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" className="mast-logo" />
-        <span className="mast-brand-name">Revolutionary<br/>Communist<br/>International</span>
-      </a>
-      <div className="mast-right">
-        <button type="button" className="mast-lang" aria-label="Choose language">&#9662; Language</button>
-        <PrintButton variant="red" size="md" href="join.html">Join Us</PrintButton>
+      <div className="mast-inner">
+        <a href="index.html" className="mast-brand">
+          <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" className="mast-logo" />
+          <span className="mast-brand-name">Revolutionary Communist International</span>
+        </a>
+        <div className="mast-right">
+          <button type="button" className="mast-lang" aria-label="Choose language">&#9662; Language</button>
+          <PrintButton variant="red" size="lg" href="join.html">Join Us</PrintButton>
+        </div>
       </div>
 
       {menuOpen && (
@@ -180,7 +182,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">Latest Analysis</div>
-                      <div className="drawer-sidebar-item-desc">In-depth Marxist analysis of current world events</div>
                     </div>
                   </a>
 
@@ -191,7 +192,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">Media + Podcasts</div>
-                      <div className="drawer-sidebar-item-desc">Arm yourself with our weekly shows and documentaries</div>
                     </div>
                   </a>
 
@@ -201,7 +201,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">In Defence of Marxism</div>
-                      <div className="drawer-sidebar-item-desc">Read our theoretical quarterly international journal</div>
                     </div>
                   </a>
 
@@ -212,7 +211,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">WellRed Books</div>
-                      <div className="drawer-sidebar-item-desc">Browse Marxist literature, newspapers, and classics</div>
                     </div>
                   </a>
 
@@ -225,7 +223,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">Join the RCI</div>
-                      <div className="drawer-sidebar-item-desc">Become a member of the Revolutionary Communist International</div>
                     </div>
                   </a>
                 </div>
@@ -299,40 +296,36 @@ function Nav({ active, onSelect, onOpenMenu }) {
   return (
     <nav className="primary-nav">
       <div className="nav-inner">
-        {NAV_TABS.map((tab) => {
-          const isActive = tab.label === active;
-          const isExternal = tab.href && /^https?:\/\//.test(tab.href);
-          return (
-            <PrintButton
-              key={tab.label}
-              active={isActive}
-              variant={isActive ? "ink" : "paper"}
-              size="md"
-              href={tab.href}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noopener noreferrer" : undefined}
-              onClick={tab.href ? undefined : () => onSelect(tab.label)}
-              style={{ flex: "0 0 auto" }}
-            >
-              {tab.label}
-            </PrintButton>
-          );
-        })}
         <button
           className="nav-menu-btn"
           aria-label="Open menu and search"
           onClick={onOpenMenu}
           type="button"
         >
-          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
-            <line x1="2" y1="6" x2="21" y2="6" />
-            <line x1="2" y1="11" x2="13" y2="11" />
-            <line x1="2" y1="16" x2="10" y2="16" />
-            <circle cx="16" cy="15" r="4" />
-            <line x1="19.2" y1="18.2" x2="22" y2="21" />
+          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="square" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
           <span className="nav-menu-label">Menu</span>
         </button>
+        {NAV_TABS.map((tab) => {
+          const isActive = tab.label === active;
+          const isExternal = tab.href && /^https?:\/\//.test(tab.href);
+          return (
+            <a
+              key={tab.label}
+              className={"nav-link" + (isActive ? " is-active" : "")}
+              href={tab.href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              aria-current={isActive ? "page" : undefined}
+              onClick={tab.href ? undefined : () => onSelect(tab.label)}
+            >
+              {tab.label}
+            </a>
+          );
+        })}
       </div>
     </nav>
   );
@@ -350,6 +343,9 @@ function Hero({ tweaks }) {
         {/* BIG STORY */}
         <a href="article.html" className="hero-lead">
           <span className="rci-kicker">Analysis · China</span>
+          <div className="hero-lead-img">
+            <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
+          </div>
           <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi–Trump summit</h1>
           <p className="hero-dek">
             Trump went to Beijing believing he negotiated from strength; in reality, he
@@ -357,9 +353,6 @@ function Hero({ tweaks }) {
             before our eyes.
           </p>
           <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
-          <div className="hero-lead-img">
-            <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
-          </div>
         </a>
 
         {/* TWO SECONDARIES */}
@@ -701,53 +694,21 @@ function Reports() {
 function Footer() {
   return (
     <footer className="site-foot">
-      <div className="foot-top">
+      <div className="foot-main">
         <div className="foot-brand">
           <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
-          <div>
-            <div className="foot-brand-wm">Revolutionary Communist International</div>
-            <div className="foot-brand-tag">Workers of the world, unite!</div>
-          </div>
+          <div className="foot-brand-wm">Revolutionary Communist International</div>
         </div>
-        <div className="foot-cols">
-          <div className="foot-col">
-            <div className="foot-col-h">Sections</div>
-            <a href="index.html">Analysis</a>
-            <a href="theory.html">Theory</a>
-            <a href="history.html">History</a>
-            <a href="media.html">Podcasts</a>
-            <a href="magazine.html">In Defence of Marxism</a>
-            <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Bookstore</a>
+        <a href="#" className="foot-manifesto-card">
+          <div className="foot-manifesto-img">
+            <img src={IMG.manifesto} alt="The Revolutionary Manifesto of the RCI" />
           </div>
-          <div className="foot-col">
-            <div className="foot-col-h">Get involved</div>
-            <a href="#">Join the RCI</a>
-            <a href="#">Find your section</a>
-            <a href="#">Donate</a>
-            <a href="#">Distribute the paper</a>
-          </div>
-          <div className="foot-col">
-            <div className="foot-col-h">Languages</div>
-            <a href="#">Español</a>
-            <a href="#">Français</a>
-            <a href="#">Deutsch</a>
-            <a href="#">Italiano</a>
-            <a href="#">中文</a>
-          </div>
+        </a>
+        <div className="foot-right">
+          <a href="#" className="foot-link">World Perspectives</a>
+          <a href="#" className="foot-link">RCI Documentary</a>
+          <a href="#" className="foot-link">World School of Communism</a>
         </div>
-      </div>
-      <div className="foot-docs">
-        <a href="#" className="foot-manifesto">Manifesto</a>
-        <div className="foot-doc-tiles">
-          <a href="#" className="foot-doc-tile">Congress Report</a>
-          <a href="#" className="foot-doc-tile">IdPol Document</a>
-          <a href="#" className="foot-doc-tile">Something else</a>
-        </div>
-      </div>
-      <div className="foot-rule" />
-      <div className="foot-bot">
-        <span>© 2026 Revolutionary Communist International · marxist.com</span>
-        <span>Workers of the world, unite!</span>
       </div>
     </footer>
   );
@@ -760,8 +721,10 @@ function App() {
 
   return (
     <div className="site">
-      <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Nav active={activeTab} onSelect={setActiveTab} onOpenMenu={() => setMenuOpen(true)} />
+      <div className="site-header">
+        <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Nav active={activeTab} onSelect={setActiveTab} onOpenMenu={() => setMenuOpen(true)} />
+      </div>
 
       <main className="site-main">
         <Hero tweaks={T} />
