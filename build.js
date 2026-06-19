@@ -34,7 +34,7 @@ copyRecursive(path.join(__dirname, 'assets'), path.join(distDir, 'assets'));
 copyRecursive(path.join(__dirname, 'uploads'), path.join(distDir, 'uploads'));
 
 // 3. Compile JSX files to JS in dist
-const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'theory-curriculum.jsx', 'history.jsx', 'classics.jsx', 'reader.jsx'];
+const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'theory-curriculum.jsx', 'history.jsx', 'classics.jsx', 'reader.jsx', 'search.jsx'];
 jsxFiles.forEach(file => {
   const srcPath = path.join(__dirname, file);
   const destName = file.replace(/\.jsx$/, '.js');
@@ -53,7 +53,7 @@ jsxFiles.forEach(file => {
 });
 
 // 4. Update HTML pages for production
-const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'theory-curriculum.html', 'history.html', 'classics.html', 'reader.html'];
+const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'theory-curriculum.html', 'history.html', 'classics.html', 'reader.html', 'search.html'];
 htmlFiles.forEach(file => {
   console.log(`Processing ${file} for production...`);
   const htmlPath = path.join(__dirname, file);
@@ -77,6 +77,7 @@ htmlFiles.forEach(file => {
   html = html.replace(/<script type="text\/babel" src="history\.jsx"><\/script>/g, '<script src="history.js"></script>');
   html = html.replace(/<script type="text\/babel" src="classics\.jsx"><\/script>/g, '<script src="classics.js"></script>');
   html = html.replace(/<script type="text\/babel" src="reader\.jsx"><\/script>/g, '<script src="reader.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="search\.jsx"><\/script>/g, '<script src="search.js"></script>');
 
   // Remove Babel standalone script tag
   html = html.replace(/<script src="https:\/\/unpkg\.com\/@babel\/standalone[^>]*><\/script>\s*/g, '');
