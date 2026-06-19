@@ -10,13 +10,11 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (mirror homepage) ───────────────────────────────────────
 const NAV_TABS = [
-  { label: "Join the RCI", href: "join.html" },
+  { label: "Home", href: "index.html" },
   { label: "Analysis", href: "index.html" },
-  { label: "Theory", href: "theory.html" },
-  { label: "History", href: "history.html" },
-  { label: "Classics", href: "classics.html" },
+  { label: "Theory & History", href: "theory.html" },
   { label: "Magazine", href: "magazine.html" },
-  { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
+  { label: "Bookshop", href: "https://wellredbooks.co.uk/" },
 ];
 
 const PODCAST_SHOWS = [
@@ -26,8 +24,8 @@ const PODCAST_SHOWS = [
     kicker: "Theory & Strategy · Weekly",
     desc: "Arming listeners with the ideas necessary to defend communist principles and understand the world from a Marxist perspective.",
     cover: "assets/spectre.png",
-    spotifyEmbed: "https://open.spotify.com/embed/show/06K659w5g715qO30W1H13z?utm_source=generator&theme=0",
-    spotifyUrl: "https://open.spotify.com/show/06K659w5g715qO30W1H13z",
+    spotifyEmbed: "https://open.spotify.com/embed/episode/0EPt9kvDQ76LuGMZPEpkoJ?utm_source=generator&theme=0",
+    spotifyUrl: "https://open.spotify.com/episode/0EPt9kvDQ76LuGMZPEpkoJ",
     appleUrl: "https://podcasts.apple.com/us/podcast/spectre-of-communism/id1683838661",
     rssUrl: "https://anchor.fm/s/fb2ec680/podcast/rss",
   },
@@ -159,33 +157,17 @@ function Masthead({ menuOpen, setMenuOpen }) {
 
   return (
     <header className="masthead">
-      <div className="mast-left">
-        <a href="index.html" className="mast-logo-link" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none", color: "inherit" }}>
+      <div className="mast-inner">
+        <a href="index.html" className="mast-brand">
           <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" className="mast-logo" />
-          <div className="mast-wordmark">
-            <div className="wm-title">MARXIST<span className="wm-dot">.</span>COM</div>
-          </div>
-          <div className="mast-slash">/</div>
-          <div className="mast-tag">
-            <div>Home of the Revolutionary</div>
-            <div>Communist International</div>
+          <div className="mast-brand-text">
+            <span className="mast-brand-pre">Home of the</span>
+            <span className="mast-brand-name">Revolutionary Communist International</span>
           </div>
         </a>
-      </div>
-      <div className="mast-right">
-        <div className="mast-socials">
-          <a href="https://www.youtube.com/@revcomintern" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="mast-social">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z" /></svg>
-          </a>
-          <a href="https://www.instagram.com/revcomintern/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="mast-social">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" /></svg>
-          </a>
-          <a href="https://x.com/revcomintern" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="mast-social">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-          </a>
-          <a href="https://t.me/marxistcom" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="mast-social">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.34 18.7 19.7c-.24 1.08-.88 1.34-1.78.84l-4.92-3.62-2.37 2.28c-.26.26-.48.48-.98.48l.35-4.96L17.8 6.5c.4-.36-.08-.55-.62-.2L7.6 12.4l-4.92-1.54c-1.07-.34-1.1-1.07.22-1.58l19.27-7.43c.9-.34 1.68.2 1.38 1.58z" /></svg>
-          </a>
+        <div className="mast-right">
+          <button type="button" className="mast-lang" aria-label="Choose language">&#9662; Language</button>
+          <PrintButton variant="red" size="sm" href="join.html">Join Us</PrintButton>
         </div>
       </div>
 
@@ -196,7 +178,7 @@ function Masthead({ menuOpen, setMenuOpen }) {
               <div className="menu-drawer-header">
                 <div className="menu-drawer-brand">
                   <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
-                  <span className="menu-drawer-wm">MARXIST.COM</span>
+                  <span className="mast-brand-name">Revolutionary Communist International</span>
                 </div>
                 <button
                   className="menu-drawer-close"
@@ -234,18 +216,16 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">Latest Analysis</div>
-                      <div className="drawer-sidebar-item-desc">In-depth Marxist analysis of current world events</div>
                     </div>
                   </a>
 
                   <a href="media.html" className="drawer-sidebar-item" onClick={() => setMenuOpen(false)}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 1 2 2h1a2 2 0 0 1 2-2v-3a2 2 0 0 1-2-2H3z" />
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
                     </svg>
                     <div className="drawer-sidebar-item-content">
-                      <div className="drawer-sidebar-item-title">Podcasts & Media</div>
-                      <div className="drawer-sidebar-item-desc">Arm yourself with our weekly shows and documentaries</div>
+                      <div className="drawer-sidebar-item-title">Media + Podcasts</div>
                     </div>
                   </a>
 
@@ -255,7 +235,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">In Defence of Marxism</div>
-                      <div className="drawer-sidebar-item-desc">Read our theoretical quarterly international journal</div>
                     </div>
                   </a>
 
@@ -265,8 +244,7 @@ function Masthead({ menuOpen, setMenuOpen }) {
                       <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z" />
                     </svg>
                     <div className="drawer-sidebar-item-content">
-                      <div className="drawer-sidebar-item-title">Bookstore</div>
-                      <div className="drawer-sidebar-item-desc">Browse Marxist literature, newspapers, and classics</div>
+                      <div className="drawer-sidebar-item-title">WellRed Books</div>
                     </div>
                   </a>
 
@@ -279,7 +257,6 @@ function Masthead({ menuOpen, setMenuOpen }) {
                     </svg>
                     <div className="drawer-sidebar-item-content">
                       <div className="drawer-sidebar-item-title">Join the RCI</div>
-                      <div className="drawer-sidebar-item-desc">Become a member of the Revolutionary Communist International</div>
                     </div>
                   </a>
                 </div>
@@ -293,43 +270,49 @@ function Masthead({ menuOpen, setMenuOpen }) {
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Asia</a>
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Europe</a>
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Middle East</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Oceania</a>
                     </div>
                   </div>
-
                   <div className="drawer-category">
                     <div className="drawer-category-title">Current Topics</div>
                     <div className="drawer-category-links">
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Ukraine War</a>
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Iran War</a>
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Trump 2.0</a>
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Artificial Intelligence</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Rise of China</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Climate Change</a>
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Gen Z Revolutions</a>
                       <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>World Economy</a>
                     </div>
                   </div>
-
-                  <div className="drawer-category">
-                    <div className="drawer-category-title">Perspectives & Activity</div>
-                    <div className="drawer-category-links">
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Editorial Perspectives</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Revolutionary Activity</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Building the Party</a>
-                      <a href="join.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Find Your Local Section</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>RCI Manifesto</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Our History & Cadres</a>
-                    </div>
-                  </div>
-
                   <div className="drawer-category">
                     <div className="drawer-category-title">Marxist Theory</div>
                     <div className="drawer-category-links">
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>What is Marxism?</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Karl Marx & Engels</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Vladimir Lenin</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Leon Trotsky</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Historical Materialism</a>
-                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Marxist Economics</a>
+                      <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Karl Marx &amp; Engels</a>
+                      <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Vladimir Lenin</a>
+                      <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Leon Trotsky</a>
+                      <a href="classics.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>The Classics</a>
+                    </div>
+                  </div>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">RCI</div>
+                    <div className="drawer-category-links">
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Who we are</a>
+                      <a href="join.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Our sections</a>
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Contact</a>
+                    </div>
+                  </div>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Marxist University</div>
+                    <div className="drawer-category-links">
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>All Courses</a>
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Marxism 101</a>
+                      <a href="#" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Dialectical Materialism</a>
+                    </div>
+                  </div>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Media</div>
+                    <div className="drawer-category-links">
+                      <a href="media.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Against the Stream</a>
+                      <a href="media.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Spectre of Communism</a>
+                      <a href="media.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Documentaries</a>
                     </div>
                   </div>
                 </div>
@@ -343,43 +326,40 @@ function Masthead({ menuOpen, setMenuOpen }) {
 }
 
 // ── Nav Component ───────────────────────────────────────────────────────────
-function Nav({ active, onOpenMenu }) {
+function Nav({ active, onSelect, onOpenMenu }) {
   return (
     <nav className="primary-nav">
       <div className="nav-inner">
-        {NAV_TABS.map((tab) => {
-          const isActive = tab.label === active;
-          const isExternal = tab.href && /^https?:\/\//.test(tab.href);
-          return (
-            <PrintButton
-              key={tab.label}
-              active={isActive}
-              variant={isActive ? "ink" : "paper"}
-              size="md"
-              href={tab.href || "#"}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noopener noreferrer" : undefined}
-              style={{ flex: "0 0 auto" }}
-            >
-              {tab.label}
-            </PrintButton>
-          );
-        })}
         <button
           className="nav-menu-btn"
           aria-label="Open menu and search"
           onClick={onOpenMenu}
           type="button"
         >
-          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
-            <line x1="2" y1="6" x2="21" y2="6" />
-            <line x1="2" y1="11" x2="13" y2="11" />
-            <line x1="2" y1="16" x2="10" y2="16" />
-            <circle cx="16" cy="15" r="4" />
-            <line x1="19.2" y1="18.2" x2="22" y2="21" />
+          <svg className="nav-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="square" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
           <span className="nav-menu-label">Menu</span>
         </button>
+        {NAV_TABS.map((tab) => {
+          const isActive = tab.label === active;
+          const isExternal = tab.href && /^https?:\/\//.test(tab.href);
+          return (
+            <a
+              key={tab.label}
+              className={"nav-link" + (isActive ? " is-active" : "")}
+              href={tab.href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              aria-current={isActive ? "page" : undefined}
+              onClick={tab.href ? undefined : () => onSelect && onSelect(tab.label)}
+            >
+              {tab.label}
+            </a>
+          );
+        })}
       </div>
     </nav>
   );
@@ -387,47 +367,43 @@ function Nav({ active, onOpenMenu }) {
 
 // ── Footer Component ────────────────────────────────────────────────────────
 function Footer() {
+  const footerCards = [
+    {
+      kicker: "Editorial · The Manifesto",
+      title: "The Manifesto of the Revolutionary Communist International",
+      byline: "By RCI",
+      image: R("imgManifesto", "assets/card-manifesto.jpg"),
+      href: "join.html"
+    },
+    {
+      kicker: "Editorial · Perspectives",
+      title: "World Perspectives: The case for revolutionary optimism",
+      byline: "By Alan Woods",
+      image: R("imgWarOnIran", "assets/card-war-on-iran.png"),
+      href: "article.html"
+    },
+    {
+      kicker: "Editorial · Campaign",
+      title: "Free Ehsan Ali — Hands off the AAC!",
+      byline: "By RCI Writers",
+      image: R("imgCampaign", "assets/campaign-ehsan-ali.webp"),
+      href: "join.html"
+    }
+  ];
+
   return (
     <footer className="site-foot">
-      <div className="foot-top">
-        <div className="foot-brand">
-          <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" />
-          <div>
-            <div className="foot-brand-wm">MARXIST.COM</div>
-            <div className="foot-brand-tag">Home of the Revolutionary Communist International</div>
-          </div>
-        </div>
-        <div className="foot-cols">
-          <div className="foot-col">
-            <div className="foot-col-h">Sections</div>
-            <a href="index.html">Analysis</a>
-            <a href="theory.html">Theory</a>
-            <a href="history.html">History</a>
-            <a href="media.html">Podcasts</a>
-            <a href="magazine.html">In Defence of Marxism</a>
-            <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Bookstore</a>
-          </div>
-          <div className="foot-col">
-            <div className="foot-col-h">Get involved</div>
-            <a href="join.html">Join the RCI</a>
-            <a href="join.html">Find your section</a>
-            <a href="#">Donate</a>
-            <a href="#">Distribute the paper</a>
-          </div>
-          <div className="foot-col">
-            <div className="foot-col-h">Languages</div>
-            <a href="#">Español</a>
-            <a href="#">Français</a>
-            <a href="#">Deutsch</a>
-            <a href="#">Italiano</a>
-            <a href="#">中文</a>
-          </div>
-        </div>
-      </div>
-      <div className="foot-rule" />
-      <div className="foot-bot">
-        <span>© 2026 Revolutionary Communist International · marxist.com</span>
-        <span>Workers of the world, unite!</span>
+      <div className="foot-cards">
+        {footerCards.map((c, idx) => (
+          <a key={idx} href={c.href} className="foot-card">
+            <div className="foot-card-img">
+              <img src={c.image} alt={c.title} />
+            </div>
+            <span className="foot-card-kicker">{c.kicker}</span>
+            <h3 className="foot-card-title">{c.title}</h3>
+            <span className="foot-card-byline">{c.byline}</span>
+          </a>
+        ))}
       </div>
     </footer>
   );
@@ -591,18 +567,23 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     document.body.dataset.mode = "light";
-    document.body.dataset.texture = "none";
   }, []);
 
   return (
     <div className="site">
-      <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Nav active="Podcasts & Media" onOpenMenu={() => setMenuOpen(true)} />
+      <div className="site-header">
+        <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <Nav active="Podcasts & Media" onOpenMenu={() => setMenuOpen(true)} />
+      </div>
       
       <main className="site-main">
         {/* Podcasts Section */}
         <section className="podcasts-section">
-          <SectionHead label="Official Podcasts" divider="thick-slab" />
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
+              <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>Official Podcasts</Eyebrow>
+            </div>
+          </div>
           <div className="podcasts-grid">
             <div className="podcasts-left">
               {PODCAST_SHOWS.map(show => (

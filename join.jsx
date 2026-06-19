@@ -171,11 +171,14 @@ function Masthead({ menuOpen, setMenuOpen }) {
       <div className="mast-inner">
         <a href="index.html" className="mast-brand">
           <img src={R("rciSquare", "assets/rci-social-round.svg")} alt="RCI" className="mast-logo" />
-          <span className="mast-brand-name">Revolutionary Communist International</span>
+          <div className="mast-brand-text">
+            <span className="mast-brand-pre">Home of the</span>
+            <span className="mast-brand-name">Revolutionary Communist International</span>
+          </div>
         </a>
         <div className="mast-right">
           <button type="button" className="mast-lang" aria-label="Choose language">&#9662; Language</button>
-          <PrintButton variant="red" size="lg" href="join.html">Join Us</PrintButton>
+          <PrintButton variant="red" size="sm" href="join.html">Join Us</PrintButton>
         </div>
       </div>
 

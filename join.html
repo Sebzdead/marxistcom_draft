@@ -103,22 +103,32 @@
   .mast-inner {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 22px 28px 18px;
+    padding: 10px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
     box-sizing: border-box;
   }
-  .mast-brand { display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; flex: 1 1 auto; min-width: 0; }
-  .mast-logo { width: 70px; height: 70px; display: block; }
+  .mast-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; flex: 1 1 auto; min-width: 0; }
+  .mast-logo { width: 38px; height: 38px; display: block; }
+  .mast-brand-text { display: flex; flex-direction: column; justify-content: flex-end; }
+  .mast-brand-pre {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.1;
+    color: var(--rci-ink-soft);
+    text-transform: none;
+    margin-bottom: 1px;
+  }
   .mast-brand-name {
     font-family: var(--font-condensed);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    font-size: 46px;
-    line-height: 1.0;
+    font-size: 22px;
+    line-height: 0.95;
     white-space: nowrap;
     color: var(--rci-ink);
   }
@@ -1355,7 +1365,7 @@
     font-size: 15px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 17px 28px;
+    padding: 10px 28px;
     background: none;
     color: var(--rci-ink);
     border: 0;
@@ -1381,7 +1391,7 @@
     text-transform: uppercase;
     color: var(--rci-ink);
     text-decoration: none;
-    padding: 17px 26px;
+    padding: 10px 26px;
     border-right: 1px solid var(--rule-soft);
     transition: color 90ms;
   }
@@ -1392,7 +1402,7 @@
     position: absolute;
     left: 26px;
     right: 26px;
-    bottom: 9px;
+    bottom: 5px;
     height: 3px;
     background: var(--rci-red);
   }
