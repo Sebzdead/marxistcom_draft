@@ -373,195 +373,129 @@ function Nav({ active, onSelect, onOpenMenu }) {
   );
 }
 
-// ── VideoHero (Background video fold at the top) ──────────────────────────
-function VideoHero() {
-  const onArrowClick = (e) => {
-    e.preventDefault();
-    const el = document.getElementById("join-intro");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+// ── Reports: featured line + dispatch list ──────────────────────────────────
+function Reports() {
+  const featured = {
+    country: "Britain",
+    title: "“With our burning fury, we will shake the world awake!”",
+    image: R("imgBritainRcp", "assets/sections-britain-rcp.jpg"),
+    href: "#"
   };
-
+  const rows = [
+    { country: "Canada", title: "Third RCP Congress — a party up to the task", href: "#" },
+    { country: "Colombia", title: "The founding congress of the Revolutionary Communists of Colombia", href: "#" },
+  ];
   return (
-    <section className="video-hero" aria-label="Are you a Communist?">
-      <iframe
-        src="https://www.youtube.com/embed/8yB2z14k88w?autoplay=1&mute=1&loop=1&playlist=8yB2z14k88w&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3"
-        frameBorder="0"
-        allow="autoplay; encrypted-media"
-        title="Background Video"
-      />
-      <div className="video-hero-scrim" />
-      <div className="video-hero-overlay">
-        <div className="video-hero-content">
-          <a href="#join-intro" className="video-hero-arrow-btn" onClick={onArrowClick} aria-label="Scroll down">
-            <svg viewBox="0 0 24 24" strokeLinecap="square">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <polyline points="19 12 12 19 5 12" />
-            </svg>
-          </a>
-          <h1 className="video-hero-text">
-            Are You A Communist?<br/>
-            <span>Then get organised.</span>
-          </h1>
+    <section className="reports">
+      <div className="rci-section-head"><h2>Reports</h2><a href="#">All reports &rarr;</a></div>
+      <a href={featured.href} className="reports-featured">
+        {featured.image && (
+          <div className="reports-featured-img-wrap">
+            <img src={featured.image} alt={featured.title} className="reports-featured-img" />
+          </div>
+        )}
+        <div className="reports-featured-overlay">
+          <span className="rci-kicker">{featured.country}</span>
+          <h3 className="reports-featured-title">{featured.title}</h3>
         </div>
+      </a>
+      <ol className="reports-list">
+        {rows.map((r, i) => (
+          <li key={i}>
+            <a href={r.href} className="reports-row">
+              <div className="reports-row-text">
+                <span className="rci-kicker no-tick">{r.country}</span>
+                <span className="reports-row-title">{r.title}</span>
+              </div>
+              <span className="reports-arrow">&rarr;</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+// ── Sections Directory Flat Table ───────────────────────────────────────────
+function SectionsDirectory() {
+  return (
+    <div className="sections-container" id="all-sections">
+      {REGIONS.map((region) => (
+        <div key={region.id} className="continent-group" id={region.id}>
+          <h2 className="continent-title">{region.name}</h2>
+          <table className="sections-table">
+            <tbody>
+              {region.sections.map((section) => {
+                if (section.langs) {
+                  return section.langs.map((l, idx) => (
+                    <tr key={section.country + "-" + l.lang}>
+                      <td className="country">
+                        {idx === 0 ? section.country : ""}
+                        <span className="lang-label">({l.lang})</span>
+                      </td>
+                      <td className="org">
+                        <a href={l.url} target="_blank" rel="noopener noreferrer">
+                          {l.org}
+                        </a>
+                      </td>
+                      <td className="links">
+                        <a href={l.url} target="_blank" rel="noopener noreferrer" title="Website" aria-label={`Website for ${l.org}`}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </a>
+                        <a href={`join.html?country=${encodeURIComponent(section.country)}`} title="Join this section" aria-label={`Join section in ${section.country}`}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                        </a>
+                      </td>
+                    </tr>
+                  ));
+                }
+                return (
+                  <tr key={section.country}>
+                    <td className="country">{section.country}</td>
+                    <td className="org">
+                      <a href={section.url} target="_blank" rel="noopener noreferrer">
+                        {section.org}
+                      </a>
+                    </td>
+                    <td className="links">
+                      <a href={section.url} target="_blank" rel="noopener noreferrer" title="Website" aria-label={`Website for ${section.org}`}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      </a>
+                      <a href={`join.html?country=${encodeURIComponent(section.country)}`} title="Join this section" aria-label={`Join section in ${section.country}`}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ── Continent Jump Bar (Minimal inline navigation) ──────────────────────────
+function ContinentJumpBar({ regions, active, onJump }) {
+  return (
+    <div className="continent-jump-bar" role="navigation" aria-label="Jump to continent">
+      <span className="continent-jump-label">Jump to:</span>
+      <div className="continent-jump-links">
+        {regions.map((r, i) => (
+          <React.Fragment key={r.id}>
+            {i > 0 && <span className="continent-jump-separator">/</span>}
+            <button
+              type="button"
+              className={"continent-jump-link" + (r.id === active ? " is-active" : "")}
+              onClick={() => onJump(r.id)}
+            >
+              {r.name}
+            </button>
+          </React.Fragment>
+        ))}
       </div>
-    </section>
-  );
-}
-
-// ── Intro / pull-quotes (Simplified) ────────────────────────────────────────
-function Intro() {
-  return (
-    <section className="intro" id="join-intro">
-      <p className="intro-p intro-p--lede">
-        Millions can see that the world is on fire and that revolutionary upheavals are being prepared on a world scale. In the midst of this crisis of the global capitalist system, the only force capable of transforming society is the organised and mobilised working class. <b>But in order for our class to fight and win, we need to build an international organisation to coordinate this struggle.</b>
-      </p>
-      <p className="intro-p">
-        We are building revolutionary communist groups around the world. Fill out the form below to join the Revolutionary Communist International, or visit our dedicated <a href="sections.html" style={{ color: "var(--rci-red)", fontWeight: "bold", textDecoration: "underline" }}>national sections directory</a> to find contact details and latest updates from your country.
-      </p>
-    </section>
-  );
-}
-
-// ── Join form (centerpiece) ─────────────────────────────────────────────────
-function JoinForm() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const countryParam = params.get("country");
-    if (countryParam) {
-      // Find matching case or default
-      const matched = COUNTRY_OPTIONS.find(c => c.toLowerCase() === countryParam.toLowerCase());
-      if (matched) {
-        setForm(f => ({ ...f, country: matched }));
-      }
-    }
-  }, []);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    requestAnimationFrame(() => {
-      const el = document.getElementById("join-form");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  };
-  const reset = () => {
-    setSubmitted(false);
-    setForm({ name: "", email: "", phone: "", country: "", message: "" });
-  };
-
-  if (submitted) {
-    return (
-      <section className="join-form-wrap join-form-wrap--success" id="join-form">
-        <div className="join-form-head">
-          <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 14, letterSpacing: "0.26em" }}>
-            ✓ Message received
-          </Eyebrow>
-          <h2 className="join-form-h2">Workers of the world, unite.</h2>
-        </div>
-        <div className="join-form-body" style={{ padding: "40px 40px 48px" }}>
-          <p style={{ fontFamily: "var(--font-serif)", fontSize: 19, lineHeight: 1.5, color: "var(--rci-ink)", maxWidth: "52ch", margin: "0 0 22px" }}>
-            Thank you, comrade <b>{form.name || "—"}</b>. We’ll be in touch at <b>{form.email}</b> within 48 hours to put you in contact with your nearest section.
-          </p>
-          <PrintButton variant="paper" size="md" onClick={reset}>Send another message</PrintButton>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="join-form-wrap" id="join-form">
-      <form onSubmit={onSubmit} noValidate>
-        <div className="join-form-head">
-          <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 14, letterSpacing: "0.26em" }}>
-            Sign up · We need you
-          </Eyebrow>
-          <h2 className="join-form-h2">
-            Join the Revolutionary<br/>Communist International
-          </h2>
-          <p className="join-form-dek">
-            Fill in the form below. A comrade from your nearest section will reach out within 48 hours.
-          </p>
-        </div>
-        <div className="join-form-body">
-          <div className="join-form-grid">
-            <div className="join-form-field full">
-              <label htmlFor="msg" className="join-form-label">Why do you want to join us?</label>
-              <textarea
-                id="msg"
-                className="join-form-input join-form-textarea"
-                rows={5}
-                required
-                value={form.message}
-                onChange={update("message")}
-                placeholder="Tell us about your politics, your situation, your reasons..."
-              />
-            </div>
-            <div className="join-form-field">
-              <label htmlFor="name" className="join-form-label">Full name</label>
-              <input
-                id="name"
-                className="join-form-input"
-                type="text"
-                required
-                value={form.name}
-                onChange={update("name")}
-                placeholder="First and last"
-                autoComplete="name"
-              />
-            </div>
-            <div className="join-form-field">
-              <label htmlFor="email" className="join-form-label">Email</label>
-              <input
-                id="email"
-                className="join-form-input"
-                type="email"
-                required
-                value={form.email}
-                onChange={update("email")}
-                placeholder="you@example.com"
-                autoComplete="email"
-              />
-            </div>
-            <div className="join-form-field">
-              <label htmlFor="phone" className="join-form-label">Phone <span className="join-form-optional">(optional)</span></label>
-              <input
-                id="phone"
-                className="join-form-input"
-                type="tel"
-                value={form.phone}
-                onChange={update("phone")}
-                placeholder="Include country code"
-                autoComplete="tel"
-              />
-            </div>
-            <div className="join-form-field">
-              <label htmlFor="country" className="join-form-label">Country</label>
-              <select
-                id="country"
-                className="join-form-input join-form-select"
-                required
-                value={form.country}
-                onChange={update("country")}
-              >
-                <option value="">Select your country…</option>
-                {COUNTRY_OPTIONS.map((c) => <option key={c} value={c}>{c}</option>)}
-                <option value="other">Other / not listed</option>
-              </select>
-            </div>
-          </div>
-          <div className="join-form-actions">
-            <div className="join-form-note">
-              By submitting you agree to be contacted by the RCI.
-            </div>
-            <PrintButton variant="red" size="lg" type="submit">Join us →</PrintButton>
-          </div>
-        </div>
-      </form>
-    </section>
+    </div>
   );
 }
 
@@ -591,7 +525,34 @@ function Footer() {
 
 // ── App ─────────────────────────────────────────────────────────────────────
 function App() {
+  const [active, setActive] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const onJump = (id) => {
+    setActive(id);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
+  // Scroll spy: highlight the continent whose region heading is in view.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-130px 0px -60% 0px", threshold: 0 }
+    );
+    REGIONS.forEach((r) => {
+      const el = document.getElementById(r.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="site">
@@ -600,9 +561,9 @@ function App() {
         <Nav onOpenMenu={() => setMenuOpen(true)} />
       </div>
       <main className="site-main">
-        <VideoHero />
-        <Intro />
-        <JoinForm />
+        <Reports />
+        <ContinentJumpBar regions={REGIONS} active={active} onJump={onJump} />
+        <SectionsDirectory />
       </main>
       <Footer />
     </div>

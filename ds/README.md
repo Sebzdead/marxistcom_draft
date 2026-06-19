@@ -159,33 +159,75 @@ Adjust the page grain by editing the `body::before` opacity in `rci-web.css`
 
 ---
 
-## The menu bar & mega-menu — how it works
+## The site header — sticky, full-bleed, copy onto every page
 
-The header is `position: sticky` and meant to be **copied verbatim onto every
-page**. It has two rows: a top bar (logo lockup · language · Join button) and the
-`.rci-nav` bar below it.
+The header is the single most important piece of shared chrome. It is
+`position: sticky` and **travels with the reader down the whole page**, and it
+must be **copied verbatim onto every page** so navigation never shifts. It is two
+rows wrapped in one sticky element:
 
-The **mega-menu** is pure CSS state — no framework. It shows when the class
-`menu-open` is on `<body>`:
-
-```html
-<button onclick="document.body.classList.toggle('menu-open')">
-  <span class="rci-ham"><i></i><i></i><i></i></span> Menu
-</button>
+```
+.site-header            ← sticky bar — spans the FULL viewport width
+  .masthead             ← row 1: logo lockup · ▾ Language · Join Us
+    .mast-inner         ← centered content (max-width 1320 + gutters)
+  .primary-nav          ← row 2: Menu trigger + nav tabs
+    .nav-inner          ← centered content (max-width 1320 + gutters)
 ```
 
-- `.rci-megamenu` is absolutely positioned under the header and fades/slides in.
-- `.rci-backdrop` is a fixed, **blurred** scrim behind it (`backdrop-filter: blur`)
-  that dims the page; clicking it closes the menu (`classList.remove('menu-open')`).
-- One line of JS closes it on `Escape` (see the bottom of `starter-page.html`).
+**Full-bleed background, centered content.** The bar's *background and rules* run
+edge-to-edge across the viewport, but its *content* stays in the centered content
+column. The bar breaks out of the page gutter:
 
-Inside, `.rci-mm-primary` is the left rail of headline destinations (icon + serif
-title + condensed sub-label); `.rci-mm-cols` is the right grid of link columns
-under condensed red headings, with a `.rci-mm-search` field on top.
+```css
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--rci-paper);
+}
+.mast-inner, .nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 28px; }
+```
 
-**Nav states:** `.rci-nav a.active` gets a thick red underline; hover flips any
-nav item to a solid red block with paper text — the same "stamp" interaction as
-the buttons.
+This break-out is required: desktop browsers ignore the page's `width=1280` meta,
+so the content column is capped and centered — without it the sticky bar would
+float as a card with empty gaps on wide screens.
+
+**Rule hierarchy — the two horizontal lines:**
+- a **thin hairline** (`1px var(--rci-hairline-2)`) under the masthead row, and
+- a **thick `4px` ink rule** under the nav row — the strong line that divides
+  chrome from content.
+
+**The masthead lockup:**
+- The logo sits **flush** on the paper — **no stamp shadow** (the stamp shadow is
+  reserved for buttons and cards).
+- The wordmark "Revolutionary Communist International" is **one line** of bold
+  condensed caps sized to fill the header width.
+- Right side: `▾ Language` (condensed, muted) + a red **Join Us** button — the one
+  place the stamp press lives in the header.
+
+**The nav row — flat editorial tabs (not boxed buttons):**
+- **Menu is the first item on the left**: a flat hamburger + "MENU" trigger that
+  opens the mega-menu.
+- Tabs (`.nav-link`) are **flat condensed caps** separated by thin vertical
+  hairline dividers.
+- The **active** tab carries a short **red underline**; hover turns a tab red.
+  (This replaces the old "hover flips to a solid red stamp block" nav behaviour —
+  the stamp press now lives only on buttons.)
+
+## The mega-menu (Menu + search drawer)
+
+Opening **Menu** drops a full-width drawer down from the header and **blurs and
+dims the rest of the page behind it**:
+
+- The overlay scrim uses `backdrop-filter: blur(7px)` over a light
+  `rgba(34,28,23,0.12)` tint, so everything below the drawer goes soft while the
+  menu is open. Clicking the scrim (or `Escape`) closes it.
+- The drawer is **compact**: a search field on top, a left rail of headline
+  destinations (**icon + serif title only — no sub-label descriptions**), and a
+  right grid of link columns under condensed red headings.
+- Type is sized for readability — rail titles ~19px, column links ~17–18px,
+  search ~21px — with tight row and column spacing.
 
 ---
 
@@ -202,7 +244,28 @@ the buttons.
 Every button is a hard-edged block with a **solid ink stamp shadow**
 (`4px 4px 0`). On `:active` the shadow collapses and the button translates into
 it — it physically presses like a stamp. No gradients, no rounding, no soft
-blur. This press interaction is the tactile signature shared with the nav.
+blur. This press interaction is the tactile signature of buttons and cards. (The
+nav no longer presses — its tabs are flat with a red active underline; see *The
+site header*.)
+
+---
+
+## The footer — three editorial cards
+
+The footer is **three editorial cards in a row** (`.foot-cards`, a
+`repeat(3, 1fr)` grid that collapses to a single column under 760px). It carries
+the site's standing documents / lead editorials (e.g. the Manifesto, the
+perspectives editorial). Each card is the **standard editorial card** and follows
+the house conventions exactly:
+
+- a `16/10` image inside a `2px` ink border with a solid stamp shadow (lifts on
+  hover);
+- a **red `.rci-kicker`** eyebrow using `·` separators (e.g. `Editorial · World`);
+- a **sentence-case serif** (Cormorant) title; and
+- a **condensed uppercase** `By {author}` byline in ash.
+
+There is no longer a link-list / language / colophon footer — keep it to the
+three cards so the close of every page reads as editorial, not site-map.
 
 ---
 
@@ -210,7 +273,9 @@ blur. This press interaction is the tactile signature shared with the nav.
 
 | Class | What it is |
 |---|---|
-| `.rci-header` `.rci-nav` `.rci-megamenu` `.rci-backdrop` | sticky header + mega-menu (copy to every page) |
+| `.site-header` (`.masthead` + `.primary-nav`) | full-bleed **sticky** header that travels on scroll — copy to every page |
+| `.nav-link` `.nav-menu-btn` | flat nav tab (red underline when active) + Menu trigger |
+| `.menu-drawer` + `.menu-drawer-overlay` | mega-menu drawer + blurred/dimmed scrim |
 | `.rci-wrap` | centered `1180px` content column |
 | `.rci-rule` | thick ink section divider |
 | `.rci-grid` `.cols-2/3/4` | responsive grid |
@@ -225,7 +290,7 @@ blur. This press interaction is the tactile signature shared with the nav.
 | `.rci-slab` / `.slab.red` | full-width dark / red textured band |
 | `.rci-scroller` | horizontal snap-scroll rail (the "Latest" row) |
 | `.rci-btn` + variants | buttons |
-| `.rci-footer` | structured footer + mono colophon |
+| `.foot-cards` / `.foot-card` | footer = three editorial cards (kicker · serif title · byline) |
 
 Open **`starter-page.html`** in a browser to see all of them assembled, and copy
 the markup straight out of it.
