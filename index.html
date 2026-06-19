@@ -19,8 +19,8 @@
     --rci-paper-deep: #f4e4d3;
     --rci-paper-card: #fffaf3;
     --rci-ink:        #221c17;
-    --rci-ink-soft:   #4a4039;
-    --rci-ash:        #8a7d70;
+    --rci-ink-soft:   #3a322c;
+    --rci-ash:        #5e5346;
     --rci-hairline:   #e4d0bb;
     --rci-hairline-2: #d3bca3;
     --rci-red:        #d4140f;
@@ -314,8 +314,9 @@
   .hero { padding: 28px 0 36px; }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.65fr 1fr;
-    gap: 36px;
+    grid-template-columns: minmax(0, 565px) 358px;
+    justify-content: space-between;
+    gap: 40px;
     align-items: start;
   }
   .hero-lead { display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: inherit; }
@@ -2140,6 +2141,138 @@
   @media (max-width: 760px) {
     .foot-main { grid-template-columns: 1fr; gap: 32px; justify-items: center; text-align: center; }
     .foot-right { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); padding-top: 8px; }
+  }
+
+  /* ─── WORLD SCHOOL OF COMMUNISM banner ────────────────────────
+     Recreates the schoolofcommunism.com landing hero as an inline
+     promo: vivid red field, line-art globe, RCI logo, countdown. */
+  .wsc-section { margin: 44px 0; }
+  .wsc {
+    --wsc-red:   #e8190f;
+    --wsc-cream: #f3e6d4;
+    position: relative;
+    overflow: hidden;
+    background: var(--wsc-red);
+    border: 3px solid var(--rci-ink);
+    box-shadow: 8px 8px 0 var(--rci-ink);
+    padding: 60px 24px 64px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  /* globe-red.png ships as red lines on black; invert + multiply flips it
+     to dark line-art that sits inside the red field. */
+  .wsc-globe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(880px, 118%);
+    transform: translate(-50%, -50%);
+    filter: invert(1);
+    mix-blend-mode: multiply;
+    opacity: 0.62;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .wsc-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    max-width: 660px;
+    color: var(--wsc-cream);
+  }
+  .wsc-logo {
+    width: 132px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.18));
+  }
+  .wsc-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 0.94;
+    letter-spacing: 0.005em;
+    margin: 2px 0;
+    color: var(--wsc-cream);
+    text-shadow: 3px 3px 0 rgba(122, 6, 8, 0.5);
+  }
+  .wsc-pill {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 14px;
+    color: var(--wsc-cream);
+    border: 2px solid var(--wsc-cream);
+    border-radius: 999px;
+    padding: 9px 22px;
+  }
+  .wsc-countdown {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0 2px;
+  }
+  .wsc-cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 66px;
+  }
+  .wsc-cd-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 0.86;
+    color: var(--wsc-cream);
+    font-variant-numeric: tabular-nums;
+  }
+  .wsc-cd-colon {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 0.86;
+    color: var(--wsc-cream);
+  }
+  .wsc-cd-label {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    color: var(--wsc-cream);
+    opacity: 0.85;
+  }
+  .wsc-actions { display: flex; gap: 14px; margin-top: 12px; }
+  .wsc-btn {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 14px;
+    color: var(--wsc-red);
+    background: var(--wsc-cream);
+    border: 2px solid var(--rci-ink);
+    border-radius: 4px;
+    padding: 11px 28px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
+  }
+  .wsc-btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3); }
+  .wsc-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25); }
+  @media (max-width: 560px) {
+    .wsc { padding: 44px 16px 48px; }
+    .wsc-cd-unit { min-width: 46px; }
+    .wsc-cd-colon { font-size: clamp(32px, 9vw, 44px); }
   }
 </style>
 </head>

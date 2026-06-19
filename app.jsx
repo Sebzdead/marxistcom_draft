@@ -620,14 +620,54 @@ function TopicGrid() {
   );
 }
 
-// ── World School promo banner ───────────────────────────────────────────────
+// ── World School of Communism banner ────────────────────────────────────────
 function WorldSchoolBanner() {
+  const target = useMemo(() => new Date("2026-08-02T00:00:00").getTime(), []);
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const diff = Math.max(0, target - now);
+  const totalSec = Math.floor(diff / 1000);
+  const pad = (n) => String(n).padStart(2, "0");
+  const units = [
+    { v: pad(Math.floor(totalSec / 86400)), l: "Days" },
+    { v: pad(Math.floor((totalSec % 86400) / 3600)), l: "Hrs" },
+    { v: pad(Math.floor((totalSec % 3600) / 60)), l: "Mins" },
+    { v: pad(totalSec % 60), l: "Secs" },
+  ];
+
   return (
-    <section style={{ margin: "32px 0" }}>
-      <a className="rci-banner" href="join.html">
-        <p className="t">RCI World School 2026 — Build the revolutionary party</p>
-        <p className="s">One week of theory, debate &amp; struggle · Register now</p>
-      </a>
+    <section className="wsc-section">
+      <div className="wsc">
+        <img className="wsc-globe" src="assets/globe-red.png" alt="" aria-hidden="true" />
+        <div className="wsc-inner">
+          <img
+            className="wsc-logo"
+            src="assets/whitelogo-scaled-1.webp"
+            alt="Revolutionary Communist International"
+          />
+          <h2 className="wsc-title">World School of<br />Communism 2026</h2>
+          <div className="wsc-pill">Online &nbsp;•&nbsp; 2 — 7 August</div>
+          <div className="wsc-countdown" role="timer" aria-label="Countdown to the World School of Communism 2026">
+            {units.map((u, i) => (
+              <React.Fragment key={u.l}>
+                {i > 0 && <span className="wsc-cd-colon">:</span>}
+                <div className="wsc-cd-unit">
+                  <span className="wsc-cd-num">{u.v}</span>
+                  <span className="wsc-cd-label">{u.l}</span>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="wsc-actions">
+            <a className="wsc-btn" href="media.html">Talks</a>
+            <a className="wsc-btn" href="join.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
