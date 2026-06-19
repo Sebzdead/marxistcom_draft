@@ -345,10 +345,10 @@ function Hero({ tweaks }) {
       <div className="hero-grid">
         {/* BIG STORY */}
         <a href="article.html" className="hero-lead">
-          <span className="rci-kicker">Analysis · China</span>
           <div className="hero-lead-img">
             <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
           </div>
+          <span className="rci-kicker">Analysis · China</span>
           <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi–Trump summit</h1>
           <p className="hero-dek">
             Trump went to Beijing believing he negotiated from strength; in reality, he
@@ -399,7 +399,7 @@ function LatestScroller() {
     <section className="latest">
       <div className="rci-section-head">
         <h2>Latest</h2>
-        <a href="index.html">10 most recent &rarr;</a>
+        <a href="index.html">see all latest &rarr;</a>
       </div>
       <div className="latest-scroller">
         {items.map((a, i) => (
@@ -418,9 +418,11 @@ function LatestScroller() {
 
 function Trump2() {
   const links = [
-    { title: "Tariffs and the unravelling of the world order", byline: "John Peterson", href: "#" },
-    { title: "ICE raids and the radicalisation of a generation", byline: "Antonio Balmer", href: "#" },
-    { title: "Why the Democrats cannot stop Trump", byline: "Tom Trottier", href: "#" },
+    { title: "Does Israel control the United States?", byline: "Ben Curry", href: "#" },
+    { title: "The right-populist ‘international’ splinters as Trump presides over chaos", byline: "Jack Tye Wilson", href: "#" },
+    { title: "The FIFA 2026 World Cup: sportwashing the crimes of western imperialism", byline: "Josh Cole-Hossain", href: "#" },
+    { title: "China sets the agenda at the Xi-Trump summit", byline: "Daniel Morley", href: "#" },
+    { title: "“A lot of people feel betrayed”: Iran War drives millions out of the MAGA camp", byline: "The Communist", href: "#" },
   ];
   return (
     <section className="trump2">
@@ -431,7 +433,7 @@ function Trump2() {
       <div className="trump2-grid">
         <a href="article.html" className="trump2-feature">
           <div className="trump2-img"><img src={IMG.trumpHead} alt="Donald Trump" /></div>
-          <h3 className="trump2-title">Orange Man Bad</h3>
+          <h3 className="trump2-title">Trump’s defeat in Iran and its worldwide consequences</h3>
         </a>
         <div className="trump2-links">
           {links.map((l, i) => (
@@ -486,16 +488,21 @@ function AgainstTheStream() {
         <div className="ats-side">
           <img src={R("imgATS", "assets/ATS.webp")} alt="Against the Stream" className="ats-logo" />
           <div className="ats-eyebrow">Latest episode</div>
-          <h2 className="ats-title">Capitalism is ungovernable</h2>
+          <h2 className="ats-title">Iran Deal: the Biggest Defeat in US History</h2>
           <div className="ats-platforms">
             {platforms.map((p) => (
               <a key={p} href="media.html" className="ats-platform">{p}</a>
             ))}
           </div>
         </div>
-        <a href="media.html" className="ats-video" aria-label="Watch the latest episode">
-          <span className="ats-play">&#9654;</span>
-        </a>
+        <iframe
+          className="ats-video"
+          src="https://www.youtube.com/embed/PQiV0xqrbY8?start=12"
+          title="Against the Stream - Iran Deal: the Biggest Defeat in US History"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ width: "100%" }}
+        />
       </div>
     </section>
   );
@@ -503,7 +510,7 @@ function AgainstTheStream() {
 
 function FeaturePair() {
   const feats = [
-    { kicker: "Theory", title: "Why Marxism is more relevant than ever", image: IMG.marx, href: "theory.html" },
+    { kicker: "Theory", title: "From Adam Smith to Karl Marx: The Wealth of Nations and Das Kapital", image: IMG.marx, href: "theory.html" },
     { kicker: "History", title: "Figaro and the French Revolution", image: R("imgLatestFigaro", "assets/Figaro.jpg"), href: "article.html" },
   ];
   return (
@@ -659,18 +666,29 @@ function MarxistUniversity() {
 
 // ── Reports: featured line + dispatch list ──────────────────────────────────
 function Reports() {
-  const featured = { country: "Belgium", title: "Belgium grows to 10 million comrades!", href: "#" };
+  const featured = {
+    country: "Britain",
+    title: "“With our burning fury, we will shake the world awake!”",
+    image: R("imgBritainRcp", "assets/sections-britain-rcp.jpg"),
+    href: "#"
+  };
   const rows = [
     { country: "Canada", title: "Third RCP Congress — a party up to the task", href: "#" },
     { country: "Colombia", title: "The founding congress of the Revolutionary Communists of Colombia", href: "#" },
-    { country: "Britain", title: "“With our burning fury, we will shake the world awake!”", href: "#" },
   ];
   return (
     <section className="reports">
       <div className="rci-section-head"><h2>Reports</h2><a href="#">All reports &rarr;</a></div>
       <a href={featured.href} className="reports-featured">
-        <span className="rci-kicker">{featured.country}</span>
-        <h3 className="reports-featured-title">{featured.title}</h3>
+        {featured.image && (
+          <div className="reports-featured-img-wrap">
+            <img src={featured.image} alt={featured.title} className="reports-featured-img" />
+          </div>
+        )}
+        <div className="reports-featured-overlay">
+          <span className="rci-kicker">{featured.country}</span>
+          <h3 className="reports-featured-title">{featured.title}</h3>
+        </div>
       </a>
       <ol className="reports-list">
         {rows.map((r, i) => (
