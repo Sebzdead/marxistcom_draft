@@ -44,22 +44,20 @@ window.IDOM_PAGE = {
     theme: "Latin America",
     subtitle: "An Unfinished Revolution",
     cover: "assets/IDOM_53_cover.jpg",
-    blurb: "From the wars of independence to the Bolivarian present, Latin America has been a continent of permanent upheaval — and of revolutions left half-finished. This issue traces the unbroken thread from Bolívar to Zapata, from Cuba to Chile, and asks what it will take to complete the task.",
+    blurb: "From the wars of independence to the Bolivarian present, Latin America has been a continent of permanent upheaval — and of revolutions left half-finished. This issue asks what it will take to complete the task.",
     price: "£5 · €6 · $7",
     contents: [
-      { p: "02", k: "Editorial", t: "Latin America: an unfinished revolution", a: "Alan Woods" },
-      { p: "08", k: "History", t: "Bolívar and the bourgeois revolution that never was", a: "Jorge Martín" },
-      { p: "18", k: "Mexico", t: "Zapata, Villa and the betrayed peasant revolution", a: "Josh Holroyd" },
-      { p: "28", k: "Cuba", t: "The Cuban Revolution: conquests and contradictions", a: "John Peterson" },
-      { p: "38", k: "Chile", t: "1973: the tragedy of Popular Unity", a: "Rob Sewell" },
-      { p: "48", k: "Theory", t: "Permanent revolution and the colonial world", a: "Hamid Alizadeh" },
-      { p: "58", k: "Today", t: "Bolivarianism and the impasse of reformism", a: "Jorge Martín" },
+      { p: "02", k: "Editorial", t: "Latin America – an unfinished revolution", a: "" },
+      { p: "08", k: "Venezuela", t: "A balance sheet of the Venezuelan Revolution", a: "Jorge Martín" },
+      { p: "18", k: "Art", t: "Mexican Muralism: Art born of revolution", a: "Carlos Márquez" },
+      { p: "28", k: "History", t: "Excerpts on Latin America", a: "Leon Trotsky" },
+      { p: "38", k: "Economics", t: "Why did the Wall Street Crash happen?", a: "James Kilby" },
     ],
   },
 
   // Archive — newest first
   archive: [
-    { no: "53", title: "Latin America: An Unfinished Revolution", season: "Spring 2026", img: "assets/IDOM_53_cover.jpg" },
+    { no: "53", title: "Latin America – An Unfinished Revolution", season: "Spring 2026", img: "assets/IDOM_53_cover.jpg" },
     { no: "52", title: "Sudan: From Revolution to Barbarism", season: "Winter 2025", img: "assets/IDOM_52_cover.jpg" },
     { no: "51", title: "The Permanent Revolution", season: "Autumn 2025", img: "assets/IDOM_51_cover.jpg" },
     { no: "50", title: "Reform or Revolution", season: "Summer 2025", img: "assets/IDOM_50_cover.jpg" },
@@ -487,7 +485,6 @@ function Hero() {
 
         <div className="hero-stage">
           <div className="hero-title">
-            <div className="hero-eyebrow">Revolutionary Communist International</div>
             <div className="hero-pre">{D.pre}</div>
             <h1 className="hero-mark">{D.mark}</h1>
             <div className="hero-rule"></div>

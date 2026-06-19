@@ -438,9 +438,11 @@ const LATEST_ISSUE = {
   cover: "assets/IDOM_53_cover.jpg",
   blurb: "From the wars of independence to the Bolivarian present, Latin America has been a continent of permanent upheaval — and of revolutions left half-finished.",
   contents: [
-    { k: "Editorial", t: "Latin America: an unfinished revolution", a: "Alan Woods" },
-    { k: "History", t: "Bolívar and the bourgeois revolution that never was", a: "Jorge Martín" },
-    { k: "Theory", t: "Permanent revolution and the colonial world", a: "Hamid Alizadeh" },
+    { k: "Editorial", t: "Latin America – an unfinished revolution", a: "" },
+    { k: "Venezuela", t: "A balance sheet of the Venezuelan Revolution", a: "Jorge Martín" },
+    { k: "Art", t: "Mexican Muralism: Art born of revolution", a: "Carlos Márquez" },
+    { k: "History", t: "Excerpts on Latin America", a: "Leon Trotsky" },
+    { k: "Economics", t: "Why did the Wall Street Crash happen?", a: "James Kilby" },
   ],
   href: "magazine.html",
 };
