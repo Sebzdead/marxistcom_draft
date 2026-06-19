@@ -34,7 +34,7 @@ copyRecursive(path.join(__dirname, 'assets'), path.join(distDir, 'assets'));
 copyRecursive(path.join(__dirname, 'uploads'), path.join(distDir, 'uploads'));
 
 // 3. Compile JSX files to JS in dist
-const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'history.jsx', 'classics.jsx', 'reader.jsx'];
+const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'theory-curriculum.jsx', 'history.jsx', 'classics.jsx', 'reader.jsx'];
 jsxFiles.forEach(file => {
   const srcPath = path.join(__dirname, file);
   const destName = file.replace(/\.jsx$/, '.js');
@@ -53,7 +53,7 @@ jsxFiles.forEach(file => {
 });
 
 // 4. Update HTML pages for production
-const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'history.html', 'classics.html', 'reader.html'];
+const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'theory-curriculum.html', 'history.html', 'classics.html', 'reader.html'];
 htmlFiles.forEach(file => {
   console.log(`Processing ${file} for production...`);
   const htmlPath = path.join(__dirname, file);
@@ -73,6 +73,7 @@ htmlFiles.forEach(file => {
   html = html.replace(/<script type="text\/babel" src="media\.jsx"><\/script>/g, '<script src="media.js"></script>');
   html = html.replace(/<script type="text\/babel" src="magazine\.jsx"><\/script>/g, '<script src="magazine.js"></script>');
   html = html.replace(/<script type="text\/babel" src="theory\.jsx"><\/script>/g, '<script src="theory.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="theory-curriculum\.jsx"><\/script>/g, '<script src="theory-curriculum.js"></script>');
   html = html.replace(/<script type="text\/babel" src="history\.jsx"><\/script>/g, '<script src="history.js"></script>');
   html = html.replace(/<script type="text\/babel" src="classics\.jsx"><\/script>/g, '<script src="classics.js"></script>');
   html = html.replace(/<script type="text\/babel" src="reader\.jsx"><\/script>/g, '<script src="reader.js"></script>');
