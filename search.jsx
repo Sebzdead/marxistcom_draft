@@ -402,7 +402,11 @@ function pageWindow(total, current) {
 
 // ── Search page ─────────────────────────────────────────────────────────────
 function SearchPage() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => {
+    if (typeof window === "undefined") return "";
+    const p = new URLSearchParams(window.location.search).get("q");
+    return p ? p : "";
+  });
   const [sections, setSections] = useState(() => new Set());
   const [langs, setLangs] = useState(() => new Set());
   const [category, setCategory] = useState("");

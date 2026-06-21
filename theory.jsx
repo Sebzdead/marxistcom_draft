@@ -450,6 +450,7 @@ const LATEST_ISSUE = {
 // Category links — blended Theory & History. Theory → marxist.com topic pages;
 // History → the timeline that still lives at history.html#era-anchor.
 const CATEGORY_LINKS = [
+  { label: "Marxist Economics", tag: "Theory", url: "topic.html" },
   { label: "Marxism and the State", tag: "Theory", url: "https://marxist.com/theory-the-state.htm" },
   { label: "The French Revolution", tag: "History", url: "history.html#era-bourgeois-revolutions" },
   { label: "Imperialism and War", tag: "Theory", url: "https://marxist.com/theory-imperialism-war.htm" },
@@ -925,7 +926,7 @@ function MarxistUniversity() {
     { title: "Marxism 101", blurb: "Start here: the foundations of revolutionary theory." },
     { title: "Dialectical Materialism", blurb: "The Marxist method for understanding change." },
     { title: "Fighting Oppression", blurb: "Class, race, gender and the road to liberation." },
-    { title: "Marxist Economics", blurb: "Value, exploitation and capitalist crisis." },
+    { title: "Marxist Economics", blurb: "Value, exploitation and capitalist crisis.", href: "topic.html" },
     { title: "Marxism vs Anarchism", blurb: "State, revolution and the question of power." },
     { title: "The Fourth International", blurb: "Trotsky and the fight against Stalinism." },
     { title: "Deformed Workers' States", blurb: "The USSR, China and bureaucratic degeneration." },
@@ -942,7 +943,7 @@ function MarxistUniversity() {
       </a>
       <div className="muni-grid">
         {courses.map((c, i) => (
-          <a key={i} href="#" className="muni-card">
+          <a key={i} href={c.href || "#"} className="muni-card">
             <h3 className="muni-card-title">{c.title}</h3>
             <p className="muni-card-blurb">{c.blurb}</p>
           </a>
