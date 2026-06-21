@@ -17,6 +17,7 @@ const NAV_TABS = [
   { label: "Home", href: "index.html" },
   { label: "Analysis", href: "index.html" },
   { label: "Theory & History", href: "theory.html" },
+  { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookshop", href: "https://wellredbooks.co.uk/" },
 ];
@@ -443,7 +444,15 @@ function Masthead({ menuOpen, setMenuOpen }) {
                 </button>
               </div>
 
-              <form className="menu-drawer-search" role="search" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="menu-drawer-search"
+                role="search"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const q = searchValue.trim();
+                  window.location.href = "search.html" + (q ? "?q=" + encodeURIComponent(q) : "");
+                }}
+              >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>
                 <input
                   ref={searchRef}

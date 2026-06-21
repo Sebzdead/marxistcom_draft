@@ -104,6 +104,7 @@ const NAV_TABS = [
   { label: "Home", href: "index.html" },
   { label: "Analysis", href: "index.html" },
   { label: "Theory & History", href: "theory.html" },
+  { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
   { label: "Bookshop", href: "https://wellredbooks.co.uk/" },
 ];
