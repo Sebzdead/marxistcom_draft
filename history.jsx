@@ -9,14 +9,12 @@ const R = (id, fallback) => (typeof window !== "undefined" && window.__resources
 
 // ── Navigation tabs (History is active here) ─────────────────────────────────
 const NAV_TABS = [
-  { label: "Join the RCI", href: "join.html" },
+  { label: "Home", href: "index.html" },
   { label: "Analysis", href: "index.html" },
-  { label: "Theory", href: "theory.html" },
-  { label: "History", href: "history.html" },
-  { label: "Classics", href: "classics.html" },
+  { label: "Theory & History", href: "theory.html" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
-  { label: "Bookstore", href: "https://wellredbooks.co.uk/" },
+  { label: "Bookshop", href: "https://wellredbooks.co.uk/" },
 ];
 
 // ── The Timeline: eras of class society ──────────────────────────────────────

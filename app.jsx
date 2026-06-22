@@ -266,7 +266,7 @@ function Masthead({ menuOpen, setMenuOpen }) {
                       <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Karl Marx &amp; Engels</a>
                       <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Vladimir Lenin</a>
                       <a href="theory.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>Leon Trotsky</a>
-                      <a href="classics.html" className="drawer-category-link" onClick={() => setMenuOpen(false)}>The Classics</a>
+                      <a href="book.html?book=state-and-revolution" className="drawer-category-link" onClick={() => setMenuOpen(false)}>The Classics</a>
                     </div>
                   </div>
                   <div className="drawer-category">
@@ -695,7 +695,7 @@ function MarxistUniversity() {
   return (
     <section className="muni">
       <div className="rci-section-head"><h2>Marxist University</h2><a href="#">All courses &rarr;</a></div>
-      <a href="classics.html" className="muni-quote">
+      <a href="book.html?book=state-and-revolution" className="muni-quote">
         <p className="muni-quote-text">
           &ldquo;Without revolutionary theory there can be no revolutionary movement.&rdquo;
         </p>

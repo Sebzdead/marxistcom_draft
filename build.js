@@ -4,6 +4,10 @@ const babel = require('@babel/core');
 
 const distDir = path.join(__dirname, 'dist');
 
+// 0. Regenerate the embedded book data from references/ before anything else.
+console.log('Generating book data...');
+require('./gen-books.js');
+
 // 1. Clean and recreate dist directory
 if (fs.existsSync(distDir)) {
   console.log('Cleaning existing dist directory...');
@@ -33,8 +37,11 @@ copyRecursive(path.join(__dirname, 'ds'), path.join(distDir, 'ds'));
 copyRecursive(path.join(__dirname, 'assets'), path.join(distDir, 'assets'));
 copyRecursive(path.join(__dirname, 'uploads'), path.join(distDir, 'uploads'));
 
+// Copy the generated, plain-JS book data (not compiled by Babel).
+fs.copyFileSync(path.join(__dirname, 'books-data.js'), path.join(distDir, 'books-data.js'));
+
 // 3. Compile JSX files to JS in dist
-const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'theory-curriculum.jsx', 'history.jsx', 'classics.jsx', 'reader.jsx', 'search.jsx', 'topic.jsx'];
+const jsxFiles = ['tweaks-panel.jsx', 'components.jsx', 'app.jsx', 'join.jsx', 'sections.jsx', 'article.jsx', 'media.jsx', 'magazine.jsx', 'theory.jsx', 'theory-curriculum.jsx', 'history.jsx', 'search.jsx', 'topic.jsx', 'book-chrome.jsx', 'book.jsx', 'chapter.jsx'];
 jsxFiles.forEach(file => {
   const srcPath = path.join(__dirname, file);
   const destName = file.replace(/\.jsx$/, '.js');
@@ -53,7 +60,7 @@ jsxFiles.forEach(file => {
 });
 
 // 4. Update HTML pages for production
-const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'theory-curriculum.html', 'history.html', 'classics.html', 'reader.html', 'search.html', 'topic.html'];
+const htmlFiles = ['index.html', 'join.html', 'sections.html', 'article.html', 'media.html', 'magazine.html', 'theory.html', 'theory-curriculum.html', 'history.html', 'search.html', 'topic.html', 'book.html', 'chapter.html'];
 htmlFiles.forEach(file => {
   console.log(`Processing ${file} for production...`);
   const htmlPath = path.join(__dirname, file);
@@ -75,10 +82,11 @@ htmlFiles.forEach(file => {
   html = html.replace(/<script type="text\/babel" src="theory\.jsx"><\/script>/g, '<script src="theory.js"></script>');
   html = html.replace(/<script type="text\/babel" src="theory-curriculum\.jsx"><\/script>/g, '<script src="theory-curriculum.js"></script>');
   html = html.replace(/<script type="text\/babel" src="history\.jsx"><\/script>/g, '<script src="history.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="classics\.jsx"><\/script>/g, '<script src="classics.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="reader\.jsx"><\/script>/g, '<script src="reader.js"></script>');
   html = html.replace(/<script type="text\/babel" src="search\.jsx"><\/script>/g, '<script src="search.js"></script>');
   html = html.replace(/<script type="text\/babel" src="topic\.jsx"><\/script>/g, '<script src="topic.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="book-chrome\.jsx"><\/script>/g, '<script src="book-chrome.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="book\.jsx"><\/script>/g, '<script src="book.js"></script>');
+  html = html.replace(/<script type="text\/babel" src="chapter\.jsx"><\/script>/g, '<script src="chapter.js"></script>');
 
   // Remove Babel standalone script tag
   html = html.replace(/<script src="https:\/\/unpkg\.com\/@babel\/standalone[^>]*><\/script>\s*/g, '');
