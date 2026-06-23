@@ -93,7 +93,7 @@ const PILLARS = [
     deeper: [
       { title: "The German Ideology", author: "Karl Marx & Friedrich Engels", note: "The first full statement of the materialist conception of history.", url: "https://www.marxists.org/archive/marx/works/1845/german-ideology/index.htm" },
       { title: "The Eighteenth Brumaire of Louis Bonaparte", author: "Karl Marx", note: "Class struggle as living history: how Bonaparte rose on the ruins of 1848.", url: "https://www.marxists.org/archive/marx/works/1852/18th-brumaire/index.htm" },
-      { title: "The State and Revolution", author: "V.I. Lenin", note: "What the state is, whose interests it serves, and why it must be replaced.", url: "https://www.marxists.org/archive/lenin/works/1917/staterev/index.htm" },
+      { title: "The State and Revolution", author: "V.I. Lenin", note: "What the state is, whose interests it serves, and why it must be replaced.", url: "book.html?book=state-and-revolution" },
       { title: "What Is Historical Materialism?", author: "Alan Woods", note: "A modern introduction to the Marxist view of history.", url: "https://marxist.com/what-is-historical-materialism.htm" }
     ],
     further: [

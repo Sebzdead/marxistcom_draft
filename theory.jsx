@@ -460,6 +460,7 @@ const LATEST_ISSUE = {
 // History → the timeline that still lives at history.html#era-anchor.
 const CATEGORY_LINKS = [
   { label: "Marxist Economics", tag: "Theory", url: "topic.html" },
+  { label: "The State and Revolution", tag: "Theory", url: "book.html?book=state-and-revolution" },
   { label: "Marxism and the State", tag: "Theory", url: "https://marxist.com/theory-the-state.htm" },
   { label: "The French Revolution", tag: "History", url: "history.html#era-bourgeois-revolutions" },
   { label: "Imperialism and War", tag: "Theory", url: "https://marxist.com/theory-imperialism-war.htm" },
