@@ -6,9 +6,9 @@
    ============================================================================ */
 
 :root {
-  --rci-paper:      #fff1e5;
-  --rci-paper-deep: #f4e4d3;
-  --rci-paper-card: #fffaf3;
+  --rci-paper:      #ffffff;
+  --rci-paper-deep: #f5f5f5;
+  --rci-paper-card: #ffffff;
   --rci-ink:        #221c17;
   --rci-ink-soft:   #3a322c;
   --rci-ash:        #5e5346;
@@ -23,7 +23,7 @@
 
   /* Bridge: legacy token names used by the inline CSS + components.jsx,
      remapped onto warm surfaces so nothing reads cool/grey. */
-  --rci-offwhite:   #fffaf3;            /* was #f6efef — now warm paper-card */
+  --rci-offwhite:   #ffffff;            /* was #f6efef — now warm paper-card */
   --rci-fog:        var(--rci-hairline-2);
   --page-bg:        var(--rci-paper);
   --page-bg-dark:   var(--rci-paper);   /* dark mode removed; keep var defined */
@@ -45,7 +45,7 @@
   --font-condensed:     "Trade Gothic Next LT Pro Condensed", "Arial Narrow", sans-serif;
 
   /* Reading column tokens (overridden by reading themes below) */
-  --prose-bg: #fffaf3;
+  --prose-bg: #ffffff;
   --prose-fg: var(--rci-ink);
   --prose-muted: var(--rci-ash);
   --prose-accent: var(--rci-red);
@@ -541,11 +541,11 @@ body[data-mode="dark"] .buy-btn { box-shadow: 3px 3px 0 var(--rci-offwhite); }
 .reader-tool-group.swatches { box-shadow: 2px 2px 0 var(--rule); }
 .reader-swatch { width: 34px; height: 32px; border: none; border-right: 1px solid var(--rule); cursor: pointer; position: relative; }
 .reader-swatch:last-child { border-right: none; }
-.reader-swatch.paper { background: #f6efef; }
+.reader-swatch.paper { background: #ffffff; }
 .reader-swatch.sepia { background: #efe2c4; }
 .reader-swatch.dark { background: #221d18; }
 .reader-swatch.is-active::after { content: "✓"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--rci-red); }
-.reader-swatch.dark.is-active::after { color: #f6efef; }
+.reader-swatch.dark.is-active::after { color: #ffffff; }
 
 /* Chapter prev/contents/next bar */
 .chap-nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; padding: 18px 0; border-bottom: 1px solid var(--rule-soft); }

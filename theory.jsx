@@ -85,7 +85,7 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
       }} />
       <div style={{
         fontFamily: "var(--font-display)",
-        color: "#f6efef",
+        color: "#ffffff",
         fontSize: 15,
         lineHeight: 1.0,
         textTransform: "uppercase",
@@ -95,7 +95,7 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
         position: "relative",
         zIndex: 2,
       }}>{label}</div>
-      <div style={{ position: "absolute", inset: 8, border: "1px solid rgba(246,239,239,0.22)", pointerEvents: "none", zIndex: 1 }} />
+      <div style={{ position: "absolute", inset: 8, border: "1px solid rgba(255,255,255,0.22)", pointerEvents: "none", zIndex: 1 }} />
     </div>
   );
 }

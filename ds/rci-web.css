@@ -20,9 +20,9 @@
    ===================================================================== */
 :root {
   /* ---- Warm paper surfaces ---- */
-  --rci-paper:      #fff1e5;  /* peach-cream newsprint — the page */
-  --rci-paper-deep: #f4e4d3;  /* sunk warm panel (footer, wells) */
-  --rci-paper-card: #fffaf3;  /* lifted warm white (cards, menu) */
+  --rci-paper:      #ffffff;  /* peach-cream newsprint — the page */
+  --rci-paper-deep: #f5f5f5;  /* sunk warm panel (footer, wells) */
+  --rci-paper-card: #ffffff;  /* lifted warm white (cards, menu) */
   --rci-img:        #f0e0cd;  /* spare image-placeholder fill */
 
   /* ---- Warm ink ---- */
