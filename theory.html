@@ -2474,6 +2474,188 @@
     .th-wellred-book { grid-template-columns: 1fr; }
     .th-wellred-cover { max-width: 150px; }
   }
+
+  /* ════════════════════════════════════════════════════════════════
+     BROADSHEET HUB — Theory & History page sections.
+     Dense, index-like layout on the site's warm-paper token set.
+     ════════════════════════════════════════════════════════════════ */
+  .hub-section { margin: 0; }
+
+  .hub-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 26px 0 10px; border-bottom: 4px solid var(--rci-ink);
+  }
+  .hub-head h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(26px, 3vw, 38px); text-transform: uppercase;
+    line-height: 0.9; margin: 0; letter-spacing: 0.01em;
+  }
+
+  /* lead carousel */
+  .hub-carousel { border-bottom: 1px solid var(--rci-hairline); }
+  .hub-slides { overflow: hidden; }
+  .hub-track { display: flex; transition: transform .6s cubic-bezier(.22,.8,.24,1); }
+  @media (prefers-reduced-motion: reduce) { .hub-track { transition: none; } }
+  .hub-slide { flex: 0 0 100%; padding: 22px 0 20px; }
+
+  .hub-spread { display: grid; grid-template-columns: 7fr 5fr; gap: 40px; align-items: start; }
+  .hub-art { display: block; }
+  .hub-art img {
+    display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover;
+    border: 1.5px solid var(--rci-ink);
+    filter: contrast(1.05) saturate(0.95);
+  }
+  .hub-title {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(26px, 2.9vw, 40px); line-height: 1.04;
+    letter-spacing: -0.01em; margin: 0 0 14px; text-transform: none;
+  }
+  .hub-title a { color: var(--rci-ink); text-decoration: none; }
+  .hub-title a:hover { color: var(--rci-red); }
+
+  .hub-ledger { border-top: 1.5px solid var(--rci-ink); }
+  .hub-ledger a {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 10px 2px; border-bottom: 1px solid var(--rci-hairline);
+    color: var(--rci-ink); text-decoration: none;
+  }
+  .hub-ledger a:hover { background: var(--rci-paper-deep); }
+  .hub-ledger-tag {
+    flex: 0 0 68px; font-family: var(--font-condensed); font-weight: 700;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--rci-red);
+  }
+  .hub-ledger-name { font-family: var(--font-body); font-size: 15.5px; }
+  .hub-ledger-len {
+    margin-left: auto; font-family: var(--font-condensed); font-size: 11px;
+    letter-spacing: .08em; color: var(--rci-ash); text-transform: uppercase;
+  }
+
+  .hub-ctl { display: flex; align-items: center; gap: 16px; padding: 12px 0 16px; }
+  .hub-dots { display: flex; gap: 8px; }
+  .hub-dot { width: 26px; height: 3px; background: var(--rci-hairline); border: 0; cursor: pointer; padding: 0; }
+  .hub-dot.is-on { background: var(--rci-red); }
+  .hub-arr {
+    background: none; border: 1.5px solid var(--rci-ink); color: var(--rci-ink);
+    width: 32px; height: 32px; font-size: 15px; cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .hub-arr:hover { background: var(--rci-ink); color: var(--rci-paper); }
+  .hub-ctl-state {
+    margin-left: auto; font-family: var(--font-condensed); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--rci-ash);
+  }
+
+  /* secondary cards */
+  .hub-secondaries {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--rci-hairline);
+  }
+  .hub-sec-card {
+    padding: 18px 18px 20px; border-right: 1px solid var(--rci-hairline);
+    color: var(--rci-ink); text-decoration: none;
+  }
+  .hub-sec-card:last-child { border-right: 0; }
+  .hub-sec-card:first-child { padding-left: 0; }
+  .hub-sec-card:hover h4 { color: var(--rci-red); }
+  .hub-sec-card h4 {
+    font-family: var(--font-serif); font-weight: 700; font-size: 20px;
+    line-height: 1.12; margin: 0 0 8px; text-transform: none; letter-spacing: 0;
+  }
+  .hub-sec-extra {
+    font-family: var(--font-condensed); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--rci-ash);
+  }
+
+  /* show-more expansion */
+  .hub-more { padding: 14px 0 30px; }
+  .hub-expansion { padding-top: 22px; }
+  .hub-filter {
+    width: 100%; border: 0; border-bottom: 2px solid var(--rci-ink);
+    background: none; font-family: var(--font-serif); font-style: italic;
+    font-size: 21px; padding: 6px 2px 8px; color: var(--rci-ink);
+    outline: none; margin-bottom: 18px;
+  }
+  .hub-filter::placeholder { color: var(--rci-ash); }
+  .hub-index-cols { columns: 3; column-gap: 44px; }
+  .hub-index-cols a {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 6px 0; border-bottom: 1px solid var(--rci-hairline);
+    break-inside: avoid; font-size: 15px; font-family: var(--font-body);
+    color: var(--rci-ink); text-decoration: none;
+  }
+  .hub-index-cols a:hover { color: var(--rci-red); }
+  .hub-index-n { font-family: var(--font-condensed); font-size: 11px; color: var(--rci-ash); }
+
+  /* start here */
+  .hub-starthere {
+    display: grid; grid-template-columns: 4fr 8fr; gap: 36px;
+    align-items: center; padding: 24px 0 28px;
+    border-bottom: 1px solid var(--rci-hairline);
+  }
+  .hub-starthere h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(24px, 2.6vw, 34px); text-transform: uppercase;
+    line-height: .92; margin: 0;
+  }
+  .hub-pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rci-hairline); border: 1px solid var(--rci-hairline);
+    text-decoration: none;
+  }
+  .hub-pillar { background: var(--rci-paper); padding: 18px 16px 20px; display: block; }
+  .hub-pillar:hover { background: var(--rci-paper-deep); }
+  .hub-pillar-roman { display: block; font-family: var(--font-serif); font-style: italic; font-size: 26px; color: var(--rci-red); }
+  .hub-pillar-title {
+    display: block; font-family: var(--font-condensed); font-weight: 700;
+    font-size: 14px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--rci-ink); margin: 8px 0 4px;
+  }
+  .hub-pillar-desc { display: block; font-size: 13px; color: var(--rci-ash); font-family: var(--font-body); }
+
+  /* mid-page search band */
+  .hub-searchband { background: var(--rci-ink); color: var(--rci-paper); padding: 28px 32px 34px; margin: 30px 0 0; }
+  .hub-searchband h2 {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 30px); margin: 0 0 16px; max-width: 40ch;
+    text-transform: none; letter-spacing: 0;
+  }
+  .hub-searchband form { display: flex; border-bottom: 2px solid var(--rci-paper); max-width: 720px; }
+  .hub-searchband input {
+    flex: 1; background: none; border: 0; outline: none; color: var(--rci-paper);
+    font-family: var(--font-serif); font-style: italic; font-size: 22px; padding: 8px 2px 12px;
+  }
+  .hub-searchband input::placeholder { color: #8d857b; }
+  .hub-searchband button {
+    background: none; border: 0; color: var(--rci-paper); cursor: pointer;
+    font-family: var(--font-condensed); font-weight: 700; letter-spacing: .2em;
+    text-transform: uppercase; font-size: 13px;
+  }
+  .hub-searchband button:hover { color: var(--rci-red-hot); }
+
+  /* from the archives */
+  .hub-archives { padding-bottom: 8px; }
+  .hub-arch-item {
+    display: grid; grid-template-columns: 76px 1fr auto; gap: 22px;
+    align-items: baseline; padding: 12px 2px;
+    border-bottom: 1px solid var(--rci-hairline);
+    color: var(--rci-ink); text-decoration: none;
+  }
+  .hub-arch-item:hover { background: var(--rci-paper-deep); }
+  .hub-arch-year { font-family: var(--font-display); font-size: 22px; color: var(--rci-red); }
+  .hub-arch-item h4 { font-family: var(--font-serif); font-weight: 700; font-size: 20px; line-height: 1.1; margin: 0; text-transform: none; letter-spacing: 0; }
+  .hub-arch-go {
+    font-family: var(--font-condensed); font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--rci-ash);
+  }
+
+  @media (max-width: 900px) {
+    .hub-spread, .hub-starthere { grid-template-columns: 1fr; }
+    .hub-secondaries { grid-template-columns: 1fr 1fr; }
+    .hub-sec-card:first-child { padding-left: 18px; }
+    .hub-index-cols { columns: 2; }
+    .hub-pillars { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>

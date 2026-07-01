@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theory &amp; History — Variant A “Broadsheet” — marxist.com</title>
+<link rel="stylesheet" href="ds/rci-fonts.css">
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     VARIANT A — “BROADSHEET”
+     Evolved print-materiality: paper, hairlines, one enormous
+     serif voice. The page reads like a special supplement of a
+     broadsheet newspaper — restrained, typographic, red used as
+     punctuation not decoration.
+     ═══════════════════════════════════════════════════════════════ */
+  :root {
+    --paper: #faf7f2;
+    --paper-deep: #f1ece3;
+    --ink: #1d1a17;
+    --ink-soft: #453f39;
+    --ash: #7b7369;
+    --red: #c81a12;
+    --red-deep: #8a0608;
+    --hair: #d8d0c4;
+    --rule: #1d1a17;
+
+    --f-display: "Built Titling", "Anton", sans-serif;
+    --f-serif: "Cheltenham BT", "Cormorant Garamond", Georgia, serif;
+    --f-serif-display: "Cormorant Garamond", "Cheltenham BT", Georgia, serif;
+    --f-cond: "Trade Gothic Next LT Pro Condensed", "Oswald", sans-serif;
+    --f-ui: "Trade Gothic Next LT Pro", "Codec Warm", sans-serif;
+
+    --w: min(1240px, calc(100vw - 56px));
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-serif);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { width: var(--w); margin: 0 auto; }
+
+  .kicker {
+    font-family: var(--f-cond); font-weight: 700; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.22em; color: var(--red);
+  }
+  .meta {
+    font-family: var(--f-cond); font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--ash);
+  }
+
+  /* ── Masthead (simplified stand-in for the shared chrome) ────── */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    background: var(--paper);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .masthead-in {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0;
+  }
+  .masthead .logo {
+    font-family: var(--f-display); font-weight: 700; font-size: 26px;
+    text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .masthead .logo em { color: var(--red); font-style: normal; }
+  .masthead nav { display: flex; gap: 26px; }
+  .masthead nav a {
+    font-family: var(--f-cond); font-weight: 700; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+  }
+  .masthead nav a.active { color: var(--red); border-bottom: 2px solid var(--red); padding-bottom: 3px; }
+  .masthead .search-ico {
+    font-family: var(--f-cond); font-size: 13px; letter-spacing: .1em;
+    text-transform: uppercase; border: 1px solid var(--ink);
+    padding: 6px 14px; cursor: pointer; background: none;
+  }
+
+  /* ── Compact page bar (replaces the editorial hero) ──────────── */
+  .pagebar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; padding: 22px 0 16px;
+    border-bottom: 1px solid var(--hair);
+  }
+  .pagebar h1 {
+    font-family: var(--f-display); font-weight: 700; font-size: 30px;
+    text-transform: uppercase; line-height: 1;
+  }
+
+  /* ── Section head ─────────────────────────────────────────────── */
+  .sec-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 26px 0 10px; border-bottom: 3px solid var(--ink); margin-bottom: 0;
+  }
+  .sec-head h2 {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(26px, 3vw, 38px); text-transform: uppercase; line-height: 0.9;
+  }
+
+  /* ── Lead carousel ────────────────────────────────────────────── */
+  .carousel { position: relative; border-bottom: 1px solid var(--hair); }
+  .slides { overflow: hidden; }
+  .track { display: flex; transition: transform .6s cubic-bezier(.22,.8,.24,1); }
+  @media (prefers-reduced-motion: reduce) { .track { transition: none; } }
+  .slide { flex: 0 0 100%; padding: 22px 0 24px; }
+
+  .spread { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; align-items: start; }
+  .spread .art { position: relative; }
+  .spread .art img { width: 100%; aspect-ratio: 16/10; object-fit: cover; filter: saturate(.85) contrast(1.05); }
+  .spread .art .caption { margin-top: 8px; font-family: var(--f-cond); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); }
+  .spread .txt .kicker { margin-bottom: 14px; }
+  .spread h3 {
+    font-family: var(--f-serif-display); font-weight: 700; font-size: clamp(30px, 3.2vw, 44px);
+    line-height: 1.02; letter-spacing: -0.01em; margin-bottom: 16px;
+  }
+  .spread h3 a:hover { color: var(--red); }
+  .spread .dek { font-size: 17px; color: var(--ink-soft); line-height: 1.55; margin-bottom: 22px; max-width: 44ch; }
+
+  /* the collapsing media slots — rendered as a ledger list */
+  .ledger { border-top: 1px solid var(--ink); }
+  .ledger a {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 11px 2px; border-bottom: 1px solid var(--hair);
+  }
+  .ledger a:hover { background: var(--paper-deep); }
+  .ledger .tag {
+    flex: 0 0 74px; font-family: var(--f-cond); font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--red);
+  }
+  .ledger .name { font-family: var(--f-serif); font-size: 15.5px; }
+  .ledger .len { margin-left: auto; font-family: var(--f-cond); font-size: 11px; letter-spacing: .08em; color: var(--ash); text-transform: uppercase; }
+
+  .car-ctl {
+    display: flex; align-items: center; gap: 18px;
+    padding: 14px 0 18px;
+  }
+  .car-ctl .dots { display: flex; gap: 8px; }
+  .car-ctl .dot {
+    width: 26px; height: 3px; background: var(--hair); border: 0; cursor: pointer; padding: 0;
+  }
+  .car-ctl .dot.on { background: var(--red); }
+  .car-ctl .arr {
+    background: none; border: 1px solid var(--ink); width: 34px; height: 34px;
+    font-family: var(--f-serif); font-size: 16px; cursor: pointer;
+  }
+  .car-ctl .arr:hover { background: var(--ink); color: var(--paper); }
+  .car-ctl .state { font-family: var(--f-cond); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ash); margin-left: auto; }
+
+  /* ── Secondary cards ──────────────────────────────────────────── */
+  .secondaries {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--hair);
+  }
+  .sec-card { padding: 26px 22px 30px; border-right: 1px solid var(--hair); }
+  .sec-card:last-child { border-right: 0; }
+  .sec-card:first-child { padding-left: 0; }
+  .sec-card .kicker { font-size: 11px; margin-bottom: 10px; display: block; }
+  .sec-card h4 {
+    font-family: var(--f-serif-display); font-weight: 700; font-size: 21px; line-height: 1.1; margin-bottom: 10px;
+  }
+  .sec-card h4 a:hover { color: var(--red); }
+  .sec-card p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 12px; }
+  .sec-card .extra {
+    font-family: var(--f-cond); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ash);
+  }
+  .sec-card .extra b { color: var(--red); font-weight: 700; }
+
+  /* ── Show more (inline expansion) ─────────────────────────────── */
+  .more-bar { padding: 14px 0 34px; }
+  .more-toggle {
+    width: 100%; background: none; border: 1px solid var(--ink); cursor: pointer;
+    font-family: var(--f-cond); font-weight: 700; font-size: 13px; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 15px; color: var(--ink);
+    transition: background .15s, color .15s;
+  }
+  .more-toggle:hover { background: var(--ink); color: var(--paper); }
+  .expansion { display: none; padding-top: 28px; }
+  .expansion.open { display: block; }
+  .expansion .filter {
+    width: 100%; border: 0; border-bottom: 2px solid var(--ink); background: none;
+    font-family: var(--f-serif-display); font-style: italic; font-size: 22px; padding: 8px 2px 10px;
+    color: var(--ink); outline: none; margin-bottom: 24px;
+  }
+  .expansion .filter::placeholder { color: var(--ash); }
+  .index-cols { columns: 3; column-gap: 48px; }
+  .index-cols a {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0; border-bottom: 1px solid var(--hair);
+    break-inside: avoid; font-size: 15.5px;
+  }
+  .index-cols a:hover { color: var(--red); }
+  .index-cols .n { font-family: var(--f-cond); font-size: 11px; color: var(--ash); letter-spacing: .06em; }
+
+  /* ── Mid-page search ──────────────────────────────────────────── */
+  .searchband { background: var(--ink); color: var(--paper); padding: 30px 0 36px; }
+  .searchband .kicker { color: var(--red); }
+  .searchband h2 {
+    font-family: var(--f-serif-display); font-style: italic; font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 30px); margin: 0 0 16px; max-width: 40ch;
+  }
+  .searchband form { display: flex; border-bottom: 2px solid var(--paper); max-width: 720px; }
+  .searchband input {
+    flex: 1; background: none; border: 0; outline: none; color: var(--paper);
+    font-family: var(--f-serif-display); font-style: italic; font-size: 26px; padding: 10px 2px 14px;
+  }
+  .searchband input::placeholder { color: #8d857b; }
+  .searchband button {
+    background: none; border: 0; color: var(--paper); cursor: pointer;
+    font-family: var(--f-cond); font-weight: 700; letter-spacing: .2em; text-transform: uppercase; font-size: 13px;
+  }
+  .searchband button:hover { color: var(--red); }
+
+  /* ── Start here ───────────────────────────────────────────────── */
+  .starthere { border-bottom: 1px solid var(--hair); }
+  .starthere .in {
+    display: grid; grid-template-columns: 5fr 7fr; gap: 40px; padding: 26px 0 30px; align-items: center;
+  }
+  .starthere h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px,2.6vw,34px); text-transform: uppercase; line-height: .92; }
+  .starthere p { color: var(--ink-soft); margin-top: 14px; max-width: 40ch; }
+  .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+  .pillar { background: var(--paper); padding: 22px 18px 26px; }
+  .pillar:hover { background: var(--paper-deep); }
+  .pillar .roman { font-family: var(--f-serif-display); font-style: italic; font-size: 30px; color: var(--red); }
+  .pillar h5 { font-family: var(--f-cond); font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: .08em; margin: 10px 0 6px; }
+  .pillar span { font-size: 13px; color: var(--ash); }
+
+  /* ── From the archives ────────────────────────────────────────── */
+  .archives { padding-bottom: 36px; }
+  .arch-list { border-top: 1px solid var(--ink); }
+  .arch-item {
+    display: grid; grid-template-columns: 90px 1fr auto; gap: 26px; align-items: baseline;
+    padding: 12px 2px; border-bottom: 1px solid var(--hair);
+  }
+  .arch-item:hover { background: var(--paper-deep); }
+  .arch-item .year { font-family: var(--f-display); font-size: 26px; color: var(--red); }
+  .arch-item h4 { font-family: var(--f-serif-display); font-weight: 700; font-size: 22px; line-height: 1.1; }
+  .arch-item .why { font-style: italic; color: var(--ink-soft); font-size: 15px; margin-top: 4px; }
+  .arch-item .go { font-family: var(--f-cond); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ash); }
+
+  /* ── Magazine promo ───────────────────────────────────────────── */
+  .magband { background: var(--red); color: var(--paper); }
+  .magband .in { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 30px 0; }
+  .magband .kicker { color: var(--paper); opacity: .75; }
+  .magband h2 { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px,3vw,38px); text-transform: uppercase; line-height: .9; margin: 6px 0 10px; }
+  .magband p { max-width: 46ch; opacity: .92; }
+  .magband .cta {
+    display: inline-block; margin-top: 22px; border: 1px solid var(--paper); padding: 13px 30px;
+    font-family: var(--f-cond); font-weight: 700; font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
+  }
+  .magband .cta:hover { background: var(--paper); color: var(--red); }
+  .magband img { width: 150px; box-shadow: 12px 12px 0 rgba(0,0,0,.25); }
+
+  footer { padding: 34px 0 60px; }
+  footer .meta { text-align: center; display: block; }
+
+  @media (max-width: 900px) {
+    .spread, .starthere .in, .magband .in { grid-template-columns: 1fr; }
+    .secondaries { grid-template-columns: 1fr 1fr; }
+    .sec-card:first-child { padding-left: 22px; }
+    .index-cols { columns: 2; }
+  }
+  @media (max-width: 560px) {
+    .secondaries { grid-template-columns: 1fr; }
+    .index-cols { columns: 1; }
+    .masthead nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-in">
+    <a class="logo" href="index.html">Marxist<em>.com</em></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Analysis</a>
+      <a class="active" href="#">Theory &amp; History</a>
+      <a href="media.html">Podcasts &amp; Media</a>
+      <a href="magazine.html">Magazine</a>
+      <a href="#">Bookshop</a>
+    </nav>
+    <button class="search-ico">Search</button>
+  </div>
+</header>
+
+<!-- ═══ 2. THEORY ═══ -->
+<section id="theory">
+  <div class="wrap">
+    <div class="sec-head"><h2>Theory</h2></div>
+
+    <div class="carousel" data-carousel>
+      <div class="slides"><div class="track">
+
+        <!-- Lead 1: full 4-slot bundle -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/war-imperialism800.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Theory</div>
+              <h3><a href="topic.html">Imperialism: the highest stage of capitalism</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">Imperialism today: a reassessment</span><span class="len">32 min</span></a>
+                <a href="#"><span class="tag">Watch</span><span class="name">Lenin's Imperialism — explained</span><span class="len">48 min</span></a>
+                <a href="#"><span class="tag">Listen</span><span class="name">Against the Stream: the new age of wars</span><span class="len">Ep. 74</span></a>
+                <a href="#"><span class="tag">Book</span><span class="name">Imperialism — V.I. Lenin (Wellred)</span><span class="len">£9</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lead 2: article + video + podcast (book slot collapsed) -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/dialectial-materialism.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Theory</div>
+              <h3><a href="topic.html">Dialectical materialism: the philosophy of Marxism</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">What is dialectical materialism?</span><span class="len">28 min</span></a>
+                <a href="#"><span class="tag">Watch</span><span class="name">Dialectics in 40 minutes</span><span class="len">40 min</span></a>
+                <a href="#"><span class="tag">Listen</span><span class="name">Philosophy and revolution</span><span class="len">Ep. 12</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lead 3: article + book only -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/state640.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Theory</div>
+              <h3><a href="topic.html">The state: armed bodies of men</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">Marxism and the state</span><span class="len">24 min</span></a>
+                <a href="book.html"><span class="tag">Book</span><span class="name">The State and Revolution — read free online</span><span class="len">On site</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div></div>
+      <div class="car-ctl">
+        <button class="arr" data-prev aria-label="Previous">←</button>
+        <div class="dots" data-dots></div>
+        <button class="arr" data-next aria-label="Next">→</button>
+        <span class="state" data-state>Auto · pauses on hover</span>
+      </div>
+    </div>
+
+    <div class="secondaries">
+      <article class="sec-card">
+        <span class="kicker">Permanent Revolution</span>
+        <h4><a href="#">Why the colonial world could not wait for its bourgeoisie</a></h4>
+        <span class="extra"><b>+ Podcast</b> · Ep. 31</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">Marxist Economics</span>
+        <h4><a href="#">Where do profits come from?</a></h4>
+        <span class="extra"><b>+ Video</b> · 22 min</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">Bonapartism</span>
+        <h4><a href="#">Strongmen: what Marx saw in Louis Bonaparte</a></h4>
+        <span class="extra">Article</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">Reformism</span>
+        <h4><a href="#">Why the Labour left keeps losing</a></h4>
+        <span class="extra"><b>+ Book</b> · Wellred</span>
+      </article>
+    </div>
+
+    <div class="more-bar">
+      <button class="more-toggle" data-more="theory-x">More theory: browse 30 further concepts ↓</button>
+      <div class="expansion" id="theory-x">
+        <input class="filter" type="text" placeholder="Filter concepts… e.g. fascism" data-filter="theory-x">
+        <div class="index-cols" data-list>
+          <a href="#"><span>Historical Materialism</span><span class="n">275</span></a>
+          <a href="#"><span>Class Struggle</span><span class="n">282</span></a>
+          <a href="#"><span>Stalinism</span><span class="n">350</span></a>
+          <a href="#"><span>Crisis of Capitalism</span><span class="n">258</span></a>
+          <a href="#"><span>Workers' Control</span><span class="n">219</span></a>
+          <a href="#"><span>Reformism</span><span class="n">206</span></a>
+          <a href="#"><span>Bonapartism</span><span class="n">191</span></a>
+          <a href="#"><span>State Capitalism</span><span class="n">155</span></a>
+          <a href="#"><span>Nationalisation</span><span class="n">133</span></a>
+          <a href="#"><span>Socialism in One Country</span><span class="n">125</span></a>
+          <a href="#"><span>Bolshevism</span><span class="n">113</span></a>
+          <a href="#"><span>Self-determination</span><span class="n">105</span></a>
+          <a href="#"><span>Trotskyism</span><span class="n">104</span></a>
+          <a href="#"><span>Zionism</span><span class="n">100</span></a>
+          <a href="#"><span>Dictatorship of the Proletariat</span><span class="n">99</span></a>
+          <a href="#"><span>The National Question</span><span class="n">99</span></a>
+          <a href="#"><span>Dialectics</span><span class="n">98</span></a>
+          <a href="#"><span>Bourgeois Democracy</span><span class="n">88</span></a>
+          <a href="#"><span>Fascism</span><span class="n">86</span></a>
+          <a href="#"><span>Keynesianism</span><span class="n">81</span></a>
+          <a href="#"><span>The General Strike</span><span class="n">80</span></a>
+          <a href="#"><span>The United Front</span><span class="n">69</span></a>
+          <a href="#"><span>Workers' Democracy</span><span class="n">73</span></a>
+          <a href="#"><span>Socialism or Barbarism</span><span class="n">70</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. START HERE ═══ -->
+<section class="starthere">
+  <div class="wrap in">
+    <div>
+      <h2>Start Here</h2>
+    </div>
+    <a class="pillars" href="theory-curriculum.html">
+      <div class="pillar"><div class="roman">i.</div><h5>Dialectical Materialism</h5><span>The method — 6 readings</span></div>
+      <div class="pillar"><div class="roman">ii.</div><h5>Historical Materialism</h5><span>The history — 7 readings</span></div>
+      <div class="pillar"><div class="roman">iii.</div><h5>Marxist Economics</h5><span>The system — 6 readings</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ 3. HISTORY ═══ -->
+<section id="history" style="background: var(--paper-deep);">
+  <div class="wrap">
+    <div class="sec-head"><h2>History</h2></div>
+
+    <div class="carousel" data-carousel>
+      <div class="slides"><div class="track">
+
+        <!-- Event anchor, full bundle -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/chinese-revolution.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Event</div>
+              <h3><a href="topic.html">The Russian Revolution</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">1917: ten days that shook the world</span><span class="len">35 min</span></a>
+                <a href="#"><span class="tag">Watch</span><span class="name">October — anatomy of an insurrection</span><span class="len">55 min</span></a>
+                <a href="#"><span class="tag">Listen</span><span class="name">Was October a coup?</span><span class="len">Ep. 40</span></a>
+                <a href="#"><span class="tag">Book</span><span class="name">History of the Russian Revolution — Trotsky</span><span class="len">£18</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Figure anchor -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/marx-speaking.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Figure</div>
+              <h3><a href="topic.html">Leon Trotsky: the ideas that outlived the ice-axe</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">Trotsky's relevance today</span><span class="len">26 min</span></a>
+                <a href="#"><span class="tag">Listen</span><span class="name">The permanent revolutionary</span><span class="len">Ep. 58</span></a>
+                <a href="#"><span class="tag">Book</span><span class="name">My Life — Leon Trotsky (Wellred)</span><span class="len">£15</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Event anchor, article only — minimum bundle -->
+        <article class="slide">
+          <div class="spread">
+            <div class="art">
+              <img src="assets/theory/commune.jpg" alt="">
+            </div>
+            <div class="txt">
+              <div class="kicker">Event</div>
+              <h3><a href="topic.html">The Paris Commune, 1871</a></h3>
+              <div class="ledger">
+                <a href="#"><span class="tag">Read</span><span class="name">The Commune: storming heaven</span><span class="len">30 min</span></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div></div>
+      <div class="car-ctl">
+        <button class="arr" data-prev aria-label="Previous">←</button>
+        <div class="dots" data-dots></div>
+        <button class="arr" data-next aria-label="Next">→</button>
+        <span class="state" data-state>Auto · pauses on hover</span>
+      </div>
+    </div>
+
+    <div class="secondaries">
+      <article class="sec-card">
+        <span class="kicker">Spanish Civil War</span>
+        <h4><a href="#">Revolution and counter-revolution in Spain</a></h4>
+        <span class="extra"><b>+ Video</b> · 44 min</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">Rosa Luxemburg</span>
+        <h4><a href="#">Reform or revolution — Rosa's answer</a></h4>
+        <span class="extra"><b>+ Podcast</b> · Ep. 22</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">May 1968</span>
+        <h4><a href="#">France '68: when ten million struck</a></h4>
+        <span class="extra">Article</span>
+      </article>
+      <article class="sec-card">
+        <span class="kicker">The English Revolution</span>
+        <h4><a href="#">Cromwell: the revolutionary they hide</a></h4>
+        <span class="extra"><b>+ Book</b> · Wellred</span>
+      </article>
+    </div>
+
+    <div class="more-bar">
+      <button class="more-toggle" data-more="history-x">More history: browse further events &amp; figures ↓</button>
+      <div class="expansion" id="history-x">
+        <input class="filter" type="text" placeholder="Filter events &amp; figures… e.g. commune" data-filter="history-x">
+        <div class="index-cols" data-list>
+          <a href="#"><span>October Revolution</span><span class="n">366</span></a>
+          <a href="#"><span>World War II</span><span class="n">287</span></a>
+          <a href="#"><span>World War I</span><span class="n">232</span></a>
+          <a href="#"><span>The Great Depression</span><span class="n">136</span></a>
+          <a href="#"><span>The Arab Spring</span><span class="n">127</span></a>
+          <a href="#"><span>2008 Financial Crisis</span><span class="n">117</span></a>
+          <a href="#"><span>The Chinese Revolution</span><span class="n">95</span></a>
+          <a href="#"><span>The Cuban Revolution</span><span class="n">86</span></a>
+          <a href="#"><span>The French Revolution</span><span class="n">76</span></a>
+          <a href="#"><span>German Revolution of 1918</span><span class="n">75</span></a>
+          <a href="#"><span>Revolution of 1905</span><span class="n">72</span></a>
+          <a href="#"><span>Karl Marx</span><span class="n">1,024</span></a>
+          <a href="#"><span>V.I. Lenin</span><span class="n">1,127</span></a>
+          <a href="#"><span>Friedrich Engels</span><span class="n">705</span></a>
+          <a href="#"><span>Rosa Luxemburg</span><span class="n">146</span></a>
+          <a href="#"><span>James Connolly</span><span class="n">131</span></a>
+          <a href="#"><span>Karl Liebknecht</span><span class="n">83</span></a>
+          <a href="#"><span>Che Guevara</span><span class="n">72</span></a>
+          <a href="#"><span>The Miners' Strike 1984–85</span><span class="n">60</span></a>
+          <a href="#"><span>The 1926 General Strike</span><span class="n">46</span></a>
+          <a href="#"><span>The Easter Rising</span><span class="n">38</span></a>
+          <a href="#"><span>The Hungarian Revolution 1956</span><span class="n">24</span></a>
+          <a href="#"><span>The Portuguese Revolution</span><span class="n">22</span></a>
+          <a href="#"><span>The Peterloo Massacre</span><span class="n">10</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4. MID-PAGE SEARCH ═══ -->
+<section class="searchband">
+  <div class="wrap">
+    <h2>Fourteen thousand articles are one search away.</h2>
+    <form action="search.html" method="get">
+      <input type="search" name="q" placeholder="Search theory, events, figures…">
+      <button type="submit">Search →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ 6. FROM THE ARCHIVES ═══ -->
+<section class="archives">
+  <div class="wrap">
+    <div class="sec-head" style="border-bottom-width:0; padding-bottom: 6px;">
+      <h2>From the Archives</h2>
+    </div>
+    <div class="arch-list">
+      <a class="arch-item" href="#">
+        <span class="year">2009</span>
+        <span><h4>Why the state cannot simply be reformed</h4></span>
+        <span class="go">Read →</span>
+      </a>
+      <a class="arch-item" href="#">
+        <span class="year">1997</span>
+        <span><h4>Reason in Revolt: Marxism and modern science</h4></span>
+        <span class="go">Read →</span>
+      </a>
+      <a class="arch-item" href="#">
+        <span class="year">2011</span>
+        <span><h4>The Arab Spring: revolution until victory?</h4></span>
+        <span class="go">Read →</span>
+      </a>
+      <a class="arch-item" href="#">
+        <span class="year">2004</span>
+        <span><h4>Marxism and religion</h4></span>
+        <span class="go">Read →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7. MAGAZINE ═══ -->
+<section class="magband">
+  <div class="wrap in">
+    <div>
+      <h2>In Defence of Marxism</h2>
+      <a class="cta" href="magazine.html">Explore the magazine</a>
+    </div>
+    <img src="assets/IDOM_53_cover.jpg" alt="In Defence of Marxism, issue 53">
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span class="meta">marxist.com — Variant A · “Broadsheet” · design mockup</span></div>
+</footer>
+
+<script>
+// Carousel: auto-advance, pause on hover/focus/interaction, reduced-motion aware.
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('[data-carousel]').forEach(car => {
+  const track = car.querySelector('.track');
+  const slides = car.querySelectorAll('.slide');
+  const dotsBox = car.querySelector('[data-dots]');
+  const state = car.querySelector('[data-state]');
+  let i = 0, timer = null;
+  slides.forEach((_, k) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (k === 0 ? ' on' : '');
+    d.setAttribute('aria-label', 'Slide ' + (k + 1));
+    d.onclick = () => { go(k); hold(); };
+    dotsBox.appendChild(d);
+  });
+  const dots = dotsBox.querySelectorAll('.dot');
+  function go(k) {
+    i = (k + slides.length) % slides.length;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, n) => d.classList.toggle('on', n === i));
+  }
+  function play() {
+    if (reduced) { state.textContent = 'Manual · reduced motion'; return; }
+    clearInterval(timer);
+    timer = setInterval(() => go(i + 1), 7000);
+    state.textContent = 'Auto · pauses on hover';
+  }
+  function hold() { clearInterval(timer); state.textContent = 'Paused'; }
+  car.querySelector('[data-prev]').onclick = () => { go(i - 1); hold(); };
+  car.querySelector('[data-next]').onclick = () => { go(i + 1); hold(); };
+  car.addEventListener('mouseenter', hold);
+  car.addEventListener('mouseleave', play);
+  car.addEventListener('focusin', hold);
+  play();
+});
+
+// Inline expansion + filter
+document.querySelectorAll('[data-more]').forEach(btn => {
+  btn.onclick = () => {
+    const x = document.getElementById(btn.dataset.more);
+    const open = x.classList.toggle('open');
+    btn.textContent = btn.textContent.replace(open ? '↓' : '↑', open ? '↑' : '↓');
+  };
+});
+document.querySelectorAll('[data-filter]').forEach(inp => {
+  inp.oninput = () => {
+    const q = inp.value.toLowerCase();
+    inp.closest('.expansion').querySelectorAll('[data-list] a').forEach(a => {
+      a.style.display = a.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  };
+});
+</script>
+</body>
+</html>

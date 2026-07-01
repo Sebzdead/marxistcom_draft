@@ -1010,6 +1010,297 @@ function Reports() {
   );
 }
 
+// ════════════════════════════════════════════════════════════════════════════
+//  BROADSHEET HUB — carousel bundles, inline expansion, dense index.
+//  See docs/theory-history-hub-spec.md. Supersedes the merged-hub sections
+//  above (Hero/InFocus/CategoryPanel/WellRedBanner are no longer rendered).
+// ════════════════════════════════════════════════════════════════════════════
+
+// Lead bundles. `media` slots collapse — article is the only required entry.
+const THEORY_LEADS = [
+  { kicker: "Theory", title: "Imperialism: the highest stage of capitalism",
+    url: "https://marxist.com/theory-imperialism-war.htm",
+    image: "assets/theory/war-imperialism800.jpg",
+    media: [
+      { t: "Read",   n: "Imperialism today: a reassessment", d: "32 min", url: "https://marxist.com/theory-imperialism-war.htm" },
+      { t: "Watch",  n: "Lenin's Imperialism — explained",   d: "48 min", url: "media.html" },
+      { t: "Listen", n: "Against the Stream: the new age of wars", d: "Ep. 74", url: "media.html" },
+      { t: "Book",   n: "Imperialism — V.I. Lenin (Wellred)", d: "£9", url: "https://wellredbooks.co.uk/" },
+    ] },
+  { kicker: "Theory", title: "Dialectical materialism: the philosophy of Marxism",
+    url: "https://marxist.com/theory-dialectical-materialism.htm",
+    image: "assets/theory/dialectial-materialism.jpg",
+    media: [
+      { t: "Read",   n: "What is dialectical materialism?", d: "28 min", url: "https://marxist.com/theory-dialectical-materialism.htm" },
+      { t: "Watch",  n: "Dialectics in 40 minutes", d: "40 min", url: "media.html" },
+      { t: "Listen", n: "Philosophy and revolution", d: "Ep. 12", url: "media.html" },
+    ] },
+  { kicker: "Theory", title: "The state: armed bodies of men",
+    url: "https://marxist.com/theory-the-state.htm",
+    image: "assets/theory/state640.jpg",
+    media: [
+      { t: "Read", n: "Marxism and the state", d: "24 min", url: "https://marxist.com/theory-the-state.htm" },
+      { t: "Book", n: "The State and Revolution — read free online", d: "On site", url: "book.html?book=state-and-revolution" },
+    ] },
+];
+
+const HISTORY_LEADS = [
+  { kicker: "Event", title: "The Russian Revolution",
+    url: "https://marxist.com/russian-revolution/",
+    image: "assets/theory/Beat_the_Whites_with_the_Red_Wedge_by_El_Lissitzky_-_Public_Domain.jpg",
+    media: [
+      { t: "Read",   n: "1917: ten days that shook the world", d: "35 min", url: "https://marxist.com/russian-revolution/" },
+      { t: "Watch",  n: "October — anatomy of an insurrection", d: "55 min", url: "media.html" },
+      { t: "Listen", n: "Was October a coup?", d: "Ep. 40", url: "media.html" },
+      { t: "Book",   n: "History of the Russian Revolution — Trotsky", d: "£18", url: "https://wellredbooks.co.uk/" },
+    ] },
+  { kicker: "Figure", title: "Leon Trotsky: the ideas that outlived the ice-axe",
+    url: "https://marxist.com/leon-trotsky/",
+    image: "assets/theory/communist-third-international-360.jpg",
+    media: [
+      { t: "Read",   n: "Trotsky's relevance today", d: "26 min", url: "https://marxist.com/leon-trotsky/" },
+      { t: "Listen", n: "The permanent revolutionary", d: "Ep. 58", url: "media.html" },
+      { t: "Book",   n: "My Life — Leon Trotsky (Wellred)", d: "£15", url: "https://wellredbooks.co.uk/" },
+    ] },
+  { kicker: "Event", title: "The Paris Commune, 1871",
+    url: "https://marxist.com/theory-paris-commune.htm",
+    image: "assets/theory/commune.jpg",
+    media: [
+      { t: "Read", n: "The Commune: storming heaven", d: "30 min", url: "https://marxist.com/theory-paris-commune.htm" },
+    ] },
+];
+
+const THEORY_SECONDARIES = [
+  { kicker: "Permanent Revolution", title: "Why the colonial world could not wait for its bourgeoisie", extra: "+ Podcast · Ep. 31", url: "https://marxist.com/theory-permanent-revolution.htm" },
+  { kicker: "Marxist Economics", title: "Where do profits come from?", extra: "+ Video · 22 min", url: "topic.html" },
+  { kicker: "Bonapartism", title: "Strongmen: what Marx saw in Louis Bonaparte", extra: "Article", url: "#" },
+  { kicker: "Reformism", title: "Why the Labour left keeps losing", extra: "+ Book · Wellred", url: "#" },
+];
+
+const HISTORY_SECONDARIES = [
+  { kicker: "Spanish Civil War", title: "Revolution and counter-revolution in Spain", extra: "+ Video · 44 min", url: "https://marxist.com/theory-spanish-revolution.htm" },
+  { kicker: "Rosa Luxemburg", title: "Reform or revolution — Rosa's answer", extra: "+ Podcast · Ep. 22", url: "#" },
+  { kicker: "May 1968", title: "France '68: when ten million struck", extra: "Article", url: "#" },
+  { kicker: "The English Revolution", title: "Cromwell: the revolutionary they hide", extra: "+ Book · Wellred", url: "https://marxist.com/theory-english-revolution.htm" },
+];
+
+// Next-tier curated index (counts from references/Article count/*.csv).
+const THEORY_INDEX = [
+  ["Historical Materialism", 275], ["Class Struggle", 282], ["Stalinism", 350],
+  ["Crisis of Capitalism", 258], ["Workers' Control", 219], ["Reformism", 206],
+  ["Bonapartism", 191], ["State Capitalism", 155], ["Nationalisation", 133],
+  ["Socialism in One Country", 125], ["Bolshevism", 113], ["Self-determination", 105],
+  ["Trotskyism", 104], ["Zionism", 100], ["Dictatorship of the Proletariat", 99],
+  ["The National Question", 99], ["Dialectics", 98], ["Bourgeois Democracy", 88],
+  ["Fascism", 86], ["Keynesianism", 81], ["The General Strike", 80],
+  ["Workers' Democracy", 73], ["Socialism or Barbarism", 70], ["The United Front", 69],
+];
+
+const HISTORY_INDEX = [
+  ["October Revolution", 366], ["World War II", 287], ["World War I", 232],
+  ["The Great Depression", 136], ["The Arab Spring", 127], ["2008 Financial Crisis", 117],
+  ["The Chinese Revolution", 95], ["The Cuban Revolution", 86], ["The French Revolution", 76],
+  ["German Revolution of 1918", 75], ["Revolution of 1905", 72], ["Karl Marx", 1024],
+  ["V.I. Lenin", 1127], ["Friedrich Engels", 705], ["Rosa Luxemburg", 146],
+  ["James Connolly", 131], ["Karl Liebknecht", 83], ["Che Guevara", 72],
+  ["The Miners' Strike 1984–85", 60], ["The 1926 General Strike", 46],
+  ["The Easter Rising", 38], ["The Hungarian Revolution 1956", 24],
+  ["The Portuguese Revolution", 22], ["The Peterloo Massacre", 10],
+];
+
+const ARCHIVE_PICKS = [
+  { year: "2009", title: "Why the state cannot simply be reformed", url: "#" },
+  { year: "1997", title: "Reason in Revolt: Marxism and modern science", url: "https://marxist.com/reason-in-revolt-science-marxism.htm" },
+  { year: "2011", title: "The Arab Spring: revolution until victory?", url: "#" },
+  { year: "2004", title: "Marxism and religion", url: "https://marxist.com/theory-religion.htm" },
+];
+
+// ── Lead carousel — auto-advances, pauses on hover/focus, reduced-motion aware
+function LeadCarousel({ slides }) {
+  const [idx, setIdx] = useState(0);
+  const [held, setHeld] = useState(false);
+  const reduced = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+
+  useEffect(() => {
+    if (reduced || held) return;
+    const t = setInterval(() => setIdx((v) => (v + 1) % slides.length), 7000);
+    return () => clearInterval(t);
+  }, [reduced, held, slides.length]);
+
+  const go = (k) => setIdx((k + slides.length) % slides.length);
+
+  return (
+    <div
+      className="hub-carousel"
+      onMouseEnter={() => setHeld(true)}
+      onMouseLeave={() => setHeld(false)}
+      onFocus={() => setHeld(true)}
+    >
+      <div className="hub-slides">
+        <div className="hub-track" style={{ transform: `translateX(-${idx * 100}%)` }}>
+          {slides.map((s, i) => (
+            <article className="hub-slide" key={i}>
+              <div className="hub-spread">
+                <a className="hub-art" href={s.url} {...linkAttrs(s.url)} tabIndex={i === idx ? 0 : -1}>
+                  <img src={s.image} alt="" />
+                </a>
+                <div className="hub-txt">
+                  <div style={{ marginBottom: 10 }}><Eyebrow>{s.kicker}</Eyebrow></div>
+                  <h3 className="hub-title">
+                    <a href={s.url} {...linkAttrs(s.url)} tabIndex={i === idx ? 0 : -1}>{s.title}</a>
+                  </h3>
+                  <div className="hub-ledger">
+                    {s.media.map((m, k) => (
+                      <a key={k} href={m.url} {...linkAttrs(m.url)} tabIndex={i === idx ? 0 : -1}>
+                        <span className="hub-ledger-tag">{m.t}</span>
+                        <span className="hub-ledger-name">{m.n}</span>
+                        <span className="hub-ledger-len">{m.d}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="hub-ctl">
+        <button className="hub-arr" aria-label="Previous" onClick={() => go(idx - 1)}>&larr;</button>
+        <div className="hub-dots">
+          {slides.map((_, k) => (
+            <button
+              key={k}
+              className={"hub-dot" + (k === idx ? " is-on" : "")}
+              aria-label={"Slide " + (k + 1)}
+              onClick={() => go(k)}
+            />
+          ))}
+        </div>
+        <button className="hub-arr" aria-label="Next" onClick={() => go(idx + 1)}>&rarr;</button>
+        <span className="hub-ctl-state">{reduced ? "Manual" : held ? "Paused" : "Auto · pauses on hover"}</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Inline "show more" expansion with text filter ───────────────────────────
+function HubExpansion({ open, items, placeholder }) {
+  const [q, setQ] = useState("");
+  if (!open) return null;
+  const shown = items.filter(([label]) => label.toLowerCase().includes(q.toLowerCase()));
+  return (
+    <div className="hub-expansion">
+      <input
+        className="hub-filter"
+        type="text"
+        placeholder={placeholder}
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+      />
+      <div className="hub-index-cols">
+        {shown.map(([label, n], i) => (
+          <a key={i} href={"search.html?q=" + encodeURIComponent(label)}>
+            <span>{label}</span>
+            <span className="hub-index-n">{n.toLocaleString()}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Hub section: head + carousel + secondaries + expansion ──────────────────
+function HubSection({ id, title, leads, secondaries, index, moreLabel, filterPlaceholder }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <section id={id} className="hub-section">
+      <div className="hub-head"><h2>{title}</h2></div>
+      <LeadCarousel slides={leads} />
+      <div className="hub-secondaries">
+        {secondaries.map((c, i) => (
+          <a key={i} className="hub-sec-card" href={c.url} {...linkAttrs(c.url)}>
+            <span style={{ display: "block", marginBottom: 8 }}><Eyebrow style={{ fontSize: 11 }}>{c.kicker}</Eyebrow></span>
+            <h4>{c.title}</h4>
+            <span className="hub-sec-extra">{c.extra}</span>
+          </a>
+        ))}
+      </div>
+      <div className="hub-more">
+        <PrintButton style={{ width: "100%" }} onClick={() => setOpen(!open)} aria-expanded={open}>
+          {moreLabel} {open ? "↑" : "↓"}
+        </PrintButton>
+        <HubExpansion open={open} items={index} placeholder={filterPlaceholder} />
+      </div>
+    </section>
+  );
+}
+
+// ── Start Here — compact doorway to the curriculum ──────────────────────────
+function StartHere() {
+  return (
+    <section className="hub-starthere">
+      <h2>Start Here</h2>
+      <a className="hub-pillars" href="theory-curriculum.html">
+        {[["i.", "Dialectical Materialism", "The method — 6 readings"],
+          ["ii.", "Historical Materialism", "The history — 7 readings"],
+          ["iii.", "Marxist Economics", "The system — 6 readings"]].map(([r, t, d], i) => (
+          <span className="hub-pillar" key={i}>
+            <span className="hub-pillar-roman">{r}</span>
+            <span className="hub-pillar-title">{t}</span>
+            <span className="hub-pillar-desc">{d}</span>
+          </span>
+        ))}
+      </a>
+    </section>
+  );
+}
+
+// ── Mid-page search band ─────────────────────────────────────────────────────
+function SearchBand() {
+  const [q, setQ] = useState("");
+  return (
+    <section className="hub-searchband">
+      <h2>Fourteen thousand articles are one search away.</h2>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          window.location.href = "search.html" + (q.trim() ? "?q=" + encodeURIComponent(q.trim()) : "");
+        }}
+      >
+        <input
+          type="search"
+          placeholder="Search theory, events, figures…"
+          aria-label="Search theory and history"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
+        <button type="submit">Search &rarr;</button>
+      </form>
+    </section>
+  );
+}
+
+// ── From the Archives — hand-picked evergreen classics ──────────────────────
+function Archives() {
+  return (
+    <section className="hub-archives">
+      <div className="hub-head"><h2>From the Archives</h2></div>
+      <div className="hub-arch-list">
+        {ARCHIVE_PICKS.map((a, i) => (
+          <a key={i} className="hub-arch-item" href={a.url} {...linkAttrs(a.url)}>
+            <span className="hub-arch-year">{a.year}</span>
+            <h4>{a.title}</h4>
+            <span className="hub-arch-go">Read &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ── Footer ──────────────────────────────────────────────────────────────────
 function Footer() {
   return (
@@ -1047,14 +1338,28 @@ function App() {
       </div>
 
       <main className="site-main">
-        <Hero />
-        <LatestScroller />
-        <InFocus />
-        <MarxistUniversity />
+        <HubSection
+          id="theory"
+          title="Theory"
+          leads={THEORY_LEADS}
+          secondaries={THEORY_SECONDARIES}
+          index={THEORY_INDEX}
+          moreLabel="More theory: browse 30 further concepts"
+          filterPlaceholder="Filter concepts… e.g. fascism"
+        />
+        <StartHere />
+        <HubSection
+          id="history"
+          title="History"
+          leads={HISTORY_LEADS}
+          secondaries={HISTORY_SECONDARIES}
+          index={HISTORY_INDEX}
+          moreLabel="More history: browse further events & figures"
+          filterPlaceholder="Filter events & figures… e.g. commune"
+        />
+        <SearchBand />
+        <Archives />
         <IdomBlock />
-        <CategoryPanel />
-        <WellRedBanner />
-        <JoinBanner />
       </main>
 
       <Footer />
