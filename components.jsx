@@ -1,255 +1,311 @@
-// Shared components for Marxist.com homepage
+// Shared components for Marxist.com homepage (RCI v2 Design System)
 // All exported to window at the end of the file.
 
-// ─── PrintButton ────────────────────────────────────────────────────────────
-// 2.5D pressable button — offset ink shadow, presses into place on :active.
-// Renders as <a> when href is supplied; otherwise as <button>.
-function PrintButton({ children, active = false, size = "md", variant = "paper", onClick, style, className = "", href, ...rest }) {
-  const baseStyle = {
-    fontFamily: "var(--font-condensed)",
-    fontWeight: 700,
-    letterSpacing: "0.14em",
-    textTransform: "uppercase",
-    border: "2px solid var(--rci-ink)",
-    cursor: "pointer",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    whiteSpace: "nowrap",
-    userSelect: "none",
-    fontSize: size === "sm" ? 11 : size === "lg" ? 15 : 13,
-    padding: size === "sm" ? "7px 12px 6px" : size === "lg" ? "14px 22px 12px" : "10px 16px 9px",
-    background:
-      variant === "ink" ? "var(--rci-ink)" :
-      variant === "red" ? "var(--rci-red)" :
-      "var(--rci-offwhite)",
-    color:
-      variant === "ink" ? "var(--rci-offwhite)" :
-      variant === "red" ? "var(--rci-offwhite)" :
-      "var(--rci-ink)",
-    boxShadow: active ? "0 0 0 var(--rci-ink)" : "3px 3px 0 var(--rci-ink)",
-    transform: active ? "translate(3px, 3px)" : "translate(0,0)",
-    transition: "transform 80ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 80ms cubic-bezier(0.2,0.7,0.1,1), background 80ms",
-    position: "relative",
-    ...style,
-  };
+
+
+// ─── PrintButton / Button ───────────────────────────────────────────────────
+// Flat pressable button — no offset ink shadow, conforms to .rci-btn design tokens.
+function PrintButton({ children, size = "md", variant = "red", onClick, style, className = "", href, ...rest }) {
+  const classes = ["rci-btn"];
+  if (variant === "ghost") classes.push("ghost");
+  if (variant === "ink") classes.push("ink");
+  if (variant === "light") classes.push("light");
+  if (size === "lg") classes.push("lg");
+  
+  const classStr = classes.join(" ") + " " + className;
+
   if (href) {
     return (
-      <a
-        href={href}
-        className={"pbtn " + className}
-        style={{ ...baseStyle, textDecoration: "none" }}
-        onClick={onClick}
-        {...rest}
-      >
+      <a href={href} className={classStr} style={style} onClick={onClick} {...rest}>
         {children}
       </a>
     );
   }
   return (
-    <button
-      className={"pbtn " + className}
-      style={baseStyle}
-      onClick={onClick}
-      {...rest}
-    >
+    <button className={classStr} style={style} onClick={onClick} {...rest}>
       {children}
     </button>
   );
 }
 
-// ─── Eyebrow / RedRule / Hairline ───────────────────────────────────────────
-function Eyebrow({ children, style }) {
+// ─── Eyebrow ────────────────────────────────────────────────────────────────
+function Eyebrow({ children, style, className = "" }) {
   return (
-    <span style={{
-      fontFamily: "var(--font-condensed)",
-      fontWeight: 700,
-      fontSize: 12,
-      letterSpacing: "0.2em",
-      textTransform: "uppercase",
-      color: "var(--rci-red)",
-      ...style
-    }}>{children}</span>
+    <span className={`rci-kicker ${className}`} style={style}>{children}</span>
   );
 }
 
+// ─── SectionRule ────────────────────────────────────────────────────────────
 function SectionRule({ style, divider = "hairline" }) {
   if (divider === "red-rule") {
     return <div style={{ height: 2, background: "var(--rci-red)", margin: "0", ...style }} />;
   }
   if (divider === "thick-slab") {
-    // 4px to match the MARXIST.COM masthead divider thickness
-    return <div style={{ height: 4, background: "var(--rci-ink)", margin: "0", ...style }} />;
+    return <div className="rci-rule" style={style} />;
   }
-  // hairline default — two-line newspaper rule
-  return (
-    <div style={{ ...style }}>
-      <div style={{ height: 1, background: "var(--rci-ink)" }} />
-      <div style={{ height: 1, background: "var(--rci-ink)", marginTop: 2 }} />
-    </div>
-  );
+  if (divider === "torn") {
+    return <div className="rci-torn" style={style} />;
+  }
+  // hairline default — 1px rule
+  return <div className="rci-rule hair" style={style} />;
 }
 
 // ─── ArticleCard ────────────────────────────────────────────────────────────
-// Treatments: clean | offset | taped | stamped
-function ArticleCard({ kicker, title, byline, image, size = "md", treatment = "clean", titleFont, style }) {
-  const titleSize = size === "xl" ? 36 : size === "lg" ? 26 : size === "sm" ? 17 : 20;
-  const isSerif = titleFont === "serif";
-  const titleStyle = isSerif
-    ? {
-        fontFamily: "var(--font-serif)",
-        fontWeight: 700,
-        fontSize: titleSize + 6,
-        lineHeight: 1.12,
-        textTransform: "none",
-        letterSpacing: "-0.005em",
-        color: "var(--fg)",
-        margin: "0 0 4px",
-      }
-    : {
-        fontFamily: "var(--font-article-title)",
-        fontWeight: 700,
-        fontSize: titleSize,
-        lineHeight: 1.02,
-        textTransform: "uppercase",
-        letterSpacing: "0.005em",
-        color: "var(--fg)",
-        margin: "0 0 4px",
-      };
-
-  // Treatment wrappers
-  const wrap = {
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
-    position: "relative",
-    ...style,
-  };
-  const imgWrap = {
-    position: "relative",
-    width: "100%",
-    aspectRatio: size === "xl" ? "16/10" : size === "sm" ? "16/10" : "4/3",
-    overflow: "hidden",
-    background: "var(--rci-ink)",
-  };
-
-  // Treatment-specific image wrapper styling
-  let imgWrapExtra = {};
-  let cardExtra = {};
-  let tapeEl = null;
-  let stampEl = null;
-
-  if (treatment === "offset") {
-    imgWrapExtra = { boxShadow: "5px 5px 0 var(--rci-ink)", border: "1.5px solid var(--rci-ink)" };
-  } else if (treatment === "taped") {
-    imgWrapExtra = { border: "1.5px solid var(--rci-ink)" };
-    cardExtra = { paddingTop: 14 };
-    tapeEl = (
-      <div style={{
-        position: "absolute",
-        top: -2,
-        left: "28%",
-        width: 80,
-        height: 22,
-        background: "rgba(232, 220, 160, 0.55)",
-        backdropFilter: "blur(0px)",
-        border: "1px solid rgba(120, 110, 70, 0.18)",
-        transform: "rotate(-2.5deg)",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-        zIndex: 3,
-      }} />
+// Replaces v1 treatments with v2 design layout (.rci-card / .rci-card.bold)
+function ArticleCard({ kicker, title, byline, image, dek, date, readTime, isBold = false, isRed = false, ruled = false, className = "", href = "#", style }) {
+  if (isBold) {
+    return (
+      <article className={`rci-card bold ${isRed ? "red" : ""} ${className}`} style={style}>
+        <a href={href} className="inner" style={{ textDecoration: "none", color: "inherit" }}>
+          {kicker && <span className="rci-kicker">{kicker}</span>}
+          <h3>{title}</h3>
+          {dek && <p className="dek">{dek}</p>}
+          {(date || readTime) && (
+            <div className="rci-meta">
+              {date && <span>{date}</span>}
+              {date && readTime && <span className="dot">·</span>}
+              {readTime && <span>{readTime}</span>}
+            </div>
+          )}
+        </a>
+      </article>
     );
-  } else if (treatment === "stamped") {
-    imgWrapExtra = { border: "1.5px solid var(--rci-ink)" };
-    stampEl = (
-      <div style={{
-        position: "absolute",
-        top: 8,
-        right: 8,
-        zIndex: 3,
-        padding: "3px 7px",
-        border: "1.5px solid var(--rci-red)",
-        color: "var(--rci-red)",
-        fontFamily: "var(--font-condensed)",
-        fontWeight: 700,
-        fontSize: 10,
-        letterSpacing: "0.18em",
-        background: "rgba(246,239,239,0.85)",
-        transform: "rotate(-4deg)",
-        textTransform: "uppercase",
-      }}>{kicker || "Read"}</div>
-    );
-  } else {
-    // clean
-    imgWrapExtra = { border: "1.5px solid var(--rci-ink)" };
   }
 
   return (
-    <article style={{ ...wrap, ...cardExtra }}>
-      <div style={{ ...imgWrap, ...imgWrapExtra }}>
-        {tapeEl}
-        {stampEl}
-        {image ? (
-          <div style={{
-            position: "absolute", inset: 0,
-            backgroundImage: `url("${image}")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "contrast(1.05) saturate(0.95)",
-          }} />
-        ) : (
-          // Slab placeholder
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            background: "var(--rci-ink)",
-            color: "var(--rci-offwhite)",
-            fontFamily: "var(--font-article-title)", fontSize: 16, padding: 12,
-            textAlign: "center", lineHeight: 1, textTransform: "uppercase", letterSpacing: ".02em",
-          }}>{title}</div>
+    <article className={`rci-card ${ruled ? "ruled" : ""} ${className}`} style={style}>
+      <a href={href} style={{ textDecoration: "none", color: "inherit" }}>
+        {image && (
+          <div className="rci-img rci-ar-4-3">
+            <div style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `url("${image}")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              filter: "contrast(1.05) saturate(0.95)",
+            }} />
+            <div style={{
+              position: "absolute", inset: 0,
+              backgroundImage: 'url("ds/textures/au-fg-1.jpg")',
+              backgroundSize: "cover",
+              mixBlendMode: "multiply",
+              opacity: 0.09,
+              pointerEvents: "none",
+            }} />
+          </div>
         )}
-        {/* faint grain on image */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: `url("${(typeof window !== "undefined" && window.__resources && window.__resources.texGrain) || "ds/textures/film-grain.jpg"}")`,
-          backgroundSize: "cover",
-          mixBlendMode: "multiply",
-          opacity: 0.12,
-          pointerEvents: "none",
-        }} />
-      </div>
-      <div>
-        {kicker && treatment !== "stamped" && <div style={{ marginBottom: 4 }}><Eyebrow>{kicker}</Eyebrow></div>}
-        <h3 style={titleStyle}>{title}</h3>
+        {kicker && <span className="rci-kicker">{kicker}</span>}
+        <h3>{title}</h3>
+        {dek && <p className="dek">{dek}</p>}
         {byline && (
           <div style={{
-            fontFamily: "var(--font-condensed)",
-            fontSize: 11,
+            fontFamily: "var(--rci-font-condensed)",
+            fontSize: "11px",
             letterSpacing: "0.14em",
             color: "var(--rci-ash)",
             textTransform: "uppercase",
-            marginTop: 2,
+            marginTop: "2px",
+            marginBottom: "8px",
           }}>{byline}</div>
         )}
-      </div>
+        {(date || readTime) && (
+          <div className="rci-meta">
+            {date && <span>{date}</span>}
+            {date && readTime && <span className="dot">·</span>}
+            {readTime && <span>{readTime}</span>}
+          </div>
+        )}
+      </a>
     </article>
   );
 }
 
 // ─── SectionHead ────────────────────────────────────────────────────────────
-// A heading row with red label + double hairline rule
-function SectionHead({ label, divider = "hairline", extra }) {
+// A heading row with label + see all link
+function SectionHead({ label, extra, href = "#" }) {
   return (
-    <div style={{ marginBottom: 14 }}>
-      <SectionRule divider={divider} style={{ marginBottom: 10 }} />
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16 }}>
-        <Eyebrow style={{ fontSize: 14, letterSpacing: "0.22em" }}>{label}</Eyebrow>
-        {extra && <div style={{ fontFamily: "var(--font-condensed)", fontSize: 12, letterSpacing: "0.14em", color: "var(--rci-ash)", textTransform: "uppercase" }}>{extra}</div>}
-      </div>
+    <div className="rci-section-head">
+      <h2>{label}</h2>
+      {extra && <a href={href}>{extra}</a>}
     </div>
   );
 }
 
+// ─── Navigation Tabs Constant ────────────────────────────────────────────────
+const NAV_TABS = [
+  { label: "Home", href: "index.html" },
+  { label: "Analysis", href: "index.html" },
+  { label: "Theory & History", href: "theory.html" },
+  { label: "Podcasts & Media", href: "media.html" },
+  { label: "Magazine", href: "magazine.html" },
+  { label: "Bookshop", href: "https://wellredbooks.co.uk/", external: true },
+];
+
+// ─── Header (Sticky header, navigation, and interactive mega-menu) ───────────
+function Header({ activeTab }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, [menuOpen]);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  return (
+    <React.Fragment>
+      <header className="rci-header" data-screen-label="Header">
+        <div className="rci-wrap">
+          <div className="rci-topbar">
+            <a className="rci-brand" href="index.html">
+              <img src="ds/logos/rci-square.svg" alt="RCI" />
+              <span className="name">
+                <em className="brand-tagline">Home of the</em>
+                <span className="brand-org">Revolutionary Communist International</span>
+              </span>
+            </a>
+            <div className="right">
+              <span className="rci-lang">Language &#9662;</span>
+              <a className="rci-btn" href="join.html">Join us</a>
+            </div>
+          </div>
+          <nav className="rci-nav">
+            <button id="menuBtn" onClick={() => setMenuOpen(!menuOpen)}>
+              <span className="rci-ham"><i></i><i></i><i></i></span> Menu
+            </button>
+            {NAV_TABS.map((tab) => {
+              const isActive = tab.label === activeTab;
+              return (
+                <a
+                  key={tab.label}
+                  href={tab.href}
+                  className={isActive ? "active" : ""}
+                  target={tab.external ? "_blank" : undefined}
+                  rel={tab.external ? "noopener noreferrer" : undefined}
+                >
+                  {tab.label}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* mega menu */}
+        <div className="rci-megamenu" id="megamenu">
+          <div className="rci-wrap">
+            <span className="rci-mm-close" onClick={() => setMenuOpen(false)}>&#10005; Close</span>
+            <div className="rci-mm-grid">
+              <div className="rci-mm-primary">
+                <a href="index.html"><span className="ic"></span><span><span className="t">Latest Analysis</span><span className="d">World news &amp; comment</span></span></a>
+                <a href="media.html"><span className="ic"></span><span><span className="t">Media &amp; Podcasts</span><span className="d">Watch &amp; listen</span></span></a>
+                <a href="magazine.html"><span className="ic"></span><span><span className="t">In Defence of Marxism</span><span className="d">The magazine</span></span></a>
+                <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer"><span className="ic"></span><span><span className="t">WellRed Books</span><span className="d">The bookshop</span></span></a>
+                <a href="join.html"><span className="ic"></span><span><span className="t">Join the RCI</span><span className="d">Get organised</span></span></a>
+              </div>
+              <div className="rci-mm-secondary">
+                <div className="rci-mm-search">
+                  <span style={{ color: "var(--rci-ash)", fontFamily: "var(--rci-font-mono)" }}>&#9906;</span>
+                  <input 
+                    placeholder="Search marxist.com" 
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        window.location.href = 'search.html?q=' + encodeURIComponent(e.target.value);
+                      }
+                    }}
+                  />
+                </div>
+                <div className="rci-mm-cols">
+                  <div>
+                    <h5>Continents</h5>
+                    <ul>
+                      <li><a href="sections.html?category=Africa">Africa</a></li>
+                      <li><a href="sections.html?category=Americas">Americas</a></li>
+                      <li><a href="sections.html?category=Asia">Asia</a></li>
+                      <li><a href="sections.html?category=Europe">Europe</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>Current Topics</h5>
+                    <ul>
+                      <li><a href="topic.html?topic=Imperialism">Imperialism</a></li>
+                      <li><a href="topic.html?topic=Economy">Economy</a></li>
+                      <li><a href="topic.html?topic=Labour">Labour</a></li>
+                      <li><a href="topic.html?topic=Oppression">Oppression</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>Marxist Theory</h5>
+                    <ul>
+                      <li><a href="theory.html#marx-engels">Marx &amp; Engels</a></li>
+                      <li><a href="theory.html#lenin">Lenin</a></li>
+                      <li><a href="theory.html#trotsky">Trotsky</a></li>
+                      <li><a href="theory.html#classics">The classics</a></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5>The RCI</h5>
+                    <ul>
+                      <li><a href="join.html">Who we are</a></li>
+                      <li><a href="join.html#sections">Our sections</a></li>
+                      <li><a href="join.html#statements">Statements</a></li>
+                      <li><a href="join.html#contact">Contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div className="rci-backdrop" onClick={() => setMenuOpen(false)}></div>
+    </React.Fragment>
+  );
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+function Footer() {
+  return (
+    <footer className="site-foot" data-screen-label="Footer">
+      <div className="foot-main">
+        <div className="foot-brand">
+          <img src="assets/rci-social-round.svg" alt="RCI" />
+          <div className="foot-brand-wm">Revolutionary Communist International</div>
+        </div>
+        <a href="join.html" className="foot-manifesto-card">
+          <div className="foot-manifesto-img">
+            <img src="assets/card-manifesto.jpg" alt="The Revolutionary Manifesto of the RCI" />
+          </div>
+        </a>
+        <div className="foot-right">
+          <a href="#" className="foot-link">World Perspectives</a>
+          <a href="#" className="foot-link">RCI Documentary</a>
+          <a href="#" className="foot-link">World School of Communism</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 // Export to window so other JSX files can use them
-Object.assign(window, { PrintButton, Eyebrow, SectionRule, ArticleCard, SectionHead });
+Object.assign(window, { 
+  PrintButton, 
+  Eyebrow, 
+  SectionRule, 
+  ArticleCard, 
+  SectionHead, 
+  NAV_TABS, 
+  Header, 
+  Footer 
+});

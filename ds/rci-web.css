@@ -1,15 +1,25 @@
 /* =====================================================================
-   RCI WEB DESIGN SYSTEM  ·  rci-web.css
+   RCI WEB DESIGN SYSTEM  ·  rci-web.css   ·   v2 "Reading Room"
    Revolutionary Communist International — website
    ---------------------------------------------------------------------
-   Warm-paper news surface. Editorial serif (Cormorant + Cheltenham) for
-   reading; Built Titling for the bold, audacious moments. A small set of
-   printed spot inks for section colour. Hand-printed grain, never flat.
+   An elevated, literary redesign in the register of *In Defence of
+   Marxism*: a serious theory journal that still feels PRINTED. The page
+   is warm paper; the reading voice is a calm editorial serif (Cormorant
+   headlines, Cheltenham body) with generous air. Built Titling is kept
+   as a spice — the agitational punch on a handful of cards and bands.
+
+   WHAT CHANGED FROM v1
+     · No more ink "stamp" drop-shadows anywhere. Surfaces are grounded
+       in real paper materiality instead: laid-paper panel slips, hair-
+       line key-lines, torn-ink rules, and honest negative space.
+     · Typography elevated — larger, quieter headlines; a longer reading
+       measure; small-caps kickers without the busy ticks; drop caps,
+       pull-quotes and a proper standfirst.
+     · Texture does the grounding a shadow used to do.
 
    USAGE
      <link rel="stylesheet" href="rci-web.css">   (imports rci-fonts.css)
    Keep rci-fonts.css, /fonts and /textures beside this file.
-
    All classes are prefixed .rci-  ·  see README.md for the full guide.
    ===================================================================== */
 
@@ -20,55 +30,55 @@
    ===================================================================== */
 :root {
   /* ---- Warm paper surfaces ---- */
-  --rci-paper:      #ffffff;  /* peach-cream newsprint — the page */
-  --rci-paper-deep: #f5f5f5;  /* sunk warm panel (footer, wells) */
-  --rci-paper-card: #ffffff;  /* lifted warm white (cards, menu) */
-  --rci-img:        #f0e0cd;  /* spare image-placeholder fill */
+  --rci-paper:      #f6ecdd;  /* the page — warm laid newsprint */
+  --rci-paper-2:    #f1e5d3;  /* alternating section ground (quiet well) */
+  --rci-paper-deep: #ece0cc;  /* sunk warm panel (footer) */
+  --rci-paper-card: #fbf4e9;  /* a finer paper slip — lifted panels/menu */
+  --rci-img:        #e7d7c1;  /* spare image-placeholder fill */
 
   /* ---- Warm ink ---- */
-  --rci-ink:        #221c17;  /* warm near-black — text & hard edges */
-  --rci-ink-soft:   #4a4039;  /* secondary type */
-  --rci-ash:        #8a7d70;  /* metadata grey, warm */
-  --rci-hairline:   #e4d0bb;  /* warm divider */
-  --rci-hairline-2: #d3bca3;  /* stronger divider / ghost shadow */
+  --rci-ink:        #1e1712;  /* warm near-black — text & hard edges */
+  --rci-ink-soft:   #463c33;  /* secondary / body text */
+  --rci-ash:        #8a7c6c;  /* metadata, captions */
+  --rci-hairline:   #e0cfb6;  /* fine warm divider */
+  --rci-hairline-2: #cdb597;  /* stronger divider */
 
   /* ---- Identity red (dominant accent) ---- */
-  --rci-red:        #d4140f;
-  --rci-red-hot:    #e6002b;  /* alarms / live */
-  --rci-red-dark:   #8a0608;  /* hover / pressed */
+  --rci-red:        #c11a10;  /* a deeper, printed vermilion-crimson */
+  --rci-red-hot:    #e6002b;  /* alarms / live only */
+  --rci-red-dark:   #8a0d09;  /* hover / pressed */
 
   /* ---- Printed spot inks (muted riso/letterpress — section colour) ----
-     Use ONE per section, on the kicker. Never rainbow a single view. */
-  --rci-blue:       #1d3a6b;
-  --rci-ochre:      #bd7a17;
-  --rci-green:      #2c5e3f;
+     ONE per section, on the kicker. Never rainbow a single view. */
+  --rci-blue:       #21406e;
+  --rci-ochre:      #ad6f16;
+  --rci-green:      #2c5a3d;
 
   /* ---- Type families ---- */
-  --rci-font-display: "Built Titling", "Arial Narrow", sans-serif;          /* ALL-CAPS bold voice */
+  --rci-font-display: "Built Titling", "Arial Narrow", sans-serif;               /* ALL-CAPS bold voice */
   --rci-font-condensed: "Trade Gothic Next LT Pro Condensed", "Arial Narrow", sans-serif; /* kickers, nav, meta */
-  --rci-font-ui:      "Trade Gothic Next LT Pro", "Helvetica Neue", sans-serif;           /* buttons, labels */
-  --rci-font-serif:   "Cheltenham BT", "Georgia", "Times New Roman", serif;  /* reading / body */
+  --rci-font-ui:      "Trade Gothic Next LT Pro", "Helvetica Neue", sans-serif;  /* buttons, labels */
+  --rci-font-serif:   "Cheltenham BT", "Georgia", "Times New Roman", serif;      /* reading / body */
   --rci-font-serif-display: "Cormorant Garamond", "Cheltenham BT", "Georgia", serif; /* headlines */
-  --rci-font-mono:    "IBM Plex Mono", ui-monospace, Menlo, monospace;       /* tech labels */
+  --rci-font-mono:    "IBM Plex Mono", ui-monospace, Menlo, monospace;           /* archival / tech labels */
 
   /* ---- Layout ---- */
-  --rci-maxw: 1180px;
-  --rci-gutter: 28px;
+  --rci-maxw: 1200px;
+  --rci-maxw-read: 720px;      /* long-form reading column */
+  --rci-gutter: 32px;
 
-  /* ---- Borders & ink-shadows (hard, printed — no soft blur) ---- */
+  /* ---- Borders (hard, printed — no soft blur, no drop shadow) ---- */
   --rci-bw-hair: 1px;
   --rci-bw-rule: 2px;
   --rci-bw-slab: 3px;
-  --rci-shadow:      6px 6px 0 var(--rci-ink);
-  --rci-shadow-red:  6px 6px 0 var(--rci-red);
-  --rci-shadow-sm:   4px 4px 0 var(--rci-ink);
-  --rci-shadow-ghost: 4px 4px 0 var(--rci-hairline-2);
 
-  /* ---- Textures (compose with mix-blend-mode; see §3 + README) ---- */
-  --rci-tx-grain:   url("textures/au-fg-1.jpg");        /* @kind other — page grain, multiply ~0.14 */
-  --rci-tx-scratch: url("textures/paper-gray.jpg");     /* dark-slab scratch (substitute) — screen ~0.12 */
-  --rci-tx-peel:    url("textures/red-paper-alt.jpg");  /* red-slab peel (substitute) — multiply ~0.18 */
-  --rci-tx-halftone:url("textures/halftone-mesh.jpg");  /* @kind other — on red slabs, multiply ~0.22 */
+  /* ---- Textures (compose as low-opacity blend overlays; see §3) ---- */
+  --rci-tx-grain:   url("textures/au-fg-1.jpg");            /* @kind other — page grain, multiply ~0.10 */
+  --rci-tx-laid:    url("textures/paper-346.jpg");          /* @kind other — laid paper on panels, multiply ~0.5 */
+  --rci-tx-torn:    url("textures/torn-strip.jpg");         /* @kind other — torn-ink rule, multiply */
+  --rci-tx-scratch: url("textures/paper-356.jpg");          /* @kind other — on dark slabs, screen ~0.14 */
+  --rci-tx-peel:    url("textures/grunge-peeled-paint.jpg");/* @kind other — on red slabs, multiply ~0.16 */
+  --rci-tx-halftone:url("textures/halftone-mesh.jpg");      /* @kind other — on red slabs, multiply ~0.20 */
 }
 
 /* =====================================================================
@@ -80,19 +90,20 @@ body {
   background: var(--rci-paper);
   color: var(--rci-ink);
   font-family: var(--rci-font-serif);
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 /* Page grain — a single non-tiling sheet over everything, fixed so it
-   reads as paper, not a repeating tile. NEVER swap this for a small
-   tiling texture (it seams into a "polaroid grid"). */
+   reads as paper, not a repeating tile. Kept faint (0.09). NEVER swap
+   for a small tiling texture (it seams into a "polaroid grid"). */
 body::before {
   content: "";
   position: fixed; inset: 0;
   background: var(--rci-tx-grain) center / cover no-repeat fixed;
   mix-blend-mode: multiply;
-  opacity: 0.14;
+  opacity: 0.09;
   pointer-events: none;
   z-index: 9999;
 }
@@ -102,42 +113,51 @@ img { max-width: 100%; display: block; }
 
 /* =====================================================================
    3 · TYPOGRAPHY
-   The reading voice is sentence-case serif. Built Titling is reserved
-   for display moments and is the ONLY thing set in caps.
+   Reading voice is sentence-case serif. Built Titling is reserved for
+   display punch and is the ONLY thing set in caps.
    ===================================================================== */
-.rci-display {            /* Built Titling — ALL CAPS bold */
+.rci-display {            /* Built Titling — ALL CAPS bold, the punch */
   font-family: var(--rci-font-display); font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.9;
+  text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.9;
   margin: 0;
 }
 .rci-headline {           /* Cormorant — editorial headline, sentence case */
   font-family: var(--rci-font-serif-display); font-weight: 700;
-  text-transform: none; line-height: 1.02; letter-spacing: -0.01em;
+  text-transform: none; line-height: 1.04; letter-spacing: -0.006em;
   margin: 0; text-wrap: balance;
 }
-.rci-title {              /* Cormorant — smaller card title */
+.rci-title {              /* Cormorant — smaller card / section title */
   font-family: var(--rci-font-serif-display); font-weight: 600;
-  text-transform: none; line-height: 1.08; letter-spacing: -0.005em;
+  text-transform: none; line-height: 1.1; letter-spacing: -0.003em;
   margin: 0;
 }
-.rci-standfirst {         /* italic Cormorant standfirst / dek */
+.rci-standfirst {         /* Cormorant italic standfirst / dek */
   font-family: var(--rci-font-serif-display); font-weight: 500; font-style: italic;
-  font-size: 21px; line-height: 1.35; color: var(--rci-ink-soft); margin: 0;
+  font-size: 23px; line-height: 1.4; color: var(--rci-ink-soft); margin: 0;
 }
 .rci-body {               /* Cheltenham reading text */
-  font-family: var(--rci-font-serif); font-size: 17px; line-height: 1.55;
+  font-family: var(--rci-font-serif); font-size: 18px; line-height: 1.68;
   color: var(--rci-ink-soft);
 }
-.rci-body p { margin: 0 0 1em; max-width: 66ch; }
+.rci-body p { margin: 0 0 1.15em; max-width: 68ch; }
+.rci-body.measure, .rci-body .measure { max-width: var(--rci-maxw-read); }
 
-/* Kicker / eyebrow — condensed caps, coloured by section ink */
+/* Drop cap — a literary lede opener (use on the first para of a feature) */
+.rci-dropcap::first-letter,
+.rci-body.dropcap > p:first-of-type::first-letter {
+  font-family: var(--rci-font-serif-display); font-weight: 700;
+  float: left; font-size: 4.4em; line-height: 0.78;
+  padding: 6px 12px 0 0; color: var(--rci-red);
+}
+
+/* Kicker / eyebrow — quiet condensed small-caps, coloured by section ink.
+   No tick by default (declutter); add .tick for the printed rule mark. */
 .rci-kicker {
   font-family: var(--rci-font-condensed); font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px;
-  display: inline-flex; align-items: center; gap: 7px; color: var(--rci-red);
+  text-transform: uppercase; letter-spacing: 0.22em; font-size: 12px;
+  display: inline-flex; align-items: center; gap: 9px; color: var(--rci-red);
 }
-.rci-kicker::before { content: ""; width: 16px; height: 3px; background: currentColor; }
-.rci-kicker.no-tick::before { display: none; }
+.rci-kicker.tick::before { content: ""; width: 18px; height: 2px; background: currentColor; }
 .rci-kicker.blue  { color: var(--rci-blue); }
 .rci-kicker.ochre { color: var(--rci-ochre); }
 .rci-kicker.green { color: var(--rci-green); }
@@ -145,211 +165,309 @@ img { max-width: 100%; display: block; }
 /* Metadata — date / read-time / byline */
 .rci-meta {
   font-family: var(--rci-font-condensed); text-transform: uppercase;
-  letter-spacing: 0.12em; font-size: 11px; color: var(--rci-ash);
-  display: inline-flex; gap: 9px; align-items: center;
+  letter-spacing: 0.14em; font-size: 11px; color: var(--rci-ash);
+  display: inline-flex; gap: 10px; align-items: center; white-space: nowrap;
 }
 .rci-meta .dot { color: var(--rci-hairline-2); }
 
 /* Inline editorial link */
 .rci-link {
-  text-decoration: underline; text-decoration-thickness: 1.5px;
+  text-decoration: underline; text-decoration-thickness: 1px;
   text-underline-offset: 3px; text-decoration-color: var(--rci-hairline-2);
+  transition: text-decoration-color 120ms ease, color 120ms ease;
 }
 .rci-link:hover { color: var(--rci-red); text-decoration-color: var(--rci-red); }
 
-/* Section heading rule (Built Titling label over a thick ink rule) */
+/* Section heading — Built Titling label over a fine ink rule + "see all".
+   The rule is a hairline, not a slab: quiet, editorial. */
 .rci-section-head {
   display: flex; align-items: baseline; justify-content: space-between;
-  gap: 14px; border-bottom: var(--rci-bw-slab) solid var(--rci-ink);
-  padding-bottom: 10px; margin-bottom: 22px;
+  gap: 16px; border-bottom: var(--rci-bw-rule) solid var(--rci-ink);
+  padding-bottom: 10px; margin-bottom: 26px;
 }
 .rci-section-head h2 {
   font-family: var(--rci-font-display); font-weight: 700;
-  text-transform: uppercase; font-size: 28px; letter-spacing: 0.01em; margin: 0;
+  text-transform: uppercase; font-size: 26px; letter-spacing: 0.01em; margin: 0;
 }
-.rci-section-head a { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 700; color: var(--rci-red); }
+.rci-section-head .serif-label {
+  font-family: var(--rci-font-serif-display); font-weight: 700; text-transform: none;
+  font-size: 30px; letter-spacing: -0.01em;
+}
+.rci-section-head a {
+  font-family: var(--rci-font-condensed); text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 12px; font-weight: 700; color: var(--rci-red);
+  white-space: nowrap;
+}
+.rci-section-head a:hover { color: var(--rci-red-dark); }
+
+/* Pull-quote — large Cormorant italic, hung on a thin rule; no box */
+.rci-pullquote {
+  border-top: var(--rci-bw-rule) solid var(--rci-ink);
+  padding-top: 18px; margin: 0;
+}
+.rci-pullquote p {
+  font-family: var(--rci-font-serif-display); font-style: italic; font-weight: 500;
+  font-size: 30px; line-height: 1.3; letter-spacing: -0.006em; margin: 0;
+  color: var(--rci-ink); text-wrap: balance;
+}
+.rci-pullquote .src {
+  font-family: var(--rci-font-condensed); text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 12px; color: var(--rci-ash); margin-top: 14px; display: block;
+}
 
 /* =====================================================================
-   4 · LAYOUT HELPERS
+   4 · LAYOUT HELPERS + RULES
    ===================================================================== */
 .rci-wrap { max-width: var(--rci-maxw); margin: 0 auto; padding: 0 var(--rci-gutter); }
-.rci-rule { border: 0; border-top: var(--rci-bw-slab) solid var(--rci-ink); margin: 28px 0 0; }
-.rci-grid { display: grid; gap: 26px; }
+.rci-grid { display: grid; gap: 30px; }
 .rci-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .rci-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .rci-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 
+/* Fine ink rule (the everyday divider) */
+.rci-rule { border: 0; border-top: var(--rci-bw-rule) solid var(--rci-ink); margin: 30px 0 0; }
+.rci-rule.hair { border-top: var(--rci-bw-hair) solid var(--rci-hairline-2); }
+
+/* Torn-ink rule — the material divider that replaces the old slab bars.
+   A real torn-paper strip printed as ink onto the page via multiply:
+   the white of the scan drops out, only the torn black band prints. */
+.rci-torn {
+  height: 20px; width: 100%;
+  background: var(--rci-tx-torn) repeat-x center / auto 100%;
+  mix-blend-mode: multiply; opacity: 0.92;
+  margin: 40px 0; pointer-events: none;
+}
+.rci-torn.tight { margin: 26px 0; }
+.rci-torn.flip { transform: scaleY(-1); }
+
 /* =====================================================================
    5 · IMAGE PLACEHOLDERS
-   Spare flat blocks. NEVER put a tiling texture on a photo or the page
-   background — duotone gradients only. Drop a real <img> in to replace.
+   Spare flat blocks with a hairline key-line (no border-heavy box, no
+   shadow). Duotone gradients only — NEVER a tiling texture on a photo.
    ===================================================================== */
 .rci-img {
-  background: var(--rci-img); border: var(--rci-bw-rule) solid var(--rci-ink);
+  background: var(--rci-img); border: var(--rci-bw-hair) solid var(--rci-ink);
   position: relative; overflow: hidden;
 }
 .rci-img .lbl {
-  position: absolute; left: 9px; bottom: 8px; z-index: 2;
+  position: absolute; left: 10px; bottom: 9px; z-index: 2;
   font-family: var(--rci-font-mono); font-size: 10px; letter-spacing: 0.02em;
-  color: var(--rci-ash); text-transform: uppercase;
+  color: var(--rci-ash); text-transform: uppercase; white-space: nowrap;
 }
 .rci-img img { width: 100%; height: 100%; object-fit: cover; }
-/* duotone fills — tint a flat photo block by section ink */
-.rci-img.duo      { background: linear-gradient(140deg, var(--rci-red), var(--rci-ink) 78%); }
-.rci-img.duo.blue { background: linear-gradient(140deg, var(--rci-blue), var(--rci-ink) 78%); }
-.rci-img.duo.ochre{ background: linear-gradient(140deg, var(--rci-ochre), var(--rci-ink) 78%); }
-.rci-img.duo.green{ background: linear-gradient(140deg, var(--rci-green), var(--rci-ink) 78%); }
-.rci-img.duo .lbl { color: #fff; }
-.rci-img.dark     { background: linear-gradient(180deg, #4a4039, var(--rci-ink)); }
+.rci-img.duo      { background: linear-gradient(150deg, #7c3a30, var(--rci-ink) 82%); }
+.rci-img.duo.blue { background: linear-gradient(150deg, #2c4c7e, var(--rci-ink) 82%); }
+.rci-img.duo.ochre{ background: linear-gradient(150deg, #9a6a24, var(--rci-ink) 82%); }
+.rci-img.duo.green{ background: linear-gradient(150deg, #35664a, var(--rci-ink) 82%); }
+.rci-img.duo .lbl { color: #efe4d4; }
+.rci-img.dark     { background: linear-gradient(180deg, #463c33, var(--rci-ink)); }
 .rci-img.dark .lbl{ color: #cdbfae; }
-/* aspect helpers */
 .rci-ar-16-9 { aspect-ratio: 16 / 9; }
 .rci-ar-16-10{ aspect-ratio: 16 / 10; }
+.rci-ar-3-2  { aspect-ratio: 3 / 2; }
 .rci-ar-4-3  { aspect-ratio: 4 / 3; }
 .rci-ar-1-1  { aspect-ratio: 1 / 1; }
 
 /* =====================================================================
-   6 · BUTTONS  (hard ink "stamp" shadow; press pushes it in)
+   6 · BUTTONS  (hard-edged, flat, print-ink — no drop shadow)
+   Press feedback is a 1px settle + darken, like ink meeting paper.
    ===================================================================== */
 .rci-btn {
   font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; font-size: 12px; padding: 11px 16px;
-  border: var(--rci-bw-rule) solid var(--rci-ink);
+  letter-spacing: 0.14em; font-size: 12px; padding: 12px 20px;
+  border: var(--rci-bw-rule) solid var(--rci-red);
   background: var(--rci-red); color: var(--rci-paper);
-  box-shadow: var(--rci-shadow-sm); cursor: pointer; display: inline-block;
-  transition: transform 90ms ease-out, box-shadow 90ms ease-out, background 90ms ease-out;
+  cursor: pointer; display: inline-block;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease, transform 90ms ease;
 }
-.rci-btn:hover  { background: var(--rci-red-dark); }
-.rci-btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--rci-ink); }
-.rci-btn.ghost  { background: transparent; color: var(--rci-ink); box-shadow: var(--rci-shadow-ghost); }
-.rci-btn.ghost:hover { background: var(--rci-paper-deep); }
-.rci-btn.ink    { background: var(--rci-ink); color: var(--rci-paper); }
-.rci-btn.light  { background: var(--rci-paper); color: var(--rci-ink); }
-.rci-btn.lg     { font-size: 14px; padding: 14px 28px; }
+.rci-btn:hover  { background: var(--rci-red-dark); border-color: var(--rci-red-dark); }
+.rci-btn:active { transform: translateY(1px); }
+.rci-btn.ghost  { background: transparent; color: var(--rci-ink); border-color: var(--rci-ink); }
+.rci-btn.ghost:hover { background: var(--rci-ink); color: var(--rci-paper); }
+.rci-btn.ink    { background: var(--rci-ink); color: var(--rci-paper); border-color: var(--rci-ink); }
+.rci-btn.ink:hover { background: #000; }
+.rci-btn.light  { background: var(--rci-paper); color: var(--rci-ink); border-color: var(--rci-paper); }
+.rci-btn.light:hover { background: #fff; }
+.rci-btn.lg     { font-size: 14px; padding: 15px 30px; }
 
 /* =====================================================================
    7 · HEADER · NAV · MEGA-MENU
    ===================================================================== */
-.rci-header { position: sticky; top: 0; z-index: 100; background: var(--rci-paper); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); }
-.rci-topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 12px; }
-.rci-brand  { display: flex; align-items: center; gap: 13px; }
-.rci-brand img { width: 44px; height: 44px; box-shadow: 3px 3px 0 var(--rci-ink); }
-.rci-brand .name { font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 17px; line-height: 0.98; }
-.rci-topbar .right { display: flex; align-items: center; gap: 16px; }
-.rci-lang { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; color: var(--rci-ink-soft); cursor: pointer; }
+.rci-header { position: sticky; top: 0; z-index: 100; background: var(--rci-paper); border-bottom: var(--rci-bw-rule) solid var(--rci-ink); }
+.rci-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 14px; }
+.rci-brand  { display: flex; align-items: center; gap: 14px; }
+.rci-brand img { width: 46px; height: 46px; }
+.rci-brand .name { display: flex; flex-direction: column; gap: 2px; }
+.rci-brand .brand-tagline { font-family: var(--rci-font-serif-display); font-style: italic; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 16px; line-height: 1; color: var(--rci-ink-soft); }
+.rci-brand .brand-org { font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; font-size: 16px; line-height: 1.0; white-space: nowrap; }
+.rci-topbar .right { display: flex; align-items: center; gap: 18px; }
+.rci-lang { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; color: var(--rci-ink-soft); cursor: pointer; }
 .rci-lang:hover { color: var(--rci-red); }
 
 .rci-nav { display: flex; align-items: stretch; border-top: var(--rci-bw-hair) solid var(--rci-hairline); }
 .rci-nav a, .rci-nav button {
   font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; font-size: 13px; padding: 12px 18px; color: var(--rci-ink);
-  border: 0; background: none; cursor: pointer; display: flex; align-items: center; gap: 9px;
-  border-right: var(--rci-bw-hair) solid var(--rci-hairline);
+  letter-spacing: 0.12em; font-size: 13px; padding: 13px 20px; color: var(--rci-ink);
+  border: 0; background: none; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  position: relative; transition: color 120ms ease;
 }
 .rci-nav a:first-child { padding-left: 0; }
-.rci-nav a:hover, .rci-nav button:hover { background: var(--rci-red); color: var(--rci-paper); }
-.rci-nav a.active { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--rci-red); }
+.rci-nav a::after {
+  content: ""; position: absolute; left: 20px; right: 20px; bottom: 6px; height: 2px;
+  background: var(--rci-red); transform: scaleX(0); transform-origin: left; transition: transform 150ms ease;
+}
+.rci-nav a:first-child::after { left: 0; }
+.rci-nav a:hover { color: var(--rci-red); }
+.rci-nav a:hover::after, .rci-nav a.active::after { transform: scaleX(1); }
+.rci-nav button:hover { color: var(--rci-red); }
 .rci-ham { display: inline-flex; flex-direction: column; gap: 3px; }
 .rci-ham i { width: 16px; height: 2px; background: currentColor; display: block; }
 
 /* mega menu — toggled by adding .menu-open to <body> */
-.rci-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(34,28,23,0.28); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); opacity: 0; pointer-events: none; transition: opacity 160ms ease-out; }
+.rci-backdrop { position: fixed; inset: 0; z-index: 80; background: rgba(30,23,18,0.32); opacity: 0; pointer-events: none; transition: opacity 180ms ease; }
 body.menu-open .rci-backdrop { opacity: 1; pointer-events: auto; }
-.rci-megamenu { position: absolute; left: 0; right: 0; top: 100%; z-index: 90; background: var(--rci-paper-card); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 160ms ease-out, transform 160ms ease-out; }
+.rci-megamenu { position: absolute; left: 0; right: 0; top: 100%; z-index: 90; background: var(--rci-paper-card); border-bottom: var(--rci-bw-rule) solid var(--rci-ink); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 180ms ease, transform 180ms ease; }
 body.menu-open .rci-megamenu { opacity: 1; transform: none; pointer-events: auto; }
-.rci-megamenu .rci-wrap { padding-top: 18px; padding-bottom: 26px; }
-.rci-mm-close { display: inline-flex; align-items: center; gap: 8px; font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; color: var(--rci-red); cursor: pointer; margin-bottom: 16px; }
-.rci-mm-grid { display: grid; grid-template-columns: 260px 1fr; gap: 34px; }
-.rci-mm-primary { display: flex; flex-direction: column; border-right: var(--rci-bw-hair) solid var(--rci-hairline); padding-right: 18px; }
-.rci-mm-primary a { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 9px 0; border-bottom: var(--rci-bw-hair) solid var(--rci-hairline); }
+.rci-megamenu .rci-wrap { padding-top: 22px; padding-bottom: 30px; }
+.rci-mm-close { display: inline-flex; align-items: center; gap: 8px; font-family: var(--rci-font-condensed); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--rci-red); cursor: pointer; margin-bottom: 18px; }
+.rci-mm-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
+.rci-mm-primary { display: flex; flex-direction: column; border-right: var(--rci-bw-hair) solid var(--rci-hairline); padding-right: 22px; }
+.rci-mm-primary a { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start; padding: 11px 0; border-bottom: var(--rci-bw-hair) solid var(--rci-hairline); }
 .rci-mm-primary a:last-child { border-bottom: 0; }
-.rci-mm-primary .ic { width: 34px; height: 34px; border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper); }
-.rci-mm-primary .t { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 19px; line-height: 1; }
-.rci-mm-primary .d { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.08em; font-size: 10px; color: var(--rci-ash); margin-top: 4px; }
+.rci-mm-primary .ic { width: 36px; height: 36px; border: var(--rci-bw-hair) solid var(--rci-ink); background: var(--rci-paper); }
+.rci-mm-primary .t { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 21px; line-height: 1; }
+.rci-mm-primary .d { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.1em; font-size: 10px; color: var(--rci-ash); margin-top: 5px; }
 .rci-mm-primary a:hover .t { color: var(--rci-red); }
-.rci-mm-search { display: flex; align-items: center; gap: 10px; border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper); padding: 11px 14px; margin-bottom: 18px; }
+.rci-mm-search { display: flex; align-items: center; gap: 10px; border: var(--rci-bw-hair) solid var(--rci-ink); background: var(--rci-paper); padding: 12px 15px; margin-bottom: 20px; }
 .rci-mm-search input { border: 0; background: none; outline: none; font-family: var(--rci-font-serif); font-size: 16px; color: var(--rci-ink); width: 100%; }
 .rci-mm-search input::placeholder { color: var(--rci-ash); }
-.rci-mm-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 26px; }
-.rci-mm-cols h5 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.13em; font-size: 12px; color: var(--rci-red); margin: 0 0 9px; padding-bottom: 6px; border-bottom: var(--rci-bw-rule) solid var(--rci-ink); }
-.rci-mm-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.rci-mm-cols a { font-family: var(--rci-font-serif); font-size: 15px; color: var(--rci-ink-soft); }
+.rci-mm-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 28px; }
+.rci-mm-cols h5 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--rci-red); margin: 0 0 10px; padding-bottom: 7px; border-bottom: var(--rci-bw-hair) solid var(--rci-ink); }
+.rci-mm-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.rci-mm-cols a { font-family: var(--rci-font-serif); font-size: 16px; color: var(--rci-ink-soft); }
 .rci-mm-cols a:hover { color: var(--rci-red); }
 
 /* =====================================================================
    8 · CARDS
-   .rci-card        — editorial serif card (the reading register)
-   .rci-card.bold   — Built Titling slab card (the revolutionary punch)
+   .rci-card       — editorial serif card. Sits ON the paper: no box, no
+                     shadow. A hairline top rule + air does the framing.
+   .rci-card.bold  — Built Titling slab card (the revolutionary punch),
+                     grounded by flat ink/red + texture, not a shadow.
    ===================================================================== */
 .rci-card { display: flex; flex-direction: column; }
-.rci-card .rci-img { margin-bottom: 12px; }
-.rci-card .rci-kicker { margin-bottom: 8px; }
-.rci-card h3 { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 23px; line-height: 1.08; letter-spacing: -0.005em; margin: 0 0 8px; }
+.rci-card .rci-img { margin-bottom: 14px; }
+.rci-card .rci-kicker { margin-bottom: 9px; }
+.rci-card h3 { font-family: var(--rci-font-serif-display); font-weight: 600; font-size: 25px; line-height: 1.1; letter-spacing: -0.004em; margin: 0 0 9px; }
 .rci-card:hover h3 { color: var(--rci-red); }
-.rci-card .dek { font-family: var(--rci-font-serif); font-size: 14.5px; line-height: 1.45; color: var(--rci-ink-soft); margin: 0 0 12px; }
+.rci-card .dek { font-family: var(--rci-font-serif); font-size: 15.5px; line-height: 1.55; color: var(--rci-ink-soft); margin: 0 0 14px; }
 .rci-card .rci-meta { margin-top: auto; }
+/* ruled variant — a hairline above the card, newspaper-column style */
+.rci-card.ruled { border-top: var(--rci-bw-rule) solid var(--rci-ink); padding-top: 14px; }
 
-/* bold slab card — dark by default, or .red */
-.rci-card.bold { background: var(--rci-ink); color: var(--rci-paper); border: var(--rci-bw-rule) solid var(--rci-ink); box-shadow: var(--rci-shadow-red); position: relative; overflow: hidden; }
-.rci-card.bold .inner { padding: 20px 18px 18px; display: flex; flex-direction: column; height: 100%; }
-.rci-card.bold .rci-kicker { color: #ff6a45; }
-.rci-card.bold h3 { font-family: var(--rci-font-display); font-weight: 700; text-transform: uppercase; font-size: 33px; line-height: 0.92; color: var(--rci-paper); margin: 10px 0 0; }
-.rci-card.bold h3 em { font-style: normal; color: #ff6a45; }
-.rci-card.bold .dek { color: #d8cabb; margin-top: 12px; }
-.rci-card.bold .rci-meta { color: #9d9082; margin-top: auto; padding-top: 16px; }
-.rci-card.bold.red { background: var(--rci-red); box-shadow: var(--rci-shadow); }
+/* bold slab card — dark by default, or .red. Grounded by texture + a
+   fine key-line; NO offset shadow. */
+.rci-card.bold { background: var(--rci-ink); color: var(--rci-paper); position: relative; overflow: hidden; }
+.rci-card.bold::before { content: ""; position: absolute; inset: 0; background: var(--rci-tx-scratch) center / cover; mix-blend-mode: screen; opacity: 0.13; pointer-events: none; }
+.rci-card.bold .inner { position: relative; z-index: 2; padding: 24px 22px 22px; display: flex; flex-direction: column; height: 100%; }
+.rci-card.bold .rci-kicker { color: #ff7a52; }
+.rci-card.bold h3 { font-family: var(--rci-font-display); font-weight: 700; text-transform: uppercase; font-size: 34px; line-height: 0.92; color: var(--rci-paper); margin: 12px 0 0; }
+.rci-card.bold h3 em { font-style: normal; color: #ff7a52; }
+.rci-card.bold .dek { color: #d8cabb; margin-top: 14px; }
+.rci-card.bold .rci-meta { color: #9d9082; margin-top: auto; padding-top: 18px; }
+.rci-card.bold.red { background: var(--rci-red); }
+.rci-card.bold.red::before { background: var(--rci-tx-halftone) center / cover; mix-blend-mode: multiply; opacity: 0.22; }
+.rci-card.bold.red::after { content: ""; position: absolute; inset: 0; background: var(--rci-tx-peel) center / cover; mix-blend-mode: multiply; opacity: 0.16; pointer-events: none; }
 .rci-card.bold.red .rci-kicker { color: var(--rci-ink); }
 .rci-card.bold.red h3 { color: var(--rci-paper); } .rci-card.bold.red h3 em { color: var(--rci-ink); }
-.rci-card.bold.red .dek { color: #ffe2dc; } .rci-card.bold.red .rci-meta { color: #f3c8c2; }
+.rci-card.bold.red .dek { color: #ffe6e0; } .rci-card.bold.red .rci-meta { color: #f4cdc7; }
 
 /* feature card — text overlaid on a duotone image block */
-.rci-feature { aspect-ratio: 5/4; display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; position: relative; overflow: hidden; border: var(--rci-bw-rule) solid var(--rci-ink); background: linear-gradient(160deg, #54483d, var(--rci-ink)); }
-.rci-feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(20,16,13,0.85)); }
+.rci-feature { aspect-ratio: 5/4; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; position: relative; overflow: hidden; border: var(--rci-bw-hair) solid var(--rci-ink); background: linear-gradient(160deg, #574a3d, var(--rci-ink)); }
+.rci-feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(18,14,11,0.86)); }
 .rci-feature .rci-kicker, .rci-feature h3 { position: relative; z-index: 2; }
-.rci-feature .rci-kicker { color: #ff8a6e; margin-bottom: 8px; }
-.rci-feature h3 { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 30px; line-height: 1.03; color: #fff; margin: 0; }
+.rci-feature .rci-kicker { color: #ff9576; margin-bottom: 10px; }
+.rci-feature h3 { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 33px; line-height: 1.04; color: #fbf4e9; margin: 0; }
 
 /* =====================================================================
-   9 · BANNER  (bordered call-out with ink stamp shadow)
+   9 · PANEL  (a finer paper slip — replaces the old shadow "banner")
+   Lifted by material, not elevation: warm-white card paper with a laid-
+   paper grain multiplied on, held by a single hairline key-line.
    ===================================================================== */
-.rci-banner { border: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper-card); box-shadow: var(--rci-shadow); padding: 26px; text-align: center; display: block; }
-.rci-banner .t { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 32px; margin: 0; }
-.rci-banner .s { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.14em; font-size: 11px; color: var(--rci-ash); margin-top: 6px; }
+.rci-panel {
+  background: var(--rci-paper-card);
+  border: var(--rci-bw-hair) solid var(--rci-ink);
+  padding: 32px; position: relative; overflow: hidden; display: block;
+}
+.rci-panel::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--rci-tx-laid) center / cover; mix-blend-mode: multiply;
+  opacity: 0.45; pointer-events: none;
+}
+.rci-panel > * { position: relative; z-index: 2; }
+.rci-panel.center { text-align: center; }
+.rci-panel .t { font-family: var(--rci-font-serif-display); font-weight: 700; font-size: 34px; margin: 0; line-height: 1.05; }
+.rci-panel .s { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--rci-ash); margin-top: 8px; }
+/* a red accent edge for campaign panels, printed not floated */
+.rci-panel.accent { border-left: var(--rci-bw-slab) solid var(--rci-red); }
+
+/* ---------------------------------------------------------------------
+   Texture utilities — attach printed materiality to ANY surface, in
+   place of the old ink-stamp shadow. Add the class to a container; its
+   direct children are lifted above the overlay automatically. Pair with
+   a key-line border for the full v2 grounding.
+     .rci-tex-laid     light paper slip — cards, cream panels
+     .rci-tex-grain    fine page grain — quiet wells / UI chrome
+     .rci-tex-scratch  on DARK ink slabs (screen) — bold cards
+     .rci-tex-halftone on RED slabs (multiply) — agitational bands
+   --------------------------------------------------------------------- */
+.rci-tex-laid, .rci-tex-grain, .rci-tex-scratch, .rci-tex-halftone { position: relative; }
+.rci-tex-laid::before, .rci-tex-grain::before,
+.rci-tex-scratch::before, .rci-tex-halftone::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-position: center; background-size: cover;
+}
+.rci-tex-laid > *, .rci-tex-grain > *,
+.rci-tex-scratch > *, .rci-tex-halftone > * { position: relative; z-index: 1; }
+.rci-tex-laid::before     { background-image: var(--rci-tx-laid);     mix-blend-mode: multiply; opacity: 0.42; }
+.rci-tex-grain::before    { background-image: var(--rci-tx-grain);    mix-blend-mode: multiply; opacity: 0.14; }
+.rci-tex-scratch::before  { background-image: var(--rci-tx-scratch);  mix-blend-mode: screen;   opacity: 0.13; }
+.rci-tex-halftone::before { background-image: var(--rci-tx-halftone); mix-blend-mode: multiply; opacity: 0.20; }
 
 /* =====================================================================
-   10 · DARK SLAB  (media blocks, "Against the Stream" etc.)
-   Ink ground with a faint scratch texture screened on top.
+   10 · DARK SLAB  (media bands, "Against the Stream" etc.)
+   Ink ground with a faint scratch texture screened on. Bordered by the
+   torn-ink rule where it meets paper — the transition reads as torn news.
    ===================================================================== */
-.rci-slab { background: var(--rci-ink); color: var(--rci-paper); border-top: var(--rci-bw-slab) solid var(--rci-ink); border-bottom: var(--rci-bw-slab) solid var(--rci-ink); position: relative; overflow: hidden; }
-.rci-slab::before { content: ""; position: absolute; inset: 0; background: var(--rci-tx-scratch) center / cover; mix-blend-mode: screen; opacity: 0.12; pointer-events: none; }
+.rci-slab { background: var(--rci-ink); color: var(--rci-paper); position: relative; overflow: hidden; }
+.rci-slab::before { content: ""; position: absolute; inset: 0; background: var(--rci-tx-scratch) center / cover; mix-blend-mode: screen; opacity: 0.14; pointer-events: none; }
 .rci-slab > * { position: relative; z-index: 2; }
-.rci-slab .rci-section-head { border-color: #4a4039; }
+.rci-slab .rci-section-head { border-color: #514639; }
 .rci-slab .rci-section-head h2 { color: var(--rci-paper); }
 
-/* red slab — for manifesto / agitation bands (textured) */
+/* red slab — manifesto / agitation bands (loudest, most printed) */
 .rci-slab.red { background: var(--rci-red); }
-.rci-slab.red::before { background: var(--rci-tx-halftone) center / cover; mix-blend-mode: multiply; opacity: 0.22; }
-.rci-slab.red::after { content: ""; position: absolute; inset: 0; background: var(--rci-tx-peel) center / cover; mix-blend-mode: multiply; opacity: 0.18; pointer-events: none; }
+.rci-slab.red::before { background: var(--rci-tx-halftone) center / cover; mix-blend-mode: multiply; opacity: 0.20; }
+.rci-slab.red::after { content: ""; position: absolute; inset: 0; background: var(--rci-tx-peel) center / cover; mix-blend-mode: multiply; opacity: 0.16; pointer-events: none; }
 
 /* =====================================================================
    11 · HORIZONTAL SCROLLER  (the "Latest" rail)
    ===================================================================== */
-.rci-scroller { display: grid; grid-auto-flow: column; grid-auto-columns: 240px; gap: 18px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x mandatory; }
+.rci-scroller { display: grid; grid-auto-flow: column; grid-auto-columns: 250px; gap: 22px; overflow-x: auto; padding-bottom: 16px; scroll-snap-type: x mandatory; }
 .rci-scroller > * { scroll-snap-align: start; }
-.rci-scroller::-webkit-scrollbar { height: 8px; }
+.rci-scroller::-webkit-scrollbar { height: 6px; }
 .rci-scroller::-webkit-scrollbar-thumb { background: var(--rci-hairline-2); }
 
 /* =====================================================================
    12 · FOOTER
    ===================================================================== */
-.rci-footer { border-top: var(--rci-bw-slab) solid var(--rci-ink); background: var(--rci-paper-deep); }
-.rci-footer .org { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
-.rci-footer h4 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--rci-red); margin: 0 0 12px; }
-.rci-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.rci-footer ul a { font-family: var(--rci-font-serif); font-size: 15px; color: var(--rci-ink-soft); }
+.rci-footer { border-top: var(--rci-bw-rule) solid var(--rci-ink); background: var(--rci-paper-deep); }
+.rci-footer .org { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+.rci-footer h4 { font-family: var(--rci-font-condensed); text-transform: uppercase; letter-spacing: 0.15em; font-size: 12px; color: var(--rci-red); margin: 0 0 12px; }
+.rci-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.rci-footer ul a { font-family: var(--rci-font-serif); font-size: 16px; color: var(--rci-ink-soft); }
 .rci-footer ul a:hover { color: var(--rci-red); }
 .rci-footer .colophon { border-top: var(--rci-bw-hair) solid var(--rci-hairline-2); }
-.rci-footer .colophon .rci-wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 30px; }
+.rci-footer .colophon .rci-wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 32px; }
 .rci-footer .colophon p, .rci-footer .colophon a { font-family: var(--rci-font-mono); font-size: 11px; color: var(--rci-ash); margin: 0; }
 
 /* =====================================================================
@@ -358,9 +476,11 @@ body.menu-open .rci-megamenu { opacity: 1; transform: none; pointer-events: auto
 @media (max-width: 980px) {
   .rci-grid.cols-3, .rci-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
   .rci-mm-grid { grid-template-columns: 1fr; }
+  .rci-mm-primary { border-right: 0; padding-right: 0; border-bottom: var(--rci-bw-hair) solid var(--rci-hairline); padding-bottom: 12px; margin-bottom: 12px; }
   .rci-mm-cols { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 620px) {
+  body { font-size: 17px; }
   .rci-grid.cols-2, .rci-grid.cols-3, .rci-grid.cols-4 { grid-template-columns: 1fr; }
   .rci-mm-cols { grid-template-columns: 1fr; }
 }

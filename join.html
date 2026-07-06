@@ -19,24 +19,10 @@
 
   /* ── Design-system warm palette (overrides colors_and_type.css cool values) ── */
   :root {
-    --rci-paper:      #ffffff;
-    --rci-paper-deep: #f5f5f5;
-    --rci-paper-card: #ffffff;
-    --rci-ink:        #221c17;
-    --rci-ink-soft:   #4a4039;
-    --rci-ash:        #8a7d70;
-    --rci-hairline:   #e4d0bb;
-    --rci-hairline-2: #d3bca3;
-    --rci-red:        #d4140f;
-    --rci-red-hot:    #e6002b;
-    --rci-red-dark:   #8a0608;
-    --rci-blue:       #1d3a6b;
-    --rci-ochre:      #bd7a17;
-    --rci-green:      #2c5e3f;
 
     /* Bridge: legacy token names used by the inline CSS + components.jsx,
        remapped onto warm surfaces so nothing reads cool/grey. */
-    --rci-offwhite:   #ffffff;            /* was #f6efef — now warm paper-card */
+    --rci-offwhite:   var(--rci-paper-card);            /* was #f6efef — now warm paper-card */
     --rci-fog:        var(--rci-hairline-2);
     --page-bg:        var(--rci-paper);
     --page-bg-dark:   var(--rci-paper);   /* dark mode removed; keep var defined */
@@ -202,7 +188,6 @@
     color: var(--rci-offwhite);
     border-color: var(--rci-red);
   }
-  .mast-social:active { transform: translate(1px, 1px); }
   @media (max-width: 720px) {
     .mast-socials { display: none; }
   }
@@ -244,7 +229,6 @@
   .mast-search-btn:hover { background: var(--rci-ink); color: var(--rci-offwhite); }
   .mast-search[data-open="true"] .mast-search-btn:hover { background: transparent; color: var(--rci-red); }
   .mast-search-btn svg { width: 18px; height: 18px; display: block; }
-  .mast-search-btn:active { transform: translate(1px, 1px); }
 
   /* ─── NAV ─────────────────────────────────────────────────── */
   .primary-nav {
@@ -416,7 +400,7 @@
   }
   .intro-p--lede { font-size: 22px; line-height: 1.5; }
   .intro-p--lede::first-letter {
-    font-family: var(--font-display);
+    font-family: var(--font-headline);
     font-weight: 700;
     font-size: 86px;
     line-height: 0.78;
@@ -490,7 +474,6 @@
     margin: 50px auto 90px;
     max-width: 880px;
     border: 4px solid var(--rule);
-    box-shadow: 12px 12px 0 var(--rule);
     background: var(--paper);
     position: relative;
     scroll-margin-top: 130px;
@@ -577,7 +560,6 @@
     color: var(--rci-ink);
     padding: 12px 14px;
     outline: none;
-    box-shadow: 3px 3px 0 var(--rule);
     transition: border-color 90ms, box-shadow 90ms, transform 90ms cubic-bezier(0.2,0.7,0.1,1);
     box-sizing: border-box;
   }
@@ -600,7 +582,6 @@
   .join-form-textarea:focus,
   .join-form-select:focus {
     border-color: var(--rci-red);
-    box-shadow: 3px 3px 0 var(--rci-red);
   }
   .join-form-input:hover,
   .join-form-textarea:hover,
@@ -634,7 +615,6 @@
     .join-form-grid { grid-template-columns: 1fr; }
     .join-form-head { padding: 30px 24px; }
     .join-form-body { padding: 28px 24px 32px; }
-    .join-form-wrap { box-shadow: 6px 6px 0 var(--rule); }
   }
 
   /* ─── REGIONS HEADER ──────────────────────────────────────── */
@@ -677,7 +657,6 @@
   .region {
     margin: 0 0 18px;
     border: 2px solid var(--rule);
-    box-shadow: 6px 6px 0 var(--rule);
     background: var(--paper);
     scroll-margin-top: 130px;
     overflow: hidden;
@@ -860,9 +839,6 @@
     padding: 12px;
     transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1);
   }
-  .article-card:hover .article-card-thumb {
-    transform: translate(-1px, -1px);
-  }
   .article-card-thumb-wash {
     position: absolute; inset: 0;
     background:
@@ -927,7 +903,6 @@
     background: var(--rci-red);
     color: var(--rci-offwhite);
     border: 2px solid var(--rule);
-    box-shadow: 8px 8px 0 var(--rule);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -1007,12 +982,10 @@
     aspect-ratio: 3 / 2;
     overflow: hidden;
     border: 2px solid var(--rule);
-    box-shadow: 6px 6px 0 var(--rule);
     background: var(--rci-ink);
     transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
   }
   .foot-manifesto-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .foot-manifesto-card:hover .foot-manifesto-img { transform: translate(-1px,-1px); box-shadow: 8px 8px 0 var(--rule); }
 
   /* Right column — stacked links */
   .foot-right {
@@ -1092,9 +1065,6 @@
   .mast-hamburger:hover {
     background: var(--rci-ink);
     color: var(--rci-offwhite);
-  }
-  .mast-hamburger:active {
-    transform: translate(1px, 1px);
   }
   .mast-hamburger svg {
     width: 22px;
@@ -1214,9 +1184,6 @@
     background: var(--rci-ink);
     color: var(--rci-offwhite);
   }
-  .menu-drawer-close:active {
-    transform: translate(1px, 1px);
-  }
   .menu-drawer-close svg {
     width: 18px;
     height: 18px;
@@ -1260,7 +1227,6 @@
     background: var(--paper-soft);
     border-color: var(--rule-soft);
     transform: translate(2px, -2px);
-    box-shadow: -3px 3px 0 var(--rci-ink);
   }
   .drawer-sidebar-item svg {
     width: 26px;
@@ -1417,9 +1383,8 @@
   .join-featured-cards { margin: 22px 0 0; }
   .join-featured-cards .fc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
   .hero-side-card { display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; }
-  .hero-side-img { position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden; border: 2px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); background: var(--rci-ink); transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms; }
+  .hero-side-img { position: relative; width: 100%; aspect-ratio: 3/2; overflow: hidden; border: 2px solid var(--rule); background: var(--rci-ink); transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms; }
   .hero-side-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-  .hero-side-card:hover .hero-side-img { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--rule); }
   .hero-side-meta { display: flex; flex-direction: column; gap: 4px; padding: 0 2px; }
   .hero-side-title { font-family: var(--font-serif); font-weight: 700; font-size: 20px; line-height: 1.14; letter-spacing: -0.005em; color: var(--fg, var(--rci-ink)); margin: 0; }
   .hero-side-card:hover .hero-side-title { color: var(--rci-red); }

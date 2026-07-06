@@ -6,6 +6,7 @@
 <title>A Revolutionary History of the World — Marxist.com</title>
 
 <link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="ds/rci-web.css">
 
 <style>
   /* ────────────────────────────────────────────────────────────
@@ -17,10 +18,10 @@
      ──────────────────────────────────────────────────────────── */
 
   :root {
-    --page-bg: #ffffff;
+    --page-bg: var(--rci-paper);
     --page-bg-dark: #181513;
-    --paper: #ffffff;
-    --paper-soft: #f5f5f5;
+    --paper: var(--rci-paper-card);
+    --paper-soft: var(--rci-paper-deep);
     --rule: var(--rci-ink);
     --rule-soft: #b8b0ac;
   }
@@ -133,7 +134,6 @@
     color: var(--rci-offwhite);
     border-color: var(--rci-red);
   }
-  .mast-social:active { transform: translate(1px, 1px); }
   @media (max-width: 720px) {
     .mast-socials { display: none; }
   }
@@ -178,7 +178,6 @@
   .mast-search-btn:hover { background: var(--rci-ink); color: var(--rci-offwhite); }
   .mast-search[data-open="true"] .mast-search-btn:hover { background: transparent; color: var(--rci-red); }
   .mast-search-btn svg { width: 18px; height: 18px; display: block; }
-  .mast-search-btn:active { transform: translate(1px, 1px); }
 
     /* ─── NAV ─────────────────────────────────────────────────── */
   .primary-nav {
@@ -198,7 +197,6 @@
     color: var(--rci-offwhite);
     padding: 56px 48px;
     border: 2px solid var(--rule);
-    box-shadow: 6px 6px 0 var(--rule);
     margin: 28px 0 36px;
     position: relative;
     overflow: hidden;
@@ -206,7 +204,6 @@
   body[data-mode="dark"] .theory-hero {
     background: var(--paper-soft);
     border-color: var(--rci-offwhite);
-    box-shadow: 6px 6px 0 var(--rci-offwhite);
   }
   .theory-hero::before {
     content: "";
@@ -233,7 +230,7 @@
     display: block;
   }
   .theory-hero-h1 {
-    font-family: var(--font-display);
+    font-family: var(--rci-font-serif-display);
     font-size: clamp(38px, 5vw, 64px);
     line-height: 0.92;
     text-transform: uppercase;
@@ -280,19 +277,10 @@
     padding: 10px 16px;
     width: 340px;
     max-width: 100%;
-    box-shadow: 3px 3px 0 var(--rule);
     transition: transform 80ms, box-shadow 80ms, border-color 80ms;
-  }
-  .theory-search-bar:focus-within {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 var(--rule);
   }
   body[data-mode="dark"] .theory-search-bar {
     border-color: var(--rci-offwhite);
-    box-shadow: 3px 3px 0 var(--rci-offwhite);
-  }
-  body[data-mode="dark"] .theory-search-bar:focus-within {
-    box-shadow: 4px 4px 0 var(--rci-offwhite);
   }
   .theory-search-bar svg {
     width: 18px;
@@ -342,7 +330,6 @@
     display: flex;
     flex-direction: column;
     border: 2px solid var(--rule);
-    box-shadow: 4px 4px 0 var(--rule);
     background: var(--paper);
     overflow: hidden;
     text-decoration: none;
@@ -352,14 +339,9 @@
   }
   body[data-mode="dark"] .theory-card {
     border-color: var(--rci-offwhite);
-    box-shadow: 4px 4px 0 var(--rci-offwhite);
   }
   .theory-card:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--rule);
-  }
-  body[data-mode="dark"] .theory-card:hover {
-    box-shadow: 6px 6px 0 var(--rci-offwhite);
   }
   .theory-card-img-wrap {
     position: relative;
@@ -586,7 +568,6 @@
     flex: 0 0 280px;
     position: relative;
     border: 2px solid var(--rule);
-    box-shadow: 4px 4px 0 var(--rule);
     overflow: hidden;
     aspect-ratio: 16 / 10;
   }
@@ -622,15 +603,10 @@
     gap: 5px;
     border: 2px solid var(--rule);
     background: var(--paper);
-    box-shadow: 3px 3px 0 var(--rule);
     padding: 13px 15px;
     text-decoration: none;
     color: inherit;
     transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
-  }
-  .tl-article:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0 var(--rule);
   }
   .tl-article--stub {
     border-style: dashed;
@@ -812,9 +788,6 @@
     background: var(--rci-offwhite);
     color: var(--rci-ink);
   }
-  .mast-hamburger:active {
-    transform: translate(1px, 1px);
-  }
   .mast-hamburger svg {
     width: 22px;
     height: 22px;
@@ -921,9 +894,6 @@
     background: var(--rci-offwhite);
     color: var(--rci-ink);
   }
-  .menu-drawer-close:active {
-    transform: translate(1px, 1px);
-  }
   .menu-drawer-close svg {
     width: 18px;
     height: 18px;
@@ -968,9 +938,7 @@
     background: var(--paper-soft);
     border-color: var(--rule-soft);
     transform: translate(2px, -2px);
-    box-shadow: -3px 3px 0 var(--rci-ink);
   }
-  body[data-mode="dark"] .drawer-sidebar-item:hover { box-shadow: -3px 3px 0 var(--rci-offwhite); }
   .drawer-sidebar-item svg {
     width: 28px;
     height: 28px;
@@ -1087,15 +1055,14 @@
     background: var(--rci-offwhite);
     color: var(--rci-ink);
     border: 2px solid var(--rci-ink);
-    box-shadow: 3px 3px 0 var(--rci-ink);
     cursor: pointer;
     transition: transform 80ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 80ms, background 80ms, color 80ms;
   }
-  .nav-menu-btn:hover { background: var(--rci-red); color: var(--rci-offwhite); border-color: var(--rci-red); box-shadow: 3px 3px 0 var(--rci-red); }
+  .nav-menu-btn:hover { background: var(--rci-red); color: var(--rci-offwhite); border-color: var(--rci-red); }
   .nav-menu-btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--rci-ink); }
   .nav-menu-icon { width: 22px; height: 22px; display: block; }
   .nav-menu-label { line-height: 1; }
-  body[data-mode="dark"] .nav-menu-btn { border-color: var(--rci-offwhite); color: var(--rci-offwhite); box-shadow: 3px 3px 0 var(--rci-offwhite); }
+  body[data-mode="dark"] .nav-menu-btn { border-color: var(--rci-offwhite); color: var(--rci-offwhite); }
   @media (max-width: 540px) { .nav-menu-label { display: none; } .nav-menu-btn { padding: 9px 11px 8px; } }
 
   .menu-drawer-search {

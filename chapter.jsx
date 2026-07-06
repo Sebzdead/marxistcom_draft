@@ -127,8 +127,7 @@ function App() {
     return (
       <div className="site">
         <div className="site-header">
-          <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <Nav active="Classics" onOpenMenu={() => setMenuOpen(true)} />
+          <Header activeTab="Theory & History" />
         </div>
         <main className="site-main" style={{ padding: "80px 20px", textAlign: "center" }}>
           <h2 style={{ fontFamily: "var(--font-display)", textTransform: "uppercase" }}>Chapter not found</h2>
@@ -143,8 +142,7 @@ function App() {
   return (
     <div className="site" data-reader-theme={theme}>
       <div className="site-header">
-        <Masthead menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Nav active="Classics" onOpenMenu={() => setMenuOpen(true)} />
+        <Header activeTab="Theory & History" />
       </div>
 
       <main className="site-main reader-page">
