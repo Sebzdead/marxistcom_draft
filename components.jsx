@@ -202,74 +202,122 @@ function Header({ activeTab }) {
           </nav>
         </div>
 
-        {/* mega menu */}
-        <div className="rci-megamenu" id="megamenu">
-          <div className="rci-wrap">
-            <span className="rci-mm-close" onClick={() => setMenuOpen(false)}>&#10005; Close</span>
-            <div className="rci-mm-grid">
-              <div className="rci-mm-primary">
-                <a href="index.html"><span className="ic"></span><span><span className="t">Latest Analysis</span><span className="d">World news &amp; comment</span></span></a>
-                <a href="media.html"><span className="ic"></span><span><span className="t">Media &amp; Podcasts</span><span className="d">Watch &amp; listen</span></span></a>
-                <a href="magazine.html"><span className="ic"></span><span><span className="t">In Defence of Marxism</span><span className="d">The magazine</span></span></a>
-                <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer"><span className="ic"></span><span><span className="t">WellRed Books</span><span className="d">The bookshop</span></span></a>
-                <a href="join.html"><span className="ic"></span><span><span className="t">Join the RCI</span><span className="d">Get organised</span></span></a>
-              </div>
-              <div className="rci-mm-secondary">
-                <div className="rci-mm-search">
-                  <span style={{ color: "var(--rci-ash)", fontFamily: "var(--rci-font-mono)" }}>&#9906;</span>
-                  <input 
-                    placeholder="Search marxist.com" 
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        window.location.href = 'search.html?q=' + encodeURIComponent(e.target.value);
-                      }
-                    }}
-                  />
+      </header>
+
+      {/* Full-width drawer menu — icons + expansive category index */}
+      {menuOpen && (
+        <div className="menu-drawer-overlay" onClick={() => setMenuOpen(false)}>
+          <div className="menu-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="menu-drawer-inner">
+              <div className="menu-drawer-header">
+                <div className="menu-drawer-brand">
+                  <img src="assets/rci-social-round.svg" alt="RCI" />
+                  <span className="menu-drawer-wm">Revolutionary Communist International</span>
                 </div>
-                <div className="rci-mm-cols">
-                  <div>
-                    <h5>Continents</h5>
-                    <ul>
-                      <li><a href="sections.html?category=Africa">Africa</a></li>
-                      <li><a href="sections.html?category=Americas">Americas</a></li>
-                      <li><a href="sections.html?category=Asia">Asia</a></li>
-                      <li><a href="sections.html?category=Europe">Europe</a></li>
-                    </ul>
+                <button className="menu-drawer-close" aria-label="Close navigation menu" onClick={() => setMenuOpen(false)} type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+
+              <form className="menu-drawer-search" role="search" onSubmit={(e) => e.preventDefault()}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20.5 20.5l-4-4" /></svg>
+                <input
+                  type="search"
+                  className="menu-drawer-search-input"
+                  placeholder="Search marxist.com…"
+                  aria-label="Search marxist.com"
+                  onKeyDown={(e) => { if (e.key === 'Enter') { window.location.href = 'search.html?q=' + encodeURIComponent(e.target.value); } }}
+                />
+              </form>
+
+              <div className="menu-drawer-layout">
+                <div className="menu-drawer-sidebar">
+                  <a href="index.html" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="16" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="8" y1="14" x2="16" y2="14" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">Latest Analysis</div></div>
+                  </a>
+                  <a href="media.html" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">Media &amp; Podcasts</div></div>
+                  </a>
+                  <a href="magazine.html" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">In Defence of Marxism</div></div>
+                  </a>
+                  <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">WellRed Books</div></div>
+                  </a>
+                  <a href="join.html" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">Join the RCI</div></div>
+                  </a>
+                </div>
+
+                <div className="menu-drawer-categories">
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Continents</div>
+                    <div className="drawer-category-links">
+                      <a href="sections.html?category=Africa" className="drawer-category-link">Africa</a>
+                      <a href="sections.html?category=Americas" className="drawer-category-link">Americas</a>
+                      <a href="sections.html?category=Asia" className="drawer-category-link">Asia</a>
+                      <a href="sections.html?category=Europe" className="drawer-category-link">Europe</a>
+                      <a href="sections.html?category=Middle East" className="drawer-category-link">Middle East</a>
+                    </div>
                   </div>
-                  <div>
-                    <h5>Current Topics</h5>
-                    <ul>
-                      <li><a href="topic.html?topic=Imperialism">Imperialism</a></li>
-                      <li><a href="topic.html?topic=Economy">Economy</a></li>
-                      <li><a href="topic.html?topic=Labour">Labour</a></li>
-                      <li><a href="topic.html?topic=Oppression">Oppression</a></li>
-                    </ul>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Current Topics</div>
+                    <div className="drawer-category-links">
+                      <a href="topic.html?topic=Iran War" className="drawer-category-link">Iran War</a>
+                      <a href="topic.html?topic=Trump 2.0" className="drawer-category-link">Trump 2.0</a>
+                      <a href="topic.html?topic=Artificial Intelligence" className="drawer-category-link">Artificial Intelligence</a>
+                      <a href="topic.html?topic=Gen Z Revolutions" className="drawer-category-link">Gen Z Revolutions</a>
+                      <a href="topic.html?topic=World Economy" className="drawer-category-link">World Economy</a>
+                    </div>
                   </div>
-                  <div>
-                    <h5>Marxist Theory</h5>
-                    <ul>
-                      <li><a href="theory.html#marx-engels">Marx &amp; Engels</a></li>
-                      <li><a href="theory.html#lenin">Lenin</a></li>
-                      <li><a href="theory.html#trotsky">Trotsky</a></li>
-                      <li><a href="theory.html#classics">The classics</a></li>
-                    </ul>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Marxist Theory</div>
+                    <div className="drawer-category-links">
+                      <a href="theory.html#marx-engels" className="drawer-category-link">Karl Marx &amp; Engels</a>
+                      <a href="theory.html#lenin" className="drawer-category-link">Vladimir Lenin</a>
+                      <a href="theory.html#trotsky" className="drawer-category-link">Leon Trotsky</a>
+                      <a href="theory.html#classics" className="drawer-category-link">The Classics</a>
+                    </div>
                   </div>
-                  <div>
-                    <h5>The RCI</h5>
-                    <ul>
-                      <li><a href="join.html">Who we are</a></li>
-                      <li><a href="join.html#sections">Our sections</a></li>
-                      <li><a href="join.html#statements">Statements</a></li>
-                      <li><a href="join.html#contact">Contact</a></li>
-                    </ul>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">The RCI</div>
+                    <div className="drawer-category-links">
+                      <a href="join.html" className="drawer-category-link">Who we are</a>
+                      <a href="join.html#sections" className="drawer-category-link">Our sections</a>
+                      <a href="join.html#statements" className="drawer-category-link">Statements</a>
+                      <a href="join.html#contact" className="drawer-category-link">Contact</a>
+                    </div>
+                  </div>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Theory &amp; History</div>
+                    <div className="drawer-category-links">
+                      <a href="theory.html" className="drawer-category-link">Theory hub</a>
+                      <a href="history.html" className="drawer-category-link">Revolutionary history</a>
+                      <a href="theory-curriculum.html" className="drawer-category-link">Curriculum</a>
+                    </div>
+                  </div>
+                  <div className="drawer-category">
+                    <div className="drawer-category-title">Media</div>
+                    <div className="drawer-category-links">
+                      <a href="media.html" className="drawer-category-link">Against the Stream</a>
+                      <a href="media.html" className="drawer-category-link">Spectre of Communism</a>
+                      <a href="media.html" className="drawer-category-link">Documentaries</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </header>
-      <div className="rci-backdrop" onClick={() => setMenuOpen(false)}></div>
+      )}
     </React.Fragment>
   );
 }
