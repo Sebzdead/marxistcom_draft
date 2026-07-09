@@ -70,23 +70,10 @@ htmlFiles.forEach(file => {
   }
   let html = fs.readFileSync(htmlPath, 'utf8');
 
-  // Replace JSX script tags with compiled JS script tags
-  html = html.replace(/<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>/g, '<script src="tweaks-panel.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="components\.jsx"><\/script>/g, '<script src="components.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="app\.jsx"><\/script>/g, '<script src="app.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="join\.jsx"><\/script>/g, '<script src="join.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="sections\.jsx"><\/script>/g, '<script src="sections.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="article\.jsx"><\/script>/g, '<script src="article.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="media\.jsx"><\/script>/g, '<script src="media.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="magazine\.jsx"><\/script>/g, '<script src="magazine.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="theory\.jsx"><\/script>/g, '<script src="theory.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="theory-curriculum\.jsx"><\/script>/g, '<script src="theory-curriculum.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="history\.jsx"><\/script>/g, '<script src="history.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="search\.jsx"><\/script>/g, '<script src="search.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="topic\.jsx"><\/script>/g, '<script src="topic.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="book-chrome\.jsx"><\/script>/g, '<script src="book-chrome.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="book\.jsx"><\/script>/g, '<script src="book.js"></script>');
-  html = html.replace(/<script type="text\/babel" src="chapter\.jsx"><\/script>/g, '<script src="chapter.js"></script>');
+  // Replace JSX script tags with compiled JS script tags dynamically (preserving optional query parameters)
+  html = html.replace(/<script type="text\/babel" src="([^"]+)\.jsx(?:\?([^"]*))?"><\/script>/g, (match, p1, p2) => {
+    return `<script src="${p1}.js${p2 ? '?' + p2 : ''}"></script>`;
+  });
 
   // Remove Babel standalone script tag
   html = html.replace(/<script src="https:\/\/unpkg\.com\/@babel\/standalone[^>]*><\/script>\s*/g, '');

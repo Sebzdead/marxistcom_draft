@@ -138,7 +138,7 @@ const NAV_TABS = [
   { label: "Theory & History", href: "theory.html" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
-  { label: "Bookshop", href: "https://wellredbooks.co.uk/", external: true },
+  { label: "Bookshop", href: "https://wellred-books.com/", external: true },
 ];
 
 // ─── Header (Sticky header, navigation, and interactive mega-menu) ───────────
@@ -170,7 +170,7 @@ function Header({ activeTab }) {
         <div className="rci-wrap">
           <div className="rci-topbar">
             <a className="rci-brand" href="index.html">
-              <img src="ds/logos/rci-square.svg" alt="RCI" />
+              <img src="ds/logos/rci-social-round.svg" alt="RCI" />
               <span className="name">
                 <em className="brand-tagline">Home of the</em>
                 <span className="brand-org">Revolutionary Communist International</span>
@@ -183,7 +183,9 @@ function Header({ activeTab }) {
           </div>
           <nav className="rci-nav">
             <button id="menuBtn" onClick={() => setMenuOpen(!menuOpen)}>
-              <span className="rci-ham"><i></i><i></i><i></i></span> Menu
+              <span className="rci-ham"><i></i><i></i><i></i></span>
+              Menu
+              <svg className="rci-nav-search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20.5 20.5l-4-4" /></svg>
             </button>
             {NAV_TABS.map((tab) => {
               const isActive = tab.label === activeTab;
@@ -247,7 +249,7 @@ function Header({ activeTab }) {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                     <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">In Defence of Marxism</div></div>
                   </a>
-                  <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer" className="drawer-sidebar-item">
+                  <a href="https://wellred-books.com/" target="_blank" rel="noopener noreferrer" className="drawer-sidebar-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z" /></svg>
                     <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">WellRed Books</div></div>
                   </a>
@@ -335,15 +337,15 @@ function Footer() {
           <img src="assets/rci-social-round.svg" alt="RCI" />
           <div className="foot-brand-wm">Revolutionary Communist International</div>
         </div>
-        <a href="join.html" className="foot-manifesto-card">
-          <div className="foot-manifesto-img">
-            <img src="assets/card-manifesto.jpg" alt="The Revolutionary Manifesto of the RCI" />
-          </div>
-        </a>
         <div className="foot-right">
           <a href="#" className="foot-link">World Perspectives</a>
           <a href="#" className="foot-link">RCI Documentary</a>
           <a href="#" className="foot-link">World School of Communism</a>
+        </div>
+        <div className="foot-right">
+          <a href="#" className="foot-link">Newsletters</a>
+          <a href="#" className="foot-link">Cookie Preferences</a>
+          <a href="#" className="foot-link">Privacy Policy</a>
         </div>
       </div>
     </footer>

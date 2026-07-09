@@ -44,6 +44,9 @@ const IMG = {
   banks: R("imgShadowBanking", "assets/econ-shadow-banking.jpg"),
   china: R("imgLatestXiTrump", "assets/China sets the agenda at the Xi-Trump summit.jpg"),
   ai: R("imgAi", "assets/econ-ai.jpg"),
+  // hero side columns
+  aac: R("imgAacPakistan", "assets/AAC_Pakistan.jpg"),
+  france: R("imgFrancePopularFront", "assets/france_popular_front.jpg"),
 };
 
 // Small helper: photo block with grain, or slab fallback
@@ -111,38 +114,50 @@ function PhotoOrSlab({ image, label, aspect = "4/3", style }) {
 
 // ── Hero — big story + two secondaries ─────────────────────────────────────
 function Hero({ tweaks }) {
-  const secondaries = [
-    { kicker: "Economy · Iran War", title: "The economic consequences of the war in Iran", byline: "Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
-    { kicker: "History · Palestine", title: "How British imperialism paved the way for the Nakba", byline: "Khaled Malachi", image: IMG.palestine48, href: "#" },
+  const leftCol = [
+    { kicker: "Analysis · Pakistan", title: "Mass movement of AAC in Pakistan-administered Kashmir defies brutal state repression", byline: "Inqalabi Communist Party", image: IMG.aac, href: "#" },
+    { kicker: "Economy · Iran War", title: "The economic consequences of the war in Iran", byline: "By Niklas Albin Svensson", image: IMG.iranNight, href: "article.html" },
   ];
+  const rightCol = [
+    { kicker: "History · France", title: "France: the Popular Front and the general strike of May–June 1936", byline: "By Jérôme Métellus", image: IMG.france, href: "#" },
+    { kicker: "History · Palestine", title: "How British imperialism paved the way for the Nakba", byline: "By Khaled Malachi", image: IMG.palestine48, href: "#" },
+  ];
+  const SideCard = (s, i) => (
+    <a key={i} href={s.href} className="hero-sec-card">
+      <div className="hero-sec-img"><img src={s.image} alt={s.title} /></div>
+      {s.kicker && <span className="rci-kicker">{s.kicker}</span>}
+      <h3 className="hero-sec-title">{s.title}</h3>
+      <div className="hero-sec-byline">{s.byline}</div>
+    </a>
+  );
   return (
     <section className="hero">
-      <div className="hero-grid">
-        {/* BIG STORY */}
-        <a href="article.html" className="hero-lead">
-          <div className="hero-lead-img">
-            <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
-          </div>
-          <span className="rci-kicker">Analysis · China</span>
-          <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi–Trump summit</h1>
-          <p className="hero-dek">
-            Trump went to Beijing believing he negotiated from strength; in reality, he
-            negotiated from weakness. The unipolar hegemony of US imperialism is unravelling
-            before our eyes.
-          </p>
-          <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
-        </a>
+      <div className="hero-grid-3col">
+        {/* LEFT COLUMN — two stacked stories */}
+        <div className="hero-col hero-col--left">
+          {leftCol.map(SideCard)}
+        </div>
 
-        {/* TWO SECONDARIES */}
-        <div className="hero-secondary">
-          {secondaries.map((s, i) => (
-            <a key={i} href={s.href} className="hero-sec-card">
-              <div className="hero-sec-img"><img src={s.image} alt={s.title} /></div>
-              <span className="rci-kicker">{s.kicker}</span>
-              <h3 className="hero-sec-title">{s.title}</h3>
-              <div className="hero-sec-byline">By {s.byline}</div>
-            </a>
-          ))}
+        {/* CENTER — BIG STORY (unchanged) */}
+        <div className="hero-mid">
+          <a href="article.html" className="hero-lead">
+            <div className="hero-lead-img">
+              <img src={IMG.china} alt="China sets the agenda at the Xi-Trump summit" />
+            </div>
+            <span className="rci-kicker">Analysis · China</span>
+            <h1 className="hero-h1 hero-h1--serif">China sets the agenda at the Xi–Trump summit</h1>
+            <p className="hero-dek">
+              Trump went to Beijing believing he negotiated from strength; in reality, he
+              negotiated from weakness. The unipolar hegemony of US imperialism is unravelling
+              before our eyes.
+            </p>
+            <div className="hero-byline">By Daniel Morley · 19 May 2026</div>
+          </a>
+        </div>
+
+        {/* RIGHT COLUMN — two stacked stories */}
+        <div className="hero-col hero-col--right">
+          {rightCol.map(SideCard)}
         </div>
       </div>
     </section>
@@ -202,13 +217,16 @@ function Trump2() {
   return (
     <section className="trump2">
       <div className="rci-section-head">
-        <h2>Trump 2.0</h2>
+        <h2>Donald Trump and the decline of US Imperialism</h2>
         <a href="index.html">All coverage &rarr;</a>
       </div>
       <div className="trump2-grid">
-        <a href="article.html" className="trump2-feature">
-          <div className="trump2-img"><img src={IMG.trumpHead} alt="Donald Trump" /></div>
-          <h3 className="trump2-title">Trump’s defeat in Iran and its worldwide consequences</h3>
+        <a href="article.html" className="feat-card trump2-feature">
+          <div className="feat-bg" style={{ backgroundImage: `url("${IMG.trumpHead}")` }} />
+          <div className="feat-body">
+            <span className="rci-kicker" style={{ color: "#ff8a6e" }}>Analysis</span>
+            <h3 className="feat-title">Trump’s defeat in Iran and its worldwide consequences</h3>
+          </div>
         </a>
         <div className="trump2-links">
           {links.map((l, i) => (
@@ -305,41 +323,33 @@ function FeaturePair() {
   );
 }
 
-// ── Join CTA banner — split black + photo ───────────────────────────────────
+// ── Join CTA banner — red copy on paper, framing the rotating globe ──────────
 function JoinBanner() {
   return (
     <section className="join-banner">
-      <div className="join-left">
-        <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 13, letterSpacing: "0.24em" }}>Get organised</Eyebrow>
+      <iframe
+        className="join-globe"
+        src={R("globeLoader", "assets/globe-loader.html")}
+        title="Animated globe"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <div className="join-content">
+        <Eyebrow className="join-eyebrow" style={{ fontSize: 13, letterSpacing: "0.24em" }}>Get organised</Eyebrow>
         <h2 className="join-h2">Join the fight</h2>
         <p className="join-body">
           The Revolutionary Communist International organises in over 70 countries. From mass
           strikes to student occupations, comrades on every continent are building the party we need.
           History is being made — be part of it.
         </p>
-        <div className="join-actions">
-          <PrintButton variant="red" size="lg" href="join.html">Join</PrintButton>
-        </div>
       </div>
-      <div className="join-right">
-        <div className="join-photo" style={{
-          background: "var(--rci-paper-card)",
-          overflow: "hidden",
-        }}>
-          <iframe
-            src={R("globeLoader", "assets/globe-loader.html")}
-            title="Animated globe"
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              border: 0,
-              display: "block",
-              background: "var(--rci-paper-card)",
-            }}
-          />
-        </div>
+      <div className="join-aside">
+        <a href="join.html" className="foot-manifesto-card">
+          <div className="foot-manifesto-img">
+            <img src="assets/card-manifesto.jpg" alt="The Revolutionary Manifesto of the RCI" />
+          </div>
+        </a>
+        <PrintButton variant="red" size="lg" href="join.html" className="join-rci-btn">Join the RCI</PrintButton>
       </div>
     </section>
   );
@@ -474,7 +484,6 @@ function MarxistUniversity() {
       <div className="muni-grid">
         {courses.map((c, i) => (
           <a key={i} href="#" className="muni-card">
-            <span className="muni-card-num">{String(i + 1).padStart(2, "0")}</span>
             <h3 className="muni-card-title">{c.title}</h3>
             <p className="muni-card-blurb">{c.blurb}</p>
           </a>
@@ -496,13 +505,13 @@ function Reports() {
     {
       country: "Canada",
       title: "Third RCP Congress — a party up to the task",
-      image: R("imgCanadaRcp", "assets/Second Congress of the Italian PCR.jpg"),
+      image: R("imgCanadaRcp", "assets/third_RCP_congress.jpg"),
       href: "#"
     },
     {
       country: "Colombia",
       title: "The founding congress of the Revolutionary Communists of Colombia",
-      image: R("imgColombiaRcp", "assets/card-communists-coming.png"),
+      image: R("imgColombiaRcp", "assets/Colombia_congress.jpg"),
       href: "#"
     },
   ];

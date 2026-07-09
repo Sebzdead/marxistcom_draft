@@ -22,7 +22,7 @@ const BOOKS = [
     author: 'V. I. Lenin',
     written: 'August – September 1917',
     date: '1917',
-    buyUrl: 'https://wellredbooks.co.uk/product/state-and-revolution-lenin/',
+    buyUrl: 'https://wellred-books.com/product/state-and-revolution-lenin/',
     tags: ['The State', 'Revolution', 'Dialectical Materialism'],
     blurb:
       'Written on the eve of the October Revolution, while Lenin was in hiding, <em>The State and Revolution</em> is his most important theoretical work. ' +

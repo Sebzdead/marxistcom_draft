@@ -72,7 +72,7 @@
 
   /* Sticky masthead + nav — floats and travels on scroll.
      Full-bleed bar across the whole viewport; inner content stays centered. */
-  .site-header {
+  .rci-header, .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -945,7 +945,7 @@
     .not-listed { padding: 32px 24px; }
   }
 
-  /* ─── FOOTER ─────────────────────────────────────────────── */
+    /* ─── FOOTER ─────────────────────────────────────────────── */
   .site-foot {
     margin-top: 60px;
     padding: 40px 0 44px;
@@ -968,24 +968,6 @@
     color: var(--fg, var(--rci-ink));
     max-width: 14ch;
   }
-
-  /* Manifesto card — centered in the middle column */
-  .foot-manifesto-card {
-    display: block;
-    justify-self: center;
-    width: 100%;
-    max-width: 300px;
-    text-decoration: none;
-  }
-  .foot-manifesto-img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    border: 2px solid var(--rule);
-    background: var(--rci-ink);
-    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
-  }
-  .foot-manifesto-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Right column — stacked links */
   .foot-right {
@@ -1010,7 +992,11 @@
   .foot-link:last-child { border-bottom: 0; }
   .foot-link:hover { color: var(--rci-red); padding-left: 6px; }
 
-  /* Responsive Design & Overrides */
+  @media (max-width: 760px) {
+    
+    
+  }
+/* Responsive Design & Overrides */
   @media (max-width: 1100px) {
     .hero-grid { grid-template-columns: 1.5fr 1fr; gap: 24px; }
     .four-up-grid { gap: 20px; }
@@ -1035,8 +1021,8 @@
     .topic-split { grid-template-columns: 1fr; gap: 16px; }
     .topic-col { border-right: 0; padding: 0; }
     .foot-top { grid-template-columns: 1fr; }
-    .foot-main { grid-template-columns: 1fr; gap: 32px; justify-items: center; text-align: center; }
-    .foot-right { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); padding-top: 8px; }
+    
+    
   }
   @media (max-width: 560px) {
     .four-up-grid { grid-template-columns: 1fr; }
@@ -1405,6 +1391,8 @@
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="components.jsx"></script>
 <script type="text/babel" src="join.jsx"></script>
+
+<script src="ds/bg-tuner.js"></script>
 
 </body>
 </html>

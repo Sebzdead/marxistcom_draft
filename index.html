@@ -64,7 +64,7 @@
 
   /* Sticky masthead + nav — floats and travels on scroll.
      Full-bleed bar across the whole viewport; inner content stays centered. */
-  .site-header {
+  .rci-header, .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -381,6 +381,36 @@
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-secondary { border-left: 0; padding-left: 0; }
+  }
+
+  /* 3-column hero (index) — two stacked stories | big feature | two stacked stories */
+  .hero-grid-3col {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 34px;
+    align-items: start;
+  }
+  .hero-col {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .hero-col--left {
+    border-right: 1px solid var(--rule-soft);
+    padding-right: 30px;
+  }
+  .hero-col--right {
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 30px;
+  }
+  .hero-mid { min-width: 0; }
+  @media (max-width: 1100px) {
+    .hero-grid-3col { grid-template-columns: 1fr 1fr; gap: 26px 28px; }
+    .hero-mid { grid-column: 1 / -1; order: -1; }
+    .hero-col--left, .hero-col--right { border: 0; padding: 0; }
+  }
+  @media (max-width: 640px) {
+    .hero-grid-3col { grid-template-columns: 1fr; }
   }
   .hero-left {
     display: flex;
@@ -805,84 +835,83 @@
     letter-spacing: -0.005em;
     margin: 0;
     color: var(--rci-ink);
-    text-decoration: underline;
-    text-decoration-color: var(--rci-hairline-2);
-    text-underline-offset: 3px;
+    text-decoration: none;
   }
-  .latest-scard:hover .latest-scard-title { color: var(--rci-red); text-decoration-color: var(--rci-red); }
+  .latest-scard:hover .latest-scard-title { color: var(--rci-red); }
 
   /* ─── JOIN BANNER ─────────────────────────────────────────── */
+  /* Join the fight — red copy on the paper (left), rotating globe (centre),
+     manifesto card + join button (right aside). */
   .join-banner {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    position: relative;
     margin: 40px 0;
-    border: 2px solid var(--rci-ink);
-    position: relative;
+    border: 2px solid var(--rci-red);
+    background: var(--page-bg);
     overflow: hidden;
+    min-height: 440px;
+    padding: 48px 56px;
   }
-  .join-left {
-    background: var(--rci-ink);
-    color: var(--rci-offwhite);
-    padding: 44px 44px 44px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    position: relative;
-  }
-  .join-left::before {
-    content: "";
-    position: absolute; inset: 0;
-    background-image: url("ds/textures/grunge-light-specks.jpg");
-    background-size: 700px;
-    mix-blend-mode: screen;
-    opacity: 0.10;
+  /* Rotating globe floats on the paper between the copy and the manifesto card.
+     multiply blend drops the iframe's white background so only the red line-art shows. */
+  .join-globe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    height: 480px;
+    transform: translate(-50%, -50%);
+    border: 0;
+    display: block;
+    mix-blend-mode: multiply;
     pointer-events: none;
+    z-index: 0;
   }
+  .join-content {
+    position: relative;
+    z-index: 1;
+    max-width: 30ch;
+  }
+  .join-eyebrow { color: var(--rci-red); }
   .join-h2 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 42px;
-    line-height: 0.98;
+    font-size: 54px;
+    line-height: 0.94;
     text-transform: uppercase;
-    margin: 0;
-    color: var(--rci-offwhite);
-    text-wrap: balance;
-    position: relative;
-  }
-  .join-num {
+    margin: 6px 0 20px;
     color: var(--rci-red);
-    font-weight: 700;
-    font-size: 1.15em;
+    text-wrap: balance;
   }
   .join-body {
     font-family: var(--font-serif);
-    font-size: 16px;
-    line-height: 1.5;
-    color: #e6dfdf;
-    max-width: 50ch;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--rci-red);
+    max-width: 28ch;
     margin: 0;
-    position: relative;
+    /* paper halo keeps the red copy legible where it crosses the globe's grid lines */
+    text-shadow: 0 0 8px var(--page-bg), 0 0 4px var(--page-bg), 0 1px 0 var(--page-bg);
   }
-  .join-actions { display: flex; gap: 14px; margin-top: 12px; position: relative; }
-
-  .join-right {
-    position: relative;
-    overflow: hidden;
-    min-height: 380px;
+  /* Right aside — manifesto card stacked over the join button, matched widths. */
+  .join-aside {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    z-index: 2;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
   }
-  .join-photo {
-    position: absolute; inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: contrast(1.1) saturate(0.95);
-  }
-  .join-photo-grain {
-    position: absolute; inset: 0;
-    background-image: url("ds/textures/film-grain.jpg");
-    background-size: 500px;
-    mix-blend-mode: multiply;
-    opacity: 0.18;
-    pointer-events: none;
+  .join-aside .foot-manifesto-card { max-width: none; }
+  .join-rci-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
   }
   .join-stamp {
     position: absolute;
@@ -1505,7 +1534,7 @@
   }
   .foot-main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr auto;
     gap: 48px;
     align-items: center;
   }
@@ -1585,7 +1614,7 @@
     .idom-articles { grid-template-columns: 1fr; }
     .idom-article { border-right: 0; border-bottom: 1px solid var(--rule-soft); padding: 16px 22px; }
     .idom-article:last-child { border-bottom: 0; }
-    .join-banner, .manifesto { grid-template-columns: 1fr; }
+    .manifesto { grid-template-columns: 1fr; }
     .topic-split { grid-template-columns: 1fr; gap: 16px; }
     .topic-col { border-right: 0; padding: 0; }
     .foot-top { grid-template-columns: 1fr; }
@@ -1642,7 +1671,7 @@
   .menu-drawer {
     width: 100%;
     min-height: auto;
-    background: var(--paper);
+    background: var(--page-bg);
     border-bottom: 4px solid var(--rule);
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -1690,7 +1719,7 @@
     align-items: center;
     gap: 14px;
     border: 2px solid var(--rule);
-    background: var(--paper-soft);
+    background: var(--page-bg);
     padding: 14px 18px;
   }
   .menu-drawer-search svg { width: 24px; height: 24px; flex: 0 0 auto; color: var(--rci-ink); }
@@ -1893,23 +1922,13 @@
   }
   .trump2 { padding: 14px 0 28px; }
   .trump2-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: start; }
-  .trump2-feature { display: block; text-decoration: none; color: inherit; position: relative; }
-  .trump2-img {
-    width: 100%; aspect-ratio: 16/10; overflow: hidden;
-    border: 2px solid var(--rule); background: var(--rci-ink);
+  .trump2-feature.feat-card {
+    aspect-ratio: 16/10;
   }
-  .trump2-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
-  .trump2-title {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    text-transform: none;
-    font-size: 52px;
+  .trump2-feature .feat-title {
+    font-size: clamp(30px, 3.5vw, 42px);
     line-height: 1.0;
-    letter-spacing: -0.01em;
-    margin: 16px 0 0;
-    color: var(--rci-ink);
   }
-  .trump2-feature:hover .trump2-title { color: var(--rci-red); }
   .trump2-links { display: flex; flex-direction: column; }
   .trump2-link {
     display: flex; flex-direction: column; gap: 5px;
@@ -1926,7 +1945,7 @@
     font-family: var(--font-condensed); font-size: 12px; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--rci-ash);
   }
-  @media (max-width: 900px) { .trump2-grid { grid-template-columns: 1fr; } .trump2-title { font-size: 42px; } }
+  @media (max-width: 900px) { .trump2-grid { grid-template-columns: 1fr; } }
   .ats { margin: 36px 0; }
   .ats-inner {
     max-width: 1320px; margin: 0 auto; padding: 30px 28px;
@@ -2025,16 +2044,28 @@
   .muni-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
   .muni-card {
     position: relative; display: flex; flex-direction: column; gap: 7px;
-    padding: 26px 18px 20px; background: var(--rci-paper-card);
+    padding: 26px 18px 20px; background: #ffffff;
     border: 1.5px solid var(--rule); text-decoration: none; color: inherit;
     transition: transform 130ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 130ms, border-color 130ms;
+    overflow: hidden;
+  }
+  .muni-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("ds/textures/paper-313.jpg") center/cover no-repeat;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
   }
   .muni-card-num {
+    position: relative; z-index: 1;
     font-family: var(--font-condensed); font-weight: 700; font-size: 12px;
     letter-spacing: 0.16em; color: var(--rci-red);
   }
   .muni-card-title {
-    font-family: var(--font-serif); font-weight: 700; font-size: 21px; line-height: 1.1;
+    position: relative; z-index: 1;
+    font-family: var(--font-serif); font-weight: 700; font-size: 26px; line-height: 1.1;
     letter-spacing: -0.005em; margin: 0; color: var(--rci-ink); transition: color 130ms;
   }
   .muni-card:hover {
@@ -2042,7 +2073,10 @@
     box-shadow: 4px 4px 0 var(--rci-red);
   }
   .muni-card:hover .muni-card-title { color: var(--rci-red); }
-  .muni-card-blurb { font-family: var(--font-serif); font-size: 14.5px; line-height: 1.4; color: var(--rci-ink-soft); margin: 0; }
+  .muni-card-blurb {
+    position: relative; z-index: 1;
+    font-family: var(--font-serif); font-size: 14.5px; line-height: 1.4; color: var(--rci-ink-soft); margin: 0;
+  }
   @media (max-width: 980px) { .muni-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .muni-grid { grid-template-columns: 1fr; } }
   .reports { margin: 36px 0; }
@@ -2050,7 +2084,6 @@
   .reports-card {
     border: 2px solid var(--rule);
     background: var(--rci-paper);
-    box-shadow: 6px 6px 0 var(--rule);
   }
   .reports-carousel {
     position: relative;
@@ -2134,10 +2167,11 @@
   .reports-dot:hover { border-color: var(--rci-red); }
   .reports-dot.is-active { background: var(--rci-red); border-color: var(--rci-red); transform: scale(1.15); }
   .reports-foot { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 18px; }
-  .join-right::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(90deg, rgba(20,16,13,0.55) 0%, rgba(20,16,13,0) 30%);
-    z-index: 2;
+  @media (max-width: 760px) {
+    .join-banner { padding: 32px; min-height: auto; }
+    .join-globe { width: 360px; height: 360px; opacity: 0.55; }
+    .join-content { max-width: none; }
+    .join-actions { position: static; margin-top: 28px; }
   }
   @media (max-width: 760px) {
     .foot-main { grid-template-columns: 1fr; gap: 32px; justify-items: center; text-align: center; }
@@ -2276,6 +2310,9 @@
 <body>
 
 <div id="root"></div>
+
+<!-- ── Background tone tuner (shared across all pages) ──────────────────── -->
+<script src="ds/bg-tuner.js"></script>
 
 <!-- React 18 + Babel -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>

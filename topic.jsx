@@ -75,8 +75,8 @@ const COURSES = [
 
 // WellRed Books recommends — two featured titles for this subject
 const BOOKS = [
-  { title: "Capital, Volume One", author: "Karl Marx", date: "1867", desc: "Marx's masterwork — the critique of political economy that laid bare the laws of capitalist exploitation.", buyUrl: "https://wellredbooks.co.uk/", cover: R("imgEconKapital2", "assets/marxist-economics.jpg") },
-  { title: "The Roots of Political Economy", author: "WellRed Books", date: "2024", desc: "From Adam Smith to David Ricardo — the classical economists whose contradictions only Marxism could resolve.", buyUrl: "https://wellredbooks.co.uk/", cover: R("imgEconSmith2", "assets/econ-adam-smith.jpg") },
+  { title: "Capital, Volume One", author: "Karl Marx", date: "1867", desc: "Marx's masterwork — the critique of political economy that laid bare the laws of capitalist exploitation.", buyUrl: "https://wellred-books.com/", cover: R("imgEconKapital2", "assets/marxist-economics.jpg") },
+  { title: "The Roots of Political Economy", author: "WellRed Books", date: "2024", desc: "From Adam Smith to David Ricardo — the classical economists whose contradictions only Marxism could resolve.", buyUrl: "https://wellred-books.com/", cover: R("imgEconSmith2", "assets/econ-adam-smith.jpg") },
 ];
 
 // Browse list — the stripped-down Archive feed, all Marxist Economics
@@ -192,7 +192,7 @@ function MarxistUniversity() {
 function WellRedRecommends() {
   return (
     <section className="wrr">
-      <div className="rci-section-head"><h2>WellRed Books Recommends</h2><a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer">Visit the bookshop &rarr;</a></div>
+      <div className="rci-section-head"><h2>WellRed Books Recommends</h2><a href="https://wellred-books.com/" target="_blank" rel="noopener noreferrer">Visit the bookshop &rarr;</a></div>
       <div className="wrr-grid">
         {BOOKS.map((b, i) => (
           <a key={i} className="wrr-book" href={b.buyUrl} target="_blank" rel="noopener noreferrer">

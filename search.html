@@ -58,7 +58,7 @@
 
   /* Sticky masthead + nav — floats and travels on scroll.
      Full-bleed bar across the whole viewport; inner content stays centered. */
-  .site-header {
+  .rci-header, .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -288,7 +288,7 @@
     .nav-link { padding: 15px 16px; font-size: 13px; }
     .nav-link.is-active::after { left: 16px; right: 16px; }
   }
-  /* ─── FOOTER ─────────────────────────────────────────────── */
+    /* ─── FOOTER ─────────────────────────────────────────────── */
   .site-foot {
     margin-top: 60px;
     padding: 40px 0 44px;
@@ -312,24 +312,6 @@
     max-width: 14ch;
   }
 
-  /* Manifesto card — centered in the middle column */
-  .foot-manifesto-card {
-    display: block;
-    justify-self: center;
-    width: 100%;
-    max-width: 300px;
-    text-decoration: none;
-  }
-  .foot-manifesto-img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    border: 2px solid var(--rule);
-    background: var(--rci-ink);
-    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
-  }
-  .foot-manifesto-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
   /* Right column — stacked links */
   .foot-right {
     display: flex;
@@ -352,7 +334,12 @@
   .foot-link:first-child { padding-top: 0; }
   .foot-link:last-child { border-bottom: 0; }
   .foot-link:hover { color: var(--rci-red); padding-left: 6px; }
-  /* Hamburger Menu Button */
+
+  @media (max-width: 760px) {
+    
+    
+  }
+/* Hamburger Menu Button */
   .mast-hamburger {
     display: inline-flex;
     align-items: center;
@@ -940,6 +927,8 @@
 
 <script type="text/babel" src="components.jsx"></script>
 <script type="text/babel" src="search.jsx"></script>
+
+<script src="ds/bg-tuner.js"></script>
 
 </body>
 </html>

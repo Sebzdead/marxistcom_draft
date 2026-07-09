@@ -31,6 +31,7 @@
 :root {
   /* ---- Warm paper surfaces ---- */
   --rci-paper:      #faf5ed;  /* the page — warm laid newsprint */
+  --page-bg:        var(--rci-paper); /* page background lever (bg tuner overrides) */
   --rci-paper-2:    #f1e5d3;  /* alternating section ground (quiet well) */
   --rci-paper-deep: #ece0cc;  /* sunk warm panel (footer) */
   --rci-paper-card: #fbf4e9;  /* a finer paper slip — lifted panels/menu */
@@ -280,20 +281,31 @@ img { max-width: 100%; display: block; }
   cursor: pointer; display: inline-block;
   transition: background 120ms ease, border-color 120ms ease, color 120ms ease, transform 90ms ease;
 }
-.rci-btn:hover  { background: var(--rci-red-dark); border-color: var(--rci-red-dark); }
+/* keep the label colour on hover — buttons rendered as <a> would otherwise inherit
+   the global `a:hover { color: red-dark }` and vanish against the darkened fill. */
+.rci-btn:hover  { background: var(--rci-red-dark); border-color: var(--rci-red-dark); color: var(--rci-paper); }
 .rci-btn:active { transform: translateY(1px); }
 .rci-btn.ghost  { background: transparent; color: var(--rci-ink); border-color: var(--rci-ink); }
 .rci-btn.ghost:hover { background: var(--rci-ink); color: var(--rci-paper); }
 .rci-btn.ink    { background: var(--rci-ink); color: var(--rci-paper); border-color: var(--rci-ink); }
-.rci-btn.ink:hover { background: #000; }
+.rci-btn.ink:hover { background: #000; color: var(--rci-paper); }
 .rci-btn.light  { background: var(--rci-paper); color: var(--rci-ink); border-color: var(--rci-paper); }
-.rci-btn.light:hover { background: #fff; }
+.rci-btn.light:hover { background: #fff; color: var(--rci-ink); }
 .rci-btn.lg     { font-size: 14px; padding: 15px 30px; }
 
 /* =====================================================================
    7 · HEADER · NAV · MEGA-MENU
    ===================================================================== */
-.rci-header { position: sticky; top: 0; z-index: 100; background: var(--rci-paper); border-bottom: var(--rci-bw-rule) solid var(--rci-ink); }
+.rci-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--rci-paper);
+  border-bottom: var(--rci-bw-rule) solid var(--rci-ink);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
 .rci-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 14px; }
 .rci-brand  { display: flex; align-items: center; gap: 14px; }
 .rci-brand img { width: 46px; height: 46px; }
@@ -322,6 +334,7 @@ img { max-width: 100%; display: block; }
 .rci-nav button:hover { color: var(--rci-red); }
 .rci-ham { display: inline-flex; flex-direction: column; gap: 3px; }
 .rci-ham i { width: 16px; height: 2px; background: currentColor; display: block; }
+.rci-nav-search-ico { width: 15px; height: 15px; display: block; }
 
 /* =====================================================================
    MENU DRAWER — full-width dropdown: SVG-iconed rails + category index

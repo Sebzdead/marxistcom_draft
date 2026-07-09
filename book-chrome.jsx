@@ -15,7 +15,7 @@ const NAV_TABS = [
   { label: "Theory & History", href: "theory.html" },
   { label: "Podcasts & Media", href: "media.html" },
   { label: "Magazine", href: "magazine.html" },
-  { label: "Bookshop", href: "https://wellredbooks.co.uk/" },
+  { label: "Bookshop", href: "https://wellred-books.com/" },
 ];
 
 

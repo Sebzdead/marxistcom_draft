@@ -245,12 +245,12 @@ const CATEGORY_LINKS = [
 
 // WellRed Books — the banner rotates a featured title on each page load.
 const WELLRED_BOOKS = [
-  { title: "The Communist Manifesto", author: "Marx & Engels", desc: "The founding document of scientific socialism — the class struggle and the inevitable fall of capitalism.", buyUrl: "https://wellredbooks.co.uk/product/manifesto-of-the-communist-party/" },
-  { title: "The State and Revolution", author: "V.I. Lenin", desc: "Lenin's classic on the state as an instrument of class rule, and the tasks of the working class in revolution.", buyUrl: "https://wellredbooks.co.uk/product/state-and-revolution-lenin/" },
-  { title: "The Revolution Betrayed", author: "Leon Trotsky", desc: "A brilliant analysis of the bureaucratic degeneration of the USSR under Stalin, and the need for political revolution.", buyUrl: "https://wellredbooks.co.uk/product/the-revolution-betrayed-leon-trotsky/" },
-  { title: "Reason in Revolt", author: "Ted Grant & Alan Woods", desc: "A masterly defence of dialectical materialism in the light of the latest discoveries of modern science.", buyUrl: "https://wellredbooks.co.uk/product/reason-in-revolt-alan-woods-ted-grant/" },
-  { title: "History of the Russian Revolution", author: "Leon Trotsky", desc: "A monumental, eyewitness account of 1917 and the creative force of the revolutionary masses.", buyUrl: "https://wellredbooks.co.uk/product/history-of-the-russian-revolution-trotsky/" },
-  { title: "Bolshevism: The Road to Revolution", author: "Alan Woods", desc: "A monumental history of the Bolshevik Party and the struggles that forged the party of 1917.", buyUrl: "https://wellredbooks.co.uk/product/bolshevism-the-road-to-revolution-alan-woods/" },
+  { title: "The Communist Manifesto", author: "Marx & Engels", desc: "The founding document of scientific socialism — the class struggle and the inevitable fall of capitalism.", buyUrl: "https://wellred-books.com/product/manifesto-of-the-communist-party/" },
+  { title: "The State and Revolution", author: "V.I. Lenin", desc: "Lenin's classic on the state as an instrument of class rule, and the tasks of the working class in revolution.", buyUrl: "https://wellred-books.com/product/state-and-revolution-lenin/" },
+  { title: "The Revolution Betrayed", author: "Leon Trotsky", desc: "A brilliant analysis of the bureaucratic degeneration of the USSR under Stalin, and the need for political revolution.", buyUrl: "https://wellred-books.com/product/the-revolution-betrayed-leon-trotsky/" },
+  { title: "Reason in Revolt", author: "Ted Grant & Alan Woods", desc: "A masterly defence of dialectical materialism in the light of the latest discoveries of modern science.", buyUrl: "https://wellred-books.com/product/reason-in-revolt-alan-woods-ted-grant/" },
+  { title: "History of the Russian Revolution", author: "Leon Trotsky", desc: "A monumental, eyewitness account of 1917 and the creative force of the revolutionary masses.", buyUrl: "https://wellred-books.com/product/history-of-the-russian-revolution-trotsky/" },
+  { title: "Bolshevism: The Road to Revolution", author: "Alan Woods", desc: "A monumental history of the Bolshevik Party and the struggles that forged the party of 1917.", buyUrl: "https://wellred-books.com/product/bolshevism-the-road-to-revolution-alan-woods/" },
 ];
 
 // ── Hero — big story + two secondaries (pinned from POOL) ───────────────────
@@ -380,7 +380,7 @@ function WellRedBanner() {
       <div className="th-wellred-brand">
         <img className="th-wellred-logo" src={R("rciSquare", "assets/rci-social-round.svg")} alt="" aria-hidden="true" />
         <div>
-          <a href="https://wellredbooks.co.uk/" target="_blank" rel="noopener noreferrer" className="th-wellred-name">WellRed Books</a>
+          <a href="https://wellred-books.com/" target="_blank" rel="noopener noreferrer" className="th-wellred-name">WellRed Books</a>
           <p className="th-wellred-tag">The publishing house of the Revolutionary Communist International — the classics of Marxism, in print and in your hands.</p>
         </div>
       </div>
@@ -555,41 +555,33 @@ function FeaturePair() {
   );
 }
 
-// ── Join CTA banner — split black + photo ───────────────────────────────────
+// ── Join CTA banner — red copy on paper, framing the rotating globe ──────────
 function JoinBanner() {
   return (
     <section className="join-banner">
-      <div className="join-left">
-        <Eyebrow style={{ color: "var(--rci-red-hot)", fontSize: 13, letterSpacing: "0.24em" }}>Get organised</Eyebrow>
+      <iframe
+        className="join-globe"
+        src={R("globeLoader", "assets/globe-loader.html")}
+        title="Animated globe"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <div className="join-content">
+        <Eyebrow className="join-eyebrow" style={{ fontSize: 13, letterSpacing: "0.24em" }}>Get organised</Eyebrow>
         <h2 className="join-h2">Join the fight</h2>
         <p className="join-body">
           The Revolutionary Communist International organises in over 70 countries. From mass
           strikes to student occupations, comrades on every continent are building the party we need.
           History is being made — be part of it.
         </p>
-        <div className="join-actions">
-          <PrintButton variant="red" size="lg" href="join.html">Join</PrintButton>
-        </div>
       </div>
-      <div className="join-right">
-        <div className="join-photo" style={{
-          background: "var(--rci-paper-card)",
-          overflow: "hidden",
-        }}>
-          <iframe
-            src={R("globeLoader", "assets/globe-loader.html")}
-            title="Animated globe"
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              border: 0,
-              display: "block",
-              background: "var(--rci-paper-card)",
-            }}
-          />
-        </div>
+      <div className="join-aside">
+        <a href="join.html" className="foot-manifesto-card">
+          <div className="foot-manifesto-img">
+            <img src="assets/card-manifesto.jpg" alt="The Revolutionary Manifesto of the RCI" />
+          </div>
+        </a>
+        <PrintButton variant="red" size="lg" href="join.html" className="join-rci-btn">Join the RCI</PrintButton>
       </div>
     </section>
   );
@@ -791,7 +783,7 @@ const THEORY_LEADS = [
       { t: "Read",   n: "Imperialism today: a reassessment", d: "32 min", url: "https://marxist.com/theory-imperialism-war.htm" },
       { t: "Watch",  n: "Lenin's Imperialism — explained",   d: "48 min", url: "media.html" },
       { t: "Listen", n: "Against the Stream: the new age of wars", d: "Ep. 74", url: "media.html" },
-      { t: "Book",   n: "Imperialism — V.I. Lenin (Wellred)", d: "£9", url: "https://wellredbooks.co.uk/" },
+      { t: "Book",   n: "Imperialism — V.I. Lenin (Wellred)", d: "£9", url: "https://wellred-books.com/" },
     ] },
   { kicker: "Theory", title: "Dialectical materialism: the philosophy of Marxism",
     url: "https://marxist.com/theory-dialectical-materialism.htm",
@@ -818,7 +810,7 @@ const HISTORY_LEADS = [
       { t: "Read",   n: "1917: ten days that shook the world", d: "35 min", url: "https://marxist.com/russian-revolution/" },
       { t: "Watch",  n: "October — anatomy of an insurrection", d: "55 min", url: "media.html" },
       { t: "Listen", n: "Was October a coup?", d: "Ep. 40", url: "media.html" },
-      { t: "Book",   n: "History of the Russian Revolution — Trotsky", d: "£18", url: "https://wellredbooks.co.uk/" },
+      { t: "Book",   n: "History of the Russian Revolution — Trotsky", d: "£18", url: "https://wellred-books.com/" },
     ] },
   { kicker: "Figure", title: "Leon Trotsky: the ideas that outlived the ice-axe",
     url: "https://marxist.com/leon-trotsky/",
@@ -826,7 +818,7 @@ const HISTORY_LEADS = [
     media: [
       { t: "Read",   n: "Trotsky's relevance today", d: "26 min", url: "https://marxist.com/leon-trotsky/" },
       { t: "Listen", n: "The permanent revolutionary", d: "Ep. 58", url: "media.html" },
-      { t: "Book",   n: "My Life — Leon Trotsky (Wellred)", d: "£15", url: "https://wellredbooks.co.uk/" },
+      { t: "Book",   n: "My Life — Leon Trotsky (Wellred)", d: "£15", url: "https://wellred-books.com/" },
     ] },
   { kicker: "Event", title: "The Paris Commune, 1871",
     url: "https://marxist.com/theory-paris-commune.htm",

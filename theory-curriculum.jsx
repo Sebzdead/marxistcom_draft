@@ -46,13 +46,13 @@ const PILLARS = [
       { title: "Ludwig Feuerbach and the End of Classical German Philosophy", author: "Friedrich Engels", note: "Where Marx and Engels settle accounts with Hegel and Feuerbach.", url: "https://www.marxists.org/archive/marx/works/1886/ludwig-feuerbach/index.htm" },
       { title: "Anti-Dühring", author: "Friedrich Engels", note: "The encyclopaedia of Marxism: philosophy, natural science, history and economics.", url: "https://www.marxists.org/archive/marx/works/1877/anti-duhring/index.htm" },
       { title: "Theses on Feuerbach", author: "Karl Marx", note: "Eleven theses that founded a new philosophy — ending with the most famous of all.", url: "https://www.marxists.org/archive/marx/works/1845/theses/index.htm" },
-      { title: "Reason in Revolt", author: "Alan Woods & Ted Grant", note: "Marxist philosophy confronts modern science, chaos theory and cosmology.", url: "https://wellredbooks.co.uk/products/reason-in-revolt" }
+      { title: "Reason in Revolt", author: "Alan Woods & Ted Grant", note: "Marxist philosophy confronts modern science, chaos theory and cosmology.", url: "https://wellred-books.com/products/reason-in-revolt" }
     ],
     further: [
       { title: "Dialectics of Nature", author: "Friedrich Engels", url: "https://www.marxists.org/archive/marx/works/1883/don/index.htm" },
       { title: "Materialism and Empirio-Criticism", author: "V.I. Lenin", url: "https://www.marxists.org/archive/lenin/works/1908/mec/index.htm" },
       { title: "Philosophical Notebooks", author: "V.I. Lenin", url: "https://www.marxists.org/archive/lenin/works/cw/volume38.htm" },
-      { title: "The History of Philosophy: A Marxist Perspective", author: "Alan Woods", url: "https://wellredbooks.co.uk/products/the-history-of-philosophy" }
+      { title: "The History of Philosophy: A Marxist Perspective", author: "Alan Woods", url: "https://wellred-books.com/products/the-history-of-philosophy" }
     ]
   },
   {
