@@ -3,5 +3,6 @@ dist/
 .DS_Store
 .thumbnail
 *.log
-references/
+references/*
+!references/stateandrev/
 design_handoff_rci_website/
