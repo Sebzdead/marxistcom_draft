@@ -482,7 +482,7 @@ function CampaignBanner({ tweaks }) {
         <div className="campaign-photo">
           <img src={R("imgCampaign", "assets/campaign-ehsan-ali.webp")} alt="Free Ehsan Ali campaign rally" />
         </div>
-        <div className="campaign-body rci-tex-laid">
+        <div className="campaign-body">
           <Eyebrow style={{ fontSize: 12, letterSpacing: "0.22em" }}>Pakistan · Gilgit Baltistan</Eyebrow>
           <h2 className="campaign-h2">Free Ehsan Ali — Hands off the AAC!</h2>
           <div className="campaign-meta">An urgent appeal from the RCI · Updated today</div>

@@ -30,7 +30,7 @@
    ===================================================================== */
 :root {
   /* ---- Warm paper surfaces ---- */
-  --rci-paper:      #f6ecdd;  /* the page — warm laid newsprint */
+  --rci-paper:      #faf5ed;  /* the page — warm laid newsprint */
   --rci-paper-2:    #f1e5d3;  /* alternating section ground (quiet well) */
   --rci-paper-deep: #ece0cc;  /* sunk warm panel (footer) */
   --rci-paper-card: #fbf4e9;  /* a finer paper slip — lifted panels/menu */
@@ -73,7 +73,7 @@
   --rci-bw-slab: 3px;
 
   /* ---- Textures (compose as low-opacity blend overlays; see §3) ---- */
-  --rci-tx-grain:   url("textures/au-fg-1.jpg");            /* @kind other — page grain, multiply ~0.10 */
+  --rci-tx-grain:   url("textures/paper_small.jpg");            /* @kind other — page grain, multiply ~0.10 */
   --rci-tx-laid:    url("textures/paper-346.jpg");          /* @kind other — laid paper on panels, multiply ~0.5 */
   --rci-tx-torn:    url("textures/torn-strip.jpg");         /* @kind other — torn-ink rule, multiply */
   --rci-tx-scratch: url("textures/paper-356.jpg");          /* @kind other — on dark slabs, screen ~0.14 */

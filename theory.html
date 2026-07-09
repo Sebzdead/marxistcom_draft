@@ -600,11 +600,23 @@
     display: grid;
     grid-template-columns: 1.05fr 1fr;
     border: 2px solid var(--rci-ink);
-    background: var(--paper);
+    background: #ffffff;
     overflow: hidden;
+    position: relative;
+  }
+  .campaign-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("ds/textures/grunge-321.jpg") center / cover no-repeat;
+    mix-blend-mode: multiply;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
   }
   .campaign-photo {
     position: relative;
+    z-index: 1;
     background: var(--rci-red);
     overflow: hidden;
     min-height: 460px;
@@ -644,6 +656,8 @@
     margin-top: 2px;
   }
   .campaign-body {
+    position: relative;
+    z-index: 1;
     padding: 38px 42px;
     display: flex;
     flex-direction: column;

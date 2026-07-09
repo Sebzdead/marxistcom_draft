@@ -251,6 +251,10 @@ function Header({ activeTab }) {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z" /></svg>
                     <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">WellRed Books</div></div>
                   </a>
+                  <a href="sections.html" className="drawer-sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
+                    <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">National Sections</div></div>
+                  </a>
                   <a href="join.html" className="drawer-sidebar-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
                     <div className="drawer-sidebar-item-content"><div className="drawer-sidebar-item-title">Join the RCI</div></div>

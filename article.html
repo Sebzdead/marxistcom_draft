@@ -991,67 +991,70 @@
 
   /* ─── FOOTER ─────────────────────────────────────────────── */
   .site-foot {
-    margin-top: 80px;
-    padding: 48px 0 64px;
-    border-top: 8px solid var(--rule);
-    background: var(--rci-paper-deep);
-  }
-  .foot-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .foot-card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-decoration: none;
-    color: inherit;
-    background: var(--paper);
-    border: 2px solid var(--rule);
-    padding: 16px;
-    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
-  }
-  .foot-card:hover {
-    transform: translate(-2px, -2px);
-  }
-  .foot-card-img {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border: 2px solid var(--rule);
+    margin-top: 60px;
+    padding: 40px 0 44px;
+    border-top: 4px solid var(--rule);
     position: relative;
   }
-  .foot-card-img img {
+  .foot-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .foot-brand { display: flex; gap: 16px; align-items: center; }
+  .foot-brand img { width: 58px; height: 58px; }
+  .foot-brand-wm {
+    font-family: var(--font-article-title);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.04;
+    color: var(--fg, var(--rci-ink));
+    max-width: 14ch;
+  }
+
+  /* Manifesto card — centered in the middle column */
+  .foot-manifesto-card {
+    display: block;
+    justify-self: center;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 300px;
+    text-decoration: none;
   }
-  .foot-card-kicker {
-    font-family: var(--font-condensed);
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--rci-red);
-    margin-top: 4px;
+  .foot-manifesto-img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border: 2px solid var(--rule);
+    background: var(--rci-ink);
+    transition: transform 90ms cubic-bezier(0.2,0.7,0.1,1), box-shadow 90ms;
   }
-  .foot-card-title {
+  .foot-manifesto-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Right column — stacked links */
+  .foot-right {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 44px;
+  }
+  .foot-link {
     font-family: var(--font-serif);
-    font-size: 19px;
-    line-height: 1.2;
-    color: var(--rci-ink);
     font-weight: 700;
-    margin: 2px 0;
+    font-size: 20px;
+    line-height: 1.1;
+    color: var(--fg, var(--rci-ink));
+    text-decoration: none;
+    margin-bottom: 12px;
   }
-  .foot-card-byline {
+  .foot-link:hover { color: var(--rci-red); }
+  .foot-copyright {
     font-family: var(--font-condensed);
-    font-size: 11.5px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--rci-ash);
+    margin-top: 18px;
   }
 
   /* ─── RESPONSIVE BREAKPOINTS ──────────────────────────────── */
@@ -1133,9 +1136,8 @@
   }
 
   @media (max-width: 760px) {
-    .foot-cards {
-      grid-template-columns: 1fr;
-    }
+    .foot-main { grid-template-columns: 1fr; gap: 32px; justify-items: center; text-align: center; }
+    .foot-right { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); padding-top: 8px; }
     .related-cards {
       grid-template-columns: 1fr;
     }

@@ -232,7 +232,7 @@ function CampaignBanner({ tweaks }) {
         <div className="campaign-photo">
           <img src={R("imgCampaign", "assets/campaign-ehsan-ali.webp")} alt="Free Ehsan Ali campaign rally" />
         </div>
-        <div className="campaign-body rci-tex-laid">
+        <div className="campaign-body">
           <Eyebrow style={{ fontSize: 12, letterSpacing: "0.22em" }}>Pakistan · Gilgit Baltistan</Eyebrow>
           <h2 className="campaign-h2">Free Ehsan Ali — Hands off the AAC!</h2>
           <div className="campaign-meta">An urgent appeal from the RCI · Updated today</div>
@@ -463,13 +463,18 @@ function MarxistUniversity() {
       <div className="rci-section-head"><h2>Marxist University</h2><a href="#">All courses &rarr;</a></div>
       <a href="book.html?book=state-and-revolution" className="muni-quote">
         <p className="muni-quote-text">
-          &ldquo;Without revolutionary theory there can be no revolutionary movement.&rdquo;
+          Without revolutionary theory there can be no revolutionary movement.
         </p>
-        <p className="muni-quote-cite">&mdash; V.I. Lenin, <em>What Is To Be Done?</em> (1902)</p>
+        <p className="muni-quote-cite">
+          <span className="muni-quote-name">V.I. Lenin</span>
+          <span className="muni-quote-dot">&middot;</span>
+          <span className="muni-quote-src">What Is To Be Done? (1902)</span>
+        </p>
       </a>
       <div className="muni-grid">
         {courses.map((c, i) => (
           <a key={i} href="#" className="muni-card">
+            <span className="muni-card-num">{String(i + 1).padStart(2, "0")}</span>
             <h3 className="muni-card-title">{c.title}</h3>
             <p className="muni-card-blurb">{c.blurb}</p>
           </a>
@@ -479,48 +484,93 @@ function MarxistUniversity() {
   );
 }
 
-// ── Reports: featured line + dispatch list ──────────────────────────────────
+// ── Reports: one card, carousel of the 3 latest dispatches + shared buttons ──
 function Reports() {
-  const featured = {
-    country: "Britain",
-    title: "“With our burning fury, we will shake the world awake!”",
-    image: R("imgBritainRcp", "assets/sections-britain-rcp.jpg"),
-    href: "#"
-  };
-  const rows = [
-    { country: "Canada", title: "Third RCP Congress — a party up to the task", href: "#" },
-    { country: "Colombia", title: "The founding congress of the Revolutionary Communists of Colombia", href: "#" },
+  const slides = [
+    {
+      country: "Britain",
+      title: "“With our burning fury, we will shake the world awake!”",
+      image: R("imgBritainRcp", "assets/sections-britain-rcp.jpg"),
+      href: "#"
+    },
+    {
+      country: "Canada",
+      title: "Third RCP Congress — a party up to the task",
+      image: R("imgCanadaRcp", "assets/Second Congress of the Italian PCR.jpg"),
+      href: "#"
+    },
+    {
+      country: "Colombia",
+      title: "The founding congress of the Revolutionary Communists of Colombia",
+      image: R("imgColombiaRcp", "assets/card-communists-coming.png"),
+      href: "#"
+    },
   ];
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = slides.length;
+  const go = (n) => setActive((n + count) % count);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % count), 6000);
+    return () => clearInterval(id);
+  }, [paused, count]);
+
   return (
     <section className="reports">
       <div className="rci-section-head"><h2>Reports</h2><a href="#">All reports &rarr;</a></div>
-      <a href={featured.href} className="reports-featured">
-        {featured.image && (
-          <div className="reports-featured-img-wrap">
-            <img src={featured.image} alt={featured.title} className="reports-featured-img" />
-          </div>
-        )}
-        <div className="reports-featured-overlay">
-          <span className="rci-kicker">{featured.country}</span>
-          <h3 className="reports-featured-title">{featured.title}</h3>
-        </div>
-      </a>
-      <ol className="reports-list">
-        {rows.map((r, i) => (
-          <li key={i}>
-            <a href={r.href} className="reports-row">
-              <div className="reports-row-text">
-                <span className="rci-kicker no-tick">{r.country}</span>
-                <span className="reports-row-title">{r.title}</span>
+      <div
+        className="reports-card"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="reports-carousel">
+          {slides.map((s, i) => (
+            <a
+              key={i}
+              href={s.href}
+              className={"reports-slide" + (i === active ? " is-active" : "")}
+              aria-hidden={i !== active}
+              tabIndex={i === active ? 0 : -1}
+            >
+              <img src={s.image} alt={s.title} className="reports-slide-img" />
+              <div className="reports-slide-overlay">
+                <span className="rci-kicker">{s.country}</span>
+                <h3 className="reports-slide-title">{s.title}</h3>
               </div>
-              <span className="reports-arrow">&rarr;</span>
             </a>
-          </li>
-        ))}
-      </ol>
-      <div className="reports-foot">
-        <PrintButton variant="paper" size="md" href="join.html">Find your local section &rarr;</PrintButton>
-        <PrintButton variant="paper" size="md" href="#">All reports &rarr;</PrintButton>
+          ))}
+          <button
+            type="button"
+            className="reports-nav prev"
+            aria-label="Previous report"
+            onClick={() => go(active - 1)}
+          >&larr;</button>
+          <button
+            type="button"
+            className="reports-nav next"
+            aria-label="Next report"
+            onClick={() => go(active + 1)}
+          >&rarr;</button>
+        </div>
+        <div className="reports-dots" role="tablist" aria-label="Reports carousel">
+          {slides.map((s, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              aria-label={s.country + " report"}
+              className={"reports-dot" + (i === active ? " is-active" : "")}
+              onClick={() => setActive(i)}
+            />
+          ))}
+        </div>
+        <div className="reports-foot">
+          <PrintButton variant="paper" size="md" href="join.html">Find your local section &rarr;</PrintButton>
+          <PrintButton variant="paper" size="md" href="#">All reports &rarr;</PrintButton>
+        </div>
       </div>
     </section>
   );
